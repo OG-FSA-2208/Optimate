@@ -43,41 +43,45 @@
 ## PROJECT IDEA
 
 - Names:
-  - Busybee 😂
-  - Errand Expert
-    - logo: EE
-  - On The Go
-  - Just In Time
-  - Get Clocked
-    - logo: 🥊⏰
-  - Codys Clock ⏰
   - Optimate
-    - bot: Optim
-    - logo: octopus 🐙:octopus:
-    - :purple_heart:
+    - bot: OPTI
+    - logo: octopus 🐙
+   
+> OPTIMATE (DATING APP)
+> “Not a booty call, a foodie call"
 
-> Optimal Time Scheduling (Helps user schedule their errands based on optimal time)
+- 1. CREATE AN ACCOUNT (INITIAL SIGN UP)
+SURVEY 
+Personal Info
+- age
+- gender
+- occupation
+- single/married??? get out! you are banned/divorced
+- smoker/nonsmoker + drinker/sober?
+- priorities
+- interests (5 max.)
+- location
+- preferences for partner: age, gender, occupation, marital status
+- love languages —  is this important to you? 
+  if yes, create our own quiz (5 questions?) if user does not know their LL
 
-- Create an account
-- Add a task > query data to return best time to go
-  - Reschedule
-  - Limit possible time suggestions
-  - Suggestions for other locations?
-    - Transportation type?
-- All task view list style
-  - Filter options based on ENUM
-  - Upcoming tasks
-  - Full list
-  - Completed
-  - Incomplete
-  - Conflicts: based on time
-- Task view calendar
-  - Contains all tasks including timing
-    - integration with windows calendar/google calendar
-- Individual task view
-  - Modify task
-  - Mark complete & reverse
-  - Repeat or readd old task
+
+2. MATCHING LOVERS
+- based on score of interests
+- based on their age input, age range will be x amount of years older or younger
+- based on priorities  
+
+
+3. MESSENGER/CHAT BOX
+- bot suggestions after a week?
+
+
+4. RESOURCES PAGE:
+- OPTI-THE-OCTOPUS BOT - have trouble dating????? no worries, we got you.
+- What if he/she ghosts?
+- What if he/she is busy? What should I do —medium article
+- How to time manage now with dating?
+
 
 ## WireFrame
 
@@ -85,38 +89,31 @@
 
 - React
   - Components
-    - Calender
-    - class or id name on all components
+    - User Sign Up View
+    - User Log In View
+    - User Profile / Edit Profile Info
+    - List of Potential Matches (Links to each individual match)
+    - List of Connected Matches (Links to each individual message box)
+    - Videochat / Voice chat (maybe)
   - Routing
-    - User
-    - Admin
+    - User (many-to-many association when users match)
+        - Edit user profile or view user profile on same page
+    - Tags (for interests)
     - @Redux Toolkit
 - LESS
 
 ### Middleware/features
 
-- Google API
-  - [premade api BESTTIME](https://besttime.app/#api)
-  - curl to pull google data?
-  - [google distance matrix](https://developers.google.com/maps/documentation/distance-matrix/)
-- car traffic api?
-  - other layers
 
 ### Back
 
 - Models
   - User
-    - username/email/fn/ln
+    - username/first name/last name/age/occupation/smoking/drinking/lovelanguages
     - password
-  - TaskList
-    - Category/Tag
-      - Event / Errand / Appointment
-      - priority level/taskorder?
-    - locations
-    - task name
-    - time/date
-    - details
-    - ENUN: Complete / Archived / Inprogess
+  - Interest
+    - category/tag
+
 - FireBase?
   - Relational
     - firestore
@@ -124,3 +121,9 @@
   - Built in websockets?
   - Automatic authentication? - oauth
   - Google signin?
+
+**
+TO DO LIST:
+- look into Firebase
+- Wireframes
+**
