@@ -2,48 +2,47 @@
 
 ## Contract
 
-### Work contract
+### Work Contract
 
 - work hours 10am-6pm
-  - lunch breat 1pm-230pm
-- Daily Checkins in the morning and afternoon?
-  - morning, after break or at the end of the day?
+  - Lunch break 1pm-230pm
+- Daily Check-ins in the morning and afternoon
+  - Morning, after 2:30, and occasionally at EOB
 - 24hr notice if possible if you are not available
-- notify if unable to complete your section
+- Notify if unable to complete your section
 
-### git hub work flow
+### Github work flow
 
-- send a new message if you have completed the merge
-- react to that message to show you have pulled the new main branch
-- do not push to main branch
-- push to branch named by the feature you are working on
-  - send a message when you have a branch that is ready for a merge
-  - react to the message if you are reviewing the repo
-    - git checkout main
-    - git pull origin main
-    - git checkout `branch name`
-    - git merge origin main `:wq in terminal if presented with commit message for merge`
+- Send a new message if you have completed the merge
+- React to that message to show you have pulled the new main branch
+- Do NOT push to main branch
+- Push to branch named by the feature you are working on
+  - Send a message when you have a branch that is ready for a merge
+  - React to the message if you are reviewing the repo
+    - Git checkout main
+    - Git pull origin main
+    - Git checkout `branch name`
+    - Git merge origin main `:wq in terminal if presented with commit message for merge`
 - Add issue to the project board or assign your self an issue if not taken
--
 
-### Pair Programming: do we need to?
+### Pair Programming: When is it necessary?
 
-- when our features otverlap
-  - integrating features or components with complex logic
+- When our features overlap
+- Integrating features or components with complex logic
 - If there is a known dependency on another's work
-  - use place holder names that are descriptive and comments
+- Use place holder names that are descriptive and comments
 
-### social contracts
+### Social Contracts
 
-- feature diagreements: majority vote
-- disagreements/problems between members
-  - acknowledge the issue so it can be explored while staying respectful to each other
+- Feature diagreements: majority vote
+- Disagreements/problems between members
+  - Acknowledge the issue so it can be explored while staying respectful to each other
   - If unable to resolve loop in another member to mediate
-  - if problem persists, escalate to mentor
+  - If problem persists, escalate to mentor
 
 ## PROJECT IDEA
 
-- names
+- Names:
   - Busybee 😂
   - Errand Expert
     - logo: EE
@@ -52,43 +51,43 @@
   - Get Clocked
     - logo: 🥊⏰
   - Codys Clock ⏰
-  - optim-mate
-    - bot: optim
+  - Optimate
+    - bot: Optim
     - logo: octopus 🐙:octopus:
     - :purple_heart:
 
 > Optimal Time Scheduling (Helps user schedule their errands based on optimal time)
 
-- create an account
-- add a task > query data to return best time to go
-  - reschedule
-  - limit possible time suggestions
-  - suggestions for other locations?
-    - transportation type?
+- Create an account
+- Add a task > query data to return best time to go
+  - Reschedule
+  - Limit possible time suggestions
+  - Suggestions for other locations?
+    - Transportation type?
 - All task view list style
-  - filter options based on ENUM
-  - upcoming tasks
-  - full list
-  - completed
-  - incomplete
-  - conflicts: based on time
-- task view calendar
-  - contains all tasks including timing
+  - Filter options based on ENUM
+  - Upcoming tasks
+  - Full list
+  - Completed
+  - Incomplete
+  - Conflicts: based on time
+- Task view calendar
+  - Contains all tasks including timing
     - integration with windows calendar/google calendar
-- individual task view
-  - modify task
-  - mark complete & reverse
-  - repeat or readd old task
+- Individual task view
+  - Modify task
+  - Mark complete & reverse
+  - Repeat or readd old task
 
 ## WireFrame
 
-### Front
+### Front End
 
 - React
-  - components
-    - calender
+  - Components
+    - Calender
     - class or id name on all components
-  - routing
+  - Routing
     - User
     - Admin
     - @Redux Toolkit
@@ -96,7 +95,7 @@
 
 ### Middleware/features
 
-- google api
+- Google API
   - [premade api BESTTIME](https://besttime.app/#api)
   - curl to pull google data?
   - [google distance matrix](https://developers.google.com/maps/documentation/distance-matrix/)
@@ -105,7 +104,7 @@
 
 ### Back
 
-- models
+- Models
   - User
     - username/email/fn/ln
     - password
@@ -119,9 +118,9 @@
     - details
     - ENUN: Complete / Archived / Inprogess
 - FireBase?
-  - relational
+  - Relational
     - firestore
     - superbase / other dbmodels?
-  - built in websockets?
-  - automatic authentication? - oauth
-  - google signin?
+  - Built in websockets?
+  - Automatic authentication? - oauth
+  - Google signin?
