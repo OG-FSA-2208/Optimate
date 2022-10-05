@@ -2,21 +2,21 @@
 
 Run npm install when you pull this code
 
-#BIG HEADER
+# BIG HEADER
 
-##SECTION 1 (KEY FEATURES?)
+## SECTION 1 (KEY FEATURES?)
 
-###SUBSECTION?
+### SUBSECTION?
 
-**bold something important**
-_italicize something to emphasize_
-**_bold and italic is super imp_**
-<sub>subscript if so inclined</sub>
-<sup>superscript if youre bored</sup>
+**bold something important**  
+_italicize something to emphasize_  
+**_bold and italic is super imp_**  
+a<sub>subscript if so inclined</sub>  
+a<sup>superscript if youre bored</sup>  
 
 > quote like this
 
-Type some `inline code` like this
+Type some `inline code` like this  
 Or a block of code like this:
 
 ```js
@@ -39,8 +39,8 @@ ordered list:
 1. first
 2. second
 
-tasks:
-[ ] task one
+tasks:  
+[ ] task one  
 [x] task two completed
 
 [^1]: happy readmeing 🐙
