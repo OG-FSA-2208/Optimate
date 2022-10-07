@@ -12,7 +12,7 @@ Run npm install when you pull this code
 _italicize something to emphasize_  
 **_bold and italic is super imp_**  
 a<sub>subscript if so inclined</sub>  
-a<sup>superscript if youre bored</sup>  
+a<sup>superscript if youre bored</sup>
 
 > quote like this
 
@@ -30,9 +30,9 @@ console.log((b += a));
 
 unorderd list:
 
--   first item with footnote[^1]
--   second
-    -   nest it
+- first item with footnote[^1]
+- second
+  - nest it
 
 ordered list:
 

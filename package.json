@@ -1,38 +1,38 @@
 {
-    "name": "firebaseboiler",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start",
-        "lint": "next lint"
-    },
-    "author": "2208 OG",
-    "license": "ISC",
-    "dependencies": {
-        "@reduxjs/toolkit": "^1.8.5",
-        "@supabase/supabase-js": "^1.35.7",
-        "axios": "^1.0.0",
-        "next": "^12.3.1",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-redux": "^8.0.4",
-        "react-router-dom": "^6.4.1",
-        "redux-logger": "^3.0.6",
-        "redux-thunk": "^2.4.1"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.18.10",
-        "@babel/helper-define-polyfill-provider": "^0.3.3",
-        "@babel/plugin-transform-runtime": "^7.19.1",
-        "@babel/preset-env": "^7.19.1",
-        "@babel/preset-react": "^7.18.6",
-        "@babel/runtime": "^7.19.0",
-        "babel-loader": "^8.2.5",
-        "dotenv-webpack": "^8.0.1",
-        "webpack": "^5.74.0",
-        "webpack-cli": "^4.10.0"
-    }
+  "name": "firebaseboiler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "author": "2208 OG",
+  "license": "ISC",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.8.5",
+    "@supabase/supabase-js": "^1.35.7",
+    "axios": "^1.0.0",
+    "next": "^12.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.4",
+    "react-router-dom": "^6.4.1",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.4.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/helper-define-polyfill-provider": "^0.3.3",
+    "@babel/plugin-transform-runtime": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/runtime": "^7.19.0",
+    "babel-loader": "^8.2.5",
+    "dotenv-webpack": "^8.0.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
 }
