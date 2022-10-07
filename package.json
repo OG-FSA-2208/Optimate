@@ -4,12 +4,12 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "dev": "next dev",
+        "build": "next build",
         "start": "next start",
-        "start-dev": "npm run build-watch",
-        "build-watch": "webpack -w",
-        "build": "next build"
+        "lint": "next lint"
     },
-    "author": "Zach Byerley",
+    "author": "2208 OG",
     "license": "ISC",
     "dependencies": {
         "@reduxjs/toolkit": "^1.8.5",
