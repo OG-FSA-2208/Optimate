@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import supabase from '../config/supabaseClient';
-
 export default function Account({ session }) {
   const [loading, setLoading] = useState(true);
   const [firstname, setFirstname] = useState(null);
   const [lastname, setLastname] = useState(null);
+  const [id, setId] = useState(null);
 
   useEffect(() => {
     getProfile();
@@ -22,17 +22,20 @@ export default function Account({ session }) {
     try {
       setLoading(true);
       const user = await getCurrentUser();
+      console.log(user);
       let { data, error, status } = await supabase
-        .from('profile')
+        .from('profiles')
         .select(`*`)
-        .eq('user_id', user.id)
+        .eq('id', user.id)
         .single();
       if (error && status !== 406) {
         console.log(error);
       }
       if (data) {
+        console.log(data);
         setFirstname(data.firstname);
         setLastname(data.lastname);
+        setId(data.id);
       }
     } catch (error) {
       console.log(error);
@@ -48,14 +51,13 @@ export default function Account({ session }) {
       const user = await getCurrentUser();
 
       const updates = {
-        user_id: user.id,
         firstname,
         lastname,
-        updated_at: new Date(),
       };
-
-      let { error } = await supabase.from('profile').upsert(updates);
-
+      let { error } = await supabase
+        .from('profiles')
+        .update(updates)
+        .eq('id', id);
       if (error) {
         console.log(error);
         throw error;
@@ -64,6 +66,7 @@ export default function Account({ session }) {
       alert(error.message);
     } finally {
       setLoading(false);
+      getProfile();
     }
   }
 
@@ -74,7 +77,7 @@ export default function Account({ session }) {
         <input id="email" type="text" value={session.user.email} disabled />
       </div>
       <div>
-        <label htmlFor="firstname">Name</label>
+        <label htmlFor="firstname">first name</label>
         <input
           id="firstname"
           type="text"
@@ -83,7 +86,7 @@ export default function Account({ session }) {
         />
       </div>
       <div>
-        <label htmlFor="lastname">Name</label>
+        <label htmlFor="lastname">last name</label>
         <input
           id="lastname"
           type="text"
