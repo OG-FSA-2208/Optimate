@@ -4,10 +4,10 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "node server ",
+        "start": "next start",
         "start-dev": "npm run build-watch",
         "build-watch": "webpack -w",
-        "build": "webpack"
+        "build": "next build"
     },
     "author": "Zach Byerley",
     "license": "ISC",

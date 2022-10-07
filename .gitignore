@@ -6,3 +6,4 @@ package-lock.json
 *.tmp*
 .DS_Store
 /build
+.next
