@@ -46,13 +46,13 @@
   - Optimate
     - bot: OPTI
     - logo: octopus 🐙
-   
+
 > OPTIMATE (DATING APP)
 > “Not a booty call, a foodie call"
 
 - 1. CREATE AN ACCOUNT (INITIAL SIGN UP)
-SURVEY 
-Personal Info
+     SURVEY
+     Personal Info
 - age
 - gender
 - occupation
@@ -62,26 +62,25 @@ Personal Info
 - interests (5 max.)
 - location
 - preferences for partner: age, gender, occupation, marital status
-- love languages —  is this important to you? 
+- love languages — is this important to you?
   if yes, create our own quiz (5 questions?) if user does not know their LL
 
-
 2. MATCHING LOVERS
+
 - based on score of interests
 - based on their age input, age range will be x amount of years older or younger
-- based on priorities  
-
+- based on priorities
 
 3. MESSENGER/CHAT BOX
+
 - bot suggestions after a week?
 
-
 4. RESOURCES PAGE:
+
 - OPTI-THE-OCTOPUS BOT - have trouble dating????? no worries, we got you.
 - What if he/she ghosts?
 - What if he/she is busy? What should I do —medium article
 - How to time manage now with dating?
-
 
 ## WireFrame
 
@@ -97,17 +96,17 @@ Personal Info
     - Videochat / Voice chat (maybe)
   - Routing
     - User (many-to-many association when users match)
-        - Edit user profile or view user profile on same page
+      - Edit user profile or view user profile on same page
     - Tags (for interests)
     - @Redux Toolkit
 - LESS
 
 ### Middleware/features
 
-
 ### Back
 
 - Models
+
   - User
     - username/first name/last name/age/occupation/smoking/drinking/lovelanguages
     - password
@@ -122,8 +121,9 @@ Personal Info
   - Automatic authentication? - oauth
   - Google signin?
 
-**
+\*\*
 TO DO LIST:
+
 - look into Firebase
 - Wireframes
-**
+  \*\*
