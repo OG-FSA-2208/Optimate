@@ -28,6 +28,7 @@ export default function UserProfile({ session }) {
 
   const toggleEdit = (e) => {
     setEditing(!editing);
+    getProfile(); // when editing is toggled and was cancelled, will retrieve proper profile data
   }
 
   async function getProfile() {
@@ -46,11 +47,11 @@ export default function UserProfile({ session }) {
       if (data) {
         setUserData(data);
         console.log(data);
-        setFirstname(data.firstname);
-        setLastname(data.lastname);
-        setAbout(data.about);
-        setAge(data.age);
-        setGender(data.gender);
+        // setFirstname(data.firstname);
+        // setLastname(data.lastname);
+        // setAbout(data.about);
+        // setAge(data.age);
+        // setGender(data.gender);
         setId(data.id);
       }
     } catch (error) {
@@ -66,13 +67,14 @@ export default function UserProfile({ session }) {
       setLoading(true);
       const user = await getCurrentUser();
 
-      const updates = {
-        firstname,
-        lastname,
-        about,
-        age,
-        gender
-      };
+      const updates = {...userData};
+      // const updates = {
+      //   firstname,
+      //   lastname,
+      //   about,
+      //   age,
+      //   gender
+      // };
       let { error } = await supabase
         .from('profiles')
         .update(updates)
@@ -99,8 +101,8 @@ export default function UserProfile({ session }) {
           <input
             id="firstname"
             type="text"
-            value={firstname || ''}
-            onChange={(e) => setFirstname(e.target.value)}
+            value={userData.firstname || ''}
+            onChange={(e) => setUserData({...userData, firstname: e.target.value})}
           />
         </div>
         <div>
@@ -108,8 +110,8 @@ export default function UserProfile({ session }) {
           <input
             id="lastname"
             type="text"
-            value={lastname || ''}
-            onChange={(e) => setLastname(e.target.value)}
+            value={userData.lastname || ''}
+            onChange={(e) => setUserData({...userData, lastname: e.target.value})}
           />
         </div>
         <div>
@@ -117,8 +119,8 @@ export default function UserProfile({ session }) {
           <input
             id="about"
             type="text"
-            value={about || ''}
-            onChange={(e) => setAbout(e.target.value)}
+            value={userData.about || ''}
+            onChange={(e) => setUserData({...userData, about: e.target.value})}
           />
         </div>
         <div>
@@ -126,13 +128,13 @@ export default function UserProfile({ session }) {
           <input
             id="age"
             type="text"
-            value={age || ''}
-            onChange={(e) => setAge(e.target.value)}
+            value={userData.age || ''}
+            onChange={(e) => setUserData({...userData, age: e.target.value})}
           />
         </div>
         <div>
           <label htmlFor="gender">gender</label>
-          <select value={gender || 'unselected'} onChange={(e) => setGender(e.target.value)}>
+          <select value={userData.gender || 'unselected'} onChange={(e) => setUserData({...userData, gender: e.target.value})}>
             <option disabled value='unselected'>Select</option>
             <option value='male'>Male</option>
             <option value='female'>Female</option>
