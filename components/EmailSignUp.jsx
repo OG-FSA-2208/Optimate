@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import supabase from '../config/supabaseClient';
-export default function EmailSignIn() {
+export default function EmailSignUp() {
   const [form, setForm] = useState({
     email: '',
     password: '',

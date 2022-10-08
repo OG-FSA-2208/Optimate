@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 import supabase from '../config/supabaseClient';
-export default function Account({ session }) {
+import SignOut from './SignOut';
+import { useSelector } from 'react-redux';
+export default function Account() {
   const [loading, setLoading] = useState(true);
   const [firstname, setFirstname] = useState(null);
   const [lastname, setLastname] = useState(null);
   const [id, setId] = useState(null);
-
+  const session = useSelector((state) => state.user);
   useEffect(() => {
+    console.log('effect');
+    console.log(session);
     getProfile();
   }, [session]);
 
@@ -71,47 +75,46 @@ export default function Account({ session }) {
   }
 
   return (
-    <div className="form-widget">
-      <div>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session.user.email} disabled />
-      </div>
-      <div>
-        <label htmlFor="firstname">first name</label>
-        <input
-          id="firstname"
-          type="text"
-          value={firstname || ''}
-          onChange={(e) => setFirstname(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="lastname">last name</label>
-        <input
-          id="lastname"
-          type="text"
-          value={lastname || ''}
-          onChange={(e) => setLastname(e.target.value)}
-        />
-      </div>
-      <div>
-        <button
-          className="button primary block"
-          onClick={() => updateProfile({ firstname, lastname })}
-          disabled={loading}
-        >
-          {loading ? 'Loading ...' : 'Update'}
-        </button>
-      </div>
+    <>
+      {session.user && (
+        <div className="form-widget">
+          <div>
+            <label htmlFor="email">Email</label>
+            <input id="email" type="text" value={session.user.email} disabled />
+          </div>
+          <div>
+            <label htmlFor="firstname">first name</label>
+            <input
+              id="firstname"
+              type="text"
+              value={firstname || ''}
+              onChange={(e) => setFirstname(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="lastname">last name</label>
+            <input
+              id="lastname"
+              type="text"
+              value={lastname || ''}
+              onChange={(e) => setLastname(e.target.value)}
+            />
+          </div>
+          <div>
+            <button
+              className="button primary block"
+              onClick={() => updateProfile({ firstname, lastname })}
+              disabled={loading}
+            >
+              {loading ? 'Loading ...' : 'Update'}
+            </button>
+          </div>
 
-      <div>
-        <button
-          className="button block"
-          onClick={() => supabase.auth.signOut()}
-        >
-          Sign Out
-        </button>
-      </div>
-    </div>
+          <div>
+            <SignOut />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

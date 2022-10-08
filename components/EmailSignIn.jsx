@@ -28,7 +28,7 @@ export default function EmailSignIn() {
     });
     // console.log(res);
     if (error) {
-      console.log(error);
+      console.log('err', error);
     }
     if (user) {
       console.log(user);
@@ -67,7 +67,7 @@ export default function EmailSignIn() {
             />
           </label>
         </div>
-        <button className="newproductbtn" type="submit">
+        <button className="login" type="submit">
           Login Now
         </button>
       </form>
