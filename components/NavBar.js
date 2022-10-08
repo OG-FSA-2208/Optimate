@@ -23,6 +23,11 @@ export default function NavBar() {
 						<a>posts</a>
 					</Link>
 				</li>
+				<li>
+					<Link href="/profile">
+						<a>user profile</a>
+					</Link>
+				</li>
 			</ul>
 		</div>
 	);
