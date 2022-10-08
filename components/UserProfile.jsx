@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import supabase from '../config/supabaseClient';
 
 // Account is the user's credentials
-export default function Account({ session }) {
+export default function UserProfile({ session }) {
   const [loading, setLoading] = useState(true);
   const [firstname, setFirstname] = useState(null);
   const [lastname, setLastname] = useState(null);
+  const [about, setAbout] = useState(null);
   const [id, setId] = useState(null);
 
   useEffect(() => {
@@ -55,6 +56,7 @@ export default function Account({ session }) {
       const updates = {
         firstname,
         lastname,
+        about
       };
       let { error } = await supabase
         .from('profiles')
@@ -94,6 +96,15 @@ export default function Account({ session }) {
           type="text"
           value={lastname || ''}
           onChange={(e) => setLastname(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="about">profile bio</label>
+        <input
+          id="about"
+          type="text"
+          value={about || ''}
+          onChange={(e) => setAbout(e.target.value)}
         />
       </div>
       <div>
