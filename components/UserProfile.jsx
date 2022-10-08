@@ -7,6 +7,8 @@ export default function UserProfile({ session }) {
   const [firstname, setFirstname] = useState(null);
   const [lastname, setLastname] = useState(null);
   const [about, setAbout] = useState(null);
+  const [age, setAge] = useState(null);
+  const [gender, setGender] = useState(null);
   const [id, setId] = useState(null);
 
   useEffect(() => {
@@ -38,6 +40,9 @@ export default function UserProfile({ session }) {
         console.log(data);
         setFirstname(data.firstname);
         setLastname(data.lastname);
+        setAbout(data.about);
+        setAge(data.age);
+        setGender(data.gender);
         setId(data.id);
       }
     } catch (error) {
@@ -56,7 +61,9 @@ export default function UserProfile({ session }) {
       const updates = {
         firstname,
         lastname,
-        about
+        about,
+        age,
+        gender
       };
       let { error } = await supabase
         .from('profiles')
@@ -106,6 +113,31 @@ export default function UserProfile({ session }) {
           value={about || ''}
           onChange={(e) => setAbout(e.target.value)}
         />
+      </div>
+      <div>
+        <label htmlFor="age">age</label>
+        <input
+          id="age"
+          type="text"
+          value={age || ''}
+          onChange={(e) => setAge(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="gender">gender</label>
+        <select value={gender || 'unselected'} onChange={(e) => setGender(e.target.value)}>
+          <option disabled value='unselected'>Select</option>
+          <option value='male'>Male</option>
+          <option value='female'>Female</option>
+          <option value='nb'>Non-binary</option>
+          <option value='other'>Other</option>
+        </select>
+        {/* <input
+          id="gender"
+          type="text"
+          value={age || ''}
+          onChange={(e) => setAge(e.target.value)}
+        /> */}
       </div>
       <div>
         <button
