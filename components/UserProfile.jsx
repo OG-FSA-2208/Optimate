@@ -84,10 +84,6 @@ export default function UserProfile({ session }) {
   return (
     <div className="form-widget">
       <div>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session.user.email} disabled />
-      </div>
-      <div>
         <label htmlFor="firstname">first name</label>
         <input
           id="firstname"
