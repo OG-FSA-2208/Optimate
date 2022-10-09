@@ -77,46 +77,66 @@ export default function Account() {
   }
 
   return (
-    <>
-      {user.id && (
-        <div className="form-widget">
-          <div>
-            <label htmlFor="email">Email</label>
-            <input id="email" type="text" value={user.email} disabled />
-          </div>
-          <div>
-            <label htmlFor="firstname">first name</label>
-            <input
-              id="firstname"
-              type="text"
-              value={firstname || ''}
-              onChange={(e) => setFirstname(e.target.value)}
-            />
-          </div>
-          <div>
-            <label htmlFor="lastname">last name</label>
-            <input
-              id="lastname"
-              type="text"
-              value={lastname || ''}
-              onChange={(e) => setLastname(e.target.value)}
-            />
-          </div>
-          <div>
-            <button
-              className="button primary block"
-              onClick={() => updateProfile({ firstname, lastname })}
-              disabled={loading}
-            >
-              {loading ? 'Loading ...' : 'Update'}
-            </button>
-          </div>
-
-          <div>
-            <SignOut />
-          </div>
+    <div className="form-widget">
+      <form>
+        <div className="form-title">Update Profile</div>
+        <div className="form-item">
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <input
+            className="form-input"
+            id="email"
+            type="text"
+            value={user.email}
+            disabled
+          />
+          <span className="form-error">Please enter an email</span>
         </div>
-      )}
-    </>
+        <div className="form-item">
+          <label htmlFor="firstname" className="form-label">
+            First Name
+          </label>
+          <input
+            className="form-input form-input-small"
+            id="firstname"
+            type="text"
+            value={firstname || ''}
+            onChange={(e) => setFirstname(e.target.value)}
+          />
+          <span className="form-error">Please enter a first name</span>
+        </div>
+        <div className="form-item">
+          <label htmlFor="lastname" className="form-label">
+            Last Name
+          </label>
+          <input
+            className="form-input form-input-small"
+            id="lastname"
+            type="text"
+            value={lastname || ''}
+            onChange={(e) => setLastname(e.target.value)}
+          />
+        </div>
+        <span className="form-error">Please enter a last name</span>
+        <div>
+          <button
+            className="button"
+            onClick={() => updateProfile({ firstname, lastname })}
+            disabled={loading}
+          >
+            {loading ? 'Loading ...' : 'Update'}
+          </button>
+        </div>
+        <div>
+          <button className="button" onClick={() => supabase.auth.signOut()}>
+            Sign Out
+          </button>
+        </div>
+      </form>
+      <div>
+        <SignOut />
+      </div>
+    </div>
   );
 }

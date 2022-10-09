@@ -42,39 +42,43 @@ export default function EmailSignIn() {
   };
 
   return (
-    <form id="new-product-form" onSubmit={(e) => handleSubmit(e)}>
-      <h2 className="newproducttitle">Sign in Form</h2>
+    <div className="page create">
       {formError && <p>{formError}</p>}
-      <div className="form-line">
-        <label>
-          email
+      <form id="new-product-form" onSubmit={(e) => handleSubmit(e)}>
+        <div className="form-title">Sign In</div>
+        <div className="form-item">
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
           <input
             autoComplete="username"
-            className="newproductform"
-            placeholder="email"
+            className="form-input"
+            placeholder="Enter your email"
             name="email"
             value={form.email}
             onChange={handleChange('email')}
           />
-        </label>
-      </div>
-      <div className="form-line">
-        <label>
-          password
+          <span className="form-error">Please enter your email</span>
+        </div>
+        <div className="form-item">
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
           <input
-            className="newproductform"
-            placeholder="password"
+            className="form-input"
+            placeholder="Enter your password"
             name="password"
             autoComplete="current-password"
             type="password"
             value={form.password}
             onChange={handleChange('password')}
           />
-        </label>
-      </div>
-      <button className="login" type="submit">
-        Login Now
-      </button>
-    </form>
+          <span className="form-error">Please enter your password</span>
+        </div>
+        <div id="button">
+          <button type="submit">Login Now</button>
+        </div>
+      </form>
+    </div>
   );
 }
