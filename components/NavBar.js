@@ -20,8 +20,13 @@ export default function NavBar() {
           </Link>
         </li>
         <li>
-          <Link href="/post">
-            <a>posts</a>
+          <Link href="/user/profile">
+            <a>profile</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/user/setting">
+            <a>setting</a>
           </Link>
         </li>
       </ul>

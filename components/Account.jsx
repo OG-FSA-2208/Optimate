@@ -1,21 +1,23 @@
 import { useState, useEffect } from 'react';
 import supabase from '../config/supabaseClient';
 import SignOut from './SignOut';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { checkSession } from '../store/reducers/userSlice';
 export default function Account() {
   const [loading, setLoading] = useState(true);
   const [firstname, setFirstname] = useState(null);
   const [lastname, setLastname] = useState(null);
   const [id, setId] = useState(null);
-  const session = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   useEffect(() => {
-    console.log('effect');
-    console.log(session);
-    getProfile();
-  }, [session]);
+    if (!user.id) {
+      console.log('noid');
+    }
+  }, []);
 
   async function getCurrentUser() {
-    if (!session) {
+    if (!user.id) {
       throw new Error('User not logged in');
     }
     const user = supabase.auth.user();
@@ -76,11 +78,11 @@ export default function Account() {
 
   return (
     <>
-      {session.user && (
+      {user.id && (
         <div className="form-widget">
           <div>
             <label htmlFor="email">Email</label>
-            <input id="email" type="text" value={session.user.email} disabled />
+            <input id="email" type="text" value={user.email} disabled />
           </div>
           <div>
             <label htmlFor="firstname">first name</label>

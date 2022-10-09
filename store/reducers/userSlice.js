@@ -23,18 +23,15 @@ export default userSlice.reducer;
 export const { login, logout, update } = userSlice.actions;
 export const checkSession = () => async (dispatch) => {
   const session = await supabase.auth.session();
-  console.log('slice');
-
-  console.log(session);
-  dispatch(login(session));
-  // return session;
+  if (session) {
+    dispatch(login(session.user));
+  }
 };
 
-export const logoutUser = () => {
-  return (dispatch) => {
-    dispatch(logout());
-    window.localStorage.removeItem('token');
-  };
+export const logoutUser = (router) => (dispatch) => {
+  supabase.auth.signOut();
+  router.push('/');
+  dispatch(logout());
 };
 export const createUser = (userDetails) => {
   return async (dispatch) => {

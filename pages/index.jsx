@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   // const [session, setSession] = useState(null);
-  const session = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user);
   const router = useRouter();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -20,14 +20,9 @@ export default function Home() {
     async function getInitialSession() {
       console.log('getinit');
       dispatch(checkSession());
-      // if (session) {
-      //   console.log(session);
-      //   setSession(session);
-      // }
       setIsLoading(false);
     }
-    if (session.user) {
-      // console.log(session);
+    if (user.id) {
       router.push('/user/profile');
     } else {
       getInitialSession();
@@ -42,14 +37,14 @@ export default function Home() {
     //   mounted = false;
     //   subscription?.unsubscribe();
     // };
-  }, []);
+  }, [user]);
   return (
     <div className="container" style={{ padding: '50px 0 100px 0' }}>
       {isLoading ? (
         <></>
       ) : (
         <>
-          {!session && (
+          {!user.id && (
             <div className="no-session">
               <div>
                 <h3>Returning User?</h3>
@@ -57,15 +52,19 @@ export default function Home() {
                   onClick={() => {
                     router.push('./login');
                   }}
-                ></button>
+                >
+                  Login
+                </button>
               </div>
               <div>
-                <h3>Register Now</h3>
+                <h3>First time here?</h3>
                 <button
                   onClick={() => {
                     router.push('./signup');
                   }}
-                ></button>
+                >
+                  Register Now
+                </button>
               </div>
             </div>
           )}

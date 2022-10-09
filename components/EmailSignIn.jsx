@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import supabase from '../config/supabaseClient';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { checkSession } from '../store/reducers/userSlice';
 export default function EmailSignIn() {
   const [form, setForm] = useState({
     email: '',
     password: '',
   });
+  const dispatch = useDispatch();
   const [formError, setError] = useState(null);
   const handleChange = (props) => (event) => {
     let value = event.target.value;
@@ -13,7 +17,7 @@ export default function EmailSignIn() {
       [props]: value,
     });
   };
-
+  const router = useRouter();
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!form.email || !form.password) {
@@ -32,45 +36,45 @@ export default function EmailSignIn() {
     }
     if (user) {
       console.log(user);
+      dispatch(checkSession());
+      router.push('/user/profile');
     }
   };
 
   return (
-    <div className="page create">
+    <form id="new-product-form" onSubmit={(e) => handleSubmit(e)}>
+      <h2 className="newproducttitle">Sign in Form</h2>
       {formError && <p>{formError}</p>}
-      <form id="new-product-form" onSubmit={(e) => handleSubmit(e)}>
-        <h2 className="newproducttitle">Sign in Form</h2>
-        <div className="form-line">
-          <label>
-            email
-            <input
-              autoComplete="username"
-              className="newproductform"
-              placeholder="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange('email')}
-            />
-          </label>
-        </div>
-        <div className="form-line">
-          <label>
-            password
-            <input
-              className="newproductform"
-              placeholder="password"
-              name="password"
-              autoComplete="current-password"
-              type="password"
-              value={form.password}
-              onChange={handleChange('password')}
-            />
-          </label>
-        </div>
-        <button className="login" type="submit">
-          Login Now
-        </button>
-      </form>
-    </div>
+      <div className="form-line">
+        <label>
+          email
+          <input
+            autoComplete="username"
+            className="newproductform"
+            placeholder="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange('email')}
+          />
+        </label>
+      </div>
+      <div className="form-line">
+        <label>
+          password
+          <input
+            className="newproductform"
+            placeholder="password"
+            name="password"
+            autoComplete="current-password"
+            type="password"
+            value={form.password}
+            onChange={handleChange('password')}
+          />
+        </label>
+      </div>
+      <button className="login" type="submit">
+        Login Now
+      </button>
+    </form>
   );
 }
