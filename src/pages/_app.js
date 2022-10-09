@@ -1,5 +1,6 @@
 import { Provider } from 'react-redux';
 import { useStore } from '../store';
+import "../styles/globals.css"
 
 export default function App({ Component, pageProps }) {
     //Component is the page that is loaded, see pages folder
