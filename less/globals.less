@@ -1,0 +1,38 @@
+@import './colors.less';
+@import './mixins.less';
+@import './nav.less';
+@import './form.less';
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Concert One', cursive;
+  background-color: @primary-color;
+}
+
+main {
+  .flexCenter();
+  height: 94vh;
+}
+
+button {
+  background: none;
+  color: inherit;
+  border: 1px solid @primary-text-color;
+  padding: 0.25em 0.75em;
+  border-radius: 10px;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  transition: 200ms;
+  margin: 0.5em;
+}
+
+button:hover {
+    background-color: @accent-color;
+    color: @primary-color;
+  }

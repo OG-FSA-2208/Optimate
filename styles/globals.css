@@ -1,0 +1,212 @@
+.flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flexCenterColumn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100vw;
+  z-index: 1;
+  justify-content: space-around;
+  background-color: #f7c59f;
+  min-height: 6vh;
+}
+.brand-title {
+  margin: 0.5rem;
+  letter-spacing: 0.2rem;
+}
+.nav-links {
+  display: flex;
+  justify-content: space-around;
+}
+.nav-links li {
+  list-style: none;
+  margin: 1em;
+}
+.nav-links a {
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 3px;
+  transition: 200ms;
+  color: #004e89;
+}
+.nav-links a:hover {
+  color: #c33c54;
+}
+.nav-icon {
+  width: 15px;
+}
+.burger {
+  display: none;
+  cursor: pointer;
+}
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: #004e89;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+@media screen and (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+  .nav-links {
+    position: absolute;
+    right: 0px;
+    height: 94vh;
+    top: 6vh;
+    background: #f7c59f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 50%;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+  }
+  .nav-links li {
+    opacity: 0;
+    margin: 2rem;
+  }
+  .burger {
+    display: block;
+  }
+}
+.nav-active {
+  transform: translateX(0%);
+}
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+.toggle .line1 {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+.toggle .line2 {
+  opacity: 0;
+}
+.toggle .line3 {
+  transform: rotate(45deg) translate(-5px, -6px);
+}
+form {
+  padding: 2em 4em;
+  background-color: #f7c59f;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  min-width: 40vw;
+  box-shadow: 7px 4px 15px 0px rgba(0, 0, 0, 0.57);
+  -webkit-box-shadow: 7px 4px 15px 0px rgba(0, 0, 0, 0.57);
+}
+.form-title {
+  font-size: 2em;
+  font-weight: 600;
+}
+.form-item {
+  display: flex;
+  flex-direction: column;
+}
+.form-item > * {
+  align-self: flex-start;
+}
+.form-label {
+  font-weight: 600;
+  padding: 10px 0;
+}
+.form-input {
+  width: 90%;
+  max-width: 425px;
+  padding: 0.8em;
+  font-size: 0.9em;
+  outline: none;
+  border: 1px solid #f7c59f;
+  border-radius: 4px;
+  background: #f9f9f9;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+.form-input:focus {
+  background: #ffffff;
+}
+.form-input::placeholder {
+  color: #004e89;
+}
+.form-input-error {
+  color: #d50000;
+  background: #fff8f8;
+  border-color: #d50000;
+}
+.form-input-error::placeholder {
+  color: #ffbfbf;
+}
+.form-error {
+  padding-top: 10px;
+  color: #d50000;
+  font-size: 0.9em;
+  visibility: hidden;
+}
+.form-input-error + .form-error {
+  visibility: visible;
+}
+.form-input-small {
+  max-width: 250px;
+}
+.form-input-xsmall {
+  max-width: 150px;
+}
+textarea.form-input {
+  resize: none;
+  min-height: 200px;
+}
+@font-face {
+  font-family: 'Concert One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/concertone/v17/VEM1Ro9xs5PjtzCu-srDqRTl.ttf) format('truetype');
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Concert One', cursive;
+  background-color: #efefd0;
+}
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 94vh;
+}
+button {
+  background: none;
+  color: inherit;
+  border: 1px solid #004e89;
+  padding: 0.25em 0.75em;
+  border-radius: 10px;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  transition: 200ms;
+  margin: 0.5em;
+}
+button:hover {
+  background-color: #c33c54;
+  color: #efefd0;
+}
