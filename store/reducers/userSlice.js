@@ -21,49 +21,21 @@ const userSlice = createSlice({
 });
 export default userSlice.reducer;
 export const { login, logout, update } = userSlice.actions;
-export const checkSession = () => async (dispatch) => {
+export const checkSession = (router) => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
     dispatch(login(session.user));
+  } else {
+    if (router) {
+      router.push('/');
+    }
   }
 };
 
 export const logoutUser = (router) => (dispatch) => {
   supabase.auth.signOut();
-  router.push('/');
   dispatch(logout());
+  router.push('/');
 };
-export const createUser = (userDetails) => {
-  return async (dispatch) => {
-    try {
-      const { data: user } = await axios.post('/api/users', {
-        ...userDetails,
-      });
-      if (user) {
-        attemptPsswordLogin({
-          username: userDetails.username,
-          password: userDetails.password,
-        })(dispatch);
-      }
-    } catch (error) {
-      throw error;
-    }
-  };
-};
-export const updateUser = (userDetails, userId) => async (dispatch) => {
-  try {
-    const token = window.localStorage.getItem('token');
-    const { data: user } = await axios.put(
-      `/api/users/${userId}`,
-      userDetails,
-      {
-        headers: {
-          authorization: token,
-        },
-      }
-    );
-    dispatch(update(user));
-  } catch (error) {
-    throw error;
-  }
-};
+export const createUser = (userDetails) => {};
+export const updateUser = (userDetails, userId) => async (dispatch) => {};

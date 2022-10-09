@@ -3,23 +3,29 @@ import supabase from '../config/supabaseClient';
 import SignOut from './SignOut';
 import { useSelector, useDispatch } from 'react-redux';
 import { checkSession } from '../store/reducers/userSlice';
+import { useRouter } from 'next/router';
 export default function Account() {
   const [loading, setLoading] = useState(true);
-  const [firstname, setFirstname] = useState(null);
-  const [lastname, setLastname] = useState(null);
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
   const [id, setId] = useState(null);
+  const [error, setError] = useState(true);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const router = useRouter();
   useEffect(() => {
     if (!user.id) {
-      console.log('noid');
+      dispatch(checkSession(router));
+      console.log('no id');
     }
+    setLoading(false);
   }, []);
 
   async function getCurrentUser() {
     if (!user.id) {
-      throw new Error('User not logged in');
+      // setError('User not logged in');
     }
+    // setError(false);
     const user = supabase.auth.user();
     return user;
   }
@@ -51,7 +57,7 @@ export default function Account() {
     }
   }
 
-  async function updateProfile({ username, avatar_url }) {
+  async function updateProfile() {
     try {
       setLoading(true);
       const user = await getCurrentUser();
@@ -101,7 +107,7 @@ export default function Account() {
             className="form-input form-input-small"
             id="firstname"
             type="text"
-            value={firstname || ''}
+            value={firstname}
             onChange={(e) => setFirstname(e.target.value)}
           />
           <span className="form-error">Please enter a first name</span>
@@ -114,11 +120,13 @@ export default function Account() {
             className="form-input form-input-small"
             id="lastname"
             type="text"
-            value={lastname || ''}
+            value={lastname}
             onChange={(e) => setLastname(e.target.value)}
           />
         </div>
-        <span className="form-error">Please enter a last name</span>
+        <span className={error ? 'form-error form-input-error' : 'form-error'}>
+          Please enter a last name
+        </span>
         <div>
           <button
             className="button"
@@ -129,14 +137,9 @@ export default function Account() {
           </button>
         </div>
         <div>
-          <button className="button" onClick={() => supabase.auth.signOut()}>
-            Sign Out
-          </button>
+          <SignOut />
         </div>
       </form>
-      <div>
-        <SignOut />
-      </div>
     </div>
   );
 }
