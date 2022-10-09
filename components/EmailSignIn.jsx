@@ -39,37 +39,41 @@ export default function EmailSignIn() {
     <div className="page create">
       {formError && <p>{formError}</p>}
       <form id="new-product-form" onSubmit={(e) => handleSubmit(e)}>
-        <h2 className="newproducttitle">Sign in Form</h2>
-        <div className="form-line">
-          <label>
-            email
-            <input
-              autoComplete="username"
-              className="newproductform"
-              placeholder="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange('email')}
-            />
+        <div className="form-title">Sign Up</div>
+        <div className="form-item">
+          <label htmlFor="email" className="form-label">
+            Email
           </label>
+          <input
+            autoComplete="username"
+            className="form-input"
+            placeholder="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange('email')}
+          />
+          <span className="form-error">Please enter your username</span>
         </div>
-        <div className="form-line">
-          <label>
-            password
-            <input
-              className="newproductform"
-              placeholder="password"
-              name="password"
-              autoComplete="current-password"
-              type="password"
-              value={form.password}
-              onChange={handleChange('password')}
-            />
+        <div className="form-item">
+          <label htmlFor="password" className="form-label">
+            Password
           </label>
+          <input
+            className="form-input"
+            placeholder="password"
+            name="password"
+            autoComplete="current-password"
+            type="password"
+            value={form.password}
+            onChange={handleChange('password')}
+          />
+          <span className="form-error">Please enter your password</span>
         </div>
-        <button className="newproductbtn" type="submit">
-          Login Now
-        </button>
+        <div id="button">
+          <button className="newproductbtn" type="submit">
+            Login Now
+          </button>
+        </div>
       </form>
     </div>
   );
