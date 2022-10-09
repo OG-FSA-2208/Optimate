@@ -3,5 +3,6 @@
 
 // export { getUsers };
 import userSlice from './userSlice';
+import matchesSlice from './matchesSlice';
 
-export { userSlice };
+export { userSlice, matchesSlice };

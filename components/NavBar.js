@@ -54,6 +54,11 @@ export default function NavBar() {
             <a>setting</a>
           </Link>
         </li>
+        <li>
+          <Link href="/user/homepage">
+            <a>homepage</a>
+          </Link>
+        </li>
       </ul>
 
       <div
