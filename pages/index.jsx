@@ -22,12 +22,10 @@ export default function Home() {
       dispatch(checkSession());
       setIsLoading(false);
     }
+    getInitialSession();
     if (user.id) {
       router.push('/user/profile');
-    } else {
-      getInitialSession();
     }
-
     // const { subscription } = supabase.auth.onAuthStateChange(
     //   (_event, session) => {
     //     setSession(session);
@@ -37,7 +35,7 @@ export default function Home() {
     //   mounted = false;
     //   subscription?.unsubscribe();
     // };
-  }, [user]);
+  }, []);
   return (
     <div className="container" style={{ padding: '50px 0 100px 0' }}>
       {isLoading ? (
