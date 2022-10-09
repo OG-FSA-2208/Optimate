@@ -39,7 +39,7 @@ export default function EmailSignIn() {
     <div className="page create">
       {formError && <p>{formError}</p>}
       <form id="new-product-form" onSubmit={(e) => handleSubmit(e)}>
-        <div className="form-title">Sign Up</div>
+        <div className="form-title">Sign In</div>
         <div className="form-item">
           <label htmlFor="email" className="form-label">
             Email
@@ -47,12 +47,12 @@ export default function EmailSignIn() {
           <input
             autoComplete="username"
             className="form-input"
-            placeholder="email"
+            placeholder="Enter your email"
             name="email"
             value={form.email}
             onChange={handleChange('email')}
           />
-          <span className="form-error">Please enter your username</span>
+          <span className="form-error">Please enter your email</span>
         </div>
         <div className="form-item">
           <label htmlFor="password" className="form-label">
@@ -60,7 +60,7 @@ export default function EmailSignIn() {
           </label>
           <input
             className="form-input"
-            placeholder="password"
+            placeholder="Enter your password"
             name="password"
             autoComplete="current-password"
             type="password"
@@ -70,7 +70,7 @@ export default function EmailSignIn() {
           <span className="form-error">Please enter your password</span>
         </div>
         <div id="button">
-          <button className="newproductbtn" type="submit">
+          <button type="submit">
             Login Now
           </button>
         </div>
