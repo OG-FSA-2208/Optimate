@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'Concert One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/concertone/v17/VEM1Ro9xs5PjtzCu-srDqRTl.ttf) format('truetype');
+}
+body {
+  font-family: 'Concert One', cursive;
+  background-color: #F0F3BD;
+}
