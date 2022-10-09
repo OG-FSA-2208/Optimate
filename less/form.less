@@ -1,0 +1,88 @@
+@import './mixins.less';
+@import './colors.less';
+
+form {
+  // border: 2px solid @secondary-color;
+  padding: 2em 4em;
+  background-color: @secondary-color;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  min-width: 40vw;
+  box-shadow: 7px 4px 15px 0px rgba(0, 0, 0, 0.57);
+  -webkit-box-shadow: 7px 4px 15px 0px rgba(0, 0, 0, 0.57);
+}
+
+.form-title {
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-item > * {
+  align-self: flex-start;
+}
+
+.form-label {
+  font-weight: 600;
+  padding: 10px 0;
+}
+
+.form-input {
+  // -webkit-appearance: none;
+  width: 90%;
+  max-width: 425px;
+  padding: 0.8em;
+  font-size: 0.9em;
+  outline: none;
+  border: 1px solid @secondary-color;
+  border-radius: 4px;
+  background: #f9f9f9;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+}
+
+.form-input:focus {
+  background: #ffffff;
+}
+
+.form-input::placeholder {
+  color: @primary-text-color;
+}
+
+.form-input-error {
+  color: #d50000;
+  background: #fff8f8;
+  border-color: #d50000;
+}
+
+.form-input-error::placeholder {
+  color: #ffbfbf;
+}
+
+.form-error {
+  padding-top: 10px;
+  color: #d50000;
+  font-size: 0.9em;
+  visibility: hidden;
+}
+
+.form-input-error + .form-error {
+  visibility: visible;
+}
+
+.form-input-small {
+  max-width: 250px;
+}
+
+.form-input-xsmall {
+  max-width: 150px;
+}
+
+textarea.form-input {
+  resize: none;
+  min-height: 200px;
+}
