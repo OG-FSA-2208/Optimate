@@ -1,61 +1,57 @@
-.flexCenter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.flexCenterColumn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .flexCenter();
   position: fixed;
   width: 100vw;
   z-index: 1;
   justify-content: space-around;
-  background-color: #00BFB2;
+  background-color: @secondary-color;
   min-height: 6vh;
 }
+
 .brand-title {
   margin: 0.5rem;
   letter-spacing: 0.2rem;
 }
+
 .nav-links {
   display: flex;
   justify-content: space-around;
 }
+
 .nav-links li {
   list-style: none;
   margin: 1em;
+
 }
 .nav-links a {
   text-decoration: none;
   font-weight: bold;
   letter-spacing: 3px;
   transition: 200ms;
-  color: #1A5E63;
+  color: @primary-text-color;
 }
+
 .nav-links a:hover {
-  color: #C64191;
+  color: @accent-color;
 }
+
 .nav-icon {
   width: 15px;
 }
+
 .burger {
   display: none;
   cursor: pointer;
 }
+
 .burger div {
   width: 25px;
   height: 3px;
-  background-color: #1A5E63;
+  background-color: @primary-text-color;
   margin: 5px;
   transition: all 0.3s ease;
 }
+
 @media screen and (max-width: 768px) {
   body {
     overflow-x: hidden;
@@ -65,7 +61,7 @@
     right: 0px;
     height: 94vh;
     top: 6vh;
-    background: #00BFB2;
+    background: @secondary-color;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -82,9 +78,11 @@
     display: block;
   }
 }
+
 .nav-active {
   transform: translateX(0%);
 }
+
 @keyframes navLinkFade {
   from {
     opacity: 0;
@@ -95,6 +93,7 @@
     transform: translateX(0px);
   }
 }
+
 .toggle .line1 {
   transform: rotate(-45deg) translate(-5px, 6px);
 }
@@ -104,18 +103,4 @@
 .toggle .line3 {
   transform: rotate(45deg) translate(-5px, -6px);
 }
-@font-face {
-  font-family: 'Concert One';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/concertone/v17/VEM1Ro9xs5PjtzCu-srDqRTl.ttf) format('truetype');
-}
-* {
-  margin: 0;
-  padding: 0;
-}
-body {
-  font-family: 'Concert One', cursive;
-  background-color: #F0F3BD;
-}
+
