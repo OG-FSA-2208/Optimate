@@ -17,7 +17,7 @@
   width: 100vw;
   z-index: 1;
   justify-content: space-around;
-  background-color: #00BFB2;
+  background-color: #f7c59f;
   min-height: 6vh;
 }
 .brand-title {
@@ -37,10 +37,10 @@
   font-weight: bold;
   letter-spacing: 3px;
   transition: 200ms;
-  color: #1A5E63;
+  color: #004e89;
 }
 .nav-links a:hover {
-  color: #C64191;
+  color: #c33c54;
 }
 .nav-icon {
   width: 15px;
@@ -52,7 +52,7 @@
 .burger div {
   width: 25px;
   height: 3px;
-  background-color: #1A5E63;
+  background-color: #004e89;
   margin: 5px;
   transition: all 0.3s ease;
 }
@@ -65,7 +65,7 @@
     right: 0px;
     height: 94vh;
     top: 6vh;
-    background: #00BFB2;
+    background: #f7c59f;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -106,7 +106,7 @@
 }
 form {
   padding: 2em 4em;
-  background-color: #00BFB2;
+  background-color: #f7c59f;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -135,7 +135,7 @@ form {
   padding: 0.8em;
   font-size: 0.9em;
   outline: none;
-  border: 1px solid #00BFB2;
+  border: 1px solid #f7c59f;
   border-radius: 4px;
   background: #f9f9f9;
   transition: background 0.25s, border-color 0.25s, color 0.25s;
@@ -144,7 +144,7 @@ form {
   background: #ffffff;
 }
 .form-input::placeholder {
-  color: #1A5E63;
+  color: #004e89;
 }
 .form-input-error {
   color: #d50000;
@@ -186,7 +186,7 @@ textarea.form-input {
 }
 body {
   font-family: 'Concert One', cursive;
-  background-color: #F0F3BD;
+  background-color: #efefd0;
 }
 main {
   display: flex;
@@ -197,7 +197,7 @@ main {
 button {
   background: none;
   color: inherit;
-  border: 1px solid #1A5E63;
+  border: 1px solid #004e89;
   padding: 0.25em 0.75em;
   border-radius: 10px;
   font: inherit;
@@ -207,6 +207,6 @@ button {
   margin: 0.5em;
 }
 button:hover {
-  background-color: #C64191;
-  color: #F0F3BD;
+  background-color: #c33c54;
+  color: #efefd0;
 }
