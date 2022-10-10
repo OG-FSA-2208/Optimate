@@ -18,6 +18,10 @@ export default function EditUserProfile({ session }) {
     setLoading(false);
   }, [dispatch]);
 
+  useEffect(() => {
+
+  }, [userData])
+
   async function updateProfile(data) {
     try {
       setLoading(true);
@@ -32,16 +36,20 @@ export default function EditUserProfile({ session }) {
 
   async function handleAvatarUpload(e) {
     const avatarFile = e.target.files[0]
-    console.log('new upload: ', avatarFile)
-    // await supabase
-    //   .storage
-    //   .from('avatars')
-    //   .update(`${userData.firstname}_avatar`, avatarFile)
-    const {data} = await supabase.storage.from('avatars').upload(`${avatarFile.name}`, avatarFile);
+    await supabase
+      .storage
+      .from('avatars')
+      .update(`${userData.firstname}_avatar`, avatarFile, {cacheControl: '3000'})
+    // const {data} = await supabase.storage.from('avatars').upload(`${avatarFile.name}`, avatarFile);
     const { publicURL, imgError } = await supabase
       .storage
       .from('avatars')
-      .getPublicUrl(`${avatarFile.name}`);
+      .getPublicUrl(`${userData.firstname}_avatar`);
+    // const {data} = await supabase.storage.from('avatars').upload(`${avatarFile.name}`, avatarFile);
+    // const { publicURL, imgError } = await supabase
+    //   .storage
+    //   .from('avatars')
+    //   .getPublicUrl(`${avatarFile.name}`);
     console.log(publicURL);
     setUserData({...userData, avatar_url: publicURL});
   }
