@@ -36,20 +36,23 @@ export default function EditUserProfile({ session }) {
 
   async function handleAvatarUpload(e) {
     const avatarFile = e.target.files[0]
-    await supabase
-      .storage
-      .from('avatars')
-      .update(`${userData.firstname}_avatar`, avatarFile, {cacheControl: '3000'})
-    // const {data} = await supabase.storage.from('avatars').upload(`${avatarFile.name}`, avatarFile);
-    const { publicURL, imgError } = await supabase
-      .storage
-      .from('avatars')
-      .getPublicUrl(`${userData.firstname}_avatar`);
-    // const {data} = await supabase.storage.from('avatars').upload(`${avatarFile.name}`, avatarFile);
+    // caching issue happens here!!!
+    // const {data} = await supabase.storage.from('avatars')
+    //   .upload(`${userData.firstname}_avatar`, avatarFile, {upsert: true})
     // const { publicURL, imgError } = await supabase
     //   .storage
     //   .from('avatars')
-    //   .getPublicUrl(`${avatarFile.name}`);
+    //   .getPublicUrl(`${userData.firstname}_avatar`);
+
+    // backup plan...
+    const {data} = await supabase.storage.from('avatars')
+        .upload(`${avatarFile.name}`, avatarFile, {upsert: true});
+    const { publicURL, imgError } = await supabase
+      .storage
+      .from('avatars')
+      .getPublicUrl(`${avatarFile.name}`);
+
+
     console.log(publicURL);
     setUserData({...userData, avatar_url: publicURL});
   }
