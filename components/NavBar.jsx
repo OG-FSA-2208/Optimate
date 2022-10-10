@@ -31,7 +31,9 @@ export default function NavBar() {
 
   return (
     <nav className="navbar">
-      <div className="brand-title">Optimate</div>
+      <div className="brand-title">
+        Optimate -- Not a booty call but a foodie call 😉
+      </div>
       <ul className={burgerClicked ? 'nav-links nav-active' : 'nav-links'}>
         {session ? (
           // these are the links that will appear if a user is logged in
