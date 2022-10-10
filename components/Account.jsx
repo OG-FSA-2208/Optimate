@@ -8,6 +8,7 @@ export default function Account() {
   const [loading, setLoading] = useState(true);
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
+  const [email, setEmail] = useState('');
   const [id, setId] = useState(null);
   const [error, setError] = useState(true);
   const user = useSelector((state) => state.user);
@@ -19,21 +20,12 @@ export default function Account() {
       console.log('no id');
     }
     setLoading(false);
-  }, []);
-
-  async function getCurrentUser() {
-    if (!user.id) {
-      // setError('User not logged in');
-    }
-    // setError(false);
-    const user = supabase.auth.user();
-    return user;
-  }
+    getProfile();
+  }, [user]);
 
   async function getProfile() {
     try {
       setLoading(true);
-      const user = await getCurrentUser();
       console.log(user);
       let { data, error, status } = await supabase
         .from('profiles')
@@ -45,8 +37,9 @@ export default function Account() {
       }
       if (data) {
         console.log(data);
-        setFirstname(data.firstname);
-        setLastname(data.lastname);
+        setFirstname(data.firstname || '');
+        setLastname(data.lastname || '');
+        setEmail(user.email);
         setId(data.id);
       }
     } catch (error) {
@@ -60,8 +53,6 @@ export default function Account() {
   async function updateProfile() {
     try {
       setLoading(true);
-      const user = await getCurrentUser();
-
       const updates = {
         firstname,
         lastname,
@@ -94,7 +85,7 @@ export default function Account() {
             className="form-input"
             id="email"
             type="text"
-            value={user.email}
+            value={email}
             disabled
           />
           <span className="form-error">Please enter an email</span>
@@ -124,15 +115,9 @@ export default function Account() {
             onChange={(e) => setLastname(e.target.value)}
           />
         </div>
-        <span className={error ? 'form-error form-input-error' : 'form-error'}>
-          Please enter a last name
-        </span>
+        <span className="form-error">Please enter a last name</span>
         <div>
-          <button
-            className="button"
-            onClick={() => updateProfile({ firstname, lastname })}
-            disabled={loading}
-          >
+          <button className="button" onClick={updateProfile} disabled={loading}>
             {loading ? 'Loading ...' : 'Update'}
           </button>
         </div>
