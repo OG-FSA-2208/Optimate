@@ -72,11 +72,6 @@ export default function NavBar() {
             </Link>
           </li>
         </>}
-        <li>
-          <Link href="/post">
-            <a>posts (??)</a>
-          </Link>
-        </li>
       </ul>
 
       <div
