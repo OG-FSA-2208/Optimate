@@ -173,6 +173,40 @@ textarea.form-input {
   resize: none;
   min-height: 200px;
 }
+.myProfile {
+  display: inline-block;
+  text-align: center;
+  font-size: 18px;
+  width: 400px;
+  height: 500px;
+  margin: 100px 0px 0px 120px;
+  background-color: #9eedffea;
+  color: rgba(12, 10, 10, 0.4);
+}
+.profilePic {
+  width: 220px;
+  height: 300px;
+}
+.matchesForEachUser {
+  justify-content: center;
+  text-align: center;
+  font-size: 20px;
+  margin: 5px;
+}
+.matches {
+  width: 300px;
+  height: 320px;
+  background-color: #9eedffea;
+  color: rgba(12, 10, 10, 0.4);
+  display: inline-block;
+  text-align: center;
+  font-size: 18px;
+  margin: 15px 20px 0px 10px;
+}
+.matchesProfilePic {
+  width: 175px;
+  height: 200px;
+}
 @font-face {
   font-family: 'Concert One';
   font-style: normal;
