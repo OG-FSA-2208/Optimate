@@ -60,72 +60,104 @@ export default function EditUserProfile({ session }) {
   return (
     <div className="form-widget">
       <div>
-        <div>
-          <label htmlFor="avatar">Profile Photo</label>
-          <img src={userData.avatar_url} height="250px"/>
-          <input
-            id="avatar"
-            type="file"
-            accept="image/*"
-            onChange={handleAvatarUpload}
-          />
-        </div>
-        <div>
-          <label htmlFor="firstname">first name</label>
-          <input
-            id="firstname"
-            type="text"
-            value={userData.firstname || ''}
-            onChange={(e) => setUserData({...userData, firstname: e.target.value})}
-          />
-        </div>
-        <div>
-          <label htmlFor="lastname">last name</label>
-          <input
-            id="lastname"
-            type="text"
-            value={userData.lastname || ''}
-            onChange={(e) => setUserData({...userData, lastname: e.target.value})}
-          />
-        </div>
-        <div>
-          <label htmlFor="about">profile bio</label>
-          <input
-            id="about"
-            type="text"
-            value={userData.about || ''}
-            onChange={(e) => setUserData({...userData, about: e.target.value})}
-          />
-        </div>
-        <div>
-          <label htmlFor="age">age</label>
-          <input
-            id="age"
-            type="text"
-            value={userData.age || ''}
-            onChange={(e) => setUserData({...userData, age: e.target.value})}
-          />
-        </div>
-        <div>
-          <label htmlFor="gender">gender</label>
-          <select value={userData.gender || 'unselected'} onChange={(e) => setUserData({...userData, gender: e.target.value})}>
-            <option disabled value='unselected'>Select</option>
-            <option value='male'>Male</option>
-            <option value='female'>Female</option>
-            <option value='nb'>Non-binary</option>
-            <option value='other'>Other</option>
-          </select>
-        </div>
-        <div>
-          <button
-            className="button primary block"
-            onClick={() => updateProfile(userData)}
-            disabled={loading}
-          >
-            {loading ? 'Loading ...' : 'Update'}
-          </button>
-          <div>{updated ? 'Profile updated' : ''}</div>
-        </div>
+        <label htmlFor="avatar">Profile Photo</label><br/>
+        <img src={userData.avatar_url} height="300px"/>
+        <input
+          id="avatar"
+          type="file"
+          accept="image/*"
+          onChange={handleAvatarUpload}
+        />
+      </div>
+      <div>
+        <label htmlFor="firstname">first name</label>
+        <input
+          id="firstname"
+          type="text"
+          value={userData.firstname || ''}
+          onChange={(e) => setUserData({...userData, firstname: e.target.value})}
+        />
+      </div>
+      <div>
+        <label htmlFor="lastname">last name</label>
+        <input
+          id="lastname"
+          type="text"
+          value={userData.lastname || ''}
+          onChange={(e) => setUserData({...userData, lastname: e.target.value})}
+        />
+      </div>
+      <div>
+        <label htmlFor="about">profile bio</label>
+        <input
+          id="about"
+          type="text"
+          value={userData.about || ''}
+          onChange={(e) => setUserData({...userData, about: e.target.value})}
+        />
+      </div>
+      <div>
+        <label htmlFor="age">age</label>
+        <input
+          id="age"
+          type="text"
+          value={userData.age || ''}
+          onChange={(e) => setUserData({...userData, age: e.target.value})}
+        />
+      </div>
+      <div>
+        <label htmlFor="gender">gender</label>
+        <select value={userData.gender || 'unselected'} onChange={(e) => setUserData({...userData, gender: e.target.value})}>
+          <option disabled value='unselected'>Select</option>
+          <option value='male'>Male</option>
+          <option value='female'>Female</option>
+          <option value='nb'>Non-binary</option>
+          <option value='other'>Other</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor='location'>location</label>
+        <input id='location' type='text' value={userData.location || ''} onChange={(e) => setUserData({...userData, location: e.target.value})}/>
+      </div>
+      <div>
+        <label htmlFor='occupation'>occupation</label>
+        <input id='occupation' type='text' value={userData.occupation || ''} onChange={(e) => setUserData({...userData, occupation: e.target.value})}/>
+      </div>
+      <div>
+        <p>Do you smoke?</p>
+        <label htmlFor='smoke'>Yes, I smoke</label>
+        <input id='smoke' value={true} type='radio' onSelect={(e) => setUserData({...userData, smoker: e.target.value})}/>
+        <br/>
+        <label htmlFor='nonsmoke'>No, I don't smoke at all</label>
+        <input id='nonsmoke' value={false} type='radio' onSelect={(e) => setUserData({...userData, smoker: e.target.value})}/>
+      </div>
+      <div>
+        <p>Do you drink alcohol?</p>
+        <label htmlFor='drinks'>Yes, I drink alcohol</label>
+        <input id='drinks' value={true} type='radio' onChange={(e) => setUserData({...userData, drinker: e.target.value})}/>
+        <br/>
+        <label htmlFor='nodrinks'>No, I don't think alcohol at all</label>
+        <input id='nodrinks' value={false} type='radio' onChange={(e) => setUserData({...userData, drinker: e.target.value})}/>
+      </div>
+      <div>
+        <label htmlFor='loveGiving'>Your love language (giving)</label>
+        <select value={userData.loveLangGiving || 'unselected'} onChange={(e) => setUserData({...userData, loveLangGiving: e.target.value})}>
+          <option value='unselected'>Unsure/Don't Care</option>
+          <option value='physical'>Physical Touch</option>
+          <option value='acts'>Acts of Service</option>
+          <option value='time'>Quality Time</option>
+          <option value='gifts'>Gift Giving</option>
+        </select>
+      </div>
+      <div>
+        <button
+          className="button primary block"
+          onClick={() => updateProfile(userData)}
+          disabled={loading}
+        >
+          {loading ? 'Loading ...' : 'Update'}
+        </button>
+        <div>{updated ? 'Profile updated' : ''}</div>
       </div>
     </div>
   );

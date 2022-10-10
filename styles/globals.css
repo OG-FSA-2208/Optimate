@@ -207,6 +207,9 @@ textarea.form-input {
   width: 175px;
   height: 200px;
 }
+.form-widget > div {
+  margin: 5px 0px;
+}
 @font-face {
   font-family: 'Concert One';
   font-style: normal;
