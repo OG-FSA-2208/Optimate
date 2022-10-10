@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "less": "less-watch-compiler less styles globals.less"
   },
   "author": "2208 OG",
   "license": "ISC",

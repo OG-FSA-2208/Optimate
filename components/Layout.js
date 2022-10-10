@@ -2,7 +2,7 @@ import NavBar from "./NavBar";
 export default function Layout({ children }) {
 	return (
 		<>
-			<NavBar session={children.props.session}/>
+			<NavBar/>
 			<main>{children}</main>
 		</>
 	);

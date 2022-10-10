@@ -1,10 +1,10 @@
-import { useState } from 'react';
 import Link from 'next/link';
-
-export default function NavBar(props) {
+import supabase from '../config/supabaseClient';
+import { useState } from 'react';
+export default function NavBar() {
   const [burgerClicked, setBurgerClicked] = useState(false);
 
-	const handleBurger = () => { 
+  const handleBurger = () => {
     const navLinks = document.querySelectorAll('.nav-links li');
     setBurgerClicked(!burgerClicked);
 
@@ -43,6 +43,21 @@ export default function NavBar(props) {
           <Link href="/post">
             <a>posts</a>
           </Link>
+        </li>{' '}
+        <li>
+          <Link href="/user/profile">
+            <a>profile</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/user/setting">
+            <a>setting</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/user/homepage">
+            <a>homepage</a>
+          </Link>
         </li>
         <li>
           <Link href="/profile">
@@ -50,6 +65,7 @@ export default function NavBar(props) {
           </Link>
         </li>
       </ul>
+
       <div
         onClick={handleBurger}
         className={burgerClicked ? 'burger toggle' : 'burger'}

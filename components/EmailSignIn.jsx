@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import supabase from '../config/supabaseClient';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { checkSession } from '../store/reducers/userSlice';
 export default function EmailSignIn() {
   const [form, setForm] = useState({
     email: '',
     password: '',
   });
+  const dispatch = useDispatch();
   const [formError, setError] = useState(null);
   const handleChange = (props) => (event) => {
     let value = event.target.value;
@@ -13,7 +17,7 @@ export default function EmailSignIn() {
       [props]: value,
     });
   };
-
+  const router = useRouter();
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!form.email || !form.password) {
@@ -28,10 +32,12 @@ export default function EmailSignIn() {
     });
     // console.log(res);
     if (error) {
-      console.log(error);
+      console.log('err', error);
     }
     if (user) {
       console.log(user);
+      dispatch(checkSession());
+      router.push('/user/profile');
     }
   };
 
@@ -70,9 +76,7 @@ export default function EmailSignIn() {
           <span className="form-error">Please enter your password</span>
         </div>
         <div id="button">
-          <button type="submit">
-            Login Now
-          </button>
+          <button type="submit">Login Now</button>
         </div>
       </form>
     </div>
