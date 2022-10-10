@@ -3,6 +3,11 @@ import supabase from '../config/supabaseClient';
 import { useState } from 'react';
 export default function NavBar() {
   const [burgerClicked, setBurgerClicked] = useState(false);
+  
+  const getSession = async () => {
+    return await supabase.auth.session();
+  }
+  const session = getSession()
 
   const handleBurger = () => {
     const navLinks = document.querySelectorAll('.nav-links li');
@@ -28,7 +33,7 @@ export default function NavBar() {
             <a>Home</a>
           </Link>
         </li>
-        {props.session ? null : 
+        {session ? null : 
         <><li>
           <Link href="/login">
             <a>login</a>
@@ -57,11 +62,6 @@ export default function NavBar() {
         <li>
           <Link href="/user/homepage">
             <a>homepage</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/profile">
-            <a>user profile</a>
           </Link>
         </li>
       </ul>

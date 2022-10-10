@@ -1,93 +1,38 @@
 import { useState, useEffect } from 'react';
 import supabase from '../config/supabaseClient';
 import ViewUserProfile from './ViewUserProfile';
+import { useDispatch } from 'react-redux';
+import { logoutUser, updateUser } from '../store/reducers/userSlice';
+import { getLoggedInUser } from '../store/reducers/profileSlice';
+import Router from 'next/router';
+import { useSelector } from 'react-redux';
 
 // Account is the user's credentials
 export default function UserProfile({ session }) {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);  // state that determines whether user is viewing or editing their info
-  const [firstname, setFirstname] = useState(null);
-  const [lastname, setLastname] = useState(null);
-  const [about, setAbout] = useState(null);
-  const [age, setAge] = useState(null);
-  const [gender, setGender] = useState(null);
-  const [id, setId] = useState(null);
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState(useSelector((state) => state.profile));
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getProfile();
-  }, [session]);
-
-  async function getCurrentUser() {
-    if (!session) {
-      throw new Error('User not logged in');
-    }
-    const user = supabase.auth.user();
-    return user;
-  }
+    dispatch(getLoggedInUser());
+    setLoading(false);
+  }, [dispatch]);
 
   const toggleEdit = (e) => {
     setEditing(!editing);
-    getProfile(); // when editing is toggled and was cancelled, will retrieve proper profile data
   }
 
-  async function getProfile() {
+  async function updateProfile(data) {
     try {
+      console.dir(data)
       setLoading(true);
-      const user = await getCurrentUser();
-      console.log(user);
-      let { data, error, status } = await supabase
-        .from('profiles')
-        .select(`*`)
-        .eq('id', user.id)
-        .single();
-      if (error && status !== 406) {
-        console.log(error);
-      }
-      if (data) {
-        setUserData(data);
-        console.log(data);
-        // setFirstname(data.firstname);
-        // setLastname(data.lastname);
-        // setAbout(data.about);
-        // setAge(data.age);
-        // setGender(data.gender);
-        setId(data.id);
-      }
-    } catch (error) {
-      console.log(error);
-      // alert(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  async function updateProfile({ username, avatar_url }) {
-    try {
-      setLoading(true);
-      const user = await getCurrentUser();
-
-      const updates = {...userData};
-      // const updates = {
-      //   firstname,
-      //   lastname,
-      //   about,
-      //   age,
-      //   gender
-      // };
-      let { error } = await supabase
-        .from('profiles')
-        .update(updates)
-        .eq('id', id);
-      if (error) {
-        console.log(error);
-        throw error;
-      }
+      dispatch(updateUser(data, data.id));
+      Router.push('/user/profile');
     } catch (error) {
       alert(error.message);
     } finally {
       setLoading(false);
-      getProfile();
     }
   }
 
@@ -141,17 +86,11 @@ export default function UserProfile({ session }) {
             <option value='nb'>Non-binary</option>
             <option value='other'>Other</option>
           </select>
-          {/* <input
-            id="gender"
-            type="text"
-            value={age || ''}
-            onChange={(e) => setAge(e.target.value)}
-          /> */}
         </div>
         <div>
           <button
             className="button primary block"
-            onClick={() => updateProfile({ firstname, lastname })}
+            onClick={() => updateProfile(userData)}
             disabled={loading}
           >
             {loading ? 'Loading ...' : 'Update'}
@@ -162,7 +101,7 @@ export default function UserProfile({ session }) {
       <div>
         <button
           className="button block"
-          onClick={() => supabase.auth.signOut()}
+          onClick={() => dispatch(logoutUser(Router))}
           >
           Sign Out
         </button>
