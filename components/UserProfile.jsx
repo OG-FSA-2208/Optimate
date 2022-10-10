@@ -6,10 +6,10 @@ import { getLoggedInUser } from '../store/reducers/profileSlice';
 import Router from 'next/router';
 import { useSelector } from 'react-redux';
 
-// Account is the user's credentials
 export default function UserProfile({ session }) {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);  // state that determines whether user is viewing or editing their info
+  const [updated, setUpdated] = useState(false);
   const [userData, setUserData] = useState(useSelector((state) => state.profile));
   const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ export default function UserProfile({ session }) {
     try {
       setLoading(true);
       dispatch(updateUser(data, data.id));
-      Router.push('/user/profile');
+      setUpdated(true);
     } catch (error) {
       alert(error.message);
     } finally {
@@ -36,7 +36,7 @@ export default function UserProfile({ session }) {
 
   return (
     <div className="form-widget">
-      <button className="button block" onClick={() => toggleEdit()}>{editing ? 'Cancel editing' : 'Edit profile'}</button>
+      <button className="button block" onClick={() => toggleEdit()}>{editing ? 'Return to profile' : 'Edit profile'}</button>
       {editing ? 
       (<div>
         <div>
@@ -93,6 +93,7 @@ export default function UserProfile({ session }) {
           >
             {loading ? 'Loading ...' : 'Update'}
           </button>
+          {updated ? 'Profile updated' : ''}
         </div>
       </div> )
       : <ViewUserProfile user={userData}/>}

@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser } from '../store/reducers/profileSlice';
 import { checkSession } from '../store/reducers/userSlice.js';
 import Router from 'next/router';
 
