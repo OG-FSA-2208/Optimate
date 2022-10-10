@@ -3,7 +3,8 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import reduxLogger from 'redux-logger';
 import { useMemo } from 'react';
 //EXAMPLE: import { getUsers } from './reducers
-import { userSlice } from './reducers';
+import { userSlice, matchesSlice, profileSlice } from './reducers';
+
 let store;
 
 function initStore(preloadedState) {
@@ -11,6 +12,8 @@ function initStore(preloadedState) {
     reducer: {
       // nameInStore: reducerName, add your reducers here in this form
       user: userSlice,
+      matches: matchesSlice,
+      profile: profileSlice,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(reduxLogger),
