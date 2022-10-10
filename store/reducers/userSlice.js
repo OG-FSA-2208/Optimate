@@ -25,12 +25,9 @@ export const checkSession = (router) => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
     dispatch(login(session.user));
-<<<<<<< HEAD
     console.log(session);
     return true;
-=======
     console.log('print out session.user', session.user);
->>>>>>> main
   } else {
     if (router) {
       router.push('/');
@@ -43,8 +40,6 @@ export const logoutUser = (router) => (dispatch) => {
   dispatch(logout());
   router.push('/');
 };
-<<<<<<< HEAD
-=======
 
 export const createUser = (userDetails) => {};
 export const updateUser = (userDetails, userId) => async (dispatch) => {
@@ -61,4 +56,3 @@ export const updateUser = (userDetails, userId) => async (dispatch) => {
     alert(error.message);
   }
 };
->>>>>>> main
