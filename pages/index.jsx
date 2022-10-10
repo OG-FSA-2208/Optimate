@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react';
 import supabase from '../config/supabaseClient';
 import Account from '../components/Account';
 
-export default function Home() {
+export default function Home(props) {
   const [isLoading, setIsLoading] = useState(true);
-  const [session, setSession] = useState(null);
+  const [session, setSession] = useState(props.session);
 
   useEffect(() => {
     console.log(supabase.auth);

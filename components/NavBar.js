@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-export default function NavBar() {
+export default function NavBar(props) {
   const [burgerClicked, setBurgerClicked] = useState(false);
 
 	const handleBurger = () => { 
     const navLinks = document.querySelectorAll('.nav-links li');
-
     setBurgerClicked(!burgerClicked);
 
     navLinks.forEach((link, index) => {
@@ -29,7 +28,8 @@ export default function NavBar() {
             <a>Home</a>
           </Link>
         </li>
-        <li>
+        {props.session ? null : 
+        <><li>
           <Link href="/login">
             <a>login</a>
           </Link>
@@ -38,7 +38,7 @@ export default function NavBar() {
           <Link href="/signup">
             <a>signup</a>
           </Link>
-        </li>
+        </li></>}
         <li>
           <Link href="/post">
             <a>posts</a>
