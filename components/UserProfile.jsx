@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import supabase from '../config/supabaseClient';
 import ViewUserProfile from './ViewUserProfile';
 import { useDispatch } from 'react-redux';
 import { logoutUser, updateUser } from '../store/reducers/userSlice';
@@ -25,7 +24,6 @@ export default function UserProfile({ session }) {
 
   async function updateProfile(data) {
     try {
-      console.dir(data)
       setLoading(true);
       dispatch(updateUser(data, data.id));
       Router.push('/user/profile');

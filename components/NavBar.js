@@ -1,13 +1,16 @@
 import Link from 'next/link';
-import supabase from '../config/supabaseClient';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from '../store/reducers/profileSlice';
+import { checkSession } from '../store/reducers/userSlice.js';
+import Router from 'next/router';
+
 export default function NavBar() {
+  const dispatch = useDispatch();
   const [burgerClicked, setBurgerClicked] = useState(false);
-  
-  const getSession = async () => {
-    return await supabase.auth.session();
-  }
-  const session = getSession()
+  const session = useSelector(state => state.profile.id);
+
+  console.dir(session)
 
   const handleBurger = () => {
     const navLinks = document.querySelectorAll('.nav-links li');
@@ -24,6 +27,10 @@ export default function NavBar() {
     });
   };
 
+  useEffect(() => {
+    dispatch(checkSession(Router));
+  }, [])
+
   return (
     <nav className="navbar">
       <div className="brand-title">Optimate</div>
@@ -33,35 +40,40 @@ export default function NavBar() {
             <a>Home</a>
           </Link>
         </li>
-        {session ? null : 
-        <><li>
-          <Link href="/login">
-            <a>login</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/signup">
-            <a>signup</a>
-          </Link>
-        </li></>}
+        {session ? 
+        <>
+          <li>
+            <Link href="/user/profile">
+              <a>profile</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/user/setting">
+              <a>setting</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/user/homepage">
+              <a>homepage</a>
+            </Link>
+          </li>
+        </>
+        : 
+        <>
+          <li>
+            <Link href="/login">
+              <a>login</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/signup">
+              <a>signup</a>
+            </Link>
+          </li>
+        </>}
         <li>
           <Link href="/post">
-            <a>posts</a>
-          </Link>
-        </li>{' '}
-        <li>
-          <Link href="/user/profile">
-            <a>profile</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/user/setting">
-            <a>setting</a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/user/homepage">
-            <a>homepage</a>
+            <a>posts (do we keep this??)</a>
           </Link>
         </li>
       </ul>
