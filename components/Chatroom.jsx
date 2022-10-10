@@ -1,6 +1,19 @@
-import React from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getMessages, changeMessage } from '../store/reducers/messengerSlice';
 
 export default function Chatroom() {
+  const dispatch = useDispatch();
+  const {
+    messageUser: messageUserId,
+    currentMessage,
+    messages,
+  } = useSelector((state) => state.messenger);
+
+  useEffect(() => {
+    if (messageUserId) dispatch(getMessages(messageUserId));
+  }, [messageUserId]);
+
   function handleSend() {
     //TODO: handle clicking send
   }
@@ -9,17 +22,22 @@ export default function Chatroom() {
     //TODO: handle cliking enter, send message to database
   }
   function handleChange(e) {
-    //TODO: dispatch e.target.value to store recieve it then set the value
+    e.preventDefault();
+    dispatch(changeMessage(e.target.value));
   }
 
   return (
     <div className="chatroom">
       <div className="chats">
-        {/* get old messages from store with useSelector */}
         {/* use a ternary to add a className to each p with either sender or reciever */}
-        <p>view all the old chats here</p>
-        <p>probably each as their own paragraph</p>
-        <p>change conatiner box based on from ID</p>
+        {messages.map((message) => (
+          <p
+            key={message.id}
+            className={message.from === messageUserId ? 'reciever' : 'sender'}
+          >
+            {message.message}
+          </p>
+        ))}
       </div>
       <div>
         <input
@@ -28,7 +46,7 @@ export default function Chatroom() {
           placeholder="Say something nice!"
           onChange={handleChange}
           onKeyDown={handleEnter}
-          //   set value to something from store/useSelector
+          value={currentMessage}
         />
         <button className="send" onClick={handleSend}>
           Send
