@@ -207,8 +207,35 @@ textarea.form-input {
   width: 175px;
   height: 200px;
 }
-.form-widget > div {
-  margin: 5px 0px;
+.form-widget .profile-info {
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+}
+.form-widget div {
+  margin: 7px 0px;
+}
+.form-widget label {
+  margin: 0px 5px;
+}
+.profile-user,
+.profile-preference {
+  width: 40vw;
+}
+textarea {
+  overflow-y: auto;
+}
+@media screen and (max-width: 912px) {
+  .form-widget {
+    margin-top: 40px;
+  }
+  .form-widget .profile-info {
+    flex-direction: column;
+  }
+  .profile-preference,
+  .profile-user {
+    width: 80vw;
+  }
 }
 @font-face {
   font-family: 'Concert One';
