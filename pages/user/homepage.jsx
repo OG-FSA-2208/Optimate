@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
 import { getAllUserMatches } from '../../store/reducers/matchesSlice';
 
@@ -7,11 +7,22 @@ export default function Profile() {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
   const matches = useSelector((state) => state.matches);
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     dispatch(getLoggedInUser());
     dispatch(getAllUserMatches());
   }, []);
+
+  // const card = document.querySelector('matchesForEachUser');
+  // const cardToggle = document.querySelector('toggle');
+
+  const handleClick = (event) => {
+    event.target.parentElement.parentElement.classList.toggle('active');
+    console.log('parentElement', event.target.parentElement.parentElement);
+    console.log('hello');
+    setToggle(!toggle);
+  };
 
   return (
     <div>
@@ -30,6 +41,7 @@ export default function Profile() {
             <p>Gender: {profile.gender}</p>
             <p>About: {profile.about}</p>
           </div>
+
           <div className="matchesForEachUser">
             {matches
               ? matches.map((match) => {
@@ -46,6 +58,12 @@ export default function Profile() {
                       <p>Age: {match.age}</p>
                       <p>Gender: {match.gender}</p>
                       <p>About: {match.about}</p>
+                      <div className="toggle">
+                        <ion-icon
+                          name="arrow-down-circle-outline"
+                          onClick={(event) => handleClick(event)}
+                        ></ion-icon>
+                      </div>
                     </div>
                   );
                 })
@@ -55,6 +73,15 @@ export default function Profile() {
       ) : (
         <h2>Please log in</h2>
       )}
+
+      <script
+        type="module"
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+      ></script>
+      <script
+        nomodule
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+      ></script>
     </div>
   );
 }
