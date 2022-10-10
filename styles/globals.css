@@ -158,9 +158,14 @@ form {
   padding-top: 10px;
   color: #d50000;
   font-size: 0.9em;
+  display: none;
   visibility: hidden;
 }
 .form-input-error + .form-error {
+  visibility: visible;
+}
+.display-block {
+  display: block;
   visibility: visible;
 }
 .form-input-small {
@@ -206,6 +211,27 @@ textarea.form-input {
 .matchesProfilePic {
   width: 175px;
   height: 200px;
+}
+.landing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75em;
+}
+@media screen and (max-width: 480px) {
+  .landing {
+    font-size: 1.5em;
+  }
+}
+.logo {
+  letter-spacing: 0.2em;
+  margin-bottom: 1em;
+}
+.no-session > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .form-widget .profile-info {
   width: 80vw;

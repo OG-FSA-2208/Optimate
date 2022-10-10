@@ -25,6 +25,8 @@ export const checkSession = (router) => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
     dispatch(login(session.user));
+    console.log(session);
+    return true;
     console.log('print out session.user', session.user);
   } else {
     if (router) {
