@@ -158,9 +158,14 @@ form {
   padding-top: 10px;
   color: #d50000;
   font-size: 0.9em;
+  display: none;
   visibility: hidden;
 }
 .form-input-error + .form-error {
+  visibility: visible;
+}
+.display-block {
+  display: block;
   visibility: visible;
 }
 .form-input-small {
