@@ -5,7 +5,6 @@ import { getAllUserMatches } from '../store/reducers/matchesSlice';
 
 export default function Matches() {
   const dispatch = useDispatch();
-
   const matches = useSelector((state) => state.matches);
 
   useEffect(() => {
@@ -16,9 +15,9 @@ export default function Matches() {
     <div className="match-list">
       <ul>
         {matches.map((user) => (
-          <Link href={`/messages/${user.id}`} key={user.id}>
-            <a>
-              <li>
+          <li key={user.id}>
+            <Link href={`/messages/${user.id}`}>
+              <a>
                 <img
                   src={user.avatar_url}
                   alt="user profile image"
@@ -30,9 +29,9 @@ export default function Matches() {
                   <br />
                   {user.lastname}
                 </p>
-              </li>
-            </a>
-          </Link>
+              </a>
+            </Link>
+          </li>
         ))}
       </ul>
     </div>
