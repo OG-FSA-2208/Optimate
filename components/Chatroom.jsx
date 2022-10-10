@@ -16,6 +16,7 @@ export default function Chatroom() {
     <div className="chatroom">
       <div className="chats">
         {/* get old messages from store with useSelector */}
+        {/* use a ternary to add a className to each p with either sender or reciever */}
         <p>view all the old chats here</p>
         <p>probably each as their own paragraph</p>
         <p>change conatiner box based on from ID</p>
