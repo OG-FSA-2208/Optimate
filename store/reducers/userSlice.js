@@ -40,4 +40,17 @@ export const logoutUser = (router) => (dispatch) => {
 };
 
 export const createUser = (userDetails) => {};
-export const updateUser = (userDetails, userId) => async (dispatch) => {};
+export const updateUser = (userDetails, userId) => async (dispatch) => {
+  try {
+    let { error } = await supabase
+      .from('profiles')
+      .update(userDetails)
+      .eq('id', userId);
+    if (error) {
+      console.log(error);
+      throw error;
+    }
+  } catch (error) {
+    alert(error.message);
+  }
+};
