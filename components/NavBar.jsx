@@ -53,6 +53,11 @@ export default function NavBar() {
                 <a>Setting</a>
               </Link>
             </li>
+            <li>
+              <Link href="/messages">
+                <a>Messages</a>
+              </Link>
+            </li>
           </>
         ) : (
           // these are the links that will appear if a user is not logged in
@@ -74,11 +79,6 @@ export default function NavBar() {
             </li>
           </>
         )}
-        <li>
-          <Link href="/post">
-            <a>posts (??)</a>
-          </Link>
-        </li>
       </ul>
 
       <div
