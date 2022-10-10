@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { updateUser } from '../store/reducers/userSlice';
 import { getLoggedInUser } from '../store/reducers/profileSlice';
 import { useSelector } from 'react-redux';
+import supabase from '../config/supabaseClient';
 
 export default function EditUserProfile({ session }) {
   const dispatch = useDispatch();
@@ -29,9 +30,36 @@ export default function EditUserProfile({ session }) {
     }
   }
 
+  async function handleAvatarUpload(e) {
+    const avatarFile = e.target.files[0]
+    const { data, error } = await supabase
+      .storage
+      .from('avatars')
+      .upload(`${userData.firstname}_avatar`, avatarFile, {
+        cacheControl: '3600',
+        upsert: true
+      })
+    const { publicURL, imgError } = supabase
+      .storage
+      .from('avatars')
+      .getPublicUrl(`${userData.firstname}_avatar`);
+    console.dir(publicURL);
+    setUserData({...userData, avatar_url: publicURL});
+  }
+
   return (
     <div className="form-widget">
       <div>
+        <div>
+          <label htmlFor="avatar">Profile Photo</label>
+          <img src={userData.avatar_url} height="250px"/>
+          <input
+            id="avatar"
+            type="file"
+            accept="image/*"
+            onChange={handleAvatarUpload}
+          />
+        </div>
         <div>
           <label htmlFor="firstname">first name</label>
           <input
