@@ -15,8 +15,8 @@ const messengerSlice = createSlice({
     fetchMessages: (state, action) => {
       state.messages = [...action.payload];
     },
-    sendMessage: (state, action) => {
-      //TODO: send message
+    addMessage: (state, action) => {
+      //TODO: add message to UI
     },
     changeMessage: (state, action) => {
       state.currentMessage = action.payload;
@@ -25,20 +25,30 @@ const messengerSlice = createSlice({
 });
 
 //export stuff here
-export const { setMessageUser, sendMessage, changeMessage, fetchMessages } =
+export const { setMessageUser, addMessage, changeMessage, fetchMessages } =
   messengerSlice.actions;
 export default messengerSlice.reducer;
 
 //THUNKS
-export const getMessages = (userId) => async (dispatch) => {
+export const getMessages = () => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
     const { data, error } = await supabase
       .from('messages')
       .select()
-      .or(
-        `and(from.eq.${session.user.id},to.eq.${userId}),and(from.eq.${userId},to.eq.${session.user.id})`
-      );
+      .or(`from.eq.${session.user.id},to.eq.${session.user.id}`);
     dispatch(fetchMessages(data));
   }
+};
+
+export const sendMessage = () => async (dispatch) => {
+  //TODO: send message to db, add to UI when done sending
+};
+
+export const sub = () => async (dispatch) => {
+  //TODO: subscribe to db, add message when one is recieved
+};
+
+export const unsub = () => async (dispatch) => {
+  //TODO: unsubscribe to db
 };
