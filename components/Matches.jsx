@@ -3,6 +3,9 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllUserMatches } from '../store/reducers/matchesSlice';
 
+//will need to get active chat userID from store and set one of the links to have active classname here
+//will need to dispatch user ID when a profile is clicked on
+
 export default function Matches() {
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
