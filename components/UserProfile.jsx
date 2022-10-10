@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import ViewUserProfile from './ViewUserProfile';
-import EditUserProfile from './EditUserProfile';
+import UserProfileView from './UserProfileView';
+import UserProfileEdit from './UserProfileEdit';
 
 // this component only toggles between displaying the view/edit components for UserProfile
 export default function UserProfile({ session }) {
@@ -13,7 +13,7 @@ export default function UserProfile({ session }) {
   return (
     <div className="form-widget">
       <button className="button block" onClick={() => toggleEdit()}>{editing ? 'Return to profile' : 'Edit profile'}</button>
-      {editing ? <EditUserProfile/> : <ViewUserProfile/>}
+      {editing ? <UserProfileEdit/> : <UserProfileView/>}
     </div>
   );
 }
