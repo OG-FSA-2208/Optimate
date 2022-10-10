@@ -1,29 +1,27 @@
-import React from 'react';
-
-const dummy = [
-  {
-    id: 1,
-    avatar_url:
-      'https://static.wikia.nocookie.net/suitelife/images/8/85/London_Tipton_3.jpg/revision/latest?cb=20110505214610',
-    firstname: 'London',
-    lastname: 'Tipton',
-  },
-  {
-    id: 2,
-    avatar_url:
-      'https://static.wikia.nocookie.net/suitelife/images/8/85/London_Tipton_3.jpg/revision/latest?cb=20110505214610',
-    firstname: 'Zach',
-    lastname: 'Efron',
-  },
-];
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getAllUserMatches } from '../store/reducers/matchesSlice';
 
 export default function Matches() {
+  const dispatch = useDispatch();
+
+  const matches = useSelector((state) => state.matches);
+
+  useEffect(() => {
+    dispatch(getAllUserMatches());
+  }, []);
+
   return (
     <div className="match-list">
       <ul>
-        {dummy.map((user) => (
+        {matches.map((user) => (
           <li key={user.id}>
-            <img src={user.avatar_url} alt="user profile image" />
+            <img
+              src={user.avatar_url}
+              alt="user profile image"
+              height="100"
+              width="100"
+            />
             <p>
               {user.firstname}
               <br />
