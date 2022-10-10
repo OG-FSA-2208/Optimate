@@ -32,18 +32,17 @@ export default function EditUserProfile({ session }) {
 
   async function handleAvatarUpload(e) {
     const avatarFile = e.target.files[0]
-    const { data, error } = await supabase
+    console.log('new upload: ', avatarFile)
+    // await supabase
+    //   .storage
+    //   .from('avatars')
+    //   .update(`${userData.firstname}_avatar`, avatarFile)
+    const {data} = await supabase.storage.from('avatars').upload(`${avatarFile.name}`, avatarFile);
+    const { publicURL, imgError } = await supabase
       .storage
       .from('avatars')
-      .upload(`${userData.firstname}_avatar`, avatarFile, {
-        cacheControl: '3600',
-        upsert: true
-      })
-    const { publicURL, imgError } = supabase
-      .storage
-      .from('avatars')
-      .getPublicUrl(`${userData.firstname}_avatar`);
-    console.dir(publicURL);
+      .getPublicUrl(`${avatarFile.name}`);
+    console.log(publicURL);
     setUserData({...userData, avatar_url: publicURL});
   }
 
