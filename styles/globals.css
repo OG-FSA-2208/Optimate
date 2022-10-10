@@ -173,6 +173,70 @@ textarea.form-input {
   resize: none;
   min-height: 200px;
 }
+.myProfile {
+  display: inline-block;
+  text-align: center;
+  font-size: 18px;
+  width: 400px;
+  height: 500px;
+  margin: 100px 0px 0px 120px;
+  background-color: #9eedffea;
+  color: rgba(12, 10, 10, 0.4);
+}
+.profilePic {
+  width: 220px;
+  height: 300px;
+}
+.matchesForEachUser {
+  justify-content: center;
+  text-align: center;
+  font-size: 20px;
+  margin: 5px;
+}
+.matches {
+  width: 300px;
+  height: 320px;
+  background-color: #9eedffea;
+  color: rgba(12, 10, 10, 0.4);
+  display: inline-block;
+  text-align: center;
+  font-size: 18px;
+  margin: 15px 20px 0px 10px;
+}
+.matchesProfilePic {
+  width: 175px;
+  height: 200px;
+}
+.form-widget .profile-info {
+  width: 80vw;
+  display: flex;
+  flex-direction: row;
+}
+.form-widget div {
+  margin: 7px 0px;
+}
+.form-widget label {
+  margin: 0px 5px;
+}
+.profile-user,
+.profile-preference {
+  width: 40vw;
+}
+textarea {
+  overflow-y: auto;
+}
+@media screen and (max-width: 912px) {
+  .form-widget {
+    margin-top: 40px;
+  }
+  .form-widget .profile-info {
+    flex-direction: column;
+  }
+  .profile-preference,
+  .profile-user {
+    width: 80vw;
+  }
+}
 @font-face {
   font-family: 'Concert One';
   font-style: normal;
