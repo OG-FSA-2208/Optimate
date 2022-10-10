@@ -125,50 +125,50 @@ export default function EditUserProfile({ session }) {
       <div>
         <p>Do you smoke?</p>
         <label htmlFor='smoke'>Yes, I smoke</label>
-        <input id='smoke' value={true} checked={userData.smoker} type='radio' name='smoker' onSelect={(e) => setUserData({...userData, smoker: e.target.value})}/>
+        <input id='smoke' value={true} type='radio' name='smoker' onChange={(e) => setUserData({...userData, smoker: e.target.value})}/>
         <br/>
         <label htmlFor='nonsmoke'>No, I don't smoke at all</label>
-        <input id='nonsmoke' value={false} checked={!userData.smoker} type='radio' name='smoker' onSelect={(e) => setUserData({...userData, smoker: e.target.value})}/>
+        <input id='nonsmoke' value={false} type='radio' name='smoker' onChange={(e) => setUserData({...userData, smoker: e.target.value})}/>
       </div>
       <div>
         <p>Do you drink alcohol?</p>
         <label htmlFor='drinks'>Yes, I drink alcohol</label>
-        <input id='drinks' value={true} checked={userData.drinker} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: e.target.value})}/>
+        <input id='drinks' value={true} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: e.target.value})}/>
         <br/>
         <label htmlFor='nodrinks'>No, I don't think alcohol at all</label>
-        <input id='nodrinks' value={false} checked={!userData.drinker} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: e.target.value})}/>
+        <input id='nodrinks' value={false} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: e.target.value})}/>
       </div>
       <div>
         <label htmlFor='loveGiving'>Your love language (giving)</label>
         <select value={userData.loveLangGiving || 'unselected'} onChange={(e) => setUserData({...userData, loveLangGiving: e.target.value})}>
           <option value='unselected'>Unsure/Don't Care</option>
-          <option value='physical'>Physical Touch</option>
-          <option value='acts'>Acts of Service</option>
-          <option value='time'>Quality Time</option>
-          <option value='gifts'>Gift Giving</option>
-          <option value='words'>Words of Affirmation</option>
+          <option value='Physical Touch'>Physical Touch</option>
+          <option value='Acts of Service'>Acts of Service</option>
+          <option value='Quality Time'>Quality Time</option>
+          <option value='Gift Giving'>Gift Giving</option>
+          <option value='Words of Affirmation'>Words of Affirmation</option>
         </select>
       </div>
       <div>
         <label htmlFor='loveRecieving'>Your love language (recieving)</label>
         <select value={userData.loveLangRecieving || 'unselected'} onChange={(e) => setUserData({...userData, loveLangRecieving: e.target.value})}>
           <option value='unselected'>Unsure/Don't Care</option>
-          <option value='physical'>Physical Touch</option>
-          <option value='acts'>Acts of Service</option>
-          <option value='time'>Quality Time</option>
-          <option value='gifts'>Gift Giving</option>
-          <option value='words'>Words of Affirmation</option>
+          <option value='Physical Touch'>Physical Touch</option>
+          <option value='Acts of Service'>Acts of Service</option>
+          <option value='Quality Time'>Quality Time</option>
+          <option value='Gift Giving'>Gift Giving</option>
+          <option value='Words of Affirmation'>Words of Affirmation</option>
         </select>
       </div>
       <div>
         <label htmlFor='priority'>Your top priority</label>
         <select value={userData.priority || 'unselected'} onChange={(e) => setUserData({...userData, priority: e.target.value})}>
           <option value='unselected'>Unsure/Don't Care</option>
-          <option value='family'>Family</option>
-          <option value='friends'>Friends</option>
-          <option value='children'>Children</option>
-          <option value='work'>Work/Job</option>
-          <option value='self'>Selfcare</option>
+          <option value='Family'>Family</option>
+          <option value='Friends'>Friends</option>
+          <option value='Children'>Children</option>
+          <option value='Work'>Work/Job</option>
+          <option value='Self-care'>Selfcare</option>
         </select>
       </div>
       <div>

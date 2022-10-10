@@ -33,6 +33,13 @@ export default function ViewUserProfile() {
                 <p>Age: {userData.age}</p>
                 <p>Gender: {userData.gender}</p>
                 <p>About: {userData.about}</p>
+                <p>Location: {userData.location}</p>
+                <p>Occupation: {userData.occupation}</p>
+                <p>Smokes? {userData.smoker ? "Yes" : "No"}</p>
+                <p>Drinks? {userData.drinker ? "Yes" : "No"}</p>
+                <p>Priority: {userData.priority}</p>
+                <p>Love Language (giving): {userData.loveLangGiving}</p>
+                <p>Love Language (recieving): {userData.loveLangRecieving}</p>
             </div>
             }
             <div>
