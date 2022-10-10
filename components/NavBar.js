@@ -7,7 +7,7 @@ import Router from 'next/router';
 export default function NavBar() {
   const dispatch = useDispatch();
   const [burgerClicked, setBurgerClicked] = useState(false);
-  const session = useSelector(state => state.profile.id);
+  const session = useSelector(state => state.user.id);
 
   console.dir(session)
 
@@ -28,19 +28,20 @@ export default function NavBar() {
 
   useEffect(() => {
     dispatch(checkSession(Router));
-  }, [])
+  }, [session])
 
   return (
     <nav className="navbar">
       <div className="brand-title">Optimate</div>
       <ul className={burgerClicked ? 'nav-links nav-active' : 'nav-links'}>
-        <li>
-          <Link href="/">
-            <a>Home</a>
-          </Link>
-        </li>
         {session ? 
+        // these are the links that will appear if a user is logged in
         <>
+          <li>
+            <Link href="/user/homepage">
+              <a>homepage</a>
+            </Link>
+          </li>
           <li>
             <Link href="/user/profile">
               <a>profile</a>
@@ -51,14 +52,16 @@ export default function NavBar() {
               <a>setting</a>
             </Link>
           </li>
-          <li>
-            <Link href="/user/homepage">
-              <a>homepage</a>
-            </Link>
-          </li>
+          
         </>
         : 
+        // these are the links that will appear if a user is not logged in
         <>
+          <li>
+            <Link href="/">
+              <a>Home</a>
+            </Link>
+          </li>
           <li>
             <Link href="/login">
               <a>login</a>

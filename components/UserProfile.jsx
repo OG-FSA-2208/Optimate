@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 export default function UserProfile({ session }) {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);  // state that determines whether user is viewing or editing their info
-  const [updated, setUpdated] = useState(false);
+  const [updated, setUpdated] = useState(false);  // state that shows whether or not a user's info has been successfully updated
   const [userData, setUserData] = useState(useSelector((state) => state.profile));
   const dispatch = useDispatch();
 
