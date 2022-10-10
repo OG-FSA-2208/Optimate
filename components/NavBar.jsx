@@ -8,7 +8,7 @@ export default function NavBar() {
   const dispatch = useDispatch();
   const [burgerClicked, setBurgerClicked] = useState(false);
   // checks if there is a user logged in
-  const session = useSelector(state => state.user.id);
+  const session = useSelector((state) => state.user.id);
 
   const handleBurger = () => {
     const navLinks = document.querySelectorAll('.nav-links li');
@@ -27,51 +27,53 @@ export default function NavBar() {
 
   useEffect(() => {
     dispatch(checkSession(Router));
-  }, [session])
+  }, [session]);
 
   return (
     <nav className="navbar">
-      <div className="brand-title">Optimate</div>
+      <div className="brand-title">
+        Optimate -- Not a booty call but a foodie call 😉
+      </div>
       <ul className={burgerClicked ? 'nav-links nav-active' : 'nav-links'}>
-        {session ? 
-        // these are the links that will appear if a user is logged in
-        <>
-          <li>
-            <Link href="/user/homepage">
-              <a>Home</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/user/profile">
-              <a>Profile</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/user/setting">
-              <a>Setting</a>
-            </Link>
-          </li>
-          
-        </>
-        : 
-        // these are the links that will appear if a user is not logged in
-        <>
-          <li>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/login">
-              <a>Login</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/signup">
-              <a>Signup</a>
-            </Link>
-          </li>
-        </>}
+        {session ? (
+          // these are the links that will appear if a user is logged in
+          <>
+            <li>
+              <Link href="/user/homepage">
+                <a>Home</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/user/profile">
+                <a>Profile</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/user/setting">
+                <a>Setting</a>
+              </Link>
+            </li>
+          </>
+        ) : (
+          // these are the links that will appear if a user is not logged in
+          <>
+            <li>
+              <Link href="/">
+                <a>Home</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/login">
+                <a>Login</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/signup">
+                <a>Signup</a>
+              </Link>
+            </li>
+          </>
+        )}
         <li>
           <Link href="/post">
             <a>posts (??)</a>

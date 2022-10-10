@@ -10,6 +10,7 @@
     font-size: 18px;
     width: 400px;
     height: 500px;
+    padding: 5px;
     margin: 100px 0px 0px 120px;
     background-color: #9eedffea;
     color: rgba(12, 10, 10, 0.4);
@@ -28,18 +29,52 @@
 
 }
 .matches{
+    padding: 16px;
+    position: relative;
     width: 300px;
-    height: 320px;
+    height: 316px;
     background-color: #9eedffea;
     color: rgba(12, 10, 10, 0.4);
     display: inline-block;
     text-align: center;
     font-size: 18px;
     margin: 15px 20px 0px 10px;
+    overflow: hidden;
 
 }
 
 .matchesProfilePic{
     width: 175px;
     height: 200px;
+    object-fit: cover;
+}
+
+.matches.active{
+    width: 300px;
+    height: 400px;
+    ion-icon {
+        color: rgb(222, 85, 197);
+        font-size: 1.4em;
+        right: 0
+    
+    }
+}
+
+.toggle {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 40px;
+    background: hsla(191, 100%, 81%, 1);
+    border-end-end-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ion-icon {
+        color: rgb(41, 22, 248);
+        font-size: 1.4em;
+        right: 0
+    
+    }
 }
