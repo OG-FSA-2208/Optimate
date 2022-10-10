@@ -20,7 +20,7 @@ export default function ViewUserProfile() {
 
     return (
         <div>
-            {loading ? <></> : 
+            {loading ? 'Loading Profile...' : 
             <>{userData.firstname} {userData.lastname}, {userData.age}, {userData.gender}, and so on</>
             }
             <div>

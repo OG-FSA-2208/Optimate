@@ -1,4 +1,3 @@
-import Account from '../../components/Account';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
