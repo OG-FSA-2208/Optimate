@@ -7,13 +7,15 @@ import Router from 'next/router';
 import { useSelector } from 'react-redux';
 
 export default function UserProfile({ session }) {
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);  // state that determines whether user is viewing or editing their info
   const [updated, setUpdated] = useState(false);  // state that shows whether or not a user's info has been successfully updated
+  // object that contains all of the user's profile info
   const [userData, setUserData] = useState(useSelector((state) => state.profile));
-  const dispatch = useDispatch();
 
   useEffect(() => {
+    // dispatching so that userData can grab the profile of the current user
     dispatch(getLoggedInUser());
     setLoading(false);
   }, [dispatch]);

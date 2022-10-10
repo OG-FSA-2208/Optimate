@@ -7,9 +7,8 @@ import Router from 'next/router';
 export default function NavBar() {
   const dispatch = useDispatch();
   const [burgerClicked, setBurgerClicked] = useState(false);
+  // checks if there is a user logged in
   const session = useSelector(state => state.user.id);
-
-  console.dir(session)
 
   const handleBurger = () => {
     const navLinks = document.querySelectorAll('.nav-links li');
@@ -39,17 +38,17 @@ export default function NavBar() {
         <>
           <li>
             <Link href="/user/homepage">
-              <a>homepage</a>
+              <a>Home</a>
             </Link>
           </li>
           <li>
             <Link href="/user/profile">
-              <a>profile</a>
+              <a>Profile</a>
             </Link>
           </li>
           <li>
             <Link href="/user/setting">
-              <a>setting</a>
+              <a>Setting</a>
             </Link>
           </li>
           
@@ -64,18 +63,18 @@ export default function NavBar() {
           </li>
           <li>
             <Link href="/login">
-              <a>login</a>
+              <a>Login</a>
             </Link>
           </li>
           <li>
             <Link href="/signup">
-              <a>signup</a>
+              <a>Signup</a>
             </Link>
           </li>
         </>}
         <li>
           <Link href="/post">
-            <a>posts (do we keep this??)</a>
+            <a>posts (??)</a>
           </Link>
         </li>
       </ul>
