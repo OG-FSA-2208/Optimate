@@ -37,6 +37,7 @@ export default function EditUserProfile({ session }) {
   async function handleAvatarUpload(e) {
     const avatarFile = e.target.files[0]
     // caching issue happens here!!!
+    // await supabase.storage.from('avatars').remove([`${userData.firstname}_avatar`]);
     // const {data} = await supabase.storage.from('avatars')
     //   .upload(`${userData.firstname}_avatar`, avatarFile, {upsert: true})
     // const { publicURL, imgError } = await supabase
@@ -46,12 +47,11 @@ export default function EditUserProfile({ session }) {
 
     // backup plan...
     const {data} = await supabase.storage.from('avatars')
-        .upload(`${avatarFile.name}`, avatarFile, {upsert: true});
+        .upload(`${userData.id}_${avatarFile.name}`, avatarFile, {upsert: true});
     const { publicURL, imgError } = await supabase
       .storage
       .from('avatars')
-      .getPublicUrl(`${avatarFile.name}`);
-
+      .getPublicUrl(`${userData.id}_${avatarFile.name}`);
 
     console.log(publicURL);
     setUserData({...userData, avatar_url: publicURL});
