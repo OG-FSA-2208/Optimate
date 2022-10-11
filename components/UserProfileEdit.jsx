@@ -4,6 +4,7 @@ import { updateUser } from '../store/reducers/userSlice';
 import { getLoggedInUser } from '../store/reducers/profileSlice';
 import { useSelector } from 'react-redux';
 import supabase from '../config/supabaseClient';
+import { getInterestTypes } from '../store/reducers/surveySlice';
 
 export default function EditUserProfile({ session }) {
   const dispatch = useDispatch();
@@ -11,15 +12,18 @@ export default function EditUserProfile({ session }) {
   const [updated, setUpdated] = useState(false);  // state that shows whether or not a user's info has been successfully updated
   // object that contains all of the user's profile info
   const [userData, setUserData] = useState(useSelector((state) => state.profile));
+  const interestTags = useSelector(state => state.survey);
+
+  console.log(interestTags);
 
   useEffect(() => {
     // dispatching so that userData can grab the profile of the current user
+    dispatch(getInterestTypes());
     dispatch(getLoggedInUser());
     setLoading(false);
   }, [dispatch]);
 
   useEffect(() => {
-
   }, [userData])
 
   async function updateProfile(data) {
