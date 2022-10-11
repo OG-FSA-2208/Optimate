@@ -6,5 +6,6 @@ import userSlice from './userSlice';
 import matchesSlice from './matchesSlice';
 import profileSlice from './profileSlice';
 import messengerSlice from './messengerSlice';
+import surveySlice from './surveySlice';
 
-export { userSlice, matchesSlice, profileSlice, messengerSlice };
+export { userSlice, matchesSlice, profileSlice, messengerSlice, surveySlice };
