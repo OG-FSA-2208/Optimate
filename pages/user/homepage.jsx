@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
 import { getAllUserMatches } from '../../store/reducers/matchesSlice';
+import styled from 'styled-components';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -19,8 +20,6 @@ export default function Profile() {
 
   const handleClick = (event) => {
     event.target.parentElement.parentElement.classList.toggle('active');
-    console.log('parentElement', event.target.parentElement.parentElement);
-    console.log('hello');
     setToggle(!toggle);
   };
 
@@ -30,7 +29,7 @@ export default function Profile() {
         <div>
           <div className="myProfile">
             <br></br>
-            <h1>My Profile:</h1>
+            <h2>My Profile:</h2>
 
             <br></br>
             <img src={profile.avatar_url} className="profilePic" />
@@ -41,33 +40,46 @@ export default function Profile() {
             <p>Gender: {profile.gender}</p>
             <p>About: {profile.about}</p>
           </div>
-
-          <div className="matchesForEachUser">
-            {matches
-              ? matches.map((match) => {
-                  return (
-                    <div className="matches" key={match.id}>
-                      {match.firstname} {match.lastname}
-                      <p>
-                        <img
-                          className="matchesProfilePic"
-                          src={match.avatar_url}
-                          alt="Profile Pic"
-                        />
-                      </p>
-                      <p>Age: {match.age}</p>
-                      <p>Gender: {match.gender}</p>
-                      <p>About: {match.about}</p>
-                      <div className="toggle">
-                        <ion-icon
-                          name="arrow-down-circle-outline"
-                          onClick={(event) => handleClick(event)}
-                        ></ion-icon>
+          <div className="media-scroller">
+            <div className="matchesForEachUser">
+              {matches
+                ? matches.map((match) => {
+                    return (
+                      <div className="matches" key={match.id}>
+                        <h3>
+                          {match.firstname} {match.lastname}
+                        </h3>
+                        <p>
+                          <img
+                            className="matchesProfilePic"
+                            src={match.avatar_url}
+                            alt="Profile Pic"
+                          />
+                        </p>
+                        <p>Age: {match.age}</p>
+                        <p>Gender: {match.gender}</p>
+                        <p>Highlight: {match.highlight}</p>
+                        <div className="matchesAboutMe">
+                          About: {match.about}
+                        </div>
+                        <p>Occupation: {match.occupation}</p>
+                        <p>Status: {match.status}</p>
+                        <p>Location: {match.location}</p>
+                        <p>Love Language (Giving): {match.loveLangGiving}</p>
+                        <p>
+                          Love Language (Receiving): {match.loveLangReceiving}
+                        </p>
+                        <div className="toggle">
+                          <ion-icon
+                            name="arrow-down-circle-outline"
+                            onClick={(event) => handleClick(event)}
+                          ></ion-icon>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })
-              : 'Sorry, but you have 0 matches'}
+                    );
+                  })
+                : 'Sorry, but you have 0 matches'}
+            </div>
           </div>
         </div>
       ) : (
