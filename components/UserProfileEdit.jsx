@@ -65,7 +65,13 @@ export default function EditUserProfile({ session }) {
   }
 
   const handleChange = data => {
-    setUserData({...userData, user_interests: data});
+    if(data.length > 5) {
+      alert('Too many tags! Please select only 5 :)')
+      data.pop();
+    } else {
+      setUserData({...userData, user_interests: data});
+    }
+    console.dir(data);
   }
 
   return (
