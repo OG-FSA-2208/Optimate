@@ -15,7 +15,6 @@ export default function Home() {
     let mounted = true;
 
     async function getInitialSession() {
-      console.log('getinit');
       dispatch(checkSession());
       setIsLoading(false);
     }
