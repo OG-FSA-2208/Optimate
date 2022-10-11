@@ -13,35 +13,26 @@ export default function Home() {
 
   useEffect(() => {
     // let mounted = true;
-    supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log(event);
-      console.log(session);
-      // if (event != 'PASSWORD_RECOVERY') {
-      //   console.log('recovery???');
-      //   console.log(event);
-      //   console.log(session);
-      //   // router.push('/');
-      // }
-    });
+    if (user.id) {
+      router.push('/user/profile'); // when a user is logged in, this will sent them to their profile
+    }
+    console.log('hi');
     async function getInitialSession() {
       dispatch(checkSession());
       setIsLoading(false);
     }
     getInitialSession();
-    if (user.id) {
-      router.push('/user/profile'); // when a user is logged in, this will sent them to their profile
-    }
-  }, []);
+  }, [user]);
 
   return (
     <div className="container" style={{ padding: '50px 0 100px 0' }}>
       {isLoading ? (
-        <></>
+        <>Not a booty call but a foodie call</>
       ) : (
         <div className="landing">
           {!user.id && (
             <div className="no-session">
-              <h1 className='logo'>Optimate</h1>
+              <h1 className="logo">Optimate</h1>
               <div>
                 <h3>Returning User?</h3>
                 <button

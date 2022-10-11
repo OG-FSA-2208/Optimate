@@ -3,6 +3,7 @@ import supabase from '../config/supabaseClient';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { checkSession } from '../store/reducers/userSlice';
+import Link from 'next/link';
 export default function EmailSignIn() {
   const [form, setForm] = useState({
     email: '',
@@ -78,13 +79,17 @@ export default function EmailSignIn() {
         <div id="button">
           <button type="submit">Login</button>
         </div>
-        <p className='link'
+        <p
+          className="link"
           onClick={() => {
             router.push('./signup');
           }}
         >
           No account? Sign up now!
         </p>
+        <Link href="/request-reset">
+          <a className="link">Forgot Password?</a>
+        </Link>
       </form>
     </div>
   );

@@ -1,6 +1,7 @@
 import supabase from '../config/supabaseClient';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 export default function ResetPassword() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -31,15 +32,6 @@ export default function ResetPassword() {
     }
   }
 
-  useEffect(() => {
-    supabase.auth.onAuthStateChange(async (event, session) => {
-      if (event != 'PASSWORD_RECOVERY') {
-        console.log(event);
-        console.log(session);
-        // router.push('/');
-      }
-    });
-  }, []);
   return (
     <form>
       <h1>please enter a new password</h1>
@@ -70,8 +62,17 @@ export default function ResetPassword() {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        {error && <span className="form-error display-block">{error}</span>}
-        {success && <span>{success}</span>}
+      </div>
+      <div>
+        {error && <p className="form-error display-block">{error}</p>}
+        {success && (
+          <>
+            <p>{success}</p>
+            <Link href="/user/homepage">
+              <a>return to home</a>
+            </Link>
+          </>
+        )}
       </div>
       <button className="button" onClick={(e) => changePassword(e)}>
         Change Password

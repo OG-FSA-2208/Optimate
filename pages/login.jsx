@@ -4,9 +4,6 @@ function Login() {
   return (
     <div>
       <EmailSignIn />
-      <Link href="/request-reset">
-        <a>Forgot Password?</a>
-      </Link>
     </div>
   );
 }
