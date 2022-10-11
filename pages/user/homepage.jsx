@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
 import { getAllUserMatches } from '../../store/reducers/matchesSlice';
+import { motion } from 'framer-motion';
 // import styled from 'styled-components';
 
 export default function Profile() {
@@ -17,6 +18,7 @@ export default function Profile() {
 
   const handleClick = (event) => {
     event.target.parentElement.parentElement.classList.toggle('active');
+
     setToggle(!toggle);
   };
 
