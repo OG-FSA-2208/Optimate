@@ -179,8 +179,8 @@ export default function EditUserProfile({ session }) {
             </select>
           </div>
           <div>
-            <label htmlFor='loveRecieving'>Your love language (recieving)</label>
-            <select value={userData.loveLangRecieving || 'unselected'} onChange={(e) => setUserData({...userData, loveLangRecieving: e.target.value})}>
+            <label htmlFor='loveRecieving'>Your love language (receiving)</label>
+            <select value={userData.loveLangReceiving || 'unselected'} onChange={(e) => setUserData({...userData, loveLangReceiving: e.target.value})}>
               <option value='unselected'>Unsure/Don't Care</option>
               <option value='Physical Touch'>Physical Touch</option>
               <option value='Acts of Service'>Acts of Service</option>
