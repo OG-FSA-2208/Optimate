@@ -64,6 +64,10 @@ export default function EditUserProfile({ session }) {
     setUserData({...userData, avatar_url: publicURL});
   }
 
+  const handleChange = data => {
+    setUserData({...userData, user_interests: data});
+  }
+
   return (
     <div className="form-widget">
       <div>
@@ -152,7 +156,7 @@ export default function EditUserProfile({ session }) {
           <ReactSelect
             options={interestTags.length > 0 ? interestTags.map(tag => {return {value: tag.id, label: tag.name}}) : []}
             isMulti closeMenuOnSelect={false} hideSelectedOptions={false}
-            components={{Option}} value={''}
+            components={{Option}} value={userData.user_interests} onChange={handleChange}
           />
           <div>
             <label htmlFor='loveGiving'>Your love language (giving)</label>
