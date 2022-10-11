@@ -17,7 +17,7 @@
   width: 100vw;
   z-index: 1;
   justify-content: space-around;
-  background-color: #8a7792;
+  background-color: #48A9A6;
   min-height: 6vh;
 }
 .brand-title {
@@ -37,10 +37,10 @@
   font-weight: bold;
   letter-spacing: 3px;
   transition: 200ms;
-  color: #050505;
+  color: #60495A;
 }
 .nav-links a:hover {
-  color: #7a33c6;
+  color: #E5625E;
 }
 .nav-icon {
   width: 15px;
@@ -52,7 +52,7 @@
 .burger div {
   width: 25px;
   height: 3px;
-  background-color: #004e89;
+  background-color: #60495A;
   margin: 5px;
   transition: all 0.3s ease;
 }
@@ -65,7 +65,7 @@
     right: 0px;
     height: 94vh;
     top: 6vh;
-    background: #d19ff7;
+    background: #48A9A6;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -104,18 +104,24 @@
 .toggle .line3 {
   transform: rotate(45deg) translate(-5px, -6px);
 }
-form {
-  padding: 2em 4em;
-  background-color: #6f6793;
+.form-container {
+  margin: 1em;
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  min-width: 40vw;
+  background-color: #48A9A6;
   box-shadow: 7px 4px 15px 0px rgba(0, 0, 0, 0.57);
   -webkit-box-shadow: 7px 4px 15px 0px rgba(0, 0, 0, 0.57);
 }
+form {
+  padding: 2em 4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.75em;
+}
 .form-title {
   font-size: 2em;
+  text-align: center;
   font-weight: 600;
 }
 .form-item {
@@ -130,12 +136,12 @@ form {
   padding: 10px 0;
 }
 .form-input {
-  width: 90%;
+  min-width: 150px;
   max-width: 425px;
   padding: 0.8em;
   font-size: 0.9em;
   outline: none;
-  border: 1px solid #f7c59f;
+  border: 1px solid #48A9A6;
   border-radius: 4px;
   background: #f9f9f9;
   transition: background 0.25s, border-color 0.25s, color 0.25s;
@@ -144,7 +150,10 @@ form {
   background: #ffffff;
 }
 .form-input::placeholder {
-  color: #004e89;
+  color: #60495A;
+}
+.form-button {
+  align-self: center;
 }
 .form-input-error {
   color: #d50000;
@@ -182,7 +191,7 @@ textarea.form-input {
   /* display: inline-block; */
   text-align: center;
   font-size: 18px;
-  width: 350px;
+  width: 340px;
   height: 350px;
   margin: 40px 0px 0px 550px;
   background-color: #e4dddd;
@@ -232,9 +241,9 @@ textarea.form-input {
   color: #de55c5;
 }
 /* .matchesAboutMe {
-  overflow-wrap: break-word;
-  hyphens: manual;
-} */
+    overflow-wrap: break-word;
+    hyphens: manual;
+  } */
 .toggle {
   position: absolute;
   bottom: 0;
@@ -252,7 +261,6 @@ textarea.form-input {
   font-size: 1.4em;
   right: 0;
 }
-
 .media-scroller {
   margin: 4px, 4px;
   padding: 0px;
@@ -262,10 +270,8 @@ textarea.form-input {
   overflow-y: hidden;
   white-space: nowrap;
 }
-
 .landing {
   display: flex;
-  gap: var(--size-3);
   align-items: center;
   justify-content: center;
   font-size: 1.75em;
@@ -320,8 +326,7 @@ textarea {
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/concertone/v17/VEM1Ro9xs5PjtzCu-srDqRTl.ttf)
-    format('truetype');
+  src: url(https://fonts.gstatic.com/s/concertone/v17/VEM1Ro9xs5PjtzCu-srDqRTl.ttf) format('truetype');
 }
 * {
   margin: 0;
@@ -329,7 +334,7 @@ textarea {
 }
 body {
   font-family: 'Concert One', cursive;
-  background-color: #ffffff;
+  background-color: #FBFAF8;
 }
 main {
   display: flex;
@@ -340,16 +345,25 @@ main {
 button {
   background: none;
   color: inherit;
-  border: 1px solid #004e89;
+  border: 1px solid #60495A;
   padding: 0.25em 0.75em;
   border-radius: 10px;
   font: inherit;
+  font-size: 1.5em;
   cursor: pointer;
   outline: inherit;
   transition: 200ms;
   margin: 0.5em;
 }
 button:hover {
-  background-color: #c33c54;
-  color: #efefd0;
+  background-color: #E5625E;
+  color: #FBFAF8;
+}
+.link {
+  text-decoration: underline;
+  cursor: pointer;
+  transition: 200ms;
+}
+.link:hover {
+  color: #225560;
 }

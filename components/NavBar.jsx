@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkSession } from '../store/reducers/userSlice.js';
-import Router from 'next/router';
-
+import { useRouter } from 'next/router';
+import supabase from '../config/supabaseClient.js';
 export default function NavBar() {
   const dispatch = useDispatch();
   const [burgerClicked, setBurgerClicked] = useState(false);
@@ -24,15 +24,35 @@ export default function NavBar() {
       }
     });
   };
-
+  const router = useRouter();
   useEffect(() => {
-    dispatch(checkSession(Router));
-  }, [session]);
+    const { subscription } = supabase.auth.onAuthStateChange(
+      async (event, session) => {
+        console.log(event);
+        console.log(session);
+        if (event == 'SIGNED_IN') {
+          dispatch(checkSession(router));
+        }
+        if (event == 'SIGNED_OUT') {
+        }
+        if (event == 'USER_UPDATED') {
+          dispatch(checkSession(router));
+        }
+        if (event == 'PASSWORD_RECOVERY') {
+          router.push('/password-reset');
+        }
+      }
+    );
+    return () => {
+      subscription?.unsubscribe();
+    };
+  }, []);
 
   return (
     <nav className="navbar">
       <div className="brand-title">
-        <h3>Optimate -- Not a booty call but a foodie call 😉</h3>
+        <h2>Optimate -- Not a booty call but a foodie call 😉</h2>
+        Optimate -- Not a booty call but a foodie call 😉
       </div>
       <ul className={burgerClicked ? 'nav-links nav-active' : 'nav-links'}>
         {session ? (

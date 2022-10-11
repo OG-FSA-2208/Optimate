@@ -4,6 +4,9 @@ import { updateUser } from '../store/reducers/userSlice';
 import { getLoggedInUser } from '../store/reducers/profileSlice';
 import { useSelector } from 'react-redux';
 import supabase from '../config/supabaseClient';
+import { getInterestTypes } from '../store/reducers/surveySlice';
+import Option from './Option';
+import { default as ReactSelect } from 'react-select';
 
 export default function EditUserProfile({ session }) {
   const dispatch = useDispatch();
@@ -11,15 +14,20 @@ export default function EditUserProfile({ session }) {
   const [updated, setUpdated] = useState(false);  // state that shows whether or not a user's info has been successfully updated
   // object that contains all of the user's profile info
   const [userData, setUserData] = useState(useSelector((state) => state.profile));
+  const interestTags = useSelector(state => state.survey);
+
+  console.log(interestTags);
 
   useEffect(() => {
     // dispatching so that userData can grab the profile of the current user
+    dispatch(getInterestTypes());
     dispatch(getLoggedInUser());
     setLoading(false);
   }, [dispatch]);
 
   useEffect(() => {
-
+    // this useEffect is so the updated profile image shows in the editing view
+    // >> does not update it on the server end yet!
   }, [userData])
 
   async function updateProfile(data) {
@@ -53,8 +61,17 @@ export default function EditUserProfile({ session }) {
       .from('avatars')
       .getPublicUrl(`${userData.id}_${avatarFile.name}`);
 
-    console.log(publicURL);
     setUserData({...userData, avatar_url: publicURL});
+  }
+
+  const handleChange = data => {
+    if(data.length > 5) {
+      alert('Too many tags! Please select only 5 :)')
+      data.pop();
+    } else {
+      setUserData({...userData, user_interests: data});
+    }
+    console.dir(data);
   }
 
   return (
@@ -138,8 +155,17 @@ export default function EditUserProfile({ session }) {
             <label htmlFor='drinks'>Yes, I drink alcohol</label>
             <input id='drinks' value={true} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: e.target.value})}/>
             <br/>
-            <label htmlFor='nodrinks'>No, I don't think alcohol at all</label>
+            <label htmlFor='nodrinks'>No, I don't drink alcohol at all</label>
             <input id='nodrinks' value={false} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: e.target.value})}/>
+          </div>
+          {/* this is the select-dropdown-checkbox!!! */}
+          <div>
+            <label htmlFor='interest-select'>Select up to 5 interests</label>
+            <ReactSelect
+              options={interestTags.length > 0 ? interestTags.map(tag => {return {value: tag.id, label: tag.name}}) : []}
+              isMulti closeMenuOnSelect={false} hideSelectedOptions={false} id='interest-select'
+              components={{Option}} value={userData.user_interests} onChange={handleChange}
+            />
           </div>
           <div>
             <label htmlFor='loveGiving'>Your love language (giving)</label>
@@ -153,8 +179,8 @@ export default function EditUserProfile({ session }) {
             </select>
           </div>
           <div>
-            <label htmlFor='loveRecieving'>Your love language (recieving)</label>
-            <select value={userData.loveLangRecieving || 'unselected'} onChange={(e) => setUserData({...userData, loveLangRecieving: e.target.value})}>
+            <label htmlFor='loveRecieving'>Your love language (receiving)</label>
+            <select value={userData.loveLangReceiving || 'unselected'} onChange={(e) => setUserData({...userData, loveLangReceiving: e.target.value})}>
               <option value='unselected'>Unsure/Don't Care</option>
               <option value='Physical Touch'>Physical Touch</option>
               <option value='Acts of Service'>Acts of Service</option>

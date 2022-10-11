@@ -1,8 +1,8 @@
 import EmailSignIn from '../components/EmailSignIn';
+import Link from 'next/link';
 function Login() {
   return (
     <div>
-      Login
       <EmailSignIn />
     </div>
   );
