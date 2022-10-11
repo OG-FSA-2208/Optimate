@@ -4,19 +4,19 @@ import supabase from '../../config/supabaseClient';
 const messengerSlice = createSlice({
   name: 'messenger',
   initialState: {
-    messageUser: null,
+    messageUserId: null,
     messages: [],
     currentMessage: '',
   },
   reducers: {
     setMessageUser: (state, action) => {
-      state.messageUser = action.payload;
+      state.messageUserId = action.payload;
     },
     fetchMessages: (state, action) => {
       state.messages = [...action.payload];
     },
     addMessage: (state, action) => {
-      //TODO: add message to UI
+      state.messages.push(action.payload);
     },
     changeMessage: (state, action) => {
       state.currentMessage = action.payload;
@@ -37,12 +37,24 @@ export const getMessages = () => async (dispatch) => {
       .from('messages')
       .select()
       .or(`from.eq.${session.user.id},to.eq.${session.user.id}`);
-    dispatch(fetchMessages(data));
+    if (data) dispatch(fetchMessages(data));
+    if (error) console.error(error);
   }
 };
 
-export const sendMessage = () => async (dispatch) => {
-  //TODO: send message to db, add to UI when done sending
+export const sendMessage = (message, to) => async (dispatch) => {
+  const session = await supabase.auth.session();
+  if (session) {
+    const { data, error } = await supabase.from('messages').insert([
+      {
+        from: session.user.id,
+        to,
+        message,
+      },
+    ]);
+    if (data) dispatch(addMessage(data[0]));
+    if (error) console.error(error);
+  }
 };
 
 export const sub = () => async (dispatch) => {

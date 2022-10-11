@@ -15,7 +15,7 @@ export default function Chat() {
   }, []);
 
   return (
-    <div className="messages">
+    <div className="messages" style={{ display: 'flex', alignItems: 'center' }}>
       {/* this will look very similar to index on desktop, mobile will have the match list component disappear */}
       <div style={width <= 768 ? { display: 'none' } : {}} className="column">
         <Matches />
