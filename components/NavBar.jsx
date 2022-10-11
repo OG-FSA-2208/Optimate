@@ -32,7 +32,7 @@ export default function NavBar() {
   return (
     <nav className="navbar">
       <div className="brand-title">
-        Optimate -- Not a booty call but a foodie call 😉
+        <h3>Optimate -- Not a booty call but a foodie call 😉</h3>
       </div>
       <ul className={burgerClicked ? 'nav-links nav-active' : 'nav-links'}>
         {session ? (
@@ -74,11 +74,6 @@ export default function NavBar() {
             </li>
           </>
         )}
-        <li>
-          <Link href="/post">
-            <a>posts (??)</a>
-          </Link>
-        </li>
       </ul>
 
       <div
