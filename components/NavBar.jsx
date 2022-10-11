@@ -32,7 +32,7 @@ export default function NavBar() {
   return (
     <nav className="navbar">
       <div className="brand-title">
-        <h3>Optimate -- Not a booty call but a foodie call 😉</h3>
+        Optimate -- Not a booty call but a foodie call 😉
       </div>
       <ul className={burgerClicked ? 'nav-links nav-active' : 'nav-links'}>
         {session ? (
