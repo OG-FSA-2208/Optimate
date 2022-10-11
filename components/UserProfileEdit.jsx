@@ -159,11 +159,14 @@ export default function EditUserProfile({ session }) {
             <input id='nodrinks' value={false} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: e.target.value})}/>
           </div>
           {/* this is the select-dropdown-checkbox!!! */}
-          <ReactSelect
-            options={interestTags.length > 0 ? interestTags.map(tag => {return {value: tag.id, label: tag.name}}) : []}
-            isMulti closeMenuOnSelect={false} hideSelectedOptions={false}
-            components={{Option}} value={userData.user_interests} onChange={handleChange}
-          />
+          <div>
+            <label htmlFor='interest-select'>Select up to 5 interests</label>
+            <ReactSelect
+              options={interestTags.length > 0 ? interestTags.map(tag => {return {value: tag.id, label: tag.name}}) : []}
+              isMulti closeMenuOnSelect={false} hideSelectedOptions={false} id='interest-select'
+              components={{Option}} value={userData.user_interests} onChange={handleChange}
+            />
+          </div>
           <div>
             <label htmlFor='loveGiving'>Your love language (giving)</label>
             <select value={userData.loveLangGiving || 'unselected'} onChange={(e) => setUserData({...userData, loveLangGiving: e.target.value})}>
