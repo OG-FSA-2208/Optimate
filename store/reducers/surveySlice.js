@@ -3,7 +3,7 @@ import supabase from '../../config/supabaseClient';
 
 const surveySlice = createSlice({
   name: 'userProfileEdit',
-  initialState: {},
+  initialState: [],
   reducers: {
     getInterests: (state, action) => {
       state = action.payload;
