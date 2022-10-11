@@ -305,46 +305,6 @@ textarea {
     width: 80vw;
   }
 }
-.dropdown {
-  position: relative;
-  font-size: 14px;
-  color: #333;
-}
-.dropdown [type="checkbox"] {
-  position: relative;
-  top: -1px;
-  margin-right: 4px;
-}
-.dropdown-list {
-  display: none;
-  padding: 12px;
-  background: #fff;
-  position: absolute;
-  top: 30px;
-  left: 2px;
-  right: 2px;
-  box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15);
-  transform-origin: 50% 0;
-  transform: scale(1, 0);
-  transition: transform 0.15s ease-in-out 0.15s;
-  max-height: 66vh;
-  overflow-y: scroll;
-}
-.dropdown-option {
-  display: block;
-  padding: 8px 12px;
-  opacity: 0;
-  transition: opacity 0.15s ease-in-out;
-}
-.dropdown-label {
-  display: block;
-  height: 30px;
-  background: #fff;
-  border: 1px solid #ccc;
-  padding: 6px 12px;
-  line-height: 1;
-  cursor: pointer;
-}
 @font-face {
   font-family: 'Concert One';
   font-style: normal;
