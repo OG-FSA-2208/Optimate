@@ -5,6 +5,8 @@ import { getLoggedInUser } from '../store/reducers/profileSlice';
 import { useSelector } from 'react-redux';
 import supabase from '../config/supabaseClient';
 import { getInterestTypes } from '../store/reducers/surveySlice';
+import Option from './Option';
+import {components, default as ReactSelect} from 'react-select';
 
 export default function EditUserProfile({ session }) {
   const dispatch = useDispatch();
@@ -145,6 +147,10 @@ export default function EditUserProfile({ session }) {
             <label htmlFor='nodrinks'>No, I don't think alcohol at all</label>
             <input id='nodrinks' value={false} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: e.target.value})}/>
           </div>
+          <ReactSelect
+            options={interestTags.length > 0 ? interestTags.map(tag => {return {value: tag.id, label: tag.name}}) : []} isMulti closeMenuOnSelect={false}
+            hideSelectedOptions={false} components={{Option}} value={''}
+          />
           <div>
             <label htmlFor='loveGiving'>Your love language (giving)</label>
             <select value={userData.loveLangGiving || 'unselected'} onChange={(e) => setUserData({...userData, loveLangGiving: e.target.value})}>
