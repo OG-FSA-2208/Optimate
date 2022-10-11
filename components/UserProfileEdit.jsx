@@ -145,7 +145,7 @@ export default function EditUserProfile({ session }) {
             <label htmlFor='drinks'>Yes, I drink alcohol</label>
             <input id='drinks' value={true} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: e.target.value})}/>
             <br/>
-            <label htmlFor='nodrinks'>No, I don't think alcohol at all</label>
+            <label htmlFor='nodrinks'>No, I don't drink alcohol at all</label>
             <input id='nodrinks' value={false} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: e.target.value})}/>
           </div>
           {/* this is the select-dropdown-checkbox!!! */}
