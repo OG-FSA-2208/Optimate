@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
 import { getAllUserMatches } from '../../store/reducers/matchesSlice';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -91,7 +91,7 @@ export default function Profile() {
         src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
       ></script>
       <script
-        nomodule
+        noModule
         src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
       ></script>
     </div>
