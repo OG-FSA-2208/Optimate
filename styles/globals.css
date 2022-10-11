@@ -179,12 +179,12 @@ textarea.form-input {
   min-height: 200px;
 }
 .myProfile {
-  display: inline-block;
+  /* display: inline-block; */
   text-align: center;
   font-size: 18px;
-  width: 330px;
+  width: 350px;
   height: 350px;
-  margin: 5px 0px 0px 10px;
+  margin: 40px 0px 0px 550px;
   background-color: #e4dddd;
   color: rgba(12, 10, 10, 0.4);
   border-radius: 30px;
@@ -205,12 +205,12 @@ textarea.form-input {
 .matches {
   padding: 16px;
   position: relative;
-  width: 300px;
-  height: 275px;
+  height: 280px;
   background-color: #e4dddd;
   color: rgba(12, 10, 10, 0.4);
   display: inline-block;
   text-align: center;
+  inline-size: 180px;
   font-size: 18px;
   margin: 15px 20px 0px 10px;
   overflow: hidden;
@@ -225,12 +225,16 @@ textarea.form-input {
   border: solid;
 }
 .matches.active {
-  width: 330px;
+  width: 400px;
   height: 450px;
 }
 .matches.active ion-icon {
   color: #de55c5;
 }
+/* .matchesAboutMe {
+  overflow-wrap: break-word;
+  hyphens: manual;
+} */
 .toggle {
   position: absolute;
   bottom: 0;
@@ -247,6 +251,16 @@ textarea.form-input {
   color: #de55c5;
   font-size: 1.4em;
   right: 0;
+}
+
+.media-scroller {
+  margin: 4px, 4px;
+  padding: 0px;
+  background-color: #ffffff;
+  width: 1450px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
 }
 
 .landing {

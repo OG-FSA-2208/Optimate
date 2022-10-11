@@ -49,8 +49,18 @@ export default function NavBar() {
               </Link>
             </li>
             <li>
+              <Link href="/user/preferences">
+                <a>Preferences</a>
+              </Link>
+            </li>
+            <li>
               <Link href="/user/setting">
                 <a>Setting</a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/user/help">
+                <a>Help Center</a>
               </Link>
             </li>
           </>

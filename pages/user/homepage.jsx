@@ -20,8 +20,6 @@ export default function Profile() {
 
   const handleClick = (event) => {
     event.target.parentElement.parentElement.classList.toggle('active');
-    console.log('parentElement', event.target.parentElement.parentElement);
-    console.log('hello');
     setToggle(!toggle);
   };
 
@@ -48,7 +46,9 @@ export default function Profile() {
                 ? matches.map((match) => {
                     return (
                       <div className="matches" key={match.id}>
-                        {match.firstname} {match.lastname}
+                        <h3>
+                          {match.firstname} {match.lastname}
+                        </h3>
                         <p>
                           <img
                             className="matchesProfilePic"
@@ -58,7 +58,10 @@ export default function Profile() {
                         </p>
                         <p>Age: {match.age}</p>
                         <p>Gender: {match.gender}</p>
-                        <p>About: {match.about}</p>
+                        <p>Highlight: {match.highlight}</p>
+                        <div className="matchesAboutMe">
+                          About: {match.about}
+                        </div>
                         <p>Occupation: {match.occupation}</p>
                         <p>Status: {match.status}</p>
                         <p>Location: {match.location}</p>
