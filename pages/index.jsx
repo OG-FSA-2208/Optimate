@@ -16,7 +16,6 @@ export default function Home() {
     if (user.id) {
       router.push('/user/profile'); // when a user is logged in, this will sent them to their profile
     }
-    console.log('hi');
     async function getInitialSession() {
       dispatch(checkSession());
       setIsLoading(false);

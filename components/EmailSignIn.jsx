@@ -31,13 +31,15 @@ export default function EmailSignIn() {
       email: form.email,
       password: form.password,
     });
-    // console.log(res);
     if (error) {
       console.log('err', error);
     }
     if (user) {
-      console.log(user);
-      dispatch(checkSession());
+      setForm({
+        email: '',
+        password: '',
+      });
+      // dispatch(checkSession());
       router.push('/user/profile');
     }
   };
