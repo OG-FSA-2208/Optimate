@@ -17,7 +17,8 @@
   width: 100vw;
   z-index: 1;
   justify-content: space-around;
-  background-color: #8a7792;
+  background-color: #48A9A6;
+  background-color: #f7c59f;
   min-height: 6vh;
 }
 .brand-title {
@@ -37,7 +38,11 @@
   font-weight: bold;
   letter-spacing: 3px;
   transition: 200ms;
-  color: #050505;
+  color: #60495A;
+}
+.nav-links a:hover {
+  color: #E5625E;
+  color: #004e89;
 }
 .nav-links a:hover {
   color: #7a33c6;
@@ -52,7 +57,7 @@
 .burger div {
   width: 25px;
   height: 3px;
-  background-color: #004e89;
+  background-color: #60495A;
   margin: 5px;
   transition: all 0.3s ease;
 }
@@ -65,7 +70,8 @@
     right: 0px;
     height: 94vh;
     top: 6vh;
-    background: #d19ff7;
+    background: #48A9A6;
+    background: #f7c59f;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -106,7 +112,7 @@
 }
 form {
   padding: 2em 4em;
-  background-color: #6f6793;
+  background-color: #48A9A6;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -135,7 +141,7 @@ form {
   padding: 0.8em;
   font-size: 0.9em;
   outline: none;
-  border: 1px solid #f7c59f;
+  border: 1px solid #48A9A6;
   border-radius: 4px;
   background: #f9f9f9;
   transition: background 0.25s, border-color 0.25s, color 0.25s;
@@ -144,7 +150,7 @@ form {
   background: #ffffff;
 }
 .form-input::placeholder {
-  color: #004e89;
+  color: #60495A;
 }
 .form-input-error {
   color: #d50000;
@@ -182,10 +188,15 @@ textarea.form-input {
   /* display: inline-block; */
   text-align: center;
   font-size: 18px;
-  width: 350px;
+  width: 340px;
   height: 350px;
   margin: 40px 0px 0px 550px;
   background-color: #e4dddd;
+  width: 400px;
+  height: 500px;
+  padding: 5px;
+  margin: 100px 0px 0px 120px;
+  background-color: #9eedffea;
   color: rgba(12, 10, 10, 0.4);
   border-radius: 30px;
   border: solid;
@@ -232,9 +243,9 @@ textarea.form-input {
   color: #de55c5;
 }
 /* .matchesAboutMe {
-  overflow-wrap: break-word;
-  hyphens: manual;
-} */
+    overflow-wrap: break-word;
+    hyphens: manual;
+  } */
 .toggle {
   position: absolute;
   bottom: 0;
@@ -252,7 +263,6 @@ textarea.form-input {
   font-size: 1.4em;
   right: 0;
 }
-
 .media-scroller {
   margin: 4px, 4px;
   padding: 0px;
@@ -262,7 +272,6 @@ textarea.form-input {
   overflow-y: hidden;
   white-space: nowrap;
 }
-
 .landing {
   display: flex;
   gap: var(--size-3);
@@ -329,7 +338,8 @@ textarea {
 }
 body {
   font-family: 'Concert One', cursive;
-  background-color: #ffffff;
+  background-color: #FBFAF8;
+  background-color: #efefd0;
 }
 main {
   display: flex;
@@ -340,7 +350,7 @@ main {
 button {
   background: none;
   color: inherit;
-  border: 1px solid #004e89;
+  border: 1px solid #60495A;
   padding: 0.25em 0.75em;
   border-radius: 10px;
   font: inherit;
@@ -350,6 +360,14 @@ button {
   margin: 0.5em;
 }
 button:hover {
-  background-color: #c33c54;
-  color: #efefd0;
+  background-color: #E5625E;
+  color: #FBFAF8;
+}
+.link {
+  text-decoration: underline;
+  cursor: pointer;
+  transition: 200ms;
+}
+.link:hover {
+  color: #1a659e;
 }
