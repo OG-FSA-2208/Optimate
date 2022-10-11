@@ -1,80 +1,85 @@
-@primary-color: #efefd0;
-@secondary-color: #f7c59f;
-@primary-text-color: #004e89;
-@secondary-text-color: #1a659e;
-@accent-color: #c33c54;
 
-.myProfile{
-    display: inline-block;
+.myProfile {
+    /* display: inline-block; */
     text-align: center;
     font-size: 18px;
-    width: 400px;
-    height: 500px;
-    padding: 5px;
-    margin: 100px 0px 0px 120px;
-    background-color: #9eedffea;
+    width: 340px;
+    height: 350px;
+    margin: 40px 0px 0px 550px;
+    background-color: #e4dddd;
     color: rgba(12, 10, 10, 0.4);
-}
-
-.profilePic{
-    width: 220px;
-    height: 300px;
-}
-
-.matchesForEachUser{
+    border-radius: 30px;
+    border: solid;
+  }
+  .profilePic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: solid;
+  }
+  .matchesForEachUser {
     justify-content: center;
     text-align: center;
     font-size: 20px;
     margin: 5px;
-
-}
-.matches{
+  }
+  .matches {
     padding: 16px;
     position: relative;
-    width: 300px;
-    height: 316px;
-    background-color: #9eedffea;
+    height: 280px;
+    background-color: #e4dddd;
     color: rgba(12, 10, 10, 0.4);
     display: inline-block;
     text-align: center;
+    inline-size: 175px;
     font-size: 18px;
     margin: 15px 20px 0px 10px;
     overflow: hidden;
-
-}
-
-.matchesProfilePic{
-    width: 175px;
-    height: 200px;
+    border-radius: 30px;
+    border: solid;
+  }
+  .matchesProfilePic {
+    width: 150px;
+    height: 150px;
     object-fit: cover;
-}
-
-.matches.active{
-    width: 300px;
-    height: 400px;
-    ion-icon {
-        color: rgb(222, 85, 197);
-        font-size: 1.4em;
-        right: 0
-    
-    }
-}
-
-.toggle {
+    border-radius: 50%;
+    border: solid;
+  }
+  .matches.active {
+    width: 400px;
+    height: 450px;
+  }
+  .matches.active ion-icon {
+    color: #de55c5;
+  }
+  /* .matchesAboutMe {
+    overflow-wrap: break-word;
+    hyphens: manual;
+  } */
+  .toggle {
     position: absolute;
     bottom: 0;
     right: 0;
     width: 100%;
     height: 40px;
-    background: hsla(191, 100%, 81%, 1);
+    background: hsl(281, 12%, 41%);
     border-end-end-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
-    ion-icon {
-        color: rgb(41, 22, 248);
-        font-size: 1.4em;
-        right: 0
-    
-    }
-}
+  }
+  .toggle ion-icon {
+    color: #de55c5;
+    font-size: 1.4em;
+    right: 0;
+  }
+  
+  .media-scroller {
+    margin: 4px, 4px;
+    padding: 0px;
+    background-color: #ffffff;
+    width: 1450px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }

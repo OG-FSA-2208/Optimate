@@ -15,9 +15,6 @@ export default function Profile() {
     dispatch(getAllUserMatches());
   }, []);
 
-  // const card = document.querySelector('matchesForEachUser');
-  // const cardToggle = document.querySelector('toggle');
-
   const handleClick = (event) => {
     event.target.parentElement.parentElement.classList.toggle('active');
     setToggle(!toggle);
