@@ -13,6 +13,10 @@
   "author": "2208 OG",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.9",
     "@reduxjs/toolkit": "^1.8.5",
     "@supabase/supabase-js": "^1.35.7",
     "axios": "^1.0.0",
