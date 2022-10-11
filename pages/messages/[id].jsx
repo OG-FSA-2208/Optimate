@@ -1,11 +1,20 @@
 //channel of messages between looged in user and particular user with :id
 //if userA does not have userB as a "match" this should go to 404
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import Matches from '../../components/Matches';
 import Chatroom from '../../components/Chatroom';
 
 export default function Chat() {
   const [width, setWidth] = useState(null);
+  const router = useRouter();
+  const matches = useSelector((state) => state.matches);
+  const { id } = router.query;
+
+  useEffect(() => {
+    if (!matches.some((match) => match.id === id)) router.push('/404');
+  }, [matches, id]);
 
   useEffect(() => {
     setWidth(window.innerWidth);
