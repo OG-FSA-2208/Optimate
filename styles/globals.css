@@ -17,7 +17,7 @@
   width: 100vw;
   z-index: 1;
   justify-content: space-around;
-  background-color: #f7c59f;
+  background-color: #48A9A6;
   min-height: 6vh;
 }
 .brand-title {
@@ -37,10 +37,10 @@
   font-weight: bold;
   letter-spacing: 3px;
   transition: 200ms;
-  color: #004e89;
+  color: #60495A;
 }
 .nav-links a:hover {
-  color: #c33c54;
+  color: #E5625E;
 }
 .nav-icon {
   width: 15px;
@@ -65,7 +65,7 @@
     right: 0px;
     height: 94vh;
     top: 6vh;
-    background: #f7c59f;
+    background: #48A9A6;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -113,8 +113,6 @@
 }
 form {
   padding: 2em 4em;
-  background-color: #f7c59f;
-  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -190,19 +188,22 @@ textarea.form-input {
   min-height: 200px;
 }
 .myProfile {
-  display: inline-block;
+  /* display: inline-block; */
   text-align: center;
   font-size: 18px;
-  width: 400px;
-  height: 500px;
-  padding: 5px;
-  margin: 100px 0px 0px 120px;
-  background-color: #9eedffea;
+  width: 340px;
+  height: 350px;
+  margin: 40px 0px 0px 550px;
+  background-color: #e4dddd;
   color: rgba(12, 10, 10, 0.4);
+  border-radius: 30px;
+  border: solid;
 }
 .profilePic {
-  width: 220px;
-  height: 300px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: solid;
 }
 .matchesForEachUser {
   justify-content: center;
@@ -213,46 +214,61 @@ textarea.form-input {
 .matches {
   padding: 16px;
   position: relative;
-  width: 300px;
-  height: 316px;
-  background-color: #9eedffea;
+  height: 280px;
+  background-color: #e4dddd;
   color: rgba(12, 10, 10, 0.4);
   display: inline-block;
   text-align: center;
+  inline-size: 175px;
   font-size: 18px;
   margin: 15px 20px 0px 10px;
   overflow: hidden;
+  border-radius: 30px;
+  border: solid;
 }
 .matchesProfilePic {
-  width: 175px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
+  border-radius: 50%;
+  border: solid;
 }
 .matches.active {
-  width: 300px;
-  height: 400px;
+  width: 400px;
+  height: 450px;
 }
 .matches.active ion-icon {
   color: #de55c5;
-  font-size: 1.4em;
-  right: 0;
 }
+/* .matchesAboutMe {
+    overflow-wrap: break-word;
+    hyphens: manual;
+  } */
 .toggle {
   position: absolute;
   bottom: 0;
   right: 0;
   width: 100%;
   height: 40px;
-  background: hsl(191, 100%, 81%);
+  background: hsl(281, 12%, 41%);
   border-end-end-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .toggle ion-icon {
-  color: #2916f8;
+  color: #de55c5;
   font-size: 1.4em;
   right: 0;
+}
+.media-scroller {
+  margin: 4px, 4px;
+  padding: 0px;
+  background-color: #ffffff;
+  width: 1450px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
 }
 .landing {
   display: flex;
@@ -318,7 +334,7 @@ textarea {
 }
 body {
   font-family: 'Concert One', cursive;
-  background-color: #efefd0;
+  background-color: #FBFAF8;
 }
 main {
   display: flex;
