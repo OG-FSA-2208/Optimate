@@ -33,9 +33,9 @@ export default function Home() {
         <div className="landing">
           {!user.id && (
             <div className="no-session">
-              <h1 className='logo'>Optimate</h1>
+              <h1 className="logo">Optimate</h1>
               <div>
-                <h3>Returning User?</h3>
+                <h4>Returning User?</h4>
                 <button
                   onClick={() => {
                     router.push('./login');
@@ -45,7 +45,7 @@ export default function Home() {
                 </button>
               </div>
               <div>
-                <h3>First time here?</h3>
+                <h4>First time here?</h4>
                 <button
                   onClick={() => {
                     router.push('./signup');

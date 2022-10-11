@@ -17,7 +17,7 @@
   width: 100vw;
   z-index: 1;
   justify-content: space-around;
-  background-color: #8a7792;
+  background-color: #a194b2;
   min-height: 6vh;
 }
 .brand-title {
@@ -37,10 +37,10 @@
   font-weight: bold;
   letter-spacing: 3px;
   transition: 200ms;
-  color: #050505;
+  color: #4a2157;
 }
 .nav-links a:hover {
-  color: #7a33c6;
+  color: #943cc3;
 }
 .nav-icon {
   width: 15px;
@@ -52,7 +52,7 @@
 .burger div {
   width: 25px;
   height: 3px;
-  background-color: #004e89;
+  background-color: #4a2157;
   margin: 5px;
   transition: all 0.3s ease;
 }
@@ -65,7 +65,7 @@
     right: 0px;
     height: 94vh;
     top: 6vh;
-    background: #d19ff7;
+    background: #a194b2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -106,7 +106,7 @@
 }
 form {
   padding: 2em 4em;
-  background-color: #6f6793;
+  background-color: #a194b2;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -135,7 +135,7 @@ form {
   padding: 0.8em;
   font-size: 0.9em;
   outline: none;
-  border: 1px solid #f7c59f;
+  border: 1px solid #a194b2;
   border-radius: 4px;
   background: #f9f9f9;
   transition: background 0.25s, border-color 0.25s, color 0.25s;
@@ -144,7 +144,7 @@ form {
   background: #ffffff;
 }
 .form-input::placeholder {
-  color: #004e89;
+  color: #4a2157;
 }
 .form-input-error {
   color: #d50000;
@@ -182,7 +182,7 @@ textarea.form-input {
   /* display: inline-block; */
   text-align: center;
   font-size: 18px;
-  width: 350px;
+  width: 340px;
   height: 350px;
   margin: 40px 0px 0px 550px;
   background-color: #e4dddd;
@@ -232,9 +232,9 @@ textarea.form-input {
   color: #de55c5;
 }
 /* .matchesAboutMe {
-  overflow-wrap: break-word;
-  hyphens: manual;
-} */
+    overflow-wrap: break-word;
+    hyphens: manual;
+  } */
 .toggle {
   position: absolute;
   bottom: 0;
@@ -252,7 +252,6 @@ textarea.form-input {
   font-size: 1.4em;
   right: 0;
 }
-
 .media-scroller {
   margin: 4px, 4px;
   padding: 0px;
@@ -262,10 +261,8 @@ textarea.form-input {
   overflow-y: hidden;
   white-space: nowrap;
 }
-
 .landing {
   display: flex;
-  gap: var(--size-3);
   align-items: center;
   justify-content: center;
   font-size: 1.75em;
@@ -320,8 +317,7 @@ textarea {
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/concertone/v17/VEM1Ro9xs5PjtzCu-srDqRTl.ttf)
-    format('truetype');
+  src: url(https://fonts.gstatic.com/s/concertone/v17/VEM1Ro9xs5PjtzCu-srDqRTl.ttf) format('truetype');
 }
 * {
   margin: 0;
@@ -340,7 +336,7 @@ main {
 button {
   background: none;
   color: inherit;
-  border: 1px solid #004e89;
+  border: 1px solid #4a2157;
   padding: 0.25em 0.75em;
   border-radius: 10px;
   font: inherit;
@@ -350,6 +346,6 @@ button {
   margin: 0.5em;
 }
 button:hover {
-  background-color: #c33c54;
-  color: #efefd0;
+  background-color: #943cc3;
+  color: #ffffff;
 }
