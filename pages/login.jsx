@@ -5,7 +5,7 @@ function Login() {
     <div>
       Login
       <EmailSignIn />
-      <Link href="/password-reset">
+      <Link href="/request-reset">
         <a>Forgot Password?</a>
       </Link>
     </div>

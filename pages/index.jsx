@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { checkSession } from '../store/reducers/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
-
+import supabase from '../config/supabaseClient';
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const user = useSelector((state) => state.user);
@@ -12,8 +12,17 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    let mounted = true;
-
+    // let mounted = true;
+    supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log(event);
+      console.log(session);
+      // if (event != 'PASSWORD_RECOVERY') {
+      //   console.log('recovery???');
+      //   console.log(event);
+      //   console.log(session);
+      //   // router.push('/');
+      // }
+    });
     async function getInitialSession() {
       console.log('getinit');
       dispatch(checkSession());

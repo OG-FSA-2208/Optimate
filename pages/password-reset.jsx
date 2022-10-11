@@ -4,32 +4,39 @@ import { useEffect, useState } from 'react';
 export default function ResetPassword() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const router = useRouter();
   async function changePassword(e) {
     e.preventDefault();
+    console.log('press');
+    if (!password || !confirmPassword) {
+      setError('please complete all fields and resubmit');
+      return;
+    }
+    if (password !== confirmPassword) {
+      setError('password does not match, please reenter a new password');
+      return;
+    }
     const { data, error } = await supabase.auth.update({
       password: password,
     });
-
     if (error) {
-      console.log(error);
+      setError('There was an error updating your password.');
     }
-    if (data) console.log(data);
+    if (data) {
+      setError(false);
+      setSuccess(`your password has been changed successfully`);
+      console.log(data);
+    }
   }
 
   useEffect(() => {
     supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log('recovery?');
-      if (event == 'PASSWORD_RECOVERY') {
-        const newPassword = prompt(
-          'What would you like your new password to be?'
-        );
-
-        if (data) alert('Password updated successfully!');
-        if (error) alert('There was an error updating your password.');
+      if (event != 'PASSWORD_RECOVERY') {
+        console.log(event);
+        console.log(session);
+        // router.push('/');
       }
     });
   }, []);
@@ -60,12 +67,12 @@ export default function ResetPassword() {
           autoComplete="new-password"
           name="passwordConfirm"
           type="password"
-          value={form.passwordConfirm}
+          value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        {error && <span className="form-error">{error}</span>}
+        {error && <span className="form-error display-block">{error}</span>}
+        {success && <span>{success}</span>}
       </div>
-
       <button className="button" onClick={(e) => changePassword(e)}>
         Change Password
       </button>
