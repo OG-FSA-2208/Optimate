@@ -41,7 +41,13 @@ export default function ViewUserProfile() {
           <p>Drinks? {userData.drinker ? 'Yes' : 'No'}</p>
           <p>Priority: {userData.priority}</p>
           <p>Love Language (giving): {userData.loveLangGiving}</p>
-          <p>Love Language (recieving): {userData.loveLangRecieving}</p>
+          <p>Love Language (receiving): {userData.loveLangReceiving}</p>
+          <p>Your Interests:</p>
+          <ul>
+            {userData.user_interests?.map((tag) => (
+              <li>{tag.label}</li>
+            ))}
+          </ul>
         </div>
       )}
       <div>
