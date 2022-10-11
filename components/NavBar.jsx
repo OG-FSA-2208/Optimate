@@ -32,7 +32,7 @@ export default function NavBar() {
   return (
     <nav className="navbar">
       <div className="brand-title">
-        Optimate -- Not a booty call but a foodie call 😉
+        <h3>Optimate -- Not a booty call but a foodie call 😉</h3>
       </div>
       <ul className={burgerClicked ? 'nav-links nav-active' : 'nav-links'}>
         {session ? (
@@ -49,11 +49,18 @@ export default function NavBar() {
               </Link>
             </li>
             <li>
+              <Link href="/user/preferences">
+                <a>Preferences</a>
+              </Link>
+            </li>
+            <li>
               <Link href="/user/setting">
                 <a>Setting</a>
               </Link>
             </li>
             <li>
+              <Link href="/user/help">
+                <a>Help Center</a>
               <Link href="/messages">
                 <a>Messages</a>
               </Link>
