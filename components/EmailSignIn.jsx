@@ -42,10 +42,10 @@ export default function EmailSignIn() {
   };
 
   return (
-    <div className="page create">
+    <div className="form-container">
       {formError && <p>{formError}</p>}
       <form id="new-product-form" onSubmit={(e) => handleSubmit(e)}>
-        <div className="form-title">Sign In</div>
+        <div className="form-title">Login to Optimate</div>
         <div className="form-item">
           <label htmlFor="email" className="form-label">
             Email
@@ -76,8 +76,15 @@ export default function EmailSignIn() {
           <span className="form-error">Please enter your password</span>
         </div>
         <div id="button">
-          <button type="submit">Login Now</button>
+          <button type="submit">Login</button>
         </div>
+        <p className='link'
+          onClick={() => {
+            router.push('./signup');
+          }}
+        >
+          No account? Sign up now!
+        </p>
       </form>
     </div>
   );

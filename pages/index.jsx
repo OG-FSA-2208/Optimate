@@ -24,7 +24,6 @@ export default function Home() {
       // }
     });
     async function getInitialSession() {
-      console.log('getinit');
       dispatch(checkSession());
       setIsLoading(false);
     }
@@ -39,9 +38,10 @@ export default function Home() {
       {isLoading ? (
         <></>
       ) : (
-        <>
+        <div className="landing">
           {!user.id && (
             <div className="no-session">
+              <h1 className='logo'>Optimate</h1>
               <div>
                 <h3>Returning User?</h3>
                 <button
@@ -64,7 +64,7 @@ export default function Home() {
               </div>
             </div>
           )}
-        </>
+        </div>
       )}
     </div>
   );

@@ -104,18 +104,24 @@
 .toggle .line3 {
   transform: rotate(45deg) translate(-5px, -6px);
 }
-form {
-  padding: 2em 4em;
-  background-color: #f7c59f;
+.form-container {
+  margin: 1em;
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  min-width: 40vw;
+  background-color: #f7c59f;
   box-shadow: 7px 4px 15px 0px rgba(0, 0, 0, 0.57);
   -webkit-box-shadow: 7px 4px 15px 0px rgba(0, 0, 0, 0.57);
 }
+form {
+  padding: 2em 4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.75em;
+}
 .form-title {
   font-size: 2em;
+  text-align: center;
   font-weight: 600;
 }
 .form-item {
@@ -130,7 +136,7 @@ form {
   padding: 10px 0;
 }
 .form-input {
-  width: 90%;
+  min-width: 150px;
   max-width: 425px;
   padding: 0.8em;
   font-size: 0.9em;
@@ -145,6 +151,9 @@ form {
 }
 .form-input::placeholder {
   color: #004e89;
+}
+.form-button {
+  align-self: center;
 }
 .form-input-error {
   color: #d50000;
@@ -184,6 +193,7 @@ textarea.form-input {
   font-size: 18px;
   width: 400px;
   height: 500px;
+  padding: 5px;
   margin: 100px 0px 0px 120px;
   background-color: #9eedffea;
   color: rgba(12, 10, 10, 0.4);
@@ -199,18 +209,69 @@ textarea.form-input {
   margin: 5px;
 }
 .matches {
+  padding: 16px;
+  position: relative;
   width: 300px;
-  height: 320px;
+  height: 316px;
   background-color: #9eedffea;
   color: rgba(12, 10, 10, 0.4);
   display: inline-block;
   text-align: center;
   font-size: 18px;
   margin: 15px 20px 0px 10px;
+  overflow: hidden;
 }
 .matchesProfilePic {
   width: 175px;
   height: 200px;
+  object-fit: cover;
+}
+.matches.active {
+  width: 300px;
+  height: 400px;
+}
+.matches.active ion-icon {
+  color: #de55c5;
+  font-size: 1.4em;
+  right: 0;
+}
+.toggle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 40px;
+  background: hsl(191, 100%, 81%);
+  border-end-end-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.toggle ion-icon {
+  color: #2916f8;
+  font-size: 1.4em;
+  right: 0;
+}
+.landing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75em;
+}
+@media screen and (max-width: 480px) {
+  .landing {
+    font-size: 1.5em;
+  }
+}
+.logo {
+  letter-spacing: 0.2em;
+  margin-bottom: 1em;
+}
+.no-session > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .form-widget .profile-info {
   width: 80vw;
@@ -270,6 +331,7 @@ button {
   padding: 0.25em 0.75em;
   border-radius: 10px;
   font: inherit;
+  font-size: 1.5em;
   cursor: pointer;
   outline: inherit;
   transition: 200ms;
@@ -278,4 +340,12 @@ button {
 button:hover {
   background-color: #c33c54;
   color: #efefd0;
+}
+.link {
+  text-decoration: underline;
+  cursor: pointer;
+  transition: 200ms;
+}
+.link:hover {
+  color: #1a659e;
 }
