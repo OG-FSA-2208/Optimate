@@ -1,0 +1,19 @@
+@import './mixins.less';
+@import './colors.less';
+
+.landing {
+  .flexCenter();
+  font-size: 1.75em;
+  @media screen and (max-width: 480px) {
+    font-size: 1.5em;
+  }
+}
+
+.logo {
+  letter-spacing: 0.2em;
+  margin-bottom: 1em;
+}
+
+.no-session > * {
+  .flexCenterColumn();
+}
