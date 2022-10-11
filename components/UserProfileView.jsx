@@ -44,7 +44,9 @@ export default function ViewUserProfile() {
           <p>Love Language (receiving): {userData.loveLangReceiving}</p>
           <p>Your Interests:</p>
           <ul>
-            {userData.user_interests.map(tag => <li>{tag.label}</li>)}
+            {userData.user_interests?.map((tag) => (
+              <li>{tag.label}</li>
+            ))}
           </ul>
         </div>
       )}
