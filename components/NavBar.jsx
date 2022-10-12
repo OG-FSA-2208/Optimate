@@ -51,7 +51,6 @@ export default function NavBar() {
   return (
     <nav className="navbar">
       <div className="brand-title">
-        <h2>Optimate -- Not a booty call but a foodie call 😉</h2>
         Optimate -- Not a booty call but a foodie call 😉
       </div>
       <ul className={burgerClicked ? 'nav-links nav-active' : 'nav-links'}>

@@ -336,11 +336,12 @@ body {
   font-family: 'Concert One', cursive;
   background-color: #FBFAF8;
 }
-main {
+.main {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 94vh;
+  padding-top: 6vh;
 }
 button {
   background: none;
