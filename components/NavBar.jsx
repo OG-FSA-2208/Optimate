@@ -78,11 +78,6 @@ export default function NavBar() {
               </Link>
             </li>
             <li>
-              <Link href="/user/help">
-                <a>Help Center</a>
-              </Link>
-            </li>
-            <li>
               <Link href="/messages">
                 <a>Messages</a>
               </Link>
