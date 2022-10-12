@@ -10,7 +10,6 @@ export default function ResetPassword() {
   const router = useRouter();
   async function changePassword(e) {
     e.preventDefault();
-    console.log('press');
     if (!password || !confirmPassword) {
       setError('please complete all fields and resubmit');
       return;
@@ -28,7 +27,6 @@ export default function ResetPassword() {
     if (data) {
       setError(false);
       setSuccess(`your password has been changed successfully`);
-      console.log(data);
     }
   }
 

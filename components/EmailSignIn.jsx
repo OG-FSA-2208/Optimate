@@ -24,7 +24,6 @@ export default function EmailSignIn() {
     event.preventDefault();
     setFormError({});
     if (!form.email) {
-      console.log('yes em');
       setFormError({ ...formError, email: 'please enter an email address' });
       return;
     }
@@ -37,7 +36,7 @@ export default function EmailSignIn() {
       password: form.password,
     });
     if (error) {
-      console.log(error);
+      console.error(error);
       setFormError({ status: error.status });
       return;
     }
