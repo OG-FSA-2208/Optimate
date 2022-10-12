@@ -26,6 +26,7 @@ export default function NavBar() {
   };
   const router = useRouter();
   useEffect(() => {
+    dispatch(checkSession());
     const { subscription } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         console.log(event);
@@ -51,7 +52,7 @@ export default function NavBar() {
   return (
     <nav className="navbar">
       <div className="brand-title">
-        Optimate -- Not a booty call but a foodie call 😉
+        <h2>Optimate -- Not a booty call but a foodie call 😉</h2>
       </div>
       <ul className={burgerClicked ? 'nav-links nav-active' : 'nav-links'}>
         {session ? (
@@ -75,11 +76,6 @@ export default function NavBar() {
             <li>
               <Link href="/user/setting">
                 <a>Setting</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/user/help">
-                <a>Help Center</a>
               </Link>
             </li>
             <li>
