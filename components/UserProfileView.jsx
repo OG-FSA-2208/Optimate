@@ -23,7 +23,7 @@ export default function ViewUserProfile() {
       {loading ? (
         'Loading Profile...'
       ) : (
-        <div className="myProfileView">
+        <div>
           <br></br>
           <h1>My Profile:</h1>
 

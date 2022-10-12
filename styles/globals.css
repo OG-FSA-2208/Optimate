@@ -296,8 +296,9 @@ textarea.form-input {
   display: flex;
   flex-direction: row;
 }
-.form-widget div {
-  margin: 7px 0px;
+.form-widget {
+  height: 94vh;
+  margin: 250px 0px 50px 0px;
 }
 .form-widget label {
   margin: 0px 5px;
