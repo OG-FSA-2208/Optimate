@@ -145,10 +145,10 @@ export default function EditUserProfile({ session }) {
           <div>
             <p>Do you smoke?</p>
             <label htmlFor='smoke'>Yes, I smoke</label>
-            <input id='smoke' value={true} type='radio' name='smoker' onChange={(e) => setUserData({...userData, smoker: e.target.value})}/>
+            <input id='smoke' value={true} checked={userData.smoker === true} type='radio' name='smoker' onChange={(e) => setUserData({...userData, smoker: e.target.value})}/>
             <br/>
             <label htmlFor='nonsmoke'>No, I don't smoke at all</label>
-            <input id='nonsmoke' value={false} type='radio' name='smoker' onChange={(e) => setUserData({...userData, smoker: e.target.value})}/>
+            <input id='nonsmoke' value={false} checked={userData.smoker === false} type='radio' name='smoker' onChange={(e) => setUserData({...userData, smoker: e.target.value})}/>
           </div>
           <div>
             <p>Do you drink alcohol?</p>

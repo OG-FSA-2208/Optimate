@@ -372,6 +372,10 @@ input[type='file'] {
   display: inline-block;
   padding: 6px 12px;
   cursor: pointer;
+  transition: background ease 0.3s;
+}
+#avatar-upload:hover {
+  background-color: aquamarine;
 }
 textarea {
   margin: 8px 0px;
