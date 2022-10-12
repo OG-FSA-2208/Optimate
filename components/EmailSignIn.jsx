@@ -23,16 +23,15 @@ export default function EmailSignIn() {
     event.preventDefault();
     if (!form.email || !form.password) {
       setError('please complete the form');
-      console.log(formError);
+      console.error(formError);
       return;
     }
-    console.log(form);
     const { user, error } = await supabase.auth.signIn({
       email: form.email,
       password: form.password,
     });
     if (error) {
-      console.log('err', error);
+      console.error('err', error);
     }
     if (user) {
       setForm({

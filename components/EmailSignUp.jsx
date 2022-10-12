@@ -40,7 +40,6 @@ export default function EmailSignUp() {
       setpasswordConfirm(true);
       return;
     }
-    console.log(form);
     const { user, error } = await supabase.auth.signUp(
       {
         email: form.email,
@@ -55,7 +54,7 @@ export default function EmailSignUp() {
     );
     if (error) {
       setFormError(error.status);
-      console.log(error);
+      console.error(error);
       // const badEmail = {message: "Unable to validate email address: invalid format",status:422}
     }
     if (user) {

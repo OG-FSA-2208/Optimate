@@ -45,7 +45,7 @@ export const updateUser = (userDetails, userId) => async (dispatch) => {
       .update(userDetails)
       .eq('id', userId);
     if (error) {
-      console.log(error);
+      console.error(error);
       throw error;
     }
   } catch (error) {
