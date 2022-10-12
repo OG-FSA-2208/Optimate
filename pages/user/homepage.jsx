@@ -41,6 +41,12 @@ export default function Profile() {
             <p>About: {profile.about}</p>
           </div>
           <div className="media-scroller">
+            <motion.div
+              className="box"
+              animate={{
+                x: 1750,
+              }}
+            ></motion.div>
             <div className="matchesForEachUser">
               {matches
                 ? matches.map((match) => {
