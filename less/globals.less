@@ -1,6 +1,7 @@
 @import './colors.less';
 @import './mixins.less';
 @import './nav.less';
+@import './footer.less';
 @import './form.less';
 @import './profile.less';
 @import './landingPage.less';
@@ -17,9 +18,10 @@ body {
   background-color: @primary-color;
 }
 
-main {
+.main {
   .flexCenter();
-  height: 94vh;
+  min-height: 94vh;
+  padding-top: 6vh;
 }
 
 button {
