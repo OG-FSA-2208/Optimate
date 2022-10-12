@@ -340,7 +340,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 94vh;
+  min-height: 94vh;
   padding-top: 6vh;
 }
 button {
