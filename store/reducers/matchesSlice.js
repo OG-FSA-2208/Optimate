@@ -21,19 +21,21 @@ export const getAllUserMatches = (router) => async (dispatch) => {
       .select('*')
       .eq('id', session.user.id)
       .single();
-    const matchedUser = await Promise.all(
-      data.matches_id.map((match) => {
-        const findMatch = async () => {
-          const { data, error } = await supabase
-            .from('profiles')
-            .select('*')
-            .eq('id', match)
-            .single();
-          return data;
-        };
-        return findMatch();
-      })
-    );
-    dispatch(fetchMatches(matchedUser));
+    if (data) {
+      const matchedUser = await Promise.all(
+        data.matches_id.map((match) => {
+          const findMatch = async () => {
+            const { data, error } = await supabase
+              .from('profiles')
+              .select('*')
+              .eq('id', match)
+              .single();
+            return data;
+          };
+          return findMatch();
+        })
+      );
+      dispatch(fetchMatches(matchedUser));
+    }
   }
 };
