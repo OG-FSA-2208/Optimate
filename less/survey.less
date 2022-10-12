@@ -14,6 +14,8 @@
     object-fit: cover;
     height: 400px;
     width: 400px;
+    border: 5px black solid;
+    border-radius: 50%;
 }
 
 .form-widget label {
@@ -37,6 +39,22 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+}
+
+input[type='file'] {
+    display: none;
+    padding: 12px;
+}
+
+#avatar-upload {
+    position: absolute;
+    top: 550px;
+    left: 350px;
+    background-color: white;
+    border: 2px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
 }
 
 textarea {

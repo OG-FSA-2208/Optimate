@@ -66,7 +66,7 @@ export default function EditUserProfile({ session }) {
 
   const handleChange = data => {
     if(data.length > 5) {
-      alert('Too many tags! Please select only 5 :)')
+      alert('Too many tags! Please select only 5 :)');
       data.pop();
     } else {
       setUserData({...userData, user_interests: data});
@@ -77,16 +77,14 @@ export default function EditUserProfile({ session }) {
   return (
     <div>
       <div id='profileEditAvatar'>
-        <img src={userData.avatar_url}/><br/>
-        <div>
-          <label htmlFor="avatar">Profile Photo</label><br/>
+        <img src={userData.avatar_url}/>
+          <label htmlFor="avatar" id='avatar-upload'>Change Profile Photo</label><br/>
           <input
             id="avatar"
             type="file"
             accept="image/*"
             onChange={handleAvatarUpload}
           />
-        </div>
       </div>
       <hr/>
       <div className='profile-info'>
