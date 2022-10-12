@@ -10,7 +10,8 @@ export default function EmailSignIn() {
     password: '',
   });
   const dispatch = useDispatch();
-  const [formError, setError] = useState(null);
+  const [formError, setFormError] = useState({});
+
   const handleChange = (props) => (event) => {
     let value = event.target.value;
     setForm({
@@ -21,9 +22,14 @@ export default function EmailSignIn() {
   const router = useRouter();
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!form.email || !form.password) {
-      setError('please complete the form');
-      console.error(formError);
+    setFormError({});
+    if (!form.email) {
+      console.log('yes em');
+      setFormError({ ...formError, email: 'please enter an email address' });
+      return;
+    }
+    if (!form.password) {
+      setFormError({ ...formError, password: 'please enter your password' });
       return;
     }
     const { user, error } = await supabase.auth.signIn({
@@ -31,14 +37,15 @@ export default function EmailSignIn() {
       password: form.password,
     });
     if (error) {
-      console.error('err', error);
+      console.log(error);
+      setFormError({ status: error.status });
+      return;
     }
     if (user) {
       setForm({
         email: '',
         password: '',
       });
-      // dispatch(checkSession());
       router.push('/user/profile');
     }
   };
@@ -50,9 +57,13 @@ export default function EmailSignIn() {
   }, []);
   return (
     <div className="form-container">
-      {formError && <p>{formError}</p>}
       <form id="new-product-form" onSubmit={(e) => handleSubmit(e)}>
         <div className="form-title">Login to Optimate</div>
+        {formError.status === 400 && (
+          <span className="form-error display-block">
+            email and password combination is incorrect
+          </span>
+        )}
         <div className="form-item">
           <label htmlFor="email" className="form-label">
             Email
@@ -62,10 +73,13 @@ export default function EmailSignIn() {
             className="form-input"
             placeholder="Enter your email"
             name="email"
+            type="email"
             value={form.email}
             onChange={handleChange('email')}
           />
-          <span className="form-error">Please enter your email</span>
+          {formError.email && (
+            <span className="form-error display-block">{formError.email}</span>
+          )}
         </div>
         <div className="form-item">
           <label htmlFor="password" className="form-label">
@@ -80,7 +94,11 @@ export default function EmailSignIn() {
             value={form.password}
             onChange={handleChange('password')}
           />
-          <span className="form-error">Please enter your password</span>
+          {formError.password && (
+            <span className="form-error display-block">
+              {formError.password}
+            </span>
+          )}
         </div>
         <div id="button">
           <button type="submit">Login</button>

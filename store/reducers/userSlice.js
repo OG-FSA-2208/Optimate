@@ -30,6 +30,23 @@ export const checkSession = (router) => async (dispatch) => {
     }
   }
 };
+export const providerOAuth = (provider) => async (dispatch) => {
+  console.log(provider);
+  const { user, session, error } = await supabase.auth.signIn({
+    provider: provider,
+    redirectTo: `${process.env.URL}` || 'http://localhost:3000',
+  });
+  console.log(process.env);
+  if (error) {
+    console.log(error);
+  }
+  if (user) {
+    console.log(user);
+  }
+  if (session) {
+    console.log(session);
+  }
+};
 
 export const logoutUser = (router) => (dispatch) => {
   supabase.auth.signOut();

@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
 import { getAllUserMatches } from '../../store/reducers/matchesSlice';
-// import styled from 'styled-components';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -67,10 +67,9 @@ export default function Profile() {
                           Love Language (Receiving): {match.loveLangReceiving}
                         </p>
                         <div className="toggle">
-                          <ion-icon
-                            name="arrow-down-circle-outline"
+                          <OpenInNewIcon
                             onClick={(event) => handleClick(event)}
-                          ></ion-icon>
+                          />
                         </div>
                       </div>
                     );
@@ -82,15 +81,6 @@ export default function Profile() {
       ) : (
         <h2>Please log in</h2>
       )}
-
-      <script
-        type="module"
-        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-      ></script>
-      <script
-        noModule
-        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
-      ></script>
     </div>
   );
 }
