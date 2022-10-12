@@ -43,7 +43,7 @@ export default function EditUserProfile({ session }) {
   }
 
   async function handleAvatarUpload(e) {
-    const avatarFile = e.target.files[0]
+    const avatarFile = e.target.files[0];
     // caching issue happens here!!!
     // await supabase.storage.from('avatars').remove([`${userData.firstname}_avatar`]);
     // const {data} = await supabase.storage.from('avatars')
@@ -78,7 +78,7 @@ export default function EditUserProfile({ session }) {
     <div>
       <div>
         <label htmlFor="avatar">Profile Photo</label><br/>
-        <img src={userData.avatar_url} height="300px"/><br/>
+        <img src={userData.avatar_url}/><br/>
         <input
           id="avatar"
           type="file"
