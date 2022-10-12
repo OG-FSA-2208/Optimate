@@ -358,6 +358,9 @@ textarea.form-input {
   justify-content: space-evenly;
 }
 textarea {
+  margin: 8px 0px;
+  border: 2px solid black;
+  padding: 5px;
   overflow-y: auto;
 }
 @media screen and (max-width: 912px) {
