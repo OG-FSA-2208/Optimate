@@ -76,15 +76,17 @@ export default function EditUserProfile({ session }) {
 
   return (
     <div>
-      <div>
-        <label htmlFor="avatar">Profile Photo</label><br/>
+      <div id='profileEditAvatar'>
         <img src={userData.avatar_url}/><br/>
-        <input
-          id="avatar"
-          type="file"
-          accept="image/*"
-          onChange={handleAvatarUpload}
-        />
+        <div>
+          <label htmlFor="avatar">Profile Photo</label><br/>
+          <input
+            id="avatar"
+            type="file"
+            accept="image/*"
+            onChange={handleAvatarUpload}
+          />
+        </div>
       </div>
       <hr/>
       <div className='profile-info'>
