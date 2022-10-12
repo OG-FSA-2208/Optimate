@@ -1,24 +1,12 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  changeMessage,
-  sendMessage,
-  sub,
-  unsub,
-} from '../store/reducers/messengerSlice';
+import { changeMessage, sendMessage } from '../store/reducers/messengerSlice';
 
 export default function Chatroom() {
   const dispatch = useDispatch();
   const { messageUserId, currentMessage, messages } = useSelector(
     (state) => state.messenger
   );
-
-  useEffect(() => {
-    const messageSub = sub();
-    return () => {
-      unsub(messageSub);
-    };
-  }, [messageUserId]);
 
   function handleSend() {
     dispatch(sendMessage(currentMessage, messageUserId));

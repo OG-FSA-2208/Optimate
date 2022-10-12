@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { checkSession } from '../store/reducers/userSlice.js';
 import { useRouter } from 'next/router';
 import supabase from '../config/supabaseClient.js';
+import { sub, unsub } from '../store/reducers/messengerSlice';
+
 export default function NavBar() {
   const dispatch = useDispatch();
   const [burgerClicked, setBurgerClicked] = useState(false);
@@ -29,12 +31,15 @@ export default function NavBar() {
     dispatch(checkSession());
     const { subscription } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        console.log(event);
-        console.log(session);
+        let messageListener;
         if (event == 'SIGNED_IN') {
           dispatch(checkSession(router));
+          messageListener = await dispatch(sub(session));
+          console.log('inside signed in event', messageListener);
         }
         if (event == 'SIGNED_OUT') {
+          console.log(messageListener);
+          // unsub(messageListener);
         }
         if (event == 'USER_UPDATED') {
           dispatch(checkSession(router));

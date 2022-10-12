@@ -10,11 +10,11 @@ export default function Chat() {
   const [width, setWidth] = useState(null);
   const router = useRouter();
   const matches = useSelector((state) => state.matches);
-  const { id } = router.query;
 
   useEffect(() => {
-    if (!matches.some((match) => match.id === id)) router.push('/404');
-  }, [matches, id]);
+    if (!matches.some((match) => match.id === router.query.id))
+      router.push('/404');
+  }, [matches]);
 
   useEffect(() => {
     setWidth(window.innerWidth);
