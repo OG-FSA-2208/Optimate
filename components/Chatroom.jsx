@@ -1,6 +1,11 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeMessage, sendMessage } from '../store/reducers/messengerSlice';
+import {
+  changeMessage,
+  sendMessage,
+  sub,
+  unsub,
+} from '../store/reducers/messengerSlice';
 
 export default function Chatroom() {
   const dispatch = useDispatch();
@@ -9,10 +14,9 @@ export default function Chatroom() {
   );
 
   useEffect(() => {
-    //TODO: subscribe to db
-
+    const messageSub = sub();
     return () => {
-      //TODO: unsub from the db
+      unsub(messageSub);
     };
   }, [messageUserId]);
 

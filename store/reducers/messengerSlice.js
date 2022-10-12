@@ -57,10 +57,19 @@ export const sendMessage = (message, to) => async (dispatch) => {
   }
 };
 
+//chck for logged in user, subscribe to messages sent to that user, add message when one comes in
 export const sub = () => async (dispatch) => {
-  //TODO: subscribe to db, add message when one is recieved
+  const session = await supabase.auth.session();
+  if (session) {
+    const messageListener = supabase
+      .from(`messages:to=${session.user.id}`)
+      .on('INSERT', (payload) => dispatch(addMessage(payload)))
+      .subscribe();
+    return messageListener;
+  }
 };
 
-export const unsub = () => async (dispatch) => {
-  //TODO: unsubscribe to db
+//unsubscribe from messages wiht this
+export const unsub = (channel) => {
+  channel.unsubscribe();
 };
