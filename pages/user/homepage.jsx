@@ -13,7 +13,7 @@ export default function Profile() {
   useEffect(() => {
     dispatch(getLoggedInUser());
     dispatch(getAllUserMatches());
-  }, []);
+  }, [toggle]); // need toggle here or else page gives hydration error 
 
   const handleClick = (event) => {
     event.target.parentElement.parentElement.classList.toggle('active');
