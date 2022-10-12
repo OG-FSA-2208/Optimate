@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import supabase from '../config/supabaseClient';
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { checkSession } from '../store/reducers/userSlice';
 import Link from 'next/link';
 export default function EmailSignIn() {
@@ -31,17 +31,24 @@ export default function EmailSignIn() {
       email: form.email,
       password: form.password,
     });
-    // console.log(res);
     if (error) {
       console.log('err', error);
     }
     if (user) {
-      console.log(user);
-      dispatch(checkSession());
+      setForm({
+        email: '',
+        password: '',
+      });
+      // dispatch(checkSession());
       router.push('/user/profile');
     }
   };
-
+  const user = useSelector((state) => state.user.id);
+  useEffect(() => {
+    if (user) {
+      router.push('/');
+    }
+  }, []);
   return (
     <div className="form-container">
       {formError && <p>{formError}</p>}
