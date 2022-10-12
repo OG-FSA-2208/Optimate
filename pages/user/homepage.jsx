@@ -2,10 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
 import { getAllUserMatches } from '../../store/reducers/matchesSlice';
-import Grid from '@mui/material/Grid';
-import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { motion } from 'framer-motion';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -41,12 +38,6 @@ export default function Profile() {
             <p>About: {profile.about}</p>
           </div>
           <div className="media-scroller">
-            <motion.div
-              className="box"
-              animate={{
-                x: 1750,
-              }}
-            ></motion.div>
             <div className="matchesForEachUser">
               {matches
                 ? matches.map((match) => {
