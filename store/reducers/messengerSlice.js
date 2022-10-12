@@ -60,15 +60,17 @@ export const sendMessage = (message, to) => async (dispatch) => {
 //helper functions for messenging
 //check for logged in user, subscribe to messages sent to that user, add message when one comes in
 //.from(`messages:to=${session.user.id}`) change from to this and it should only get recieved messages. doesnt work tho
-export const sub = (session) => async (dispatch) => {
-  const messageListener = await supabase
-    .from(`messages:to=eq.${session.user.id}`)
-    .on('INSERT', (payload) => {
-      console.log(`payload:to=eq.${session.user.id}`, payload.new);
-      dispatch(addMessage(payload.new));
-    })
-    .subscribe();
-  return messageListener;
+export const sub = () => (dispatch) => {
+  const session = supabase.auth.session();
+  if (session) {
+    const messageListener = supabase
+      .from(`messages:to=eq.${session.user.id}`)
+      .on('INSERT', (payload) => {
+        dispatch(addMessage(payload.new));
+      })
+      .subscribe();
+    return messageListener;
+  }
 };
 
 //unsubscribe from messages wiht this
