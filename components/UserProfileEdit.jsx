@@ -76,6 +76,7 @@ export default function EditUserProfile({ session }) {
     <div className='edit-view'>
       <hr/>
       <h2>Basic Info</h2>
+      {/* !!! THIS IS THERE THE BASIC INFO IN EDIT PROFILE IS */}
       <div id='profileEditAvatar'>
         <div>
           <img src={userData.avatar_url}/>
@@ -140,7 +141,9 @@ export default function EditUserProfile({ session }) {
         </div>
       </div>
       <hr/>
+      {/* THINGS HERE ARE BELOW THE HORIZONTAL LINE */}
       <div className='profile-info'>
+        {/* THIS IS WHERE A USER'S DETAILED PROFILE INFO IS */}
         <div className='profile-user'>
           <h2>Detailed Info</h2>
           <div>
@@ -206,6 +209,7 @@ export default function EditUserProfile({ session }) {
             </select>
           </div>
         </div>
+        {/* THIS IS WHERE A USER'S PARTNER PREFERENCES GO */}
         <div className='profile-preference'>
           <h2>Partner Preferences</h2>
           <div>
@@ -229,6 +233,7 @@ export default function EditUserProfile({ session }) {
           </div>
         </div>
       </div>
+      {/* BELOW DIV IS THE BUTTON TO UPDATE ALL THE userData NEWLY SET */}
       <div>
         <button
           className="button primary block"
