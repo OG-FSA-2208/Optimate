@@ -16,8 +16,6 @@ export default function EditUserProfile({ session }) {
   const [userData, setUserData] = useState(useSelector((state) => state.profile));
   const interestTags = useSelector(state => state.survey);
 
-  console.log(interestTags);
-
   useEffect(() => {
     // dispatching so that userData can grab the profile of the current user
     dispatch(getInterestTypes());

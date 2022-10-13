@@ -31,21 +31,19 @@ export const checkSession = (router) => async (dispatch) => {
   }
 };
 export const providerOAuth = (provider) => async (dispatch) => {
-  console.log(provider);
   const { user, session, error } = await supabase.auth.signIn({
     provider: provider,
     redirectTo: `${process.env.URL}` || 'http://localhost:3000',
   });
-  console.log(process.env);
   if (error) {
-    console.log(error);
+    console.error(error);
   }
-  if (user) {
-    console.log(user);
-  }
-  if (session) {
-    console.log(session);
-  }
+  // if (user) {
+  //   console.log(user);
+  // }
+  // if (session) {
+  //   console.log(session);
+  // } needed?
 };
 
 export const logoutUser = (router) => (dispatch) => {
@@ -62,7 +60,7 @@ export const updateUser = (userDetails, userId) => async (dispatch) => {
       .update(userDetails)
       .eq('id', userId);
     if (error) {
-      console.log(error);
+      console.error(error);
       throw error;
     }
   } catch (error) {

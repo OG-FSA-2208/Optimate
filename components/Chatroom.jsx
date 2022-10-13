@@ -1,25 +1,20 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getMessages, changeMessage } from '../store/reducers/messengerSlice';
+import { changeMessage, sendMessage } from '../store/reducers/messengerSlice';
 
 export default function Chatroom() {
   const dispatch = useDispatch();
-  const {
-    messageUser: messageUserId,
-    currentMessage,
-    messages,
-  } = useSelector((state) => state.messenger);
-
-  useEffect(() => {
-    if (messageUserId) dispatch(getMessages(messageUserId));
-  }, [messageUserId]);
+  const { messageUserId, currentMessage, messages } = useSelector(
+    (state) => state.messenger
+  );
 
   function handleSend() {
-    //TODO: handle clicking send
+    dispatch(sendMessage(currentMessage, messageUserId));
+    dispatch(changeMessage(''));
   }
 
   function handleEnter(e) {
-    //TODO: handle cliking enter, send message to database
+    if (e.key === 'Enter') handleSend();
   }
   function handleChange(e) {
     e.preventDefault();
@@ -29,15 +24,20 @@ export default function Chatroom() {
   return (
     <div className="chatroom">
       <div className="chats">
-        {/* use a ternary to add a className to each p with either sender or reciever */}
-        {messages.map((message) => (
-          <p
-            key={message.id}
-            className={message.from === messageUserId ? 'reciever' : 'sender'}
-          >
-            {message.message}
-          </p>
-        ))}
+        {messages
+          .filter((message) => {
+            return (
+              message.to === messageUserId || message.from === messageUserId
+            );
+          })
+          .map((message) => (
+            <p
+              key={message.id}
+              className={message.from === messageUserId ? 'reciever' : 'sender'}
+            >
+              {message.message}
+            </p>
+          ))}
       </div>
       <div>
         <input
