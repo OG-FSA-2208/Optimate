@@ -142,7 +142,7 @@
   -webkit-box-shadow: 7px 4px 15px 0px rgba(0, 0, 0, 0.57);
 }
 form {
-  padding: 2em 4em;
+  padding: 2em 2em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -293,10 +293,10 @@ textarea.form-input {
 }
 .media-scroller {
   margin: 4px, 4px;
-  padding: 60px;
+  padding: 60px 0;
   background-color: #FBFAF8;
   height: 350px;
-  width: 1450px;
+  max-width: 100vw;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
