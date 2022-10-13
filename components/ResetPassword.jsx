@@ -16,14 +16,13 @@ export default function ResetPassword() {
       }
     );
     if (error) {
-      console.log(error);
+      console.error(error);
     }
-    if (data) console.log(data);
+    // if (data) console.log(data); dont want any users to see this data
   }
 
   useEffect(() => {
     supabase.auth.onAuthStateChange(async (event, session) => {
-      console.log('recovery?');
       if (event == 'PASSWORD_RECOVERY') {
         const newPassword = prompt(
           'What would you like your new password to be?'
