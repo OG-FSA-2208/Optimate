@@ -109,7 +109,7 @@ export default function EditUserProfile({ session }) {
             <label htmlFor="about">profile bio</label>
             <textarea
               id="about"
-              value={userData.about || ''} rows='5' cols='50'
+              value={userData.about || ''} rows='5' cols='40'
               onChange={(e) => setUserData({...userData, about: e.target.value})}
             />
           </div>

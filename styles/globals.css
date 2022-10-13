@@ -324,12 +324,28 @@ textarea.form-input {
   flex-direction: column;
 }
 .form-widget .profile-info {
-  width: 80vw;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .form-widget {
-  margin: 70px 0px 250px 0px;
+  margin: 70px 5vw 250px;
+}
+.form-widget * {
+  animation: slidein 0.5s;
+}
+label {
+  display: flex;
+  align-items: center;
+}
+@keyframes slidein {
+  0% {
+    margin-bottom: 100vh;
+  }
+  100% {
+    margin-bottom: 0vh;
+  }
 }
 .form-widget img {
   object-fit: cover;
@@ -353,6 +369,8 @@ textarea.form-input {
   margin: 12px 0px;
 }
 #profileEditAvatar {
+  width: 80vw;
+  position: relative;
   margin: 20px 40px;
   display: flex;
   flex-wrap: wrap;
@@ -363,9 +381,10 @@ input[type='file'] {
   padding: 12px;
 }
 #avatar-upload {
-  position: absolute;
-  top: 480px;
-  left: 320px;
+  position: relative;
+  height: 20px;
+  top: 340px;
+  left: -280px;
   background-color: white;
   border: 2px solid #ccc;
   display: inline-block;
@@ -382,8 +401,9 @@ textarea {
   padding: 5px;
   overflow-y: auto;
 }
-@media screen and (max-width: 912px) {
+@media screen and (max-width: 768px) {
   .form-widget {
+    padding: 45px;
     margin-top: 40px;
   }
   .form-widget .profile-info {
@@ -392,6 +412,10 @@ textarea {
   .profile-preference,
   .profile-user {
     width: 80vw;
+  }
+  #avatar-upload {
+    top: 340px;
+    left: -170px;
   }
 }
 @font-face {
