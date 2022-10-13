@@ -1,0 +1,98 @@
+.match-list{
+    border: 10px solid @secondary-color;
+    // border-radius: 10px;
+    margin: 4px;
+    padding: 1em 1em;
+    background-color: @primary-color;
+    height: 710px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap;
+
+}
+
+.column{
+    // // height:
+    // margin: 4px, 4px;
+    padding: 50px;
+    // background-color: @primary-color;
+    // height: 650px;
+    // overflow-x: hidden;
+    // overflow-y: auto;
+    // white-space: nowrap;
+}
+
+
+.match{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.matchPic{
+    margin-right: 50px;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.chatMessageBox{
+    border: 10px solid @secondary-color;
+    padding:5px
+}
+
+.chatroom{
+    height: 600px;
+    border: solid black;
+    border-radius: 10px;
+    margin: 4px, 4px;
+    padding: 3rem;
+    background-color: @primary-color;
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap;
+}
+
+//text box
+.chat-input{
+    border-radius: 10px;
+    height: 2vh;
+    width: 31vw;
+
+}
+
+//send button
+.send {
+    width: 70px;
+}
+
+//
+.chat-match {
+    clip-path: polygon(2% 0, 100% 0%, 100% 95%, 10% 95%, 0 100%, 2% 85%);
+    text-align: left;
+    background-color: rgb(143, 196, 222);
+    width: 50%;
+    height: 70px;
+    p{
+        padding-left: 20px;
+        // padding-top: 5px;
+    }
+
+}
+
+.user{
+    clip-path: polygon(0 0, 98% 0, 98% 85%, 100% 100%, 90% 95%, 0 95%);
+    text-align: right;
+    background-color: rgb(120, 255, 210);
+    width: 50%;
+    height: 50px;
+    // margin: 0 0 0 80px;
+    position: relative;
+    right: -55%;
+    p{
+        padding-right: 20px;
+    }
+    
+    
+}

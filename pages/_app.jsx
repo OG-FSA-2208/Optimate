@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
             animate="animateState"
             exit="exitState"
             transition={{
-              duration: 0.5,
+              duration: 0.6,
             }}
             className="base-page-size"
             variants={{
