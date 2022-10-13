@@ -74,7 +74,6 @@ export default function EditUserProfile({ session }) {
 
   return (
     <div className='edit-view'>
-      <hr/>
       <h2>Basic Info</h2>
       {/* !!! THIS IS THERE THE BASIC INFO IN EDIT PROFILE IS */}
       <div id='profileEditAvatar'>

@@ -15,6 +15,7 @@ export default function UserProfile({ session }) {
       <h1>{editing ? 'Editing Profile' : 'Your Profile'}
       <button className="button block" onClick={() => toggleEdit()}>{editing ? 'Return to profile' : 'Edit profile'}</button>
       </h1>
+      <hr/>
       {editing ? <UserProfileEdit/> : <UserProfileView/>}
     </div>
   );
