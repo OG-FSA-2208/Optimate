@@ -60,7 +60,7 @@ export default function NavBar() {
   return (
     <nav className="navbar">
       <div className="brand-title">
-        <h2>Optimate -- Not a booty call but a foodie call 😉</h2>
+        <h2>Optimate</h2>
       </div>
       <ul className={burgerClicked ? 'nav-links nav-active' : 'nav-links'}>
         {session ? (
@@ -106,7 +106,7 @@ export default function NavBar() {
 
       <div
         onClick={handleBurger}
-        className={burgerClicked ? 'burger toggle' : 'burger'}
+        className={burgerClicked ? 'burger burger-toggle' : 'burger'}
       >
         <div className="line1"></div>
         <div className="line2"></div>

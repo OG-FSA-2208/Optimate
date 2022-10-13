@@ -5,6 +5,7 @@
 @import './form.less';
 @import './profile.less';
 @import './landingPage.less';
+@import './oAuthBar.less';
 @import './survey.less';
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
 
@@ -20,9 +21,9 @@ body {
 
 .main {
   .flexCenter();
-  min-height: 91vh;
-  max-width: 95vw;
-  padding-top: 2vh;
+  min-height: 88vh;
+  min-width: 100vw;
+  padding-top: 6vh;
 }
 
 button {
@@ -61,17 +62,17 @@ button:hover {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
+  box-shadow: inset 0 0 5px grey;
   border-radius: 10px;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(198, 197, 197); 
+  background: rgb(198, 197, 197);
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: @secondary-text-color; 
+  background: @secondary-text-color;
 }

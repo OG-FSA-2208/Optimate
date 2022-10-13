@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkSession } from '../store/reducers/userSlice';
 import Link from 'next/link';
+import OAuthBar from './OAuthBar';
 export default function EmailSignIn() {
   const [form, setForm] = useState({
     email: '',
@@ -102,6 +103,7 @@ export default function EmailSignIn() {
         <div id="button">
           <button type="submit">Login</button>
         </div>
+        <OAuthBar />
         <p
           className="link"
           onClick={() => {
