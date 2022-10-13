@@ -3,6 +3,7 @@ import supabase from '../config/supabaseClient';
 import { checkSession } from '../store/reducers/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import { FaGithub, FaFacebook, FaGoogle } from 'react-icons/fa';
 export default function UpdateUserAuth() {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -11,20 +12,22 @@ export default function UpdateUserAuth() {
   const [formError, setFormError] = useState({});
   const [formSuccess, setSuccess] = useState({});
   const [passwordConfirm, setpasswordConfirm] = useState('');
-  const [authProvider, setProvider] = useState(true);
-  const user = useSelector((state) => state.user);
+  const [authProvider, setAuthProvider] = useState(false);
+  const userInfo = useSelector((state) => state.user);
   useEffect(() => {
-    if (user.id) {
-      console.log('hi', user);
-      setEmail(user.email);
-      const providers = user.app_metadata.providers;
-      console.log(user);
+    if (userInfo.id) {
+      console.log('hi', userInfo);
+      setEmail(userInfo.email);
+      const providers = userInfo.app_metadata.providers;
+      console.log(userInfo);
       if (providers.length === 1 && providers[0] === 'email') {
-        console.log(providers);
-        setProvider(false);
+        setAuthProvider(false);
+      } else {
+        setAuthProvider(providers);
+        console.log(authProvider);
       }
     }
-  }, [user]);
+  }, [userInfo]);
   const handleSubmitEmail = async (event) => {
     event.preventDefault();
     console.log('no');
@@ -45,7 +48,7 @@ export default function UpdateUserAuth() {
       } else {
         setFormError({
           email:
-            'there wasw an issue processing your request, please try again later',
+            'there was an issue processing your request, please try again later',
         });
       }
       console.error('update', error);
@@ -53,7 +56,7 @@ export default function UpdateUserAuth() {
     if (user) {
       console.error(user);
       setSuccess({
-        email: `A confirmation e-mail will be sent to your email at ${user.email} within 5minutes, and en email verification email will be sent to ${email}. Please validate your your e-mail by clicking on the enclosed links`,
+        email: `A confirmation e-mail will be sent to your email at ${userInfo.email} within 5minutes, and en email verification email will be sent to ${email}. Please validate your your e-mail by clicking on the enclosed links`,
       });
     }
   };
@@ -66,19 +69,19 @@ export default function UpdateUserAuth() {
       // return;
     }
     const { user, error } = await supabase.auth.update({
+      // email: userInfo.email,
       password: password,
     });
+    console.log('res', user, error);
     if (error) {
-      if ((error.status = 422)) {
-        setFormError({
-          [error.status]: 'there was an issue processing your reuest',
-        });
-      }
-      console.error(error);
+      setFormError({
+        password: error.message,
+      });
     }
     if (user) {
+      console.log('changed');
       setSuccess({
-        password: `A confirmation e-mail will be sent to your email at ${user.email} within 5minutes. Please validate your your e-mail by clicking on the enclosed link`,
+        password: `your password has been successfully changed`,
       });
     }
   };
@@ -104,13 +107,25 @@ export default function UpdateUserAuth() {
         {formError.email && (
           <span className="form-error display-block">{formError.email}</span>
         )}
-        <div id={authProvider ? '' : 'button'}>
+        <div className="button">
           <button disabled={authProvider} onClick={(e) => handleSubmitEmail(e)}>
             Change email address
           </button>
         </div>
         {formSuccess.email && (
           <span className="form-item form-success">{formSuccess.email}</span>
+        )}
+        {authProvider && (
+          <>
+            <span className="form-error display-block">
+              email cannot be updated because you are connected to
+            </span>
+            <span>
+              {authProvider.includes('google') && <FaGoogle />}
+              {authProvider.includes('facebook') && <FaFacebook />}
+              {authProvider.includes('github') && <FaGithub />}
+            </span>
+          </>
         )}
         <div className="form-item">
           <label htmlFor="password" className="form-label">
@@ -140,23 +155,16 @@ export default function UpdateUserAuth() {
             value={passwordConfirm}
             onChange={(e) => setpasswordConfirm(e.target.value)}
           />
-          {passwordConfirm !== password && (
-            <span className="form-error display-block">
-              Passwords does not match
-            </span>
-          )}
-          <span className="form-error">Please enter a password</span>
-        </div>
-        <span
-          className={
-            formError === 'incomplete'
-              ? 'form-error display-block'
-              : 'form-error'
-          }
-        >
-          Please complete the form
-        </span>
-        <div id="button">
+        </div>{' '}
+        {passwordConfirm !== password && (
+          <span className="form-error display-block">
+            Passwords does not match
+          </span>
+        )}
+        {formError.password && (
+          <span className="form-error display-block">{formError.password}</span>
+        )}
+        <div className="button">
           <button onClick={(e) => handleSubmitPassword(e)}>
             Change Password
           </button>
