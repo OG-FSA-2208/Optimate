@@ -329,8 +329,7 @@ textarea.form-input {
   flex-direction: row;
 }
 .form-widget {
-  height: 94vh;
-  margin: 50px 0px 150px 0px;
+  margin: 70px 0px 250px 0px;
 }
 .form-widget img {
   object-fit: cover;
@@ -365,8 +364,8 @@ input[type='file'] {
 }
 #avatar-upload {
   position: absolute;
-  top: 550px;
-  left: 350px;
+  top: 480px;
+  left: 320px;
   background-color: white;
   border: 2px solid #ccc;
   display: inline-block;
