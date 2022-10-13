@@ -72,23 +72,13 @@ export default function NavBar() {
               </Link>
             </li>
             <li>
-              <Link href="/user/profile">
-                <a>Profile</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/user/preferences">
-                <a>Preferences</a>
+              <Link href="/messages">
+                <a>Messages</a>
               </Link>
             </li>
             <li>
               <Link href="/user/setting">
                 <a>Setting</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/messages">
-                <a>Messages</a>
               </Link>
             </li>
           </>
