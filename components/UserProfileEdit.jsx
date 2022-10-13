@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import supabase from '../config/supabaseClient';
 import { getInterestTypes } from '../store/reducers/surveySlice';
 import Option from './Option';
+import UserPhoto from './UserPhoto';
 import { default as ReactSelect } from 'react-select';
 
 export default function EditUserProfile({ session }) {
@@ -140,7 +141,18 @@ export default function EditUserProfile({ session }) {
         </div>
       </div>
       <hr/>
-      {/* THINGS HERE ARE BELOW THE HORIZONTAL LINE */}
+      {/* THIS IS WHERE OPTIONAL IMAGE UPLOADING/DELETING GOES */}
+      <div id='optionalPhotoUploads'>
+        {userData.user_photos.map((photoURL, ind) =>
+        <UserPhoto key={ind} imgData={{imgURL: photoURL, index: ind}}
+        userData={userData} setUserData={setUserData}/>)}
+        {/* trying to see if i can create empty divs for un-uploaded images */}
+        {userData.user_photos.length < 5 ?
+        new Array(5 - userData.user_photos.length).map((uploadSlot, ind) => <div key={ind} className="uploadSlot"></div>)
+        : <p>haha peepee</p>}
+      </div>
+      <hr/>
+      {/* THINGS HERE ARE BELOW THE OPTIONAL IMAGES */}
       <div className='profile-info'>
         {/* THIS IS WHERE A USER'S DETAILED PROFILE INFO IS */}
         <div className='profile-user'>

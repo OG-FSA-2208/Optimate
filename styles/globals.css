@@ -427,6 +427,11 @@ select {
 .profile-view {
   margin: 20px 30px;
 }
+.uploadSlot {
+  height: 100px;
+  width: 100px;
+  border: 2px red solid;
+}
 textarea {
   margin: 8px 0px;
   border: 2px solid black;
