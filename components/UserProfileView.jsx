@@ -45,7 +45,7 @@ export default function ViewUserProfile() {
           <p>Your Interests:</p>
           <ul>
             {userData.user_interests?.map((tag) => (
-              <li>{tag.label}</li>
+              <li key={tag.value}>{tag.label}</li>
             ))}
           </ul>
         </div>
