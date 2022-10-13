@@ -19,15 +19,11 @@ export default function ViewUserProfile() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className='profile-view'>
       {loading ? (
         'Loading Profile...'
       ) : (
-        <div className="myProfileView">
-          <br></br>
-          <h1>My Profile:</h1>
-
-          <br></br>
+        <div>
           <img src={userData.avatar_url} height="250px" />
           <p>
             Full name: {userData.firstname} {userData.lastname}
@@ -45,7 +41,7 @@ export default function ViewUserProfile() {
           <p>Your Interests:</p>
           <ul>
             {userData.user_interests?.map((tag) => (
-              <li>{tag.label}</li>
+              <li key={tag.value}>{tag.label}</li>
             ))}
           </ul>
         </div>

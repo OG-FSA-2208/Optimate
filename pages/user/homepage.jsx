@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
 import { getAllUserMatches } from '../../store/reducers/matchesSlice';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -13,10 +15,11 @@ export default function Profile() {
   useEffect(() => {
     dispatch(getLoggedInUser());
     dispatch(getAllUserMatches());
-  }, []);
+  }, [toggle]); // need toggle here or else page gives hydration error 
 
   const handleClick = (event) => {
-    event.target.parentElement.parentElement.classList.toggle('active');
+    event.target.classList.toggle('active');
+    console.log('hello');
     setToggle(!toggle);
   };
 
@@ -24,30 +27,82 @@ export default function Profile() {
     <div>
       {profile.id ? (
         <div>
-          <div className="myProfile">
-            <br></br>
-            <h2>My Profile:</h2>
+          <Link href="/user/profile">
+            <a>
+              <motion.div
+                className="myProfile"
+                whileHover={{
+                  scale: 1.2,
+                }}
+                drag="x"
+                dragConstraints={{
+                  right: 18,
+                  left: 0,
+                }}
+                whileTap={{
+                  scale: 0.9,
+                }}
+                animate={
+                  {
+                    // x: 1300,
+                    // rotate: 360,
+                    // opacity: isAnimating ? 1 : 0.5,
+                    // scale: isAnimating ? 2 : 0,
+                  }
+                }
+              >
+                <br></br>
+                <h2>My Profile:</h2>
 
-            <br></br>
-            <img src={profile.avatar_url} className="profilePic" />
-            <p>
-              Full name: {profile.firstname} {profile.lastname}
-            </p>
-            <p>Age: {profile.age}</p>
-            <p>Gender: {profile.gender}</p>
-            <p>About: {profile.about}</p>
-          </div>
+                <br></br>
+
+                <img src={profile.avatar_url} className="profilePic" />
+
+                <p>
+                  Full name: {profile.firstname} {profile.lastname}
+                </p>
+                <p>Age: {profile.age}</p>
+                <p>Gender: {profile.gender}</p>
+                <p>About: {profile.about}</p>
+              </motion.div>
+            </a>
+          </Link>
+          {/* </div> */}
           <div className="media-scroller">
             <div className="matchesForEachUser">
               {matches
                 ? matches.map((match) => {
                     return (
-                      <div className="matches" key={match.id}>
+                      <motion.div
+                        onClick={(event) => handleClick(event)}
+                        className="matches"
+                        key={match.id}
+                        whileHover={{
+                          scale: 1.2,
+                        }}
+                        // drag="x"
+                        // dragConstraints={{
+                        //   right: 18,
+                        //   left: 0,
+                        // }}
+                        whileTap={{
+                          scale: 0.9,
+                        }}
+                        animate={
+                          {
+                            // x: 1300,
+                            // rotate: 360,
+                            // opacity: isAnimating ? 1 : 0.5,
+                            // scale: isAnimating ? 2 : 0,
+                          }
+                        }
+                      >
                         <h3>
                           {match.firstname} {match.lastname}
                         </h3>
                         <p>
                           <img
+                            // onClick={(event) => handleClick(event)}
                             className="matchesProfilePic"
                             src={match.avatar_url}
                             alt="Profile Pic"
@@ -67,11 +122,9 @@ export default function Profile() {
                           Love Language (Receiving): {match.loveLangReceiving}
                         </p>
                         <div className="toggle">
-                          <OpenInNewIcon
-                            onClick={(event) => handleClick(event)}
-                          />
+                          <OpenInNewIcon />
                         </div>
-                      </div>
+                      </motion.div>
                     );
                   })
                 : 'Sorry, but you have 0 matches'}
