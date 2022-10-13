@@ -75,7 +75,8 @@ export default function EditUserProfile({ session }) {
   return (
     <div>
       <div id='profileEditAvatar'>
-        <img src={userData.avatar_url}/>
+        <div>
+          <img src={userData.avatar_url}/>
           <label htmlFor="avatar" id='avatar-upload'>Change Profile Photo</label><br/>
           <input
             id="avatar"
@@ -83,11 +84,9 @@ export default function EditUserProfile({ session }) {
             accept="image/*"
             onChange={handleAvatarUpload}
           />
-      </div>
-      <hr/>
-      <div className='profile-info'>
-        <div className='profile-user'>
-          <div>
+        </div>
+        <div>
+        <div>
             <label htmlFor="firstname">first name</label>
             <input
               id="firstname"
@@ -136,6 +135,11 @@ export default function EditUserProfile({ session }) {
             <label htmlFor='location'>location</label>
             <input id='location' type='text' value={userData.location || ''} onChange={(e) => setUserData({...userData, location: e.target.value})}/>
           </div>
+        </div>
+      </div>
+      <hr/>
+      <div className='profile-info'>
+        <div className='profile-user'>
           <div>
             <label htmlFor='occupation'>occupation</label>
             <input id='occupation' type='text' value={userData.occupation || ''} onChange={(e) => setUserData({...userData, occupation: e.target.value})}/>

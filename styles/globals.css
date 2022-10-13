@@ -333,7 +333,7 @@ textarea.form-input {
   margin: 70px 5vw 250px;
 }
 .form-widget * {
-  animation: slidein 0.5s;
+  animation: slidein 0.4s;
 }
 label {
   display: flex;
@@ -341,10 +341,10 @@ label {
 }
 @keyframes slidein {
   0% {
-    margin-bottom: 100vh;
+    margin-left: 100vw;
   }
   100% {
-    margin-bottom: 0vh;
+    margin-left: 0vw;
   }
 }
 .form-widget img {
@@ -374,7 +374,7 @@ label {
   margin: 20px 40px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 input[type='file'] {
   display: none;
@@ -383,8 +383,8 @@ input[type='file'] {
 #avatar-upload {
   position: relative;
   height: 20px;
-  top: 340px;
-  left: -280px;
+  top: -50px;
+  left: -180px;
   background-color: white;
   border: 2px solid #ccc;
   display: inline-block;
