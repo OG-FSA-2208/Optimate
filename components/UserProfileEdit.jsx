@@ -146,27 +146,31 @@ export default function EditUserProfile({ session }) {
         {/* THIS IS WHERE A USER'S DETAILED PROFILE INFO IS */}
         <div className='profile-user'>
           <h2>Detailed Info</h2>
-          <div>
+          <div> {/* user's occupation */}
             <label htmlFor='occupation'>occupation</label>
             <input id='occupation' type='text' value={userData.occupation || ''} onChange={(e) => setUserData({...userData, occupation: e.target.value})}/>
           </div>
-          <div>
+          <div> {/* user's smoking status */}
             <p>Do you smoke?</p>
-            <label htmlFor='smoke'>Yes, I smoke</label>
-            <input id='smoke' value={true} checked={userData.smoker} type='radio' name='smoker' onChange={(e) => setUserData({...userData, smoker: true})}/>
+            <input id='smoke' value={true} checked={userData.smoker} type='radio'
+            name='smoker' onChange={(e) => setUserData({...userData, smoker: true})}
+            /> Yes, I smoke
             <br/>
-            <label htmlFor='nonsmoke'>No, I don't smoke at all</label>
-            <input id='nonsmoke' value={false} checked={!userData.smoker} type='radio' name='smoker' onChange={(e) => setUserData({...userData, smoker: false})}/>
+            <input id='nonsmoke' value={false} checked={!userData.smoker} type='radio'
+            name='smoker' onChange={(e) => setUserData({...userData, smoker: false})}
+            /> No, I don't smoke at all
           </div>
-          <div>
+          <div> {/* user's drinking status */}
             <p>Do you drink alcohol?</p>
-            <label htmlFor='drinks'>Yes, I drink alcohol</label>
-            <input id='drinks' value={true} checked={userData.drinker} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: true})}/>
+            <input id='drinks' value={true} checked={userData.drinker}
+            name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: true})}
+            /> Yes, I drink alcohol
             <br/>
-            <label htmlFor='nodrinks'>No, I don't drink alcohol at all</label>
-            <input id='nodrinks' value={false} checked={!userData.drinker} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: false})}/>
+            <input id='nodrinks' value={false} checked={!userData.drinker}
+            name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: false})}
+            /> No, I don't drink alcohol at all
           </div>
-          {/* this is the select-dropdown-checkbox!!! */}
+          {/* this is the select-dropdown-checkbox for interests!!!! */}
           <div>
             <label htmlFor='interest-select'>Select up to 5 interests</label>
             <ReactSelect
@@ -175,7 +179,7 @@ export default function EditUserProfile({ session }) {
               components={{Option}} value={userData.user_interests} onChange={handleChange}
             />
           </div>
-          <div>
+          <div> {/* user's love language (giving) */}
             <label htmlFor='loveGiving'>Your love language (giving)</label>
             <select value={userData.loveLangGiving || 'unselected'} onChange={(e) => setUserData({...userData, loveLangGiving: e.target.value})}>
               <option value='unselected'>Unsure/Don't Care</option>
@@ -186,7 +190,7 @@ export default function EditUserProfile({ session }) {
               <option value='Words of Affirmation'>Words of Affirmation</option>
             </select>
           </div>
-          <div>
+          <div> {/* user's love language (receiving) */}
             <label htmlFor='loveRecieving'>Your love language (receiving)</label>
             <select value={userData.loveLangReceiving || 'unselected'} onChange={(e) => setUserData({...userData, loveLangReceiving: e.target.value})}>
               <option value='unselected'>Unsure/Don't Care</option>
@@ -197,7 +201,7 @@ export default function EditUserProfile({ session }) {
               <option value='Words of Affirmation'>Words of Affirmation</option>
             </select>
           </div>
-          <div>
+          <div> {/* user's priority */}
             <label htmlFor='priority'>Your top priority</label>
             <select value={userData.priority || 'unselected'} onChange={(e) => setUserData({...userData, priority: e.target.value})}>
               <option value='unselected'>Unsure/Don't Care</option>
