@@ -383,6 +383,12 @@ input[type='file'] {
   display: none;
   padding: 12px;
 }
+input[type='text'],
+input[type='number'],
+select {
+  padding: 5px;
+  margin: 5px 0px;
+}
 #avatar-upload {
   position: absolute;
   height: 20px;
