@@ -7,7 +7,7 @@ export default function OAuthBar() {
     dispatch(providerOAuth(e.target.value));
   }
   return (
-    <div>
+    <div className="auth-buttons">
       <button value="google" onClick={(e) => AttemptProviderOAuth(e)}>
         google
       </button>

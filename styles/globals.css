@@ -322,6 +322,10 @@ textarea.form-input {
   justify-content: center;
   flex-direction: column;
 }
+.auth-buttons {
+  display: flex;
+  background-color: green;
+}
 .form-widget .profile-info {
   width: 80vw;
   display: flex;
