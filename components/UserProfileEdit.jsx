@@ -63,6 +63,24 @@ export default function EditUserProfile({ session }) {
     setUserData({...userData, avatar_url: publicURL});
   }
 
+  async function handleImageUpload(e) {
+    const imageFile = [...e.target.files];
+    console.dir(imageFile);
+
+    const {data} = imageFile.map(async img => {
+      await supabase.storage.from('avatars')
+        .upload(`${userData.id}_${img.name}`, img, {upsert: true});
+         const { publicURL, imgError } = await supabase
+        .storage
+        .from('avatars')
+        .getPublicUrl(`${userData.id}_${img.name}`);
+
+        setUserData({...userData, user_photos: [...userData.user_photos, publicURL]});
+      });
+
+    // setUserData({...userData, avatar_url: publicURL});
+  }
+
   const handleChange = data => {
     if(data.length > 5) {
       alert('Too many tags! Please select only 5 :)');
@@ -146,10 +164,18 @@ export default function EditUserProfile({ session }) {
         {userData.user_photos.map((photoURL, ind) =>
         <UserPhoto key={ind} imgData={{imgURL: photoURL, index: ind}}
         userData={userData} setUserData={setUserData}/>)}
-        {/* trying to see if i can create empty divs for un-uploaded images */}
-        {userData.user_photos.length < 5 ?
-        Array.apply(null, Array(5 - userData.user_photos.length))
-        .map((uploadSlot, ind) => <div key={ind} className="uploadSlot"></div>)
+        {/* CREATES 'SLOTS' FOR USER TO UPLOAD ANY REMAINING PHOTOS THEY CAN */}
+        {userData.user_photos.length < 4 ?
+        Array.apply(null, Array(4 - userData.user_photos.length))
+        .map((uploadSlot, ind) => <div key={ind} className="uploadSlot">
+          <label htmlFor={`uploadSlot_${ind}`} id='image-upload'>Change Profile Photo</label><br/>
+          <input
+            id={`uploadSlot_${ind}`}
+            type="file" multiple
+            accept="image/*"
+            onChange={handleImageUpload}
+          />
+        </div>)
         : <></>}
       </div>
       <hr/>
