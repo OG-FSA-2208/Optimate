@@ -24,10 +24,6 @@ export default function ViewUserProfile() {
         'Loading Profile...'
       ) : (
         <div>
-          <br></br>
-          <h1>My Profile:</h1>
-
-          <br></br>
           <img src={userData.avatar_url} height="250px" />
           <p>
             Full name: {userData.firstname} {userData.lastname}

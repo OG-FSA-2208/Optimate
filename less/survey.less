@@ -2,15 +2,24 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+}
+
+.profile-info > * {
+    display: flex;
+    flex-direction: column;
 }
 
 .form-widget {
     margin: 70px 5vw 50px;
 }
 
-.form-widget > div {
+.profile-view, .edit-view {
     animation: slidein 0.4s;
+}
+
+h1 .button.block {
+    margin-left: 25px;
+    font-size: 15px;
 }
 
 label {
@@ -93,6 +102,10 @@ input[type='text'], input[type='number'], select {
     background-color: aquamarine;
 }
 
+.profile-view {
+    margin: 20px 30px;
+}
+
 textarea {
     margin: 8px 0px;
     border: 2px solid black;
@@ -122,8 +135,5 @@ textarea {
     #avatar-upload {
         top: 250px;
         left: 0px;
-    }
-    .profile-view {
-        margin: 5px 30px;
     }
 }

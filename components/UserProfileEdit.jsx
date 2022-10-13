@@ -73,7 +73,9 @@ export default function EditUserProfile({ session }) {
   }
 
   return (
-    <div>
+    <div className='edit-view'>
+      <hr/>
+      <h2>Basic Info</h2>
       <div id='profileEditAvatar'>
         <div>
           <img src={userData.avatar_url}/>
@@ -140,6 +142,7 @@ export default function EditUserProfile({ session }) {
       <hr/>
       <div className='profile-info'>
         <div className='profile-user'>
+          <h2>Detailed Info</h2>
           <div>
             <label htmlFor='occupation'>occupation</label>
             <input id='occupation' type='text' value={userData.occupation || ''} onChange={(e) => setUserData({...userData, occupation: e.target.value})}/>
@@ -204,6 +207,7 @@ export default function EditUserProfile({ session }) {
           </div>
         </div>
         <div className='profile-preference'>
+          <h2>Partner Preferences</h2>
           <div>
             <label htmlFor='wanted-age'>Desired age range:</label>
             <input id='wanted-age' type='text' value={userData.wantAge || ''} onChange={() => setUserData({...userData, wantAge: e.target.value})}/>
