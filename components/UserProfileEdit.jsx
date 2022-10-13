@@ -148,8 +148,9 @@ export default function EditUserProfile({ session }) {
         userData={userData} setUserData={setUserData}/>)}
         {/* trying to see if i can create empty divs for un-uploaded images */}
         {userData.user_photos.length < 5 ?
-        new Array(5 - userData.user_photos.length).map((uploadSlot, ind) => <div key={ind} className="uploadSlot"></div>)
-        : <p>haha peepee</p>}
+        Array.apply(null, Array(5 - userData.user_photos.length))
+        .map((uploadSlot, ind) => <div key={ind} className="uploadSlot"></div>)
+        : <></>}
       </div>
       <hr/>
       {/* THINGS HERE ARE BELOW THE OPTIONAL IMAGES */}
