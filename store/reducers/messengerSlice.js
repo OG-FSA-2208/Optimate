@@ -57,9 +57,25 @@ export const sendMessage = (message, to) => async (dispatch) => {
   }
 };
 
+//thunk to see if user has read a message
+export const clickMessages = () => async (dispatch) => {
+  const session = await supabase.auth.session();
+  if (session) {
+    //filter undread messages from messageUserId, update those messages to read on db
+    // const { data, error } = await supabase.from('messages').update([
+    //   {
+    //     from: session.user.id,
+    //     to,
+    //     message,
+    //   },
+    // ]);
+    // if (data) dispatch(readMessage(data[0]));
+    // if (error) console.error(error);
+  }
+};
+
 //helper functions for messenging
 //check for logged in user, subscribe to messages sent to that user, add message when one comes in
-//.from(`messages:to=${session.user.id}`) change from to this and it should only get recieved messages. doesnt work tho
 export const sub = () => (dispatch) => {
   const session = supabase.auth.session();
   if (session) {
