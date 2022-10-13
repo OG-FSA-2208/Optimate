@@ -95,13 +95,13 @@
     transform: translateX(0px);
   }
 }
-.toggle .line1 {
+.toggle-burger .line1 {
   transform: rotate(-45deg) translate(-5px, 6px);
 }
-.toggle .line2 {
+.toggle-burger .line2 {
   opacity: 0;
 }
-.toggle .line3 {
+.toggle-burger .line3 {
   transform: rotate(45deg) translate(-5px, -6px);
 }
 .footer {
@@ -111,7 +111,7 @@
   z-index: 1;
   justify-content: space-around;
   background-color: #48A9A6;
-  min-height: 7vh;
+  min-height: 6vh;
 }
 .footer ul {
   display: flex;
@@ -142,7 +142,7 @@
   -webkit-box-shadow: 7px 4px 15px 0px rgba(0, 0, 0, 0.57);
 }
 form {
-  padding: 2em 4em;
+  padding: 2em 2em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -223,7 +223,7 @@ textarea.form-input {
   font-size: 18px;
   width: 340px;
   height: 350px;
-  margin: 0px auto  auto;
+  margin: 2em auto auto;
   background-color: #e4dddd;
   color: rgba(12, 10, 10, 0.4);
   border-radius: 30px;
@@ -293,10 +293,10 @@ textarea.form-input {
 }
 .media-scroller {
   margin: 4px, 4px;
-  padding: 60px;
+  padding: 2em 0;
   background-color: #FBFAF8;
   height: 350px;
-  width: 1450px;
+  max-width: 100vw;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
@@ -321,6 +321,14 @@ textarea.form-input {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+.auth-buttons {
+  display: flex;
+}
+.auth-buttons * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .form-widget .profile-info {
   width: 80vw;
@@ -371,9 +379,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 91vh;
-  max-width: 95vw;
-  padding-top: 2vh;
+  min-height: 88vh;
+  min-width: 100vw;
+  padding-top: 6vh;
 }
 button {
   background: none;
