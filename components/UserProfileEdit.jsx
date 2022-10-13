@@ -90,7 +90,7 @@ export default function EditUserProfile({ session }) {
         </div>
         <div>
         <div>
-            <label htmlFor="firstname">first name</label>
+            <label htmlFor="firstname">First Name</label>
             <input
               id="firstname"
               type="text"
@@ -99,7 +99,7 @@ export default function EditUserProfile({ session }) {
             />
           </div>
           <div>
-            <label htmlFor="lastname">last name</label>
+            <label htmlFor="lastname">Last Name</label>
             <input
               id="lastname"
               type="text"
@@ -108,7 +108,7 @@ export default function EditUserProfile({ session }) {
             />
           </div>
           <div>
-            <label htmlFor="about">profile bio</label>
+            <label htmlFor="about">About You</label>
             <textarea
               id="about"
               value={userData.about || ''} rows='5' cols='40'
@@ -116,7 +116,7 @@ export default function EditUserProfile({ session }) {
             />
           </div>
           <div>
-            <label htmlFor="age">age</label>
+            <label htmlFor="age">Age</label>
             <input
               id="age"
               type="number"
@@ -125,7 +125,7 @@ export default function EditUserProfile({ session }) {
             />
           </div>
           <div>
-            <label htmlFor="gender">gender</label>
+            <label htmlFor="gender">Gender</label>
             <select value={userData.gender || 'unselected'} onChange={(e) => setUserData({...userData, gender: e.target.value})}>
               <option disabled value='unselected'>Select</option>
               <option value='Male'>Male</option>
@@ -147,7 +147,7 @@ export default function EditUserProfile({ session }) {
         <div className='profile-user'>
           <h2>Detailed Info</h2>
           <div> {/* user's occupation */}
-            <label htmlFor='occupation'>occupation</label>
+            <label htmlFor='occupation'>Occupation</label>
             <input id='occupation' type='text' value={userData.occupation || ''} onChange={(e) => setUserData({...userData, occupation: e.target.value})}/>
           </div>
           <div> {/* user's smoking status */}

@@ -335,6 +335,10 @@ textarea.form-input {
 .form-widget {
   margin: 70px 5vw 50px;
 }
+.form-widget p,
+.form-widget label {
+  font-size: 18px;
+}
 .profile-view,
 .edit-view {
   animation: slidein 0.4s;
