@@ -26,15 +26,14 @@ function MyApp({ Component, pageProps }) {
             className="base-page-size"
             variants={{
               initialState: {
-                opacity: 0,
-                clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%',
+                opacity: 1,
               },
               animateState: {
                 opacity: 1,
                 clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%',
               },
               exitState: {
-                clipPath: 'polygon(50% 0, 50% 0, 50% 100%, 50% 100%',
+                clipPath: 'polygon(50% 0, 50% 0%, 50% 100%, 50% 100%',
               },
             }}
           >

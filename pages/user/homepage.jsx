@@ -4,6 +4,7 @@ import { getLoggedInUser } from '../../store/reducers/profileSlice';
 import { getAllUserMatches } from '../../store/reducers/matchesSlice';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -26,43 +27,46 @@ export default function Profile() {
     <div>
       {profile.id ? (
         <div>
-          {/* <div className="myProfile"> */}
-          <motion.div
-            className="myProfile"
-            whileHover={{
-              scale: 1.2,
-            }}
-            drag="x"
-            dragConstraints={{
-              right: 18,
-              left: 0,
-            }}
-            whileTap={{
-              scale: 0.9,
-            }}
-            animate={
-              {
-                // x: 1300,
-                // rotate: 360,
-                // opacity: isAnimating ? 1 : 0.5,
-                // scale: isAnimating ? 2 : 0,
-              }
-            }
-          >
-            <br></br>
-            <h2>My Profile:</h2>
+          <Link href="/user/profile">
+            <a>
+              <motion.div
+                className="myProfile"
+                whileHover={{
+                  scale: 1.2,
+                }}
+                drag="x"
+                dragConstraints={{
+                  right: 18,
+                  left: 0,
+                }}
+                whileTap={{
+                  scale: 0.9,
+                }}
+                animate={
+                  {
+                    // x: 1300,
+                    // rotate: 360,
+                    // opacity: isAnimating ? 1 : 0.5,
+                    // scale: isAnimating ? 2 : 0,
+                  }
+                }
+              >
+                <br></br>
+                <h2>My Profile:</h2>
 
-            <br></br>
+                <br></br>
 
-            <img src={profile.avatar_url} className="profilePic" />
+                <img src={profile.avatar_url} className="profilePic" />
 
-            <p>
-              Full name: {profile.firstname} {profile.lastname}
-            </p>
-            <p>Age: {profile.age}</p>
-            <p>Gender: {profile.gender}</p>
-            <p>About: {profile.about}</p>
-          </motion.div>
+                <p>
+                  Full name: {profile.firstname} {profile.lastname}
+                </p>
+                <p>Age: {profile.age}</p>
+                <p>Gender: {profile.gender}</p>
+                <p>About: {profile.about}</p>
+              </motion.div>
+            </a>
+          </Link>
           {/* </div> */}
           <div className="media-scroller">
             <div className="matchesForEachUser">

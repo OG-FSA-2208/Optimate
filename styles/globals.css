@@ -223,7 +223,7 @@ textarea.form-input {
   font-size: 18px;
   width: 340px;
   height: 350px;
-  margin: 0px 550px 100px 550px;
+  margin: 0px auto  auto;
   background-color: #e4dddd;
   color: rgba(12, 10, 10, 0.4);
   border-radius: 30px;
