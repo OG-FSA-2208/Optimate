@@ -143,18 +143,18 @@ export default function EditUserProfile({ session }) {
           <div>
             <p>Do you smoke?</p>
             <label htmlFor='smoke'>Yes, I smoke</label>
-            <input id='smoke' value={true} checked={userData.smoker === true} type='radio' name='smoker' onChange={(e) => setUserData({...userData, smoker: e.target.value})}/>
+            <input id='smoke' value={true} checked={userData.smoker} type='radio' name='smoker' onChange={(e) => setUserData({...userData, smoker: true})}/>
             <br/>
             <label htmlFor='nonsmoke'>No, I don't smoke at all</label>
-            <input id='nonsmoke' value={false} checked={userData.smoker === false} type='radio' name='smoker' onChange={(e) => setUserData({...userData, smoker: e.target.value})}/>
+            <input id='nonsmoke' value={false} checked={!userData.smoker} type='radio' name='smoker' onChange={(e) => setUserData({...userData, smoker: false})}/>
           </div>
           <div>
             <p>Do you drink alcohol?</p>
             <label htmlFor='drinks'>Yes, I drink alcohol</label>
-            <input id='drinks' value={true} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: e.target.value})}/>
+            <input id='drinks' value={true} checked={userData.drinker} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: true})}/>
             <br/>
             <label htmlFor='nodrinks'>No, I don't drink alcohol at all</label>
-            <input id='nodrinks' value={false} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: e.target.value})}/>
+            <input id='nodrinks' value={false} checked={!userData.drinker} name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: false})}/>
           </div>
           {/* this is the select-dropdown-checkbox!!! */}
           <div>
