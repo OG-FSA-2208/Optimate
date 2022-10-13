@@ -95,13 +95,13 @@
     transform: translateX(0px);
   }
 }
-.toggle .line1 {
+.toggle-burger .line1 {
   transform: rotate(-45deg) translate(-5px, 6px);
 }
-.toggle .line2 {
+.toggle-burger .line2 {
   opacity: 0;
 }
-.toggle .line3 {
+.toggle-burger .line3 {
   transform: rotate(45deg) translate(-5px, -6px);
 }
 .footer {
@@ -380,6 +380,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 91vh;
+  min-width: 100vw;
   max-width: 95vw;
   padding-top: 2vh;
 }
