@@ -223,13 +223,14 @@ textarea.form-input {
   font-size: 18px;
   width: 340px;
   height: 350px;
-  margin: 2em auto auto;
+  margin: 0px auto  auto;
   background-color: #e4dddd;
   color: rgba(12, 10, 10, 0.4);
   border-radius: 30px;
   border: solid;
 }
 .profilePic {
+  object-fit: cover;
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -240,6 +241,7 @@ textarea.form-input {
   text-align: center;
   font-size: 20px;
   margin: 5px;
+  width: 91vw;
 }
 .matches {
   padding: 16px;
@@ -271,9 +273,9 @@ textarea.form-input {
   color: #de55c5;
 }
 /* .matchesAboutMe {
-    overflow-wrap: break-word;
-    hyphens: manual;
-  } */
+  overflow-wrap: break-word;
+  hyphens: manual;
+} */
 .toggle {
   position: absolute;
   bottom: 0;
@@ -295,7 +297,6 @@ textarea.form-input {
   margin: 4px, 4px;
   padding: 2em 0;
   background-color: #FBFAF8;
-  height: 350px;
   max-width: 100vw;
   overflow-x: auto;
   overflow-y: hidden;
@@ -331,33 +332,129 @@ textarea.form-input {
   justify-content: center;
 }
 .form-widget .profile-info {
-  width: 80vw;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
-.form-widget div {
-  margin: 7px 0px;
+.profile-info > * {
+  display: flex;
+  flex-direction: column;
+}
+.form-widget {
+  margin: 70px 5vw 50px;
+}
+.form-widget p,
+.form-widget label {
+  font-size: 18px;
+}
+.profile-view,
+.edit-view {
+  animation: slidein 0.4s;
+}
+h1 .button.block {
+  margin-left: 25px;
+  font-size: 15px;
+}
+label {
+  display: flex;
+  align-items: center;
+}
+@keyframes slidein {
+  0% {
+    margin-left: 100vw;
+  }
+  100% {
+    margin-left: 0vw;
+  }
+}
+.form-widget img {
+  object-fit: cover;
+  height: 300px;
+  width: 300px;
+  border: 5px black solid;
+  border-radius: 50%;
 }
 .form-widget label {
-  margin: 0px 5px;
+  margin: 0px 8px 0px 0px;
 }
 .profile-user,
 .profile-preference {
   width: 40vw;
 }
+.profile-preference > div,
+.profile-user > div {
+  margin: 10px;
+}
+.form-widget hr {
+  margin: 12px 0px;
+}
+#profileEditAvatar {
+  margin: 15px 0px;
+  width: 80vw;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#profileEditAvatar > div {
+  width: 40vw;
+}
+input[type='file'] {
+  display: none;
+  padding: 12px;
+}
+input[type='text'],
+input[type='number'],
+select {
+  padding: 5px;
+  margin: 5px 0px;
+}
+#avatar-upload {
+  position: absolute;
+  height: 20px;
+  top: 250px;
+  left: 0px;
+  background-color: white;
+  border: 2px solid #ccc;
+  display: inline-block;
+  padding: 5px 7px;
+  cursor: pointer;
+  transition: background ease 0.3s;
+}
+#avatar-upload:hover {
+  background-color: aquamarine;
+}
+.profile-view {
+  margin: 20px 30px;
+}
 textarea {
+  margin: 8px 0px;
+  border: 2px solid black;
+  padding: 5px;
   overflow-y: auto;
 }
-@media screen and (max-width: 912px) {
+@media screen and (max-width: 768px) {
   .form-widget {
-    margin-top: 40px;
+    margin: 80px 15px;
   }
   .form-widget .profile-info {
+    align-items: center;
     flex-direction: column;
   }
   .profile-preference,
   .profile-user {
     width: 80vw;
+  }
+  #profileEditAvatar {
+    align-items: center;
+    flex-direction: column;
+  }
+  #profileEditAvatar > div {
+    width: 80vw;
+  }
+  #avatar-upload {
+    top: 250px;
+    left: 0px;
   }
 }
 @font-face {
@@ -374,6 +471,7 @@ textarea {
 body {
   font-family: 'Concert One', cursive;
   background-color: #FBFAF8;
+  overflow-x: hidden;
 }
 .main {
   display: flex;
