@@ -32,13 +32,13 @@ export default function NavBar() {
 
     const { subscription } = supabase.auth.onAuthStateChange(
       async (event, session) => {
+        console.log(event);
         if (event == 'SIGNED_IN') {
           dispatch(checkSession(router));
         }
         if (event == 'SIGNED_OUT') {
         }
         if (event == 'USER_UPDATED') {
-          dispatch(checkSession(router));
         }
         if (event == 'PASSWORD_RECOVERY') {
           router.push('/password-reset');
