@@ -260,15 +260,13 @@ export default function EditUserProfile({ session }) {
         <div className='profile-preference'>
           <h2>Partner Preferences</h2>
           <div>
-            <label htmlFor='wanted-age'>Desired age range:</label>
+            <input type="range" id="minAge" name="minAge" min="18" max="65"/>
+          <div>
+            <label htmlFor='wanted-age'>Age range:</label>
             <input id='wanted-age' type='text' value={userData.wantAge || ''} onChange={(e) => setUserData({...userData, wantAge: e.target.value})}/>
           </div>
           <div>
-            <label htmlFor='wanted-occupation'>Desired partner occupation:</label>
-            <input id='wanted-occupation' type='text' value={userData.wantOccupation || ''} onChange={(e) => setUserData({...userData, wantOccupation: e.target.value})}/>
-          </div>
-          <div>
-            <label htmlFor="wanted-gender">Preferred partner gender</label>
+            <label htmlFor="wanted-gender">Preferred gender</label>
             <select value={userData.wantGender || 'unselected'} onChange={(e) => setUserData({...userData, wantGender: e.target.value})}>
               <option disabled value='unselected'>Select</option>
               <option value='Male'>Male</option>
@@ -290,6 +288,7 @@ export default function EditUserProfile({ session }) {
           {loading ? 'Loading ...' : 'Save Profile'}
         </button>
         <div>{updated ? 'Profile updated' : ''}</div>
+      </div>
       </div>
     </div>
   );
