@@ -5,22 +5,24 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { userAgent } from 'next/server';
+import { getLoggedInUser } from '../../store/reducers/profileSlice';
 
 export default function Profile() {
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
+  const profile = useSelector((state) => state.profile);
   const [highlight, setHighlight] = useState(profile);
 
 
   useEffect(() => {
     dispatch(getAllUserMatches());
+    dispatch(getLoggedInUser()); 
   }, []);
 
    // const handleClick = (event) => {
    // console.log('show event', event.target.classList);
    // event.target.classList.toggle('active');
    // };
-      </div>
 
   return (
     <div>
