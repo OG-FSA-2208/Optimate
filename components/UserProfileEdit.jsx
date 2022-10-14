@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 import supabase from '../config/supabaseClient';
 import { getInterestTypes } from '../store/reducers/surveySlice';
 import Option from './Option';
+import UserPhoto from './UserPhoto';
+import FileUploadSharpIcon from '@mui/icons-material/FileUploadSharp';
 import { default as ReactSelect } from 'react-select';
 
 export default function EditUserProfile({ session }) {
@@ -60,6 +62,26 @@ export default function EditUserProfile({ session }) {
       .getPublicUrl(`${userData.id}_${avatarFile.name}`);
 
     setUserData({...userData, avatar_url: publicURL});
+  }
+
+  async function handleImageUpload(e) {
+    const imageFile = [...e.target.files];
+    if (imageFile.length + userData.user_photos.length > 4) {
+      alert(`Too many photos! You can only upload ${4 - userData.user_photos.length} additional image(s)`);
+      return;
+    }
+
+    const imgURLs = imageFile.map(async img => {
+      const imgdata = (await supabase.storage.from('avatars')
+        .upload(`${userData.id}_${img.name}`, img, {upsert: true})).data;
+      const { publicURL, imgError } = await supabase
+        .storage
+        .from('avatars')
+        .getPublicUrl(`${userData.id}_${img.name}`);
+      return publicURL
+    });
+    // console.dir(await Promise.all(imgURLs));
+    setUserData({...userData, user_photos: [...userData.user_photos, ...(await Promise.all(imgURLs))]});
   }
 
   const handleChange = data => {
@@ -140,7 +162,29 @@ export default function EditUserProfile({ session }) {
         </div>
       </div>
       <hr/>
-      {/* THINGS HERE ARE BELOW THE HORIZONTAL LINE */}
+      {/* THIS IS WHERE OPTIONAL IMAGE UPLOADING/DELETING GOES */}
+      <h2>Upload up to (4) four additional photos</h2>
+      <i>if adding/removing photos, remember to save your new profile</i>
+      <div id='optionalPhotoUploads'>
+        {userData.user_photos.map((photoURL, ind) =>
+        <UserPhoto key={ind} imgData={{imgURL: photoURL, index: ind}}
+        userData={userData} setUserData={setUserData}/>)}
+        {/* CREATES 'SLOTS' FOR USER TO UPLOAD ANY REMAINING PHOTOS THEY CAN */}
+        {userData.user_photos.length < 4 ?
+        Array.apply(null, Array(4 - userData.user_photos.length))
+        .map((uploadSlot, ind) => <div key={ind} className="uploadSlot">
+          <label htmlFor={`uploadSlot_${ind}`} id='image-upload'><FileUploadSharpIcon/></label><br/>
+          <input
+            id={`uploadSlot_${ind}`}
+            type="file" multiple
+            accept="image/*"
+            onChange={handleImageUpload}
+          />
+        </div>)
+        : <></>}
+      </div>
+      <hr/>
+      {/* THINGS HERE ARE BELOW THE OPTIONAL IMAGES */}
       <div className='profile-info'>
         {/* THIS IS WHERE A USER'S DETAILED PROFILE INFO IS */}
         <div className='profile-user'>
@@ -243,7 +287,7 @@ export default function EditUserProfile({ session }) {
           onClick={() => updateProfile(userData)}
           disabled={loading}
         >
-          {loading ? 'Loading ...' : 'Update'}
+          {loading ? 'Loading ...' : 'Save Profile'}
         </button>
         <div>{updated ? 'Profile updated' : ''}</div>
       </div>

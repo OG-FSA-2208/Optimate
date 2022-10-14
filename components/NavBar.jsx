@@ -5,6 +5,7 @@ import { checkSession } from '../store/reducers/userSlice.js';
 import { useRouter } from 'next/router';
 import supabase from '../config/supabaseClient.js';
 import { sub, unsub } from '../store/reducers/messengerSlice';
+import { motion } from 'framer-motion';
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -60,7 +61,13 @@ export default function NavBar() {
   return (
     <nav className="navbar">
       <div className="brand-title">
-        <h2>Optimate</h2>
+        <motion.h2
+          whileHover={{
+            scale: 1.3,
+          }}
+        >
+          Optimate 🐙
+        </motion.h2>
       </div>
       <ul className={burgerClicked ? 'nav-links nav-active' : 'nav-links'}>
         {session ? (
@@ -77,7 +84,7 @@ export default function NavBar() {
               </Link>
             </li>
             <li>
-              <Link href="/user/setting">
+              <Link href="/user/settings">
                 <a>Setting</a>
               </Link>
             </li>

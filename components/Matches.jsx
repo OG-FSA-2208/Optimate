@@ -17,28 +17,34 @@ export default function Matches() {
   }, []);
 
   return (
-    <div className="match-list">
-      <ul>
+    <div>
+      <h1>MATCHES</h1>
+      <div className="match-list">
+        {/* <ul> */}
+
         {matches.map((user) => (
-          <li key={user.id}>
+          <div key={user.id}>
             <Link href={`/messages/${user.id}`}>
-              <a onClick={() => dispatch(setMessageUser(user.id))}>
-                {/* <img
+              <a
+                className="match"
+                onClick={() => dispatch(setMessageUser(user.id))}
+              >
+                <img
+                  className="matchPic"
                   src={user.avatar_url}
                   alt="user profile image"
-                  height="100"
-                  width="100"
-                /> */}
+                />
                 <p>
-                  {user.firstname}
-                  <br />
-                  {user.lastname}
+                  <h2>
+                    {user.firstname} {user.lastname}
+                  </h2>
                 </p>
               </a>
             </Link>
-          </li>
+          </div>
         ))}
-      </ul>
+        {/* </ul> */}
+      </div>
     </div>
   );
 }
