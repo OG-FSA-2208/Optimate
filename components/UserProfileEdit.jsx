@@ -260,7 +260,9 @@ export default function EditUserProfile({ session }) {
         <div className='profile-preference'>
           <h2>Partner Preferences</h2>
           <div>
-            <input type="range" id="minAge" name="minAge" min="18" max="65"/>
+            <label htmlFor='wantedAge'>Age range:</label>
+            <input name='wantedAge' type="number" value={userData.ageMin} onChange={e => setUserData({...userData, ageMin: e.target.value})}/>
+            <input name='wantedAge' type="number" value={userData.ageMax} onChange={e => setUserData({...userData, ageMax: e.target.value})}/>
           <div>
             <label htmlFor='wanted-age'>Age range:</label>
             <input id='wanted-age' type='text' value={userData.wantAge || ''} onChange={(e) => setUserData({...userData, wantAge: e.target.value})}/>
