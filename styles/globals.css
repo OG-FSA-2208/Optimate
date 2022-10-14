@@ -392,6 +392,10 @@ textarea.form-input {
 .edit-view {
   animation: slidein 0.4s;
 }
+.profile-view p {
+  overflow-wrap: break-word;
+  width: 80vw;
+}
 h1 .button.block {
   margin-left: 25px;
   font-size: 15px;
