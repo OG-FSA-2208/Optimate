@@ -448,13 +448,42 @@ select {
 #avatar-upload:hover {
   background-color: aquamarine;
 }
+#optionalPhotoUploads {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.user_photo,
+.uploadSlot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 200px;
+  width: 200px;
+  margin: 20px 20px;
+  border-radius: 10%;
+  border: 1px black solid;
+}
+.user_photo button {
+  padding: 5px;
+  top: -15px;
+  left: -20px;
+  position: absolute;
+  background-color: white;
+}
+.uploadSlot:hover,
+.uploadSlot *:hover {
+  cursor: pointer;
+}
+.user_photo img {
+  height: 200px;
+  width: 200px;
+  border-radius: 10%;
+  border: 0px;
+}
 .profile-view {
   margin: 20px 30px;
-}
-.uploadSlot {
-  height: 100px;
-  width: 100px;
-  border: 2px red solid;
 }
 textarea {
   margin: 8px 0px;

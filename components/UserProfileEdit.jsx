@@ -74,10 +74,9 @@ export default function EditUserProfile({ session }) {
         .storage
         .from('avatars')
         .getPublicUrl(`${userData.id}_${img.name}`);
-      console.log(publicURL);
       return publicURL
     });
-    console.dir(await Promise.all(imgURLs));
+    // console.dir(await Promise.all(imgURLs));
     setUserData({...userData, user_photos: [...userData.user_photos, ...(await Promise.all(imgURLs))]});
   }
 
@@ -174,6 +173,7 @@ export default function EditUserProfile({ session }) {
             type="file" multiple
             accept="image/*"
             onChange={handleImageUpload}
+            className="uploadSlot"
           />
         </div>)
         : <></>}
