@@ -265,9 +265,6 @@ export default function EditUserProfile({ session }) {
             <input name='wantedAge' type="number" value={userData.ageMin || userData.age - 1} onChange={e => e.target.value < 18 ? alert('Too low. Please choose an age 18 or above') : setUserData({...userData, ageMin: e.target.value})}/>
             <span> to </span>
             <input name='wantedAge' type="number" value={userData.ageMax || userData.age + 1} onChange={e => e.target.value < userData.ageMin ? alert('Too low. Please choose an age above your selected minimum') : setUserData({...userData, ageMax: e.target.value})}/>
-          <div>
-            <label htmlFor='wanted-age'>Age range:</label>
-            <input id='wanted-age' type='text' value={userData.wantAge || ''} onChange={(e) => setUserData({...userData, wantAge: e.target.value})}/>
           </div>
           <div>
             <label htmlFor="wanted-gender">Preferred gender</label>
@@ -281,7 +278,6 @@ export default function EditUserProfile({ session }) {
             </select>
           </div>
         </div>
-      </div>
       </div>
       {/* BELOW DIV IS THE BUTTON TO UPDATE ALL THE userData NEWLY SET */}
       <div>
