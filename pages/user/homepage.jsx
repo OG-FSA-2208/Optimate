@@ -11,23 +11,23 @@ export default function Profile() {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
   const matches = useSelector((state) => state.matches);
+  const [highlight, setHighlight] = useState(profile);
   const [toggle, setToggle] = useState(false);
-  console.log(profile);
+  console.log(highlight);
 
   useEffect(() => {
     dispatch(getLoggedInUser());
     dispatch(getAllUserMatches());
   }, [toggle]); // need toggle here or else page gives hydration error
 
-  const handleClick = (event) => {
-    event.target.classList.toggle('active');
-    console.log('hello');
-    setToggle(!toggle);
-  };
+  // const handleClick = (event) => {
+  //   event.target.classList.toggle('active');
+  //   setToggle(!toggle);
+  // };
 
   return (
     <div>
-      {profile.id ? (
+      {highlight.id ? (
         <div>
           <Link href="/user/profile">
             <a>
@@ -54,29 +54,28 @@ export default function Profile() {
                 }
               >
                 <div>
-                  <h2>My Profile</h2>
+                  <h2>
+                    {highlight.firstname} {highlight.lastname}
+                  </h2>
                   <br></br>
-                  <img src={profile.avatar_url} className="profilePic" />
+                  <img src={highlight.avatar_url} className="profilePic" />
                 </div>
                 <div>
-                  <p>
-                    Full name: {profile.firstname} {profile.lastname}
-                  </p>
-                  <p>Age: {profile.age}</p>
-                  <p>Gender: {profile.gender}</p>
-                  <p>About: {profile.about}</p>
-                  <p>Occupation: {profile.occupation}</p>
+                  <p>Age: {highlight.age}</p>
+                  <p>Gender: {highlight.gender}</p>
+                  <p>About: {highlight.about}</p>
+                  <p>Occupation: {highlight.occupation}</p>
                   <p style={{ fontSize: '2em' }}>
-                    {profile.drinker ? '🍻' : null}{' '}
-                    {profile.smoker ? '🚬' : null}
+                    {highlight.drinker ? '🍻' : null}{' '}
+                    {highlight.smoker ? '🚬' : null}
                   </p>
                   <br />
-                  <p>Giving: {profile.loveLangGiving}</p>
-                  <p>Receiving: {profile.loveLangReceiving}</p>
+                  <p>Giving: {highlight.loveLangGiving}</p>
+                  <p>Receiving: {highlight.loveLangReceiving}</p>
                   <br />
                   <p>
                     Interests:{' '}
-                    {profile.user_interests.reduce((acc, curr) => {
+                    {highlight.user_interests.reduce((acc, curr) => {
                       return acc + curr.label + ' ';
                     }, '')}
                   </p>
@@ -91,7 +90,10 @@ export default function Profile() {
                 ? matches.map((match) => {
                     return (
                       <motion.div
-                        onClick={(event) => handleClick(event)}
+                        onClick={function (event) {
+                          // handleClick(event);
+                          setHighlight(match);
+                        }}
                         className="matches"
                         key={match.id}
                         whileHover={{
@@ -127,7 +129,7 @@ export default function Profile() {
                         </p>
                         <p>Age: {match.age}</p>
                         <p>Gender: {match.gender}</p>
-                        <p>Highlight: {match.highlight}</p>
+                        {/* <p>Highlight: {match.highlight}</p>
                         <div className="matchesAboutMe">
                           About: {match.about}
                         </div>
@@ -137,7 +139,7 @@ export default function Profile() {
                         <p>Love Language (Giving): {match.loveLangGiving}</p>
                         <p>
                           Love Language (Receiving): {match.loveLangReceiving}
-                        </p>
+                        </p> */}
                         <div className="toggle">
                           <OpenInNewIcon />
                         </div>
