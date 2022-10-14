@@ -164,6 +164,7 @@ export default function EditUserProfile({ session }) {
       <hr/>
       {/* THIS IS WHERE OPTIONAL IMAGE UPLOADING/DELETING GOES */}
       <h2>Upload up to (4) four additional photos</h2>
+      <i>if adding/removing photos, remember to save your new profile</i>
       <div id='optionalPhotoUploads'>
         {userData.user_photos.map((photoURL, ind) =>
         <UserPhoto key={ind} imgData={{imgURL: photoURL, index: ind}}
@@ -286,7 +287,7 @@ export default function EditUserProfile({ session }) {
           onClick={() => updateProfile(userData)}
           disabled={loading}
         >
-          {loading ? 'Loading ...' : 'Update'}
+          {loading ? 'Loading ...' : 'Save Profile'}
         </button>
         <div>{updated ? 'Profile updated' : ''}</div>
       </div>
