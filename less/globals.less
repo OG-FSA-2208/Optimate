@@ -16,7 +16,9 @@
 
 body {
   font-family: 'Concert One', cursive;
-  background-color: @primary-color;
+  background-image: url(Optim8.png);
+  background-size: 25%;
+  background-repeat: repeat;
   overflow-x: hidden;
 }
 
@@ -25,6 +27,10 @@ body {
   min-height: 88vh;
   min-width: 100vw;
   padding-top: 6vh;
+}
+
+a {
+  text-decoration: none;
 }
 
 button {
@@ -45,7 +51,10 @@ button:hover {
   background-color: @accent-color;
   color: @primary-color;
 }
-
+button:disabled {
+  background-color: rgba(105, 105, 105, 1);
+  color: @primary-color;
+}
 .link {
   text-decoration: underline;
   cursor: pointer;
