@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setMessageUser } from '../store/reducers/messengerSlice';
 import { getAllUserMatches } from '../store/reducers/matchesSlice';
-import { getMessages } from '../store/reducers/messengerSlice';
+import { getMessages, clickMessages } from '../store/reducers/messengerSlice';
 
 //will need to get active chat userID from store and set one of the links to have active classname here
 
@@ -22,7 +21,7 @@ export default function Matches() {
         {matches.map((user) => (
           <li key={user.id}>
             <Link href={`/messages/${user.id}`}>
-              <a onClick={() => dispatch(setMessageUser(user.id))}>
+              <a onClick={() => dispatch(clickMessages(user.id))}>
                 {/* <img
                   src={user.avatar_url}
                   alt="user profile image"

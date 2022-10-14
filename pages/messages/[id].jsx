@@ -29,7 +29,7 @@ export default function Chat() {
       <div style={width <= 768 ? { display: 'none' } : {}} className="column">
         <Matches />
       </div>
-      <div className="column">
+      <div className="column" style={{ border: 'solid' }}>
         <Chatroom />
       </div>
     </div>

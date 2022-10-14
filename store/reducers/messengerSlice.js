@@ -9,8 +9,11 @@ const messengerSlice = createSlice({
     currentMessage: '',
   },
   reducers: {
-    setMessageUser: (state, action) => {
-      state.messageUserId = action.payload;
+    readMessages: (state, action) => {
+      state.messageUserId = action.payload.id;
+      state.messages = state.messages.map((message) =>
+        action.payload.data.includes(message) ? (message.read = true) : message
+      );
     },
     fetchMessages: (state, action) => {
       state.messages = [...action.payload];
@@ -25,11 +28,12 @@ const messengerSlice = createSlice({
 });
 
 //export stuff here
-export const { setMessageUser, addMessage, changeMessage, fetchMessages } =
+export const { readMessages, addMessage, changeMessage, fetchMessages } =
   messengerSlice.actions;
 export default messengerSlice.reducer;
 
 //THUNKS
+//grab all yer messages, to and from
 export const getMessages = () => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
@@ -42,6 +46,7 @@ export const getMessages = () => async (dispatch) => {
   }
 };
 
+//thunk to send a message to a user
 export const sendMessage = (message, to) => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
@@ -57,24 +62,20 @@ export const sendMessage = (message, to) => async (dispatch) => {
   }
 };
 
-//thunk to see if user has read a message
-export const clickMessages = () => async (dispatch) => {
+//thunk for clicking on a match in messages
+export const clickMessages = (id) => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
-    //filter undread messages from messageUserId, update those messages to read on db
-    // const { data, error } = await supabase.from('messages').update([
-    //   {
-    //     from: session.user.id,
-    //     to,
-    //     message,
-    //   },
-    // ]);
-    // if (data) dispatch(readMessage(data[0]));
-    // if (error) console.error(error);
+    const { data, error } = await supabase
+      .from('messages')
+      .update({ read: true })
+      .match({ to: session.user.id, from: id });
+    if (data) dispatch(readMessages({ id, data })); //set items to read in messenger part of store
+    if (error) console.error(error);
   }
 };
 
-//helper functions for messenging
+//helper functions for messaging
 //check for logged in user, subscribe to messages sent to that user, add message when one comes in
 export const sub = () => (dispatch) => {
   const session = supabase.auth.session();
