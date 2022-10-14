@@ -70,7 +70,7 @@ export const clickMessages = (id) => async (dispatch) => {
       .from('messages')
       .update({ read: true })
       .match({ to: session.user.id, from: id });
-    if (data) dispatch(readMessages({ id, data })); //set items to read in messenger part of store
+    if (data) dispatch(readMessages({ id, data }));
     if (error) console.error(error);
   }
 };
