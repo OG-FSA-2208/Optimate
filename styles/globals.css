@@ -554,10 +554,10 @@ textarea {
   src: url(https://fonts.gstatic.com/s/concertone/v17/VEM1Ro9xs5PjtzCu-srDqRTl.ttf) format('truetype');
 }
 .match-list {
-  border: 10px solid #48A9A6;
+  border: 10px solid #48a9a6;
   margin: 4px;
   padding: 1em 1em;
-  background-color: #FBFAF8;
+  background-color: #fbfaf8;
   height: 710px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -579,7 +579,7 @@ textarea {
   border-radius: 50%;
 }
 .chatMessageBox {
-  border: 10px solid #48A9A6;
+  border: 10px solid #48a9a6;
   padding: 5px;
   margin-top: 5rem;
   margin-bottom: 3rem;
@@ -589,7 +589,7 @@ textarea {
   border: solid black;
   border-radius: 10px;
   padding: 3rem;
-  background-color: #FBFAF8;
+  background-color: #fbfaf8;
   overflow-x: hidden;
   overflow-y: auto;
   white-space: nowrap;
