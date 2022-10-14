@@ -33,6 +33,9 @@ export default function EditUserProfile({ session }) {
   async function updateProfile(data) {
     try {
       setLoading(true);
+      if (userData.about?.length > 250) {
+        throw new Error(`'About You' section is ${userData.about.length - 250} character(s) over limit. Please adjust the length and try again`);
+      }
       dispatch(updateUser(data, data.id));
       setUpdated(true);
     } catch (error) {
@@ -130,6 +133,7 @@ export default function EditUserProfile({ session }) {
           </div>
           <div>
             <label htmlFor="about">About You</label>
+            <h5>{250 - (userData.about?.length || 0)} characters remaining</h5>
             <textarea
               id="about"
               value={userData.about || ''} rows='5' cols='40'
