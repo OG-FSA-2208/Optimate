@@ -159,6 +159,7 @@ export default function EditUserProfile({ session }) {
       </div>
       <hr/>
       {/* THIS IS WHERE OPTIONAL IMAGE UPLOADING/DELETING GOES */}
+      <h2>Upload up to (4) four additional photos</h2>
       <div id='optionalPhotoUploads'>
         {userData.user_photos.map((photoURL, ind) =>
         <UserPhoto key={ind} imgData={{imgURL: photoURL, index: ind}}

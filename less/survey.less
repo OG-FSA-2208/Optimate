@@ -123,8 +123,14 @@ input[type='text'], input[type='number'], select {
     margin: 20px 20px;
     border-radius: 10%;
     border: 1px black solid;
+    transition: 0.2s;
+}
+.uploadSlot {
+    background-color: white;
+    opacity: 0.7;
 }
 .uploadSlot label {
+    border-radius: 10%;
     display: flex;
     justify-content: center;
     height: 200px;
@@ -139,6 +145,8 @@ input[type='text'], input[type='number'], select {
 }
 .uploadSlot:hover, .uploadSlot *:hover {
     cursor: pointer;
+    background-color: aquamarine;
+    transition: 0.2s;
 }
 .user_photo img {
     height: 200px;
