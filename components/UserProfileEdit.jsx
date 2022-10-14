@@ -66,6 +66,10 @@ export default function EditUserProfile({ session }) {
 
   async function handleImageUpload(e) {
     const imageFile = [...e.target.files];
+    if (imageFile.length + userData.user_photos.length > 4) {
+      alert(`Too many photos! You can only upload ${4 - userData.user_photos.length} additional image(s)`);
+      return;
+    }
 
     const imgURLs = imageFile.map(async img => {
       const imgdata = (await supabase.storage.from('avatars')
