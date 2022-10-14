@@ -173,7 +173,6 @@ export default function EditUserProfile({ session }) {
             type="file" multiple
             accept="image/*"
             onChange={handleImageUpload}
-            className="uploadSlot"
           />
         </div>)
         : <></>}
