@@ -3,6 +3,7 @@ import supabase from '../config/supabaseClient';
 import { checkSession } from '../store/reducers/userSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+import OAuthBar from './OAuthBar';
 export default function EmailSignUp() {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -136,6 +137,10 @@ export default function EmailSignUp() {
         </span>
         <div id="button">
           <button type="submit">Sign up</button>
+        </div>
+        <div>
+          <h3>Or connect with us using</h3>
+          <OAuthBar />
         </div>
       </form>
     </div>
