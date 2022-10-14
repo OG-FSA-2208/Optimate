@@ -19,6 +19,7 @@
 body {
   font-family: 'Concert One', cursive;
   background-color: @primary-color;
+  overflow-x: hidden;
 }
 
 .main {
@@ -46,7 +47,10 @@ button:hover {
   background-color: @accent-color;
   color: @primary-color;
 }
-
+button:disabled {
+  background-color: rgba(105, 105, 105, 1);
+  color: @primary-color;
+}
 .link {
   text-decoration: underline;
   cursor: pointer;

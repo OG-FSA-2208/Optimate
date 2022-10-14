@@ -6,17 +6,18 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { motion } from 'framer-motion';
 
 export default function Profile() {
-  const [isAnimating, setIsAnimating] = useState(false);
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     dispatch(getLoggedInUser());
     dispatch(getAllUserMatches());
-  }, []);
+  }, [toggle]); // need toggle here or else page gives hydration error
 
   const handleClick = (event) => {
     event.target.classList.toggle('active');
+    setToggle(!toggle);
 
     console.log('hello');
   };

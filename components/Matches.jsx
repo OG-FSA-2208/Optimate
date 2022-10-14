@@ -17,28 +17,34 @@ export default function Matches() {
   }, []);
 
   return (
-    <div className="match-list">
-      {/* <ul> */}
-      {matches.map((user) => (
-        <div key={user.id}>
-          <Link href={`/messages/${user.id}`}>
-            <a
-              className="match"
-              onClick={() => dispatch(setMessageUser(user.id))}
-            >
-              <img
-                className="matchPic"
-                src={user.avatar_url}
-                alt="user profile image"
-              />
-              <p>
-                {user.firstname} {user.lastname}
-              </p>
-            </a>
-          </Link>
-        </div>
-      ))}
-      {/* </ul> */}
+    <div>
+      <h1>MATCHES</h1>
+      <div className="match-list">
+        {/* <ul> */}
+
+        {matches.map((user) => (
+          <div key={user.id}>
+            <Link href={`/messages/${user.id}`}>
+              <a
+                className="match"
+                onClick={() => dispatch(setMessageUser(user.id))}
+              >
+                <img
+                  className="matchPic"
+                  src={user.avatar_url}
+                  alt="user profile image"
+                />
+                <p>
+                  <h2>
+                    {user.firstname} {user.lastname}
+                  </h2>
+                </p>
+              </a>
+            </Link>
+          </div>
+        ))}
+        {/* </ul> */}
+      </div>
     </div>
   );
 }

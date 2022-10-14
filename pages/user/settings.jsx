@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
+import UpdateUserAuth from '../../components/UpdateUserAuth';
+
 import { getAllUserMatches } from '../../store/reducers/matchesSlice';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
@@ -54,6 +56,7 @@ export default function settings() {
               </motion.div>
             </a>
           </Link>
+          <UpdateUserAuth />
         </div>
       ) : (
         <h2>Please log in</h2>
