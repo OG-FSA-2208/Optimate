@@ -29,59 +29,64 @@ export default function Profile() {
     <div>
       {highlight.id ? (
         <div>
-          <Link href="/user/profile">
-            <a>
-              <motion.div
-                className="myProfile"
-                whileHover={{
-                  scale: 1.2,
-                }}
-                drag="x"
-                dragConstraints={{
-                  right: 18,
-                  left: 0,
-                }}
-                whileTap={{
-                  scale: 0.9,
-                }}
-                animate={
-                  {
-                    // x: 1300,
-                    // rotate: 360,
-                    // opacity: isAnimating ? 1 : 0.5,
-                    // scale: isAnimating ? 2 : 0,
-                  }
+          <Link
+            href={highlight.id === profile.id ? '/user/profile' : '/messages'}
+          >
+            <motion.div
+              className="myProfile"
+              whileHover={{
+                scale: 1.2,
+              }}
+              drag="x"
+              dragConstraints={{
+                right: 18,
+                left: 0,
+              }}
+              whileTap={{
+                scale: 0.9,
+              }}
+              animate={
+                {
+                  // x: 1300,
+                  // rotate: 360,
+                  // opacity: isAnimating ? 1 : 0.5,
+                  // scale: isAnimating ? 2 : 0,
                 }
-              >
-                <div>
-                  <h2>
-                    {highlight.firstname} {highlight.lastname}
-                  </h2>
-                  <br></br>
-                  <img src={highlight.avatar_url} className="profilePic" />
-                </div>
-                <div>
-                  <p>Age: {highlight.age}</p>
-                  <p>Gender: {highlight.gender}</p>
-                  <p>About: {highlight.about}</p>
-                  <p>Occupation: {highlight.occupation}</p>
-                  <p style={{ fontSize: '2em' }}>
-                    {highlight.drinker ? '🍻' : null}{' '}
-                    {highlight.smoker ? '🚬' : null}
-                  </p>
-                  <br />
-                  <p>Giving: {highlight.loveLangGiving}</p>
-                  <p>Receiving: {highlight.loveLangReceiving}</p>
-                  <br />
-                  <p>
-                    Interests:{' '}
-                    {highlight.user_interests.reduce((acc, curr) => {
-                      return acc + curr.label + ' ';
-                    }, '')}
-                  </p>
-                </div>
-              </motion.div>
-            </a>
+              }
+            >
+              <div>
+                <p>
+                  {highlight.id === profile.id
+                    ? 'Edit My Profile'
+                    : 'Back to My Profile'}
+                </p>
+                <h2>
+                  {highlight.firstname} {highlight.lastname}
+                </h2>
+                <br></br>
+                <img src={highlight.avatar_url} className="profilePic" />
+              </div>
+              <div>
+                <p>Age: {highlight.age}</p>
+                <p>Gender: {highlight.gender}</p>
+                <p>About: {highlight.about}</p>
+                <p>Occupation: {highlight.occupation}</p>
+                <p style={{ fontSize: '2em' }}>
+                  {highlight.drinker ? '🍻' : null}{' '}
+                  {highlight.smoker ? '🚬' : null}
+                </p>
+                <br />
+                <p>Giving: {highlight.loveLangGiving}</p>
+                <p>Receiving: {highlight.loveLangReceiving}</p>
+                <br />
+                <p>
+                  Interests:{' '}
+                  {highlight.user_interests.reduce((acc, curr) => {
+                    return acc + curr.label + ' ';
+                  }, '')}
+                </p>
+              </div>
+            </motion.div>
           </Link>
           {/* </div> */}
           <div className="media-scroller">
@@ -119,6 +124,7 @@ export default function Profile() {
                         <h3>
                           {match.firstname} {match.lastname}
                         </h3>
+                        <br />
                         <p>
                           <img
                             // onClick={(event) => handleClick(event)}
@@ -140,9 +146,9 @@ export default function Profile() {
                         <p>
                           Love Language (Receiving): {match.loveLangReceiving}
                         </p> */}
-                        <div className="toggle">
+                        {/* <div className="toggle">
                           <OpenInNewIcon />
-                        </div>
+                        </div> */}
                       </motion.div>
                     );
                   })
