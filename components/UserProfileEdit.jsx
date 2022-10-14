@@ -277,9 +277,59 @@ export default function EditUserProfile({ session }) {
               <option value='Other'>Other</option>
             </select>
           </div>
+          <div>
+            <p>Smokes?</p>
+            <input value={true} checked={userData.smoker} type='radio'
+            name='smoker' onChange={(e) => setUserData({...userData, smoker: true})}
+            /> Yes, I want them to be a smoker
+            <br/>
+            <input value={false} checked={!userData.smoker} type='radio'
+            name='smoker' onChange={(e) => setUserData({...userData, smoker: false})}
+            /> No, I don't want them to be a smoker
+            <br/>
+            <input value={null} checked={!userData.smoker} type='radio'
+            name='smoker' onChange={(e) => setUserData({...userData, smoker: null})}
+            /> No real preference
+          </div>
+          <div>
+            <p>Drinks?</p>
+            <input value={true} checked={userData.smoker} type='radio'
+            name='smoker' onChange={(e) => setUserData({...userData, smoker: true})}
+            /> Yes, I want them to drink alcohol
+            <br/>
+            <input value={false} checked={!userData.smoker} type='radio'
+            name='smoker' onChange={(e) => setUserData({...userData, smoker: false})}
+            /> No, I don't want them to drink any alcohol
+            <br/>
+            <input value={null} checked={!userData.smoker} type='radio'
+            name='smoker' onChange={(e) => setUserData({...userData, smoker: null})}
+            /> No real preference
+          </div>
+          <div>
+            <label htmlFor='partner-priority'>Prioritizes</label>
+            <select value={userData.priority || 'unselected'} onChange={(e) => setUserData({...userData, priority: e.target.value})}>
+              <option value='unselected'>Unsure/Don't Care</option>
+              <option value='Family'>Family</option>
+              <option value='Friends'>Friends</option>
+              <option value='Children'>Children</option>
+              <option value='Work'>Work/Job</option>
+              <option value='Self-care'>Selfcare</option>
+            </select>
+          </div>
+          <div>
+            <p>Match by Love Languages?</p>
+            <input id='smoke' value={true} checked={userData.smoker} type='radio'
+            name='smoker' onChange={(e) => setUserData({...userData, smoker: true})}
+            /> Yes, this is important to me
+            <br/>
+            <input id='nonsmoke' value={false} checked={!userData.smoker} type='radio'
+            name='smoker' onChange={(e) => setUserData({...userData, smoker: false})}
+            /> No, I don't mind a mismatch
+          </div>
         </div>
       </div>
       {/* BELOW DIV IS THE BUTTON TO UPDATE ALL THE userData NEWLY SET */}
+      <hr/>
       <div>
         <button
           className="button primary block"
