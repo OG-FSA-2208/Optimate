@@ -4,12 +4,13 @@
   font-size: 18px;
   width: 340px;
   height: 350px;
-  margin: 0px auto  auto;
-  background-color: #e4dddd;
-  color: rgba(12, 10, 10, 0.4);
+  margin: 0px auto auto;
+  background-color: @secondary-container-background;
+  color: @primary-text-color;
   border-radius: 30px;
   border: solid;
 }
+
 .profilePic {
   object-fit: cover;
   width: 150px;
@@ -29,8 +30,8 @@
   padding: 16px;
   position: relative;
   height: 280px;
-  background-color: #e4dddd;
-  color: rgba(12, 10, 10, 0.4);
+  background-color: @container-background;
+  color: @primary-text-color;
   display: inline-block;
   text-align: center;
   inline-size: 175px;
@@ -64,7 +65,7 @@
   right: 0;
   width: 100%;
   height: 40px;
-  background: hsl(281, 12%, 41%);
+  background: @secondary-container-background;
   border-end-end-radius: 10px;
   display: flex;
   justify-content: center;
