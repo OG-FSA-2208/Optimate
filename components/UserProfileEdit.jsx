@@ -66,22 +66,19 @@ export default function EditUserProfile({ session }) {
 
   async function handleImageUpload(e) {
     const imageFile = [...e.target.files];
-    console.dir(imageFile);
 
-    const data = await imageFile.map(async img => {
+    const imgURLs = imageFile.map(async img => {
       const imgdata = (await supabase.storage.from('avatars')
         .upload(`${userData.id}_${img.name}`, img, {upsert: true})).data;
       const { publicURL, imgError } = await supabase
         .storage
         .from('avatars')
         .getPublicUrl(`${userData.id}_${img.name}`);
-
-      setUserData({...userData, user_photos: [...userData.user_photos, publicURL]});
-      return await imgdata
+      console.log(publicURL);
+      return publicURL
     });
-
-    console.dir(data);
-    // setUserData({...userData, avatar_url: publicURL});
+    console.dir(await Promise.all(imgURLs));
+    setUserData({...userData, user_photos: [...userData.user_photos, ...(await Promise.all(imgURLs))]});
   }
 
   const handleChange = data => {
