@@ -287,7 +287,7 @@ export default function EditUserProfile({ session }) {
             name='smokerPref' onChange={(e) => setUserData({...userData, smokingPreference: true})}
             /> Yes, I want them to be a smoker
             <br/>
-            <input value={false} checked={!userData.smokingPreference} type='radio'
+            <input value={false} checked={typeof userData.smokingPreference === 'boolean' && !userData.smokingPreference} type='radio'
             name='smokerPref' onChange={(e) => setUserData({...userData, smokingPreference: false})}
             /> No, I don't want them to be a smoker
             <br/>
@@ -301,7 +301,7 @@ export default function EditUserProfile({ session }) {
             name='drinkingPref' onChange={(e) => setUserData({...userData, drinkingPreference: true})}
             /> Yes, I want them to drink alcohol
             <br/>
-            <input value={false} checked={!userData.drinkingPreference} type='radio'
+            <input value={false} checked={typeof userData.drinkingPreference === 'boolean' && !userData.drinkingPreference} type='radio'
             name='drinkingPref' onChange={(e) => setUserData({...userData, drinkingPreference: false})}
             /> No, I don't want them to drink any alcohol
             <br/>
