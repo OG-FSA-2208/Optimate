@@ -304,6 +304,9 @@ textarea.form-input {
   border: solid;
 }
 .matches.active {
+  margin-right: 4px;
+  position: absolute;
+  top: -50px;
   width: 400px;
   height: 450px;
 }
@@ -314,7 +317,7 @@ textarea.form-input {
   overflow-wrap: break-word;
   hyphens: manual;
 } */
-.toggle {
+.icon {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -326,7 +329,7 @@ textarea.form-input {
   justify-content: center;
   align-items: center;
 }
-.toggle ion-icon {
+.icon ion-icon {
   color: #de55c5;
   font-size: 1.4em;
   right: 0;
@@ -344,7 +347,7 @@ textarea.form-input {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.75em;
+  font-size: 2.2em;
 }
 @media screen and (max-width: 480px) {
   .landing {
@@ -550,6 +553,77 @@ textarea {
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/concertone/v17/VEM1Ro9xs5PjtzCu-srDqRTl.ttf) format('truetype');
 }
+.match-list {
+  border: 10px solid #48A9A6;
+  margin: 4px;
+  padding: 1em 1em;
+  background-color: #FBFAF8;
+  height: 710px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+.column {
+  padding: 50px;
+}
+.match {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  justify-content: space-between;
+}
+.matchPic {
+  margin-right: 50px;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+}
+.chatMessageBox {
+  border: 10px solid #48A9A6;
+  padding: 5px;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+}
+.chatroom {
+  height: 600px;
+  border: solid black;
+  border-radius: 10px;
+  padding: 3rem;
+  background-color: #FBFAF8;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+.chat-input {
+  border-radius: 10px;
+  height: 2vh;
+  width: 31vw;
+}
+.send {
+  width: 70px;
+}
+.chat-match {
+  clip-path: polygon(2% 0, 100% 0%, 100% 95%, 10% 95%, 0 100%, 2% 85%);
+  text-align: left;
+  background-color: #8fc4de;
+  width: 50%;
+  height: 70px;
+}
+.chat-match p {
+  padding-left: 20px;
+}
+.user {
+  clip-path: polygon(0 0, 98% 0, 98% 85%, 100% 100%, 90% 95%, 0 95%);
+  text-align: right;
+  background-color: #78ffd2;
+  width: 50%;
+  height: 50px;
+  position: relative;
+  right: -55%;
+}
+.user p {
+  padding-right: 20px;
+}
 * {
   margin: 0;
   padding: 0;
@@ -579,7 +653,7 @@ button {
   padding: 0.25em 0.75em;
   border-radius: 10px;
   font: inherit;
-  font-size: 1.3em;
+  font-size: 0.8em;
   cursor: pointer;
   outline: inherit;
   transition: 200ms;
