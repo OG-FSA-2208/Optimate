@@ -338,7 +338,7 @@ export default function EditUserProfile({ session }) {
         <button
           className="button primary block"
           onClick={() => updateProfile(userData)}
-          disabled={loading}
+          disabled={loading} id='save-profile'
         >
           {loading ? 'Loading ...' : 'Save Profile'}
         </button>
