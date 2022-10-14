@@ -101,15 +101,16 @@ label {
 
 #profileEditAvatar {
     margin: 15px 0px;
-    width: 80vw;
+    width: 90vw;
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 #profileEditAvatar > div {
     width: 40vw;
+    margin: 2vw 12px;
 }
 
 input[type='file'] {
@@ -129,8 +130,8 @@ input[type="number"] {
 #avatar-upload {
     position: absolute;
     height: 20px;
-    top: 250px;
-    left: 0px;
+    top: 270px;
+    left: 10px;
     background-color: white;
     border: 2px solid #ccc;
     display: inline-block;
@@ -145,7 +146,7 @@ input[type="number"] {
 
 #optionalPhotoUploads {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 
 }
@@ -204,8 +205,7 @@ textarea {
 
 @media screen and (max-width: 768px) {
     .form-widget {
-        // padding: 40px 15px;
-        margin: 80px 15px;
+        margin: 40px 15px;
     }
     .form-widget .profile-info {
         align-items: center;
@@ -222,7 +222,7 @@ textarea {
         width: 80vw;
     }
     #avatar-upload {
-        top: 250px;
-        left: 0px;
+        top: 270px;
+        left: 10px;
     }
 }
