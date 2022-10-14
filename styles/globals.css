@@ -404,6 +404,13 @@ label {
   display: flex;
   align-items: center;
 }
+#interest-select > div > div > div > div {
+  display: flex;
+  margin: 5px;
+}
+#interest-select label {
+  margin: 5px;
+}
 #editToggle * {
   font-size: 18px;
 }
