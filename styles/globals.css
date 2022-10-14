@@ -250,7 +250,7 @@ textarea.form-input {
   font-size: 18px;
   margin: 2.5em auto auto;
   padding: 1em;
-  background-color: rgba(229, 98, 94, 0.6);
+  background-color: rgba(250, 171, 171, 0.6);
   color: #60495a;
   border-radius: 30px;
   border: solid;
@@ -556,9 +556,6 @@ textarea {
 }
 body {
   font-family: 'Concert One', cursive;
-  background-image: url(Optim8.png);
-  background-size: 25%;
-  background-repeat: repeat;
   overflow-x: hidden;
 }
 .main {

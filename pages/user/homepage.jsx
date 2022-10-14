@@ -146,9 +146,9 @@ export default function Profile() {
                         <p>
                           Love Language (Receiving): {match.loveLangReceiving}
                         </p> */}
-                        {/* <div className="toggle">
+                        <div className="toggle">
                           <OpenInNewIcon />
-                        </div> */}
+                        </div>
                       </motion.div>
                     );
                   })
