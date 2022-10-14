@@ -242,16 +242,29 @@ textarea.form-input {
   }
 }
 .myProfile {
-  /* display: inline-block; */
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+  align-items: center;
   font-size: 18px;
-  width: 340px;
-  height: 350px;
-  margin: 0px auto auto;
+  margin: 2.5em auto auto;
+  padding: 1em;
   background-color: rgba(229, 98, 94, 0.6);
   color: #60495a;
   border-radius: 30px;
   border: solid;
+}
+@media screen and (max-width: 768px) {
+  .myProfile {
+    width: 80%;
+    flex-direction: column;
+  }
+}
+.myProfile > :nth-of-type(1) {
+  text-align: center;
+}
+.myProfile > * {
+  margin: 0.5em;
 }
 .profilePic {
   object-fit: cover;

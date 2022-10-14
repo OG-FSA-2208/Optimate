@@ -5,17 +5,19 @@ import { getAllUserMatches } from '../../store/reducers/matchesSlice';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { userAgent } from 'next/server';
 
 export default function Profile() {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.profile);
   const matches = useSelector((state) => state.matches);
   const [toggle, setToggle] = useState(false);
+  console.log(profile);
 
   useEffect(() => {
     dispatch(getLoggedInUser());
     dispatch(getAllUserMatches());
-  }, [toggle]); // need toggle here or else page gives hydration error 
+  }, [toggle]); // need toggle here or else page gives hydration error
 
   const handleClick = (event) => {
     event.target.classList.toggle('active');
@@ -51,19 +53,34 @@ export default function Profile() {
                   }
                 }
               >
-                <br></br>
-                <h2>My Profile:</h2>
-
-                <br></br>
-
-                <img src={profile.avatar_url} className="profilePic" />
-
-                <p>
-                  Full name: {profile.firstname} {profile.lastname}
-                </p>
-                <p>Age: {profile.age}</p>
-                <p>Gender: {profile.gender}</p>
-                <p>About: {profile.about}</p>
+                <div>
+                  <h2>My Profile</h2>
+                  <br></br>
+                  <img src={profile.avatar_url} className="profilePic" />
+                </div>
+                <div>
+                  <p>
+                    Full name: {profile.firstname} {profile.lastname}
+                  </p>
+                  <p>Age: {profile.age}</p>
+                  <p>Gender: {profile.gender}</p>
+                  <p>About: {profile.about}</p>
+                  <p>Occupation: {profile.occupation}</p>
+                  <p style={{ fontSize: '2em' }}>
+                    {profile.drinker ? '🍻' : null}{' '}
+                    {profile.smoker ? '🚬' : null}
+                  </p>
+                  <br />
+                  <p>Giving: {profile.loveLangGiving}</p>
+                  <p>Receiving: {profile.loveLangReceiving}</p>
+                  <br />
+                  <p>
+                    Interests:{' '}
+                    {profile.user_interests.reduce((acc, curr) => {
+                      return acc + curr.label + ' ';
+                    }, '')}
+                  </p>
+                </div>
               </motion.div>
             </a>
           </Link>
