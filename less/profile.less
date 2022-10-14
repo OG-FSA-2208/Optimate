@@ -1,10 +1,11 @@
 .myProfile {
   /* display: inline-block; */
+ 
   text-align: center;
   font-size: 18px;
   width: 340px;
-  height: 350px;
-  margin: 0px auto  auto;
+  height: 320px;
+  margin: 0px auto 25px auto;
   background-color: #e4dddd;
   color: rgba(12, 10, 10, 0.4);
   border-radius: 30px;
@@ -47,11 +48,21 @@
   border-radius: 50%;
   border: solid;
 }
+
+// .matchesProfilePic.active {
+//   width: 400px;
+//   height: 450px;
+// }
 .matches.active {
+  margin-right: 4px;
+  position: absolute;
+  top: -50px;
   width: 400px;
   height: 450px;
 
 }
+
+
 .matches.active ion-icon {
   color: #de55c5;
 }
@@ -59,7 +70,7 @@
   overflow-wrap: break-word;
   hyphens: manual;
 } */
-.toggle {
+.icon {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -71,7 +82,7 @@
   justify-content: center;
   align-items: center;
 }
-.toggle ion-icon {
+.icon ion-icon {
   color: #de55c5;
   font-size: 1.4em;
   right: 0;
@@ -79,7 +90,8 @@
 
 .media-scroller {
   margin: 4px, 4px;
-  padding: 2em 0;
+  padding-top: 10em;
+  // padding: 20em;
   background-color: @primary-color;
   height: 350px;
   max-width: 100vw;

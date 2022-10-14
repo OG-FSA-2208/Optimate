@@ -11,7 +11,7 @@ export default function settings() {
   const profile = useSelector((state) => state.profile);
   useEffect(() => {
     dispatch(getAllUserMatches());
-  }, []);
+  }, [profile]);
   return (
     <div>
       {profile.id ? (
@@ -21,7 +21,7 @@ export default function settings() {
               <motion.div
                 className="myProfile"
                 whileHover={{
-                  scale: 1.2,
+                  scale: 1.1,
                 }}
                 drag="x"
                 dragConstraints={{
@@ -40,7 +40,6 @@ export default function settings() {
                   }
                 }
               >
-                <br></br>
                 <h2>My Profile:</h2>
 
                 <br></br>
