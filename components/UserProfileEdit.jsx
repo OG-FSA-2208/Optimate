@@ -7,6 +7,7 @@ import supabase from '../config/supabaseClient';
 import { getInterestTypes } from '../store/reducers/surveySlice';
 import Option from './Option';
 import UserPhoto from './UserPhoto';
+import FileUploadSharpIcon from '@mui/icons-material/FileUploadSharp';
 import { default as ReactSelect } from 'react-select';
 
 export default function EditUserProfile({ session }) {
@@ -168,7 +169,7 @@ export default function EditUserProfile({ session }) {
         {userData.user_photos.length < 4 ?
         Array.apply(null, Array(4 - userData.user_photos.length))
         .map((uploadSlot, ind) => <div key={ind} className="uploadSlot">
-          <label htmlFor={`uploadSlot_${ind}`} id='image-upload'>Change Profile Photo</label><br/>
+          <label htmlFor={`uploadSlot_${ind}`} id='image-upload'><FileUploadSharpIcon/></label><br/>
           <input
             id={`uploadSlot_${ind}`}
             type="file" multiple
