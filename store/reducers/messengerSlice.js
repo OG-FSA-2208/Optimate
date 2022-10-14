@@ -40,7 +40,8 @@ export const getMessages = () => async (dispatch) => {
     const { data, error } = await supabase
       .from('messages')
       .select()
-      .or(`from.eq.${session.user.id},to.eq.${session.user.id}`);
+      .or(`from.eq.${session.user.id},to.eq.${session.user.id}`)
+      .order('created_at');
     if (data) dispatch(fetchMessages(data));
     if (error) console.error(error);
   }
