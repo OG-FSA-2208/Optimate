@@ -221,7 +221,7 @@ export default function EditUserProfile({ session }) {
           <div>
             <label htmlFor='interest-select'>Select up to 5 interests</label>
             <ReactSelect
-              options={interestTags?.map(tag => {return {value: tag.id, label: tag.name}})}
+              options={interestTags?.map(tag => {return {value: tag.id, label: tag.name}}).sort((a, b) => a.label > b.label ? 1 : -1)}
               isMulti closeMenuOnSelect={false} hideSelectedOptions={false} id='interest-select'
               components={{Option}} value={userData.user_interests} onChange={handleChange}
             />

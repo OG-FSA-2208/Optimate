@@ -408,6 +408,9 @@ label {
   display: flex;
   margin: 5px;
 }
+#interest-select > div > div {
+  overflow-x: hidden;
+}
 #interest-select label {
   margin: 5px;
 }
