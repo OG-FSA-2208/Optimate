@@ -26,6 +26,12 @@
   margin: 0.5em;
 }
 
+// this is the css that allows text in the highlighted bio to wrap around the div
+.user-bio-full {
+  overflow-wrap: break-word;  // this allows the text to break up, but the div needs a set width to work
+  width: 300px; // will we want to change this to a dynamic value in the future? maybe
+}
+
 .profilePic {
   object-fit: cover;
   width: 150px;

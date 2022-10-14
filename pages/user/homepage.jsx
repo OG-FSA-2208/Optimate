@@ -65,7 +65,7 @@ export default function Profile() {
                 <br></br>
                 <img src={highlight.avatar_url} className="profilePic" />
               </div>
-              <div>
+              <div className='user-bio-full'>
                 <p>Age: {highlight.age}</p>
                 <p>Gender: {highlight.gender}</p>
                 <p>About: {highlight.about}</p>

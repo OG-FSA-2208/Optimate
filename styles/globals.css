@@ -267,6 +267,10 @@ textarea.form-input {
 .myProfile > * {
   margin: 0.5em;
 }
+.user-bio-full {
+  overflow-wrap: break-word;
+  width: 300px;
+}
 .profilePic {
   object-fit: cover;
   width: 150px;
