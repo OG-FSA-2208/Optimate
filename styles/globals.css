@@ -320,7 +320,7 @@ textarea.form-input {
 .media-scroller {
   margin: 4px, 4px;
   padding: 2em 0;
-  background-color: #FBFAF8;
+  background-color: transparent;
   max-width: 100vw;
   overflow-x: auto;
   overflow-y: hidden;
@@ -494,7 +494,9 @@ textarea {
 }
 body {
   font-family: 'Concert One', cursive;
-  background-color: #FBFAF8;
+  background-image: url(Optim8.png);
+  background-size: 25%;
+  background-repeat: repeat;
   overflow-x: hidden;
 }
 .main {
