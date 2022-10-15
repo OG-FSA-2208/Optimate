@@ -22,28 +22,32 @@ export default function Chatroom() {
   }
 
   return (
-    <div className="chatroom">
-      <div className="chats">
-        {messages
-          .filter((message) => {
-            return (
-              message.to === messageUserId || message.from === messageUserId
-            );
-          })
-          .map((message) => (
-            <p
-              key={message.id}
-              className={message.from === messageUserId ? 'reciever' : 'sender'}
-            >
-              {message.message}
-            </p>
-          ))}
+    <>
+      <div className="chatroom">
+        <div className="chats">
+          {messages
+            .filter((message) => {
+              return (
+                message.to === messageUserId || message.from === messageUserId
+              );
+            })
+            .map((message) => (
+              <p
+                key={message.id}
+                className={
+                  message.from === messageUserId ? 'chat-match' : 'user'
+                }
+              >
+                {message.message}
+              </p>
+            ))}
+        </div>
       </div>
-      <div>
+      <div className="input-box">
         <input
           className="chat-input"
           type="text"
-          placeholder="Say something nice!"
+          placeholder="Shoot your shot!"
           onChange={handleChange}
           onKeyDown={handleEnter}
           value={currentMessage}
@@ -52,6 +56,6 @@ export default function Chatroom() {
           Send
         </button>
       </div>
-    </div>
+    </>
   );
 }

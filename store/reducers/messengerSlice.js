@@ -39,7 +39,7 @@ export const getMessages = () => async (dispatch) => {
   if (session) {
     const { data, error } = await supabase
       .from('messages')
-      .select()
+      .select('*, to_pic:to ( avatar_url ), from_pic:from ( avatar_url )')
       .or(`from.eq.${session.user.id},to.eq.${session.user.id}`)
       .order('created_at');
     if (data) dispatch(fetchMessages(data));
