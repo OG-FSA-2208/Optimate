@@ -625,6 +625,17 @@ textarea {
 .user p {
   padding-right: 20px;
 }
+.chat-bot-avatar-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  background-color: #fba1ae;
+  margin-right: 10px;
+}
 * {
   margin: 0;
   padding: 0;
@@ -632,8 +643,8 @@ textarea {
 body {
   font-family: 'Concert One', cursive;
   background-color: #e8f7f7;
+  background-size: 120em;
   background-position: bottom right;
-  background-repeat: repeat;
   overflow-x: hidden;
 }
 .main {

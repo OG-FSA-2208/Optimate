@@ -21,7 +21,7 @@ const config = {
           borderRadius: '3px',
         }}
       >
-        {'Opti the 🐙'}
+        {'OPTI'}
       </div>
     ),
     botAvatar: (props) => <BotAvatar {...props} />,
