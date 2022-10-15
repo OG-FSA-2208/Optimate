@@ -32,14 +32,25 @@ export default function Chatroom() {
               );
             })
             .map((message) => (
-              <p
-                key={message.id}
-                className={
-                  message.from === messageUserId ? 'chat-match' : 'user'
-                }
-              >
-                {message.message}
-              </p>
+              <>
+                {message.from === messageUserId ? (
+                  <div key={message.id} className="single-message">
+                    <img
+                      src={message.from_pic.avatar_url}
+                      alt="user profile pic"
+                    />
+                    <p className={'chat-match'}>{message.message}</p>
+                  </div>
+                ) : (
+                  <div key={message.id} className="single-message right-user">
+                    <p className={'user'}>{message.message}</p>
+                    <img
+                      src={message.from_pic.avatar_url}
+                      alt="user profile pic"
+                    />
+                  </div>
+                )}
+              </>
             ))}
         </div>
       </div>
