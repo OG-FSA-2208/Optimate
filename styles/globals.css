@@ -250,7 +250,8 @@ textarea.form-input {
   font-size: 18px;
   margin: 2.5em auto auto;
   padding: 1em;
-  background-color: rgba(229, 98, 94, 0.6);
+  background-color: #faaab0;
+  background-color: #f4ccd0;
   color: #60495a;
   border-radius: 30px;
   border: solid;
@@ -304,6 +305,9 @@ textarea.form-input {
   border: solid;
 }
 .matches.active {
+  margin-right: 4px;
+  position: absolute;
+  top: -50px;
   width: 400px;
   height: 450px;
 }
@@ -314,7 +318,7 @@ textarea.form-input {
   overflow-wrap: break-word;
   hyphens: manual;
 } */
-.toggle {
+.icon {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -326,7 +330,7 @@ textarea.form-input {
   justify-content: center;
   align-items: center;
 }
-.toggle ion-icon {
+.icon ion-icon {
   color: #de55c5;
   font-size: 1.4em;
   right: 0;
@@ -344,7 +348,7 @@ textarea.form-input {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.75em;
+  font-size: 2.2em;
 }
 @media screen and (max-width: 480px) {
   .landing {
@@ -637,15 +641,26 @@ textarea {
   word-break: normal;
   white-space: normal;
 }
+.chat-bot-avatar-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  background-color: #fba1ae;
+  margin-right: 10px;
+}
 * {
   margin: 0;
   padding: 0;
 }
 body {
   font-family: 'Concert One', cursive;
-  background-image: url(Optim8.png);
-  background-size: 25%;
-  background-repeat: repeat;
+  background-color: #e8f7f7;
+  background-size: 120em;
+  background-position: bottom right;
   overflow-x: hidden;
 }
 .main {
@@ -666,7 +681,7 @@ button {
   padding: 0.25em 0.75em;
   border-radius: 10px;
   font: inherit;
-  font-size: 1.3em;
+  font-size: 0.8em;
   cursor: pointer;
   outline: inherit;
   transition: 200ms;

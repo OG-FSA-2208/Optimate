@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { checkSession } from '../store/reducers/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import supabase from '../config/supabaseClient';
+import { motion } from 'framer-motion';
+
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const user = useSelector((state) => state.user);
@@ -31,7 +32,27 @@ export default function Home() {
         <div className="landing">
           {!user.id && (
             <div className="no-session">
-              <h1 className="logo">Optimate</h1>
+              <motion.h1
+                className="logo"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: {
+                    scale: 0.8,
+                    opacity: 0,
+                  },
+                  visible: {
+                    scale: 1,
+                    opacity: 1,
+                    transition: {
+                      delay: 0.8,
+                    },
+                  },
+                }}
+              >
+                Optimate
+              </motion.h1>
+              {/* <h1 className="logo">Optimate</h1> */}
               <div>
                 <h4>Returning User?</h4>
                 <button
@@ -52,6 +73,17 @@ export default function Home() {
                   Register Now
                 </button>
               </div>
+              <p>
+                <br></br>
+                <br></br>
+                <br></br>
+                <i>
+                  <small>
+                    <small>Not a booty call but a foodie call </small>{' '}
+                  </small>
+                </i>
+                😉
+              </p>
             </div>
           )}
         </div>

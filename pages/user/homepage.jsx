@@ -1,29 +1,28 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { getLoggedInUser } from '../../store/reducers/profileSlice';
 import { getAllUserMatches } from '../../store/reducers/matchesSlice';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { userAgent } from 'next/server';
+import { getLoggedInUser } from '../../store/reducers/profileSlice';
 
 export default function Profile() {
   const dispatch = useDispatch();
-  const profile = useSelector((state) => state.profile);
   const matches = useSelector((state) => state.matches);
+  const profile = useSelector((state) => state.profile);
   const [highlight, setHighlight] = useState(profile);
-  const [toggle, setToggle] = useState(false);
-  console.log(highlight);
+
 
   useEffect(() => {
-    dispatch(getLoggedInUser());
     dispatch(getAllUserMatches());
-  }, [toggle]); // need toggle here or else page gives hydration error
+    dispatch(getLoggedInUser()); 
+  }, []);
 
-  // const handleClick = (event) => {
-  //   event.target.classList.toggle('active');
-  //   setToggle(!toggle);
-  // };
+   // const handleClick = (event) => {
+   // console.log('show event', event.target.classList);
+   // event.target.classList.toggle('active');
+   // };
 
   return (
     <div>
