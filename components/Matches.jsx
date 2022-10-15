@@ -34,11 +34,10 @@ export default function Matches() {
                   src={user.avatar_url}
                   alt="user profile image"
                 />
-                <p>
-                  <h2>
-                    {user.firstname} {user.lastname}
-                  </h2>
-                </p>
+
+                <h2>
+                  {user.firstname} {user.lastname}
+                </h2>
               </a>
             </Link>
           </div>

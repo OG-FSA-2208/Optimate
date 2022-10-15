@@ -19,7 +19,7 @@ export default function ViewUserProfile() {
   }, [dispatch]);
 
   return (
-    <div className='profile-view'>
+    <div className="profile-view">
       {loading ? (
         'Loading Profile...'
       ) : (
