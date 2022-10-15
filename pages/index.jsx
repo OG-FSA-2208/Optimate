@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { checkSession } from '../store/reducers/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import supabase from '../config/supabaseClient';
 import { motion } from 'framer-motion';
 
 export default function Home() {
