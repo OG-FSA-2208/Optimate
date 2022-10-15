@@ -20,9 +20,6 @@ function MyApp({ Component, pageProps }) {
             initial="initialState"
             animate="animateState"
             exit="exitState"
-            transition={{
-              duration: 0.6,
-            }}
             className="base-page-size"
             variants={{
               initialState: {
@@ -31,9 +28,15 @@ function MyApp({ Component, pageProps }) {
               animateState: {
                 opacity: 1,
                 clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%',
+                transition: {
+                  duration: 0.5,
+                },
               },
               exitState: {
                 clipPath: 'polygon(50% 0, 50% 0%, 50% 100%, 50% 100%',
+                transition: {
+                  duration: 0.5,
+                },
               },
             }}
           >

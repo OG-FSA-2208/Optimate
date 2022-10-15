@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Router from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkSession } from '../store/reducers/userSlice.js';
@@ -6,6 +7,7 @@ import { useRouter } from 'next/router';
 import supabase from '../config/supabaseClient.js';
 import { sub, unsub } from '../store/reducers/messengerSlice';
 import { motion } from 'framer-motion';
+import { logoutUser } from '../store/reducers/userSlice';
 
 export default function NavBar() {
   const dispatch = useDispatch();
@@ -66,18 +68,21 @@ export default function NavBar() {
             scale: 1.3,
           }}
         >
-          Optimate 🐙
+          {session ? (
+            <Link href="/user/homepage">
+              <a>Optimate 🐙</a>
+            </Link>
+          ) : (
+            <Link href="/">
+              <a>Optimate 🐙</a>
+            </Link>
+          )}
         </motion.h2>
       </div>
       <ul className={burgerClicked ? 'nav-links nav-active' : 'nav-links'}>
         {session ? (
           // these are the links that will appear if a user is logged in
           <>
-            <li>
-              <Link href="/user/homepage">
-                <a>Home</a>
-              </Link>
-            </li>
             <li>
               <Link href="/messages">
                 <a>Messages</a>
@@ -87,6 +92,11 @@ export default function NavBar() {
               <Link href="/user/settings">
                 <a>Setting</a>
               </Link>
+            </li>
+            <li>
+              <a href="/" onClick={() => dispatch(logoutUser(Router))}>
+                <>Signout</>
+              </a>
             </li>
           </>
         ) : (

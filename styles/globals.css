@@ -250,7 +250,8 @@ textarea.form-input {
   font-size: 18px;
   margin: 2.5em auto auto;
   padding: 1em;
-  background-color: rgba(229, 98, 94, 0.6);
+  background-color: #faaab0;
+  background-color: #f4ccd0;
   color: #60495a;
   border-radius: 30px;
   border: solid;
@@ -624,15 +625,26 @@ textarea {
 .user p {
   padding-right: 20px;
 }
+.chat-bot-avatar-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  background-color: #fba1ae;
+  margin-right: 10px;
+}
 * {
   margin: 0;
   padding: 0;
 }
 body {
   font-family: 'Concert One', cursive;
-  background-image: url(Optim8.png);
-  background-size: 25%;
-  background-repeat: repeat;
+  background-color: #e8f7f7;
+  background-size: 120em;
+  background-position: bottom right;
   overflow-x: hidden;
 }
 .main {
