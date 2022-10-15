@@ -9,5 +9,4 @@ package-lock.json
 .next
 .env*
 *.code-workspace
-styles/global.css
-supabase
+styles/globals.css

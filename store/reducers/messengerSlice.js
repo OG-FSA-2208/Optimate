@@ -9,8 +9,11 @@ const messengerSlice = createSlice({
     currentMessage: '',
   },
   reducers: {
-    setMessageUser: (state, action) => {
-      state.messageUserId = action.payload;
+    readMessages: (state, action) => {
+      state.messageUserId = action.payload.id;
+      state.messages = state.messages.map((message) =>
+        action.payload.data.includes(message) ? (message.read = true) : message
+      );
     },
     fetchMessages: (state, action) => {
       state.messages = [...action.payload];
@@ -25,23 +28,26 @@ const messengerSlice = createSlice({
 });
 
 //export stuff here
-export const { setMessageUser, addMessage, changeMessage, fetchMessages } =
+export const { readMessages, addMessage, changeMessage, fetchMessages } =
   messengerSlice.actions;
 export default messengerSlice.reducer;
 
 //THUNKS
+//grab all yer messages, to and from
 export const getMessages = () => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
     const { data, error } = await supabase
       .from('messages')
-      .select()
-      .or(`from.eq.${session.user.id},to.eq.${session.user.id}`);
+      .select('*, to_pic:to ( avatar_url ), from_pic:from ( avatar_url )')
+      .or(`from.eq.${session.user.id},to.eq.${session.user.id}`)
+      .order('created_at');
     if (data) dispatch(fetchMessages(data));
     if (error) console.error(error);
   }
 };
 
+//thunk to send a message to a user
 export const sendMessage = (message, to) => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
@@ -57,9 +63,21 @@ export const sendMessage = (message, to) => async (dispatch) => {
   }
 };
 
-//helper functions for messenging
+//thunk for clicking on a match in messages
+export const clickMessages = (id) => async (dispatch) => {
+  const session = await supabase.auth.session();
+  if (session) {
+    const { data, error } = await supabase
+      .from('messages')
+      .update({ read: true })
+      .match({ to: session.user.id, from: id });
+    if (data) dispatch(readMessages({ id, data }));
+    if (error) console.error(error);
+  }
+};
+
+//helper functions for messaging
 //check for logged in user, subscribe to messages sent to that user, add message when one comes in
-//.from(`messages:to=${session.user.id}`) change from to this and it should only get recieved messages. doesnt work tho
 export const sub = () => (dispatch) => {
   const session = supabase.auth.session();
   if (session) {

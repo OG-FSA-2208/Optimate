@@ -22,7 +22,7 @@ export default function Chatroom() {
   }
 
   return (
-    <div className="chatMessageBox">
+    <>
       <div className="chatroom">
         <div className="chats">
           {messages
@@ -32,18 +32,18 @@ export default function Chatroom() {
               );
             })
             .map((message) => (
-              <div
+              <p
                 key={message.id}
                 className={
                   message.from === messageUserId ? 'chat-match' : 'user'
                 }
               >
-                <p>{message.message}</p>
-              </div>
+                {message.message}
+              </p>
             ))}
         </div>
       </div>
-      <div>
+      <div className="input-box">
         <input
           className="chat-input"
           type="text"
@@ -56,6 +56,6 @@ export default function Chatroom() {
           Send
         </button>
       </div>
-    </div>
+    </>
   );
 }
