@@ -1,48 +1,24 @@
-.form-widget .profile-info {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.profile-info > * {
+// STYLES FOR ENTIRE USER PROFILE VIEW/EDIT PAGE(S)
+.form-widget {
+    width: 85vw;
+    padding-top: 30px;
+    margin: 0px 5vw 50px;
     display: flex;
     flex-direction: column;
+    // justify-content: space-between;
 }
 
-.form-widget {
-    margin: 70px 5vw 50px;
+.form-widget hr {
+    margin: 12px 0px;
 }
 
-.form-widget p, .form-widget label {
+.form-widget label {
     font-size: 18px;
-
-}
-
-.profile-view, .edit-view {
-    animation: slidein 0.4s;
-}
-
-h1 .button.block {
-    margin-left: 25px;
-    font-size: 15px;
-}
-
-label {
     display: flex;
     align-items: center;
 }
 
-@keyframes slidein {
-    0% {
-        margin-left: 100vw;
-        // opacity: 0;
-    }
-    100% {
-        margin-left: 0vw;
-        // opacity: 1;
-    }
-}
-
+// this specifically accounts for the main avatar image
 .form-widget img {
     object-fit: cover;
     height: 300px;
@@ -51,50 +27,85 @@ label {
     border-radius: 50%;
 }
 
-.form-widget label {
-    margin: 0px 8px 0px 0px;
+#editToggle.button.block {
+    width: fit-content;
 }
 
-.profile-user, .profile-preference {
-    width: 40vw;
+#editToggle > div {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
 }
 
-.profile-preference > div, .profile-user > div {
-    margin: 10px;
+// misc; animation for the toggle on the page
+.profile-view, .edit-view {
+    animation: slidein 0.4s;
 }
 
-.form-widget hr {
-    margin: 12px 0px;
+@keyframes slidein {
+    0% {
+        margin-left: 100vw;
+        // opacity: 0;
+    }
+    60% {
+        margin-left: 15vw;
+    }
+    80% {
+        margin-left: 10vw;
+    }
+    90% {
+        margin-left: 5vw;
+    }
+    100% {
+        margin-left: 0vw;
+        // opacity: 1;
+    }
+}
+
+// ----------------------------------->
+// STYLES FOR UserProfileView PAGE
+// styles pending ;;;;
+.profile-view {
+    overflow-wrap: break-word;
+    width: 80vw;
+}
+
+// ----------------------------------->
+// STYLES FOR UserProfileEdit PAGE
+// for the 'save profile' button 
+#save-profile {
+    margin-left: 25px;
+    font-size: 1.3em;
 }
 
 #profileEditAvatar {
     margin: 15px 0px;
-    width: 80vw;
+    width: 90vw;
     position: relative;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 #profileEditAvatar > div {
     width: 40vw;
+    margin: 2vw 12px;
 }
 
-input[type='file'] {
-    display: none;
-    padding: 12px;
+#avatarSection {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-input[type='text'], input[type='number'], select {
-    padding: 5px;
-    margin: 5px 0px;
-}
-
+// the label that connects to the upload button for user avatar
 #avatar-upload {
+    display: flex;  // maybe?????
     position: absolute;
-    height: 20px;
-    top: 250px;
-    left: 0px;
+    // height: 20px;
+    top: 310px;
+    right: 50%;
     background-color: white;
     border: 2px solid #ccc;
     display: inline-block;
@@ -104,15 +115,24 @@ input[type='text'], input[type='number'], select {
 }
 
 #avatar-upload:hover {
-    background-color: aquamarine;
+    background-color: aquamarine;   // placeholder color just for quick testing
 }
 
+// the 'about' user section input
+#profileEditAvatar textarea {
+    margin: 8px 0px;
+    border: 2px solid black;
+    padding: 5px;
+    overflow-y: auto;
+}
+
+// div in which user can upload additional photos if they want
 #optionalPhotoUploads {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;
-
 }
+
 .user_photo, .uploadSlot {
     display: flex;
     align-items: center;
@@ -136,6 +156,20 @@ input[type='text'], input[type='number'], select {
     height: 200px;
     width: 200px;
 }
+
+.uploadSlot:hover, .uploadSlot *:hover {
+    cursor: pointer;
+    background-color: aquamarine;
+    transition: 0.2s;
+}
+// the img tag holding each of the user's photos
+.user_photo img {
+    height: 200px;
+    width: 200px;
+    border-radius: 10%;
+    border: 0px;
+}
+// the delete button in the corner of user's uploaded photo
 .user_photo button {
     padding: 5px;
     top: -15px;
@@ -143,50 +177,71 @@ input[type='text'], input[type='number'], select {
     position: absolute;
     background-color: white;
 }
-.uploadSlot:hover, .uploadSlot *:hover {
-    cursor: pointer;
-    background-color: aquamarine;
-    transition: 0.2s;
-}
-.user_photo img {
-    height: 200px;
-    width: 200px;
-    border-radius: 10%;
-    border: 0px;
+
+// alignment of divs below the uploadPhotos cut
+.profile-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-.profile-view {
-    margin: 20px 30px;
+.profile-user, .profile-preference {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
 }
 
-textarea {
-    margin: 8px 0px;
-    border: 2px solid black;
+.profile-preference > div, .profile-user > div {
+    margin: 10px;
+}
+
+// i know this is not very graceful, please bear with me
+// #interest-select is the select-dropdown-checkbox div where user selects interests
+#interest-select > div > div > div > div {
+    display: flex;
+    margin: 5px;
+}
+#interest-select > div > div {
+    overflow-x: hidden;
+}
+#interest-select label {
+    margin: 5px;
+}
+
+input[type='file'] {
+    display: none;
+    padding: 12px;
+}
+
+input[type='text'], input[type='number'], select {
     padding: 5px;
-    overflow-y: auto;
+    margin: 5px 0px;
+}
+
+input[type="number"] {
+    width: 60px;
 }
 
 @media screen and (max-width: 768px) {
-    .form-widget {
-        // padding: 40px 15px;
-        margin: 80px 15px;
-    }
-    .form-widget .profile-info {
+.form-widget * {
+    max-width: 80vw;
+}
+    .profile-info {
         align-items: center;
         flex-direction: column;
     }
     .profile-preference, .profile-user {
-        width: 80vw;
+        width: 60vw;
     }
     #profileEditAvatar {
+        width: 60vw;
         align-items: center;
         flex-direction: column;
     }
     #profileEditAvatar > div {
-        width: 80vw;
+        width: 60vw;
     }
     #avatar-upload {
-        top: 250px;
-        left: 0px;
+        top: 260px;
     }
 }
