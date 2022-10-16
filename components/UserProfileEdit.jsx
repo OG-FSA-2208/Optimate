@@ -33,6 +33,9 @@ export default function EditUserProfile({ session }) {
   async function updateProfile(data) {
     try {
       setLoading(true);
+      if (userData.about?.length > 250) {
+        throw new Error(`'About You' section is ${userData.about.length - 250} character(s) over limit. Please adjust the length and try again`);
+      }
       dispatch(updateUser(data, data.id));
       setUpdated(true);
     } catch (error) {
@@ -99,7 +102,7 @@ export default function EditUserProfile({ session }) {
       <h2>Basic Info</h2>
       {/* !!! THIS IS THERE THE BASIC INFO IN EDIT PROFILE IS */}
       <div id='profileEditAvatar'>
-        <div>
+        <div id='avatarSection'>
           <img src={userData.avatar_url}/>
           <label htmlFor="avatar" id='avatar-upload'>Change Profile Photo</label><br/>
           <input
@@ -110,7 +113,7 @@ export default function EditUserProfile({ session }) {
           />
         </div>
         <div>
-        <div>
+          <div>
             <label htmlFor="firstname">First Name</label>
             <input
               id="firstname"
@@ -130,9 +133,10 @@ export default function EditUserProfile({ session }) {
           </div>
           <div>
             <label htmlFor="about">About You</label>
+            <h5>{250 - (userData.about?.length || 0)} characters remaining</h5>
             <textarea
               id="about"
-              value={userData.about || ''} rows='5' cols='40'
+              value={userData.about || ''} rows='6' cols='40'
               onChange={(e) => setUserData({...userData, about: e.target.value})}
             />
           </div>
@@ -194,7 +198,7 @@ export default function EditUserProfile({ session }) {
             <input id='occupation' type='text' value={userData.occupation || ''} onChange={(e) => setUserData({...userData, occupation: e.target.value})}/>
           </div>
           <div> {/* user's smoking status */}
-            <p>Do you smoke?</p>
+            <label>Do you smoke?</label>
             <input id='smoke' value={true} checked={userData.smoker} type='radio'
             name='smoker' onChange={(e) => setUserData({...userData, smoker: true})}
             /> Yes, I smoke
@@ -204,7 +208,7 @@ export default function EditUserProfile({ session }) {
             /> No, I don't smoke at all
           </div>
           <div> {/* user's drinking status */}
-            <p>Do you drink alcohol?</p>
+            <label>Do you drink alcohol?</label>
             <input id='drinks' value={true} checked={userData.drinker}
             name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: true})}
             /> Yes, I drink alcohol
@@ -217,7 +221,7 @@ export default function EditUserProfile({ session }) {
           <div>
             <label htmlFor='interest-select'>Select up to 5 interests</label>
             <ReactSelect
-              options={interestTags?.map(tag => {return {value: tag.id, label: tag.name}})}
+              options={interestTags?.map(tag => {return {value: tag.id, label: tag.name}}).sort((a, b) => a.label > b.label ? 1 : -1)}
               isMulti closeMenuOnSelect={false} hideSelectedOptions={false} id='interest-select'
               components={{Option}} value={userData.user_interests} onChange={handleChange}
             />
@@ -260,16 +264,15 @@ export default function EditUserProfile({ session }) {
         <div className='profile-preference'>
           <h2>Partner Preferences</h2>
           <div>
-            <label htmlFor='wanted-age'>Desired age range:</label>
-            <input id='wanted-age' type='text' value={userData.wantAge || ''} onChange={(e) => setUserData({...userData, wantAge: e.target.value})}/>
+            <label htmlFor='wantedAge'>Age range:</label>
+            <span>From </span>
+            <input name='wantedAge' type="number" value={userData.ageMin || userData.age - 1} onChange={e => e.target.value < 18 ? alert('Too low. Please choose an age 18 or above') : setUserData({...userData, ageMin: e.target.value})}/>
+            <span> to </span>
+            <input name='wantedAge' type="number" value={userData.ageMax || userData.age + 1} onChange={e => e.target.value < userData.ageMin ? alert('Too low. Please choose an age above your selected minimum') : setUserData({...userData, ageMax: e.target.value})}/>
           </div>
           <div>
-            <label htmlFor='wanted-occupation'>Desired partner occupation:</label>
-            <input id='wanted-occupation' type='text' value={userData.wantOccupation || ''} onChange={(e) => setUserData({...userData, wantOccupation: e.target.value})}/>
-          </div>
-          <div>
-            <label htmlFor="wanted-gender">Preferred partner gender</label>
-            <select value={userData.wantGender || 'unselected'} onChange={(e) => setUserData({...userData, wantGender: e.target.value})}>
+            <label htmlFor="wanted-gender">Preferred gender</label>
+            <select value={userData.genderPreference || 'unselected'} onChange={(e) => setUserData({...userData, genderPreference: e.target.value})}>
               <option disabled value='unselected'>Select</option>
               <option value='Male'>Male</option>
               <option value='Female'>Female</option>
@@ -278,14 +281,64 @@ export default function EditUserProfile({ session }) {
               <option value='Other'>Other</option>
             </select>
           </div>
+          <div>
+            <label>Smokes?</label>
+            <input value={true} checked={userData.smokingPreference} type='radio'
+            name='smokerPref' onChange={(e) => setUserData({...userData, smokingPreference: true})}
+            /> Yes, I want them to be a smoker
+            <br/>
+            <input value={false} checked={typeof userData.smokingPreference === 'boolean' && !userData.smokingPreference} type='radio'
+            name='smokerPref' onChange={(e) => setUserData({...userData, smokingPreference: false})}
+            /> No, I don't want them to be a smoker
+            <br/>
+            <input value={null} checked={userData.smokingPreference === null} type='radio'
+            name='smokerPref' onChange={(e) => setUserData({...userData, smokingPreference: null})}
+            /> No real preference
+          </div>
+          <div>
+            <label>Drinks?</label>
+            <input value={true} checked={userData.drinkingPreference} type='radio'
+            name='drinkingPref' onChange={(e) => setUserData({...userData, drinkingPreference: true})}
+            /> Yes, I want them to drink alcohol
+            <br/>
+            <input value={false} checked={typeof userData.drinkingPreference === 'boolean' && !userData.drinkingPreference} type='radio'
+            name='drinkingPref' onChange={(e) => setUserData({...userData, drinkingPreference: false})}
+            /> No, I don't want them to drink any alcohol
+            <br/>
+            <input value={null} checked={userData.drinkingPreference === null} type='radio'
+            name='drinkingPref' onChange={(e) => setUserData({...userData, drinkingPreference: null})}
+            /> No real preference
+          </div>
+          <div>
+            <label htmlFor='partner-priority'>Prioritizes</label>
+            <select value={userData.priorityPreference || 'unselected'} onChange={(e) => setUserData({...userData, priorityPreference: e.target.value})}>
+              <option value='unselected'>Unsure/Don't Care</option>
+              <option value='Family'>Family</option>
+              <option value='Friends'>Friends</option>
+              <option value='Children'>Children</option>
+              <option value='Work'>Work/Job</option>
+              <option value='Self-care'>Selfcare</option>
+            </select>
+          </div>
+          <div>
+            <label>Match by Love Languages?</label>
+            <input value={true} checked={userData.matchByLL} type='radio' name="matchLL"
+            onChange={(e) => setUserData({...userData, matchByLL: true})}
+            /> Yes, this is important to me
+            <br/>
+            <input value={false} checked={!userData.matchByLL} type='radio' name="matchLL"
+            onChange={(e) => setUserData({...userData, matchByLL: false})}
+            /> No, I don't mind a mismatch
+          </div>
         </div>
       </div>
       {/* BELOW DIV IS THE BUTTON TO UPDATE ALL THE userData NEWLY SET */}
+      <hr/>
       <div>
         <button
           className="button primary block"
           onClick={() => updateProfile(userData)}
-          disabled={loading}
+          disabled={loading} id='save-profile'
         >
           {loading ? 'Loading ...' : 'Save Profile'}
         </button>
