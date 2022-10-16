@@ -1,5 +1,5 @@
 {
-  "name": "firebaseboiler",
+  "name": "optimate8",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "less": "less-watch-compiler less styles globals.less"
+    "less": "less-watch-compiler less styles globals.less",
+    "heroku-postbuild": "less styles globals.less && npm run build"
   },
   "author": "2208 OG",
   "license": "ISC",
@@ -29,12 +30,16 @@
     "react-router-dom": "^6.4.1",
     "react-select": "^5.4.0",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.4.1"
+    "redux-thunk": "^2.4.1",
+    "less": "^4.1.3"
   },
   "devDependencies": {
     "eslint": "8.24.0",
     "eslint-config-next": "12.3.1",
     "less": "^4.1.3",
     "less-watch-compiler": "^1.16.3"
-  }
+  },
+  "cacheDirectories": [
+    ".next/cache"
+  ]
 }
