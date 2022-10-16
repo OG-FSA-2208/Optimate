@@ -561,6 +561,11 @@ textarea {
 .column {
   height: 81.9vh;
 }
+/*
+TODO: give fixed position on left side of screen, change view for tablet, hide on mobile after message click
+    currently match-list will shrink with page and not everything fits
+TODO: remove animation when switching from lh/messages -> lh/messages/[id]
+*/
 .match-list {
   width: 20vw;
   margin-right: 1vw;
@@ -572,13 +577,13 @@ textarea {
 .match-list h1 {
   text-align: center;
 }
-.match {
+.match-list .match {
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 20px;
 }
-.matchPic {
+.match-list .matchPic {
   height: 150px;
   width: 150px;
   border-radius: 50%;

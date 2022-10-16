@@ -8,6 +8,11 @@
 }
 
 //**********LEFT COLUMN**********
+/*
+TODO: give fixed position on left side of screen, change view for tablet, hide on mobile after message click
+    currently match-list will shrink with page and not everything fits
+TODO: remove animation when switching from lh/messages -> lh/messages/[id]
+*/
 .match-list {
   width: 20vw;
   margin-right: 1vw;
@@ -18,19 +23,17 @@
   h1 {
     text-align: center;
   }
-}
-
-.match {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 20px;
-}
-
-.matchPic {
-  height: 150px;
-  width: 150px;
-  border-radius: 50%;
+  .match {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+  }
+  .matchPic {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+  }
 }
 
 //active match is user that was clicked on on messages page
@@ -42,6 +45,7 @@
 }
 
 //**********RIGHT COLUMN**********
+//TODO: add a back button on mobile
 .chatMessageBox {
   width: 70vw;
   margin-left: 1vw;

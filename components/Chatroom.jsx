@@ -1,11 +1,21 @@
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeMessage, sendMessage } from '../store/reducers/messengerSlice';
 
 export default function Chatroom() {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { messageUserId, currentMessage, messages } = useSelector(
     (state) => state.messenger
   );
+
+  useEffect(() => {
+    if (router.query.id === messageUserId) {
+      const lastMessage = document.querySelector('.last');
+      lastMessage.scrollIntoView(false);
+    }
+  }, [messages]);
 
   function handleSend() {
     if (!currentMessage) {
@@ -34,8 +44,11 @@ export default function Chatroom() {
                 message.to === messageUserId || message.from === messageUserId
               );
             })
-            .map((message) => (
-              <div key={message.id}>
+            .map((message, idx, filteredArr) => (
+              <div
+                key={message.id}
+                className={idx === filteredArr.length - 1 ? 'last' : ''}
+              >
                 {message.from === messageUserId ? (
                   <div className="single-message">
                     {/* TODO: fix message from_pic being null on add message thunk */}
