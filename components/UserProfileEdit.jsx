@@ -272,12 +272,13 @@ export default function EditUserProfile({ session }) {
           </div>
           <div>
             <label htmlFor="wanted-gender">Preferred gender</label>
-            <select value={userData.genderPreference || 'unselected'} onChange={(e) => setUserData({...userData, genderPreference: e.target.value})}>
-              <option disabled value='unselected'>Select</option>
+            <select value={userData.genderPreference ? userData.genderPreference : 'null'} onChange={(e) => 
+              e.target.value !== 'null' ? setUserData({...userData, genderPreference: e.target.value})
+            : setUserData({...userData, genderPreference: null})}>
               <option value='Male'>Male</option>
               <option value='Female'>Female</option>
               <option value='Non-binary/Genderfluid'>Non-binary/Genderfluid</option>
-              <option value='No preference'>No Preference</option>
+              <option value='null'>No Preference</option>
               <option value='Other'>Other</option>
             </select>
           </div>
