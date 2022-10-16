@@ -1,6 +1,7 @@
 import React from 'react';
 import { createChatBotMessage } from 'react-chatbot-kit';
 import BotAvatar from './BotAvatar';
+import UserAvatar from './UserAvatar';
 
 const botName = 'Opti the 🐙';
 
@@ -25,7 +26,7 @@ const config = {
       </div>
     ),
     botAvatar: (props) => <BotAvatar {...props} />,
-    userAvatar: '',
+    userAvatar: (props) => <UserAvatar {...props} />,
   },
   customStyles: {
     botMessageBox: {

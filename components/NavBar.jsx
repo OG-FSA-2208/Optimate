@@ -102,7 +102,7 @@ export default function NavBar() {
         ) : (
           // these are the links that will appear if a user is not logged in
           <>
-            <li>
+            {/* <li>
               <Link href="/">
                 <a>Home</a>
               </Link>
@@ -116,7 +116,7 @@ export default function NavBar() {
               <Link href="/signup">
                 <a>Signup</a>
               </Link>
-            </li>
+            </li> */}
           </>
         )}
       </ul>
