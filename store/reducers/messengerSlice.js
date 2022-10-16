@@ -70,7 +70,8 @@ export const clickMessages = (id) => async (dispatch) => {
     const { data, error } = await supabase
       .from('messages')
       .update({ read: true })
-      .match({ to: session.user.id, from: id });
+      .match({ to: session.user.id, from: id })
+      .select('*, from_pic:from ( avatar_url )');
     if (data) dispatch(readMessages({ id, data }));
     if (error) console.error(error);
   }

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeMessage, sendMessage } from '../store/reducers/messengerSlice';
 
@@ -9,6 +8,10 @@ export default function Chatroom() {
   );
 
   function handleSend() {
+    if (!currentMessage) {
+      //TODO: set error for chatbox
+      return;
+    }
     dispatch(sendMessage(currentMessage, messageUserId));
     dispatch(changeMessage(''));
   }
@@ -32,11 +35,12 @@ export default function Chatroom() {
               );
             })
             .map((message) => (
-              <>
+              <div key={message.id}>
                 {message.from === messageUserId ? (
-                  <div key={message.id} className="single-message">
+                  <div className="single-message">
+                    {/* TODO: fix message from_pic being null on add message thunk */}
                     <img
-                      src={message.from_pic.avatar_url}
+                      src={message.from_pic?.avatar_url}
                       alt="user profile pic"
                     />
                     <p className={'chat-match'}>{message.message}</p>
@@ -45,12 +49,12 @@ export default function Chatroom() {
                   <div key={message.id} className="single-message right-user">
                     <p className={'user'}>{message.message}</p>
                     <img
-                      src={message.from_pic.avatar_url}
+                      src={message.from_pic?.avatar_url}
                       alt="user profile pic"
                     />
                   </div>
                 )}
-              </>
+              </div>
             ))}
         </div>
       </div>
