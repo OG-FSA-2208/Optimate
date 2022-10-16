@@ -102,7 +102,7 @@ export default function EditUserProfile({ session }) {
       <h2>Basic Info</h2>
       {/* !!! THIS IS THERE THE BASIC INFO IN EDIT PROFILE IS */}
       <div id='profileEditAvatar'>
-        <div>
+        <div id='avatarSection'>
           <img src={userData.avatar_url}/>
           <label htmlFor="avatar" id='avatar-upload'>Change Profile Photo</label><br/>
           <input
@@ -113,7 +113,7 @@ export default function EditUserProfile({ session }) {
           />
         </div>
         <div>
-        <div>
+          <div>
             <label htmlFor="firstname">First Name</label>
             <input
               id="firstname"
@@ -136,7 +136,7 @@ export default function EditUserProfile({ session }) {
             <h5>{250 - (userData.about?.length || 0)} characters remaining</h5>
             <textarea
               id="about"
-              value={userData.about || ''} rows='5' cols='40'
+              value={userData.about || ''} rows='6' cols='40'
               onChange={(e) => setUserData({...userData, about: e.target.value})}
             />
           </div>
@@ -198,7 +198,7 @@ export default function EditUserProfile({ session }) {
             <input id='occupation' type='text' value={userData.occupation || ''} onChange={(e) => setUserData({...userData, occupation: e.target.value})}/>
           </div>
           <div> {/* user's smoking status */}
-            <p>Do you smoke?</p>
+            <label>Do you smoke?</label>
             <input id='smoke' value={true} checked={userData.smoker} type='radio'
             name='smoker' onChange={(e) => setUserData({...userData, smoker: true})}
             /> Yes, I smoke
@@ -208,7 +208,7 @@ export default function EditUserProfile({ session }) {
             /> No, I don't smoke at all
           </div>
           <div> {/* user's drinking status */}
-            <p>Do you drink alcohol?</p>
+            <label>Do you drink alcohol?</label>
             <input id='drinks' value={true} checked={userData.drinker}
             name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: true})}
             /> Yes, I drink alcohol
@@ -282,7 +282,7 @@ export default function EditUserProfile({ session }) {
             </select>
           </div>
           <div>
-            <p>Smokes?</p>
+            <label>Smokes?</label>
             <input value={true} checked={userData.smokingPreference} type='radio'
             name='smokerPref' onChange={(e) => setUserData({...userData, smokingPreference: true})}
             /> Yes, I want them to be a smoker
@@ -296,7 +296,7 @@ export default function EditUserProfile({ session }) {
             /> No real preference
           </div>
           <div>
-            <p>Drinks?</p>
+            <label>Drinks?</label>
             <input value={true} checked={userData.drinkingPreference} type='radio'
             name='drinkingPref' onChange={(e) => setUserData({...userData, drinkingPreference: true})}
             /> Yes, I want them to drink alcohol
@@ -321,7 +321,7 @@ export default function EditUserProfile({ session }) {
             </select>
           </div>
           <div>
-            <p>Match by Love Languages?</p>
+            <label>Match by Love Languages?</label>
             <input value={true} checked={userData.matchByLL} type='radio' name="matchLL"
             onChange={(e) => setUserData({...userData, matchByLL: true})}
             /> Yes, this is important to me

@@ -14,9 +14,11 @@ export default function UserProfile({ session }) {
 
   return (
     <div className="form-widget">
-      <h1>{editing ? 'Editing Profile' : 'Your Profile'}
-      <button className="button block" id='editToggle' onClick={() => toggleEdit()}>{editing ? <><ArrowBackIcon/> Return to Profile View</> : <>Edit Profile <EditIcon/></>}</button>
-      </h1>
+      <h1>{editing ? 'Editing Profile' : 'Your Profile'}</h1>
+      <button className="button block" id='editToggle' onClick={() => toggleEdit()}>
+        {editing ? <div><ArrowBackIcon/><>&nbsp;Return to Profile View</></div>
+        : <div><>Edit Profile&nbsp;</><EditIcon/></div>}
+      </button>
       <hr/>
       {editing ? <UserProfileEdit/> : <UserProfileView/>}
     </div>
