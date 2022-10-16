@@ -4,7 +4,7 @@ import { getAllUserMatches } from '../../store/reducers/matchesSlice';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { userAgent } from 'next/server';
+import { userAgent } from 'next/server'; // WHO PUT THIS IN HERE AND WHAT IS THIS???
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
 
 export default function Profile() {
@@ -13,16 +13,10 @@ export default function Profile() {
   const profile = useSelector((state) => state.profile);
   const [highlight, setHighlight] = useState(profile);
 
-
   useEffect(() => {
     dispatch(getAllUserMatches());
-    dispatch(getLoggedInUser()); 
+    dispatch(getLoggedInUser());
   }, []);
-
-   // const handleClick = (event) => {
-   // console.log('show event', event.target.classList);
-   // event.target.classList.toggle('active');
-   // };
 
   return (
     <div>
@@ -55,9 +49,7 @@ export default function Profile() {
             >
               <div>
                 <p>
-                  {highlight.id === profile.id
-                    ? 'Edit My Profile'
-                    : 'Back to My Profile'}
+                  {highlight.id === profile.id ? 'Edit My Profile' : 'Message'}
                 </p>
                 <h2>
                   {highlight.firstname} {highlight.lastname}
@@ -65,14 +57,20 @@ export default function Profile() {
                 <br></br>
                 <img src={highlight.avatar_url} className="profilePic" />
               </div>
-              <div className='user-bio-full'>
+              <div>
+                <p className="highlight">
+                  <strong>Highlight: {highlight.highlight}</strong>
+                </p>
+                <br />
                 <p>Age: {highlight.age}</p>
                 <p>Gender: {highlight.gender}</p>
                 <p>About: {highlight.about}</p>
                 <p>Occupation: {highlight.occupation}</p>
-                <p style={{ fontSize: '2em' }}>
-                  {highlight.drinker ? '🍻' : null}{' '}
-                  {highlight.smoker ? '🚬' : null}
+                <p>Status: {highlight.status}</p>
+                <p>Location: {highlight.location}</p>
+                <p style={{ fontSize: '1em' }}>
+                  {highlight.drinker ? 'Drinker: 🍻' : null}{' '}
+                  {highlight.smoker ? 'Smoker: 🚬' : null}
                 </p>
                 <br />
                 <p>Giving: {highlight.loveLangGiving}</p>
@@ -95,7 +93,6 @@ export default function Profile() {
                     return (
                       <motion.div
                         onClick={function (event) {
-                          // handleClick(event);
                           setHighlight(match);
                         }}
                         className="matches"
@@ -103,11 +100,6 @@ export default function Profile() {
                         whileHover={{
                           scale: 1.2,
                         }}
-                        // drag="x"
-                        // dragConstraints={{
-                        //   right: 18,
-                        //   left: 0,
-                        // }}
                         whileTap={{
                           scale: 0.9,
                         }}
@@ -126,7 +118,6 @@ export default function Profile() {
                         <br />
                         <p>
                           <img
-                            // onClick={(event) => handleClick(event)}
                             className="matchesProfilePic"
                             src={match.avatar_url}
                             alt="Profile Pic"
@@ -134,17 +125,6 @@ export default function Profile() {
                         </p>
                         <p>Age: {match.age}</p>
                         <p>Gender: {match.gender}</p>
-                        {/* <p>Highlight: {match.highlight}</p>
-                        <div className="matchesAboutMe">
-                          About: {match.about}
-                        </div>
-                        <p>Occupation: {match.occupation}</p>
-                        <p>Status: {match.status}</p>
-                        <p>Location: {match.location}</p>
-                        <p>Love Language (Giving): {match.loveLangGiving}</p>
-                        <p>
-                          Love Language (Receiving): {match.loveLangReceiving}
-                        </p> */}
                         <div className="toggle">
                           <OpenInNewIcon />
                         </div>
