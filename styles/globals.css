@@ -265,6 +265,8 @@ textarea.form-input {
   text-align: center;
 }
 .myProfile > * {
+  overflow-wrap: break-word;
+  width: 300px;
   margin: 0.5em;
 }
 .user-bio-full {
