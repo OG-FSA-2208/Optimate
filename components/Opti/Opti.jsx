@@ -15,5 +15,4 @@ const MyComponent = () => {
     </div>
   );
 };
-
 export default MyComponent;
