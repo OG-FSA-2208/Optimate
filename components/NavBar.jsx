@@ -16,8 +16,9 @@ export default function NavBar() {
   const session = useSelector((state) => state.user.id);
   const numUnread = useSelector(
     (state) =>
-      state.messenger.messages.filter((message) => message.read === false)
-        .length || 0
+      state.messenger.messages.filter(
+        (message) => message.read === false && message.to === state.user.id
+      ).length || 0
   );
 
   const handleBurger = () => {
