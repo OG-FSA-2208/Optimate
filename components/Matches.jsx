@@ -33,7 +33,12 @@ export default function Matches() {
             >
               <Badge
                 color="primary"
-                badgeContent={10}
+                badgeContent={
+                  messages?.filter(
+                    (message) =>
+                      message.from === user.id && message.read === false
+                  ).length
+                }
                 anchorOrigin={{
                   vertical: 'top',
                   horizontal: 'left',
