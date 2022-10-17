@@ -605,6 +605,11 @@ input[type="number"] {
 .column {
   height: 81.9vh;
 }
+/*
+TODO: give fixed position on left side of screen, change view for tablet, hide on mobile after message click
+    currently match-list will shrink with page and not everything fits
+TODO: remove animation when switching from lh/messages -> lh/messages/[id]
+*/
 .match-list {
   width: 20vw;
   margin-right: 1vw;
@@ -616,14 +621,13 @@ input[type="number"] {
 .match-list h1 {
   text-align: center;
 }
-.match {
+.match-list .match {
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 20px;
 }
-.matchPic {
-  margin-right: 50px;
+.match-list .matchPic {
   height: 150px;
   width: 150px;
   border-radius: 50%;
@@ -665,25 +669,37 @@ input[type="number"] {
   width: 10%;
   margin: 0;
 }
-.chat-match {
+.single-message {
+  margin: 3px 0;
+  display: flex;
+}
+.single-message img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  align-self: flex-end;
+}
+.single-message .chat-match {
   clip-path: polygon(2% 0, 100% 0%, 100% 95%, 10% 95%, 0 100%, 2% 85%);
   text-align: left;
   background-color: #8fc4de;
-  width: 50%;
+  max-width: 50%;
   padding: 10px 20px;
   word-break: normal;
   white-space: normal;
 }
-.user {
+.single-message .user {
   clip-path: polygon(0 0, 98% 0, 98% 85%, 100% 100%, 90% 95%, 0 95%);
   text-align: right;
   background-color: #78ffd2;
-  width: 50%;
-  position: relative;
-  right: -47%;
+  max-width: 50%;
   padding: 10px 20px;
   word-break: normal;
   white-space: normal;
+}
+.right-user {
+  display: flex;
+  justify-content: flex-end;
 }
 .chat-bot-avatar-icon {
   width: 40px;

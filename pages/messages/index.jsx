@@ -4,7 +4,10 @@ import Matches from '../../components/Matches';
 export default function Messages() {
   return (
     <div className="messages">
-      <Matches />
+      <div className="column match-list">
+        <Matches />
+      </div>
+      <div className="column chatMessageBox"></div>
     </div>
   );
 }
