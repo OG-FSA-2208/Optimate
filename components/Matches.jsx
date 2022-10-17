@@ -28,7 +28,7 @@ export default function Matches() {
               className={`match ${
                 router.query.id === user.id ? 'active-match' : ''
               }`}
-              onClick={() => dispatch(clickMessages(user.id))}
+              onClick={() => dispatch(clickMessages(user.id, messages))}
             >
               <Badge
                 color="primary"
