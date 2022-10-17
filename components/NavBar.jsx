@@ -1,19 +1,24 @@
 import Link from 'next/link';
-import Router from 'next/router';
+import Router from 'next/router'; //TODO: is this needed?
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkSession } from '../store/reducers/userSlice.js';
+import { checkSession, logoutUser } from '../store/reducers/userSlice.js';
 import { useRouter } from 'next/router';
 import supabase from '../config/supabaseClient.js';
-import { sub, unsub } from '../store/reducers/messengerSlice';
+import { sub, unsub, getMessages } from '../store/reducers/messengerSlice';
 import { motion } from 'framer-motion';
-import { logoutUser } from '../store/reducers/userSlice';
+import { Badge } from '@mui/material';
 
 export default function NavBar() {
   const dispatch = useDispatch();
   const [burgerClicked, setBurgerClicked] = useState(false);
   // checks if there is a user logged in
   const session = useSelector((state) => state.user.id);
+  const numUnread = useSelector(
+    (state) =>
+      state.messenger.messages.filter((message) => message.read === false)
+        .length || 0
+  );
 
   const handleBurger = () => {
     const navLinks = document.querySelectorAll('.nav-links li');
@@ -54,6 +59,7 @@ export default function NavBar() {
   }, []);
 
   useEffect(() => {
+    dispatch(getMessages());
     const messageListener = dispatch(sub());
     return () => {
       messageListener && unsub(messageListener);
@@ -84,9 +90,11 @@ export default function NavBar() {
           // these are the links that will appear if a user is logged in
           <>
             <li>
-              <Link href="/messages">
-                <a>Messages</a>
-              </Link>
+              <Badge color="primary" badgeContent={numUnread} max={99}>
+                <Link href="/messages">
+                  <a>Messages</a>
+                </Link>
+              </Badge>
             </li>
             <li>
               <Link href="/user/settings">
@@ -95,31 +103,12 @@ export default function NavBar() {
             </li>
             <li>
               <a onClick={() => dispatch(logoutUser(Router))}>
-                {/* a href was previously '/' but it cause some redirection issues
-                in which it would navigate to / before dispatch finished */}
                 <>Signout</>
               </a>
             </li>
           </>
         ) : (
-          // these are the links that will appear if a user is not logged in
-          <>
-            {/* <li>
-              <Link href="/">
-                <a>Home</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/login">
-                <a>Login</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/signup">
-                <a>Signup</a>
-              </Link>
-            </li> */}
-          </>
+          <>{/*TODO: gotta be a better way to do this than a ternary */}</>
         )}
       </ul>
 
