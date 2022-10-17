@@ -29,7 +29,7 @@ export default function EditUserProfile({ session }) {
     // this useEffect is so the updated profile image shows in the editing view
     // >> does not update it on the server end yet!
   }, [userData])
-  console.dir(userData);
+  
   async function updateProfile(data) {
     try {
       setLoading(true);
