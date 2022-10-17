@@ -11,7 +11,7 @@ export default function Matches() {
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
   const messages = useSelector((state) => state.messenger.messages);
-  //TODO: check messages length for each user?
+  //TODO: update badge when user clicks on a chat, during dispatch clickMessages?
 
   useEffect(() => {
     //TODO: is this still neeeded?
@@ -21,7 +21,6 @@ export default function Matches() {
   return (
     <>
       <h1>MATCHES</h1>
-      {/* check number of unread messages from user.id and set that to the number in badgeContent */}
       {matches.map((user) => (
         <div key={user.id}>
           <Link href={`/messages/${user.id}`}>
