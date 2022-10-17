@@ -1,11 +1,12 @@
-drop function if exists match_making();
-CREATE or REPLACE function match_making() 
-returns profiles
+drop function if exists testfunc();
+CREATE or REPLACE function testfunc() 
+-- returns setof profiles
+returns void
 language sql
 as $$
+INSERT INTO matches2 (id, id2)
+VALUES (auth.uid(),(
 SELECT id from profiles
-where 
-SELECT * from profiles
 where 
   status = 'Single' 
   AND
@@ -33,17 +34,21 @@ where
     or 
     "smokingPreference" = (select smoker from profiles WHERE id = auth.uid()))
   AND
-    ((select "priorityPreference" from profiles WHERE id = auth.uid()) IS NULL 
-    or
-    (select "priorityPreference" from profiles WHERE id = auth.uid()) = 'unselected' 
-    or
-    (select "priorityPreference" from profiles WHERE id = auth.uid()) = "priority")
+    (
+      (select "priorityPreference" from profiles WHERE id = auth.uid()) IS NULL 
+      or
+      (select "priorityPreference" from profiles WHERE id = auth.uid()) = 'unselected' 
+      or
+      (select "priorityPreference" from profiles WHERE id = auth.uid()) = "priorityPreference"
+    )
   AND
-    ("priorityPreference" IS NULL
-    or
-    "priorityPreference" = 'unselected'
-    or 
-    "priorityPreference" = (select "priority" from profiles WHERE id = auth.uid()))
+    (
+      "priorityPreference" IS NULL
+      or
+      "priorityPreference" = 'unselected'
+      or 
+      "priorityPreference" = (select "priorityPreference" from profiles WHERE id = auth.uid())
+    )
   AND
     (select "age" from profiles WHERE id = auth.uid()) >= "ageMin" 
   AND
@@ -56,7 +61,14 @@ where
     ("age" <= (select "ageMax" from profiles WHERE id = auth.uid())
     OR
     (select "ageMax" from profiles WHERE id = auth.uid()) IS NULL)
-ORDER BY RAND()  
-LIMIT 1  
+  AND
+    id NOT IN (select id2 from matches2 m where m.id = auth.uid())
+  AND
+    auth.uid() NOT in (select id2 from matches2 m where m.id = profiles.id)
+  AND id <> auth.uid()
+  ORDER BY RANDOM()  
+  LIMIT 1  
+  )
+  )
   ;
 $$;
