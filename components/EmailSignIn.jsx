@@ -6,6 +6,15 @@ import { checkSession } from '../store/reducers/userSlice';
 import Link from 'next/link';
 import OAuthBar from './OAuthBar';
 export default function EmailSignIn() {
+  //get user location at profile view
+  const successCallback = (position) => {
+    console.log(position.coords);
+  };
+  const errorCallback = (error) => {
+    console.log(error);
+  };
+  navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+
   const [form, setForm] = useState({
     email: '',
     password: '',

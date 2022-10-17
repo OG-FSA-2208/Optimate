@@ -11,6 +11,7 @@ import FileUploadSharpIcon from '@mui/icons-material/FileUploadSharp';
 import { default as ReactSelect } from 'react-select';
 
 export default function EditUserProfile({ session }) {
+
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [updated, setUpdated] = useState(false);  // state that shows whether or not a user's info has been successfully updated
