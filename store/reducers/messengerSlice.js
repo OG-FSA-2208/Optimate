@@ -88,9 +88,13 @@ export const sub = () => (dispatch) => {
   if (session) {
     const messageListener = supabase
       .from(`messages:to=eq.${session.user.id}`)
-      .on('INSERT', (payload) => {
-        console.dir(payload); //TODO: figure out if you can get the image from this payload
-        dispatch(addMessage(payload.new));
+      .on('INSERT', async (payload) => {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('avatar_url')
+          .eq('id', payload.new.from);
+        if (data) dispatch(addMessage({ ...payload.new, from_pic: data[0] }));
+        if (error) console.error(error);
       })
       .subscribe();
     return messageListener;
