@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import supabase from '../../config/supabaseClient';
 
+//TODO: add number unread to store here?
 const messengerSlice = createSlice({
   name: 'messenger',
   initialState: {
@@ -51,13 +52,16 @@ export const getMessages = () => async (dispatch) => {
 export const sendMessage = (message, to) => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
-    const { data, error } = await supabase.from('messages').insert([
-      {
-        from: session.user.id,
-        to,
-        message,
-      },
-    ]);
+    const { data, error } = await supabase
+      .from('messages')
+      .insert([
+        {
+          from: session.user.id,
+          to,
+          message,
+        },
+      ])
+      .select('*, from_pic:from ( avatar_url )');
     if (data) dispatch(addMessage(data[0]));
     if (error) console.error(error);
   }
@@ -85,6 +89,7 @@ export const sub = () => (dispatch) => {
     const messageListener = supabase
       .from(`messages:to=eq.${session.user.id}`)
       .on('INSERT', (payload) => {
+        console.dir(payload); //TODO: figure out if you can get the image from this payload
         dispatch(addMessage(payload.new));
       })
       .subscribe();
