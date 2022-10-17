@@ -1,14 +1,27 @@
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeMessage, sendMessage } from '../store/reducers/messengerSlice';
 
 export default function Chatroom() {
   const dispatch = useDispatch();
+  const router = useRouter();
   const { messageUserId, currentMessage, messages } = useSelector(
     (state) => state.messenger
   );
 
+  useEffect(() => {
+    if (router.query.id === messageUserId) {
+      const lastMessage = document.querySelector('.last');
+      lastMessage.scrollIntoView(false);
+    }
+  }, [messages]);
+
   function handleSend() {
+    if (!currentMessage) {
+      //TODO: set error for chatbox
+      return;
+    }
     dispatch(sendMessage(currentMessage, messageUserId));
     dispatch(changeMessage(''));
   }
@@ -31,15 +44,30 @@ export default function Chatroom() {
                 message.to === messageUserId || message.from === messageUserId
               );
             })
-            .map((message) => (
-              <p
+            .map((message, idx, filteredArr) => (
+              <div
                 key={message.id}
-                className={
-                  message.from === messageUserId ? 'chat-match' : 'user'
-                }
+                className={idx === filteredArr.length - 1 ? 'last' : ''}
               >
-                {message.message}
-              </p>
+                {message.from === messageUserId ? (
+                  <div className="single-message">
+                    {/* TODO: fix message from_pic being null on add message thunk */}
+                    <img
+                      src={message.from_pic?.avatar_url}
+                      alt="user profile pic"
+                    />
+                    <p className={'chat-match'}>{message.message}</p>
+                  </div>
+                ) : (
+                  <div key={message.id} className="single-message right-user">
+                    <p className={'user'}>{message.message}</p>
+                    <img
+                      src={message.from_pic?.avatar_url}
+                      alt="user profile pic"
+                    />
+                  </div>
+                )}
+              </div>
             ))}
         </div>
       </div>

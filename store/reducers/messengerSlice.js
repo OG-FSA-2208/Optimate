@@ -39,7 +39,7 @@ export const getMessages = () => async (dispatch) => {
   if (session) {
     const { data, error } = await supabase
       .from('messages')
-      .select('*, to_pic:to ( avatar_url ), from_pic:from ( avatar_url )')
+      .select('*, from_pic:from ( avatar_url )')
       .or(`from.eq.${session.user.id},to.eq.${session.user.id}`)
       .order('created_at');
     if (data) dispatch(fetchMessages(data));
@@ -70,7 +70,8 @@ export const clickMessages = (id) => async (dispatch) => {
     const { data, error } = await supabase
       .from('messages')
       .update({ read: true })
-      .match({ to: session.user.id, from: id });
+      .match({ to: session.user.id, from: id })
+      .select('*, from_pic:from ( avatar_url )');
     if (data) dispatch(readMessages({ id, data }));
     if (error) console.error(error);
   }
