@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { FaGithub, FaFacebook, FaGoogle } from 'react-icons/fa';
 import RPCTest from './RPCTest';
+import Link from 'next/link';
+
 export default function UpdateUserAuth() {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -91,6 +93,9 @@ export default function UpdateUserAuth() {
     <div className="form-container">
       <RPCTest />
       <form id="update-userauth-form">
+        <button>
+          <Link href="/user/profile">Return to Profile</Link>
+        </button>
         <div className="form-title">Update Login information</div>
         <div className="form-item">
           <label htmlFor="email" className="form-label">
