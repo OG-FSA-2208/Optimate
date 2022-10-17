@@ -4,6 +4,8 @@ import { checkSession } from '../store/reducers/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { FaGithub, FaFacebook, FaGoogle } from 'react-icons/fa';
+import Link from 'next/link';
+
 export default function UpdateUserAuth() {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -89,6 +91,7 @@ export default function UpdateUserAuth() {
   return (
     <div className="form-container">
       <form id="update-userauth-form">
+        <button><Link href="/user/profile">Return to Profile</Link></button>
         <div className="form-title">Update Login information</div>
         <div className="form-item">
           <label htmlFor="email" className="form-label">
