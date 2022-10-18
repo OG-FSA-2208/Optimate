@@ -29,12 +29,12 @@ export default function EditUserProfile({ session }) {
     // this useEffect is so the updated profile image shows in the editing view
     // >> does not update it on the server end yet!
   }, [userData])
-
+  
   async function updateProfile(data) {
     try {
       setLoading(true);
-      if (userData.about?.length > 250) {
-        throw new Error(`'About You' section is ${userData.about.length - 250} character(s) over limit. Please adjust the length and try again`);
+      if (userData?.about?.length > 250) {
+        throw new Error(`'About You' section is ${userData?.about.length - 250} character(s) over limit. Please adjust the length and try again`);
       }
       dispatch(updateUser(data, data.id));
       setUpdated(true);
@@ -48,43 +48,43 @@ export default function EditUserProfile({ session }) {
   async function handleAvatarUpload(e) {
     const avatarFile = e.target.files[0];
     // caching issue happens here!!!
-    // await supabase.storage.from('avatars').remove([`${userData.firstname}_avatar`]);
+    // await supabase.storage.from('avatars').remove([`${userData?.firstname}_avatar`]);
     // const {data} = await supabase.storage.from('avatars')
-    //   .upload(`${userData.firstname}_avatar`, avatarFile, {upsert: true})
+    //   .upload(`${userData?.firstname}_avatar`, avatarFile, {upsert: true})
     // const { publicURL, imgError } = await supabase
     //   .storage
     //   .from('avatars')
-    //   .getPublicUrl(`${userData.firstname}_avatar`);
+    //   .getPublicUrl(`${userData?.firstname}_avatar`);
 
     // backup plan...
     const {data} = await supabase.storage.from('avatars')
-        .upload(`${userData.id}_${avatarFile.name}`, avatarFile, {upsert: true});
+        .upload(`${userData?.id}_${avatarFile.name}`, avatarFile, {upsert: true});
     const { publicURL, imgError } = await supabase
       .storage
       .from('avatars')
-      .getPublicUrl(`${userData.id}_${avatarFile.name}`);
+      .getPublicUrl(`${userData?.id}_${avatarFile.name}`);
 
     setUserData({...userData, avatar_url: publicURL});
   }
 
   async function handleImageUpload(e) {
     const imageFile = [...e.target.files];
-    if (imageFile.length + userData.user_photos.length > 4) {
-      alert(`Too many photos! You can only upload ${4 - userData.user_photos.length} additional image(s)`);
+    if (imageFile.length + userData?.user_photos.length > 4) {
+      alert(`Too many photos! You can only upload ${4 - userData?.user_photos.length} additional image(s)`);
       return;
     }
 
     const imgURLs = imageFile.map(async img => {
       const imgdata = (await supabase.storage.from('avatars')
-        .upload(`${userData.id}_${img.name}`, img, {upsert: true})).data;
+        .upload(`${userData?.id}_${img.name}`, img, {upsert: true})).data;
       const { publicURL, imgError } = await supabase
         .storage
         .from('avatars')
-        .getPublicUrl(`${userData.id}_${img.name}`);
+        .getPublicUrl(`${userData?.id}_${img.name}`);
       return publicURL
     });
     // console.dir(await Promise.all(imgURLs));
-    setUserData({...userData, user_photos: [...userData.user_photos, ...(await Promise.all(imgURLs))]});
+    setUserData({...userData, user_photos: [...userData?.user_photos, ...(await Promise.all(imgURLs))]});
   }
 
   const handleChange = data => {
@@ -103,7 +103,7 @@ export default function EditUserProfile({ session }) {
       {/* !!! THIS IS THERE THE BASIC INFO IN EDIT PROFILE IS */}
       <div id='profileEditAvatar'>
         <div id='avatarSection'>
-          <img src={userData.avatar_url}/>
+          <img src={userData?.avatar_url || ''}/>
           <label htmlFor="avatar" id='avatar-upload'>Change Profile Photo</label><br/>
           <input
             id="avatar"
@@ -118,7 +118,7 @@ export default function EditUserProfile({ session }) {
             <input
               id="firstname"
               type="text"
-              value={userData.firstname || ''}
+              value={userData?.firstname || ''}
               onChange={(e) => setUserData({...userData, firstname: e.target.value})}
             />
           </div>
@@ -127,16 +127,16 @@ export default function EditUserProfile({ session }) {
             <input
               id="lastname"
               type="text"
-              value={userData.lastname || ''}
+              value={userData?.lastname || ''}
               onChange={(e) => setUserData({...userData, lastname: e.target.value})}
             />
           </div>
           <div>
             <label htmlFor="about">About You</label>
-            <h5>{250 - (userData.about?.length || 0)} characters remaining</h5>
+            <h5>{250 - (userData?.about?.length || 0)} characters remaining</h5>
             <textarea
               id="about"
-              value={userData.about || ''} rows='6' cols='40'
+              value={userData?.about || ''} rows='6' cols='40'
               onChange={(e) => setUserData({...userData, about: e.target.value})}
             />
           </div>
@@ -145,13 +145,13 @@ export default function EditUserProfile({ session }) {
             <input
               id="age"
               type="number"
-              value={userData.age || ''}
+              value={userData?.age || ''}
               onChange={(e) => setUserData({...userData, age: e.target.value})}
             />
           </div>
           <div>
             <label htmlFor="gender">Gender</label>
-            <select value={userData.gender || 'unselected'} onChange={(e) => setUserData({...userData, gender: e.target.value})}>
+            <select value={userData?.gender || 'unselected'} onChange={(e) => setUserData({...userData, gender: e.target.value})}>
               <option disabled value='unselected'>Select</option>
               <option value='Male'>Male</option>
               <option value='Female'>Female</option>
@@ -161,7 +161,7 @@ export default function EditUserProfile({ session }) {
           </div>
           <div>
             <label htmlFor='location'>location</label>
-            <input id='location' type='text' value={userData.location || ''} onChange={(e) => setUserData({...userData, location: e.target.value})}/>
+            <input id='location' type='text' value={userData?.location || ''} onChange={(e) => setUserData({...userData, location: e.target.value})}/>
           </div>
         </div>
       </div>
@@ -170,12 +170,12 @@ export default function EditUserProfile({ session }) {
       <h2>Upload up to (4) four additional photos</h2>
       <i>if adding/removing photos, remember to save your new profile</i>
       <div id='optionalPhotoUploads'>
-        {userData.user_photos.map((photoURL, ind) =>
+        {userData?.user_photos?.map((photoURL, ind) =>
         <UserPhoto key={ind} imgData={{imgURL: photoURL, index: ind}}
         userData={userData} setUserData={setUserData}/>)}
         {/* CREATES 'SLOTS' FOR USER TO UPLOAD ANY REMAINING PHOTOS THEY CAN */}
-        {userData.user_photos.length < 4 ?
-        Array.apply(null, Array(4 - userData.user_photos.length))
+        {userData?.user_photos?.length < 4 ?
+        Array.apply(null, Array(4 - userData?.user_photos?.length))
         .map((uploadSlot, ind) => <div key={ind} className="uploadSlot">
           <label htmlFor={`uploadSlot_${ind}`} id='image-upload'><FileUploadSharpIcon/></label><br/>
           <input
@@ -195,25 +195,25 @@ export default function EditUserProfile({ session }) {
           <h2>Detailed Info</h2>
           <div> {/* user's occupation */}
             <label htmlFor='occupation'>Occupation</label>
-            <input id='occupation' type='text' value={userData.occupation || ''} onChange={(e) => setUserData({...userData, occupation: e.target.value})}/>
+            <input id='occupation' type='text' value={userData?.occupation || ''} onChange={(e) => setUserData({...userData, occupation: e.target.value})}/>
           </div>
           <div> {/* user's smoking status */}
             <label>Do you smoke?</label>
-            <input id='smoke' value={true} checked={userData.smoker} type='radio'
+            <input id='smoke' value={true} checked={userData?.smoker} type='radio'
             name='smoker' onChange={(e) => setUserData({...userData, smoker: true})}
             /> Yes, I smoke
             <br/>
-            <input id='nonsmoke' value={false} checked={!userData.smoker} type='radio'
+            <input id='nonsmoke' value={false} checked={!userData?.smoker} type='radio'
             name='smoker' onChange={(e) => setUserData({...userData, smoker: false})}
             /> No, I don't smoke at all
           </div>
           <div> {/* user's drinking status */}
             <label>Do you drink alcohol?</label>
-            <input id='drinks' value={true} checked={userData.drinker}
+            <input id='drinks' value={true} checked={userData?.drinker}
             name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: true})}
             /> Yes, I drink alcohol
             <br/>
-            <input id='nodrinks' value={false} checked={!userData.drinker}
+            <input id='nodrinks' value={false} checked={!userData?.drinker}
             name='alcohol' type='radio' onChange={(e) => setUserData({...userData, drinker: false})}
             /> No, I don't drink alcohol at all
           </div>
@@ -223,12 +223,12 @@ export default function EditUserProfile({ session }) {
             <ReactSelect
               options={interestTags?.map(tag => {return {value: tag.id, label: tag.name}}).sort((a, b) => a.label > b.label ? 1 : -1)}
               isMulti closeMenuOnSelect={false} hideSelectedOptions={false} id='interest-select'
-              components={{Option}} value={userData.user_interests} onChange={handleChange}
+              components={{Option}} value={userData?.user_interests} onChange={handleChange}
             />
           </div>
           <div> {/* user's love language (giving) */}
             <label htmlFor='loveGiving'>Your love language (giving)</label>
-            <select value={userData.loveLangGiving || 'unselected'} onChange={(e) => setUserData({...userData, loveLangGiving: e.target.value})}>
+            <select value={userData?.loveLangGiving || 'unselected'} onChange={(e) => setUserData({...userData, loveLangGiving: e.target.value})}>
               <option value='unselected'>Unsure/Don't Care</option>
               <option value='Physical Touch'>Physical Touch</option>
               <option value='Acts of Service'>Acts of Service</option>
@@ -239,7 +239,7 @@ export default function EditUserProfile({ session }) {
           </div>
           <div> {/* user's love language (receiving) */}
             <label htmlFor='loveRecieving'>Your love language (receiving)</label>
-            <select value={userData.loveLangReceiving || 'unselected'} onChange={(e) => setUserData({...userData, loveLangReceiving: e.target.value})}>
+            <select value={userData?.loveLangReceiving || 'unselected'} onChange={(e) => setUserData({...userData, loveLangReceiving: e.target.value})}>
               <option value='unselected'>Unsure/Don't Care</option>
               <option value='Physical Touch'>Physical Touch</option>
               <option value='Acts of Service'>Acts of Service</option>
@@ -250,7 +250,7 @@ export default function EditUserProfile({ session }) {
           </div>
           <div> {/* user's priority */}
             <label htmlFor='priority'>Your top priority</label>
-            <select value={userData.priority || 'unselected'} onChange={(e) => setUserData({...userData, priority: e.target.value})}>
+            <select value={userData?.priority || 'unselected'} onChange={(e) => setUserData({...userData, priority: e.target.value})}>
               <option value='unselected'>Unsure/Don't Care</option>
               <option value='Family'>Family</option>
               <option value='Friends'>Friends</option>
@@ -266,13 +266,13 @@ export default function EditUserProfile({ session }) {
           <div>
             <label htmlFor='wantedAge'>Age range:</label>
             <span>From </span>
-            <input name='wantedAge' type="number" value={userData.ageMin || userData.age - 1} onChange={e => e.target.value < 18 ? alert('Too low. Please choose an age 18 or above') : setUserData({...userData, ageMin: e.target.value})}/>
+            <input name='wantedAge' type="number" value={userData?.ageMin || userData?.age - 1} onChange={e => e.target.value < 18 ? alert('Too low. Please choose an age 18 or above') : setUserData({...userData, ageMin: e.target.value})}/>
             <span> to </span>
-            <input name='wantedAge' type="number" value={userData.ageMax || userData.age + 1} onChange={e => e.target.value < userData.ageMin ? alert('Too low. Please choose an age above your selected minimum') : setUserData({...userData, ageMax: e.target.value})}/>
+            <input name='wantedAge' type="number" value={userData?.ageMax || userData?.age + 1} onChange={e => e.target.value < userData?.ageMin ? alert('Too low. Please choose an age above your selected minimum') : setUserData({...userData, ageMax: e.target.value})}/>
           </div>
           <div>
             <label htmlFor="wanted-gender">Preferred gender</label>
-            <select value={userData.genderPreference ? userData.genderPreference : 'null'} onChange={(e) => 
+            <select value={userData?.genderPreference ? userData?.genderPreference : 'null'} onChange={(e) => 
               e.target.value !== 'null' ? setUserData({...userData, genderPreference: e.target.value})
             : setUserData({...userData, genderPreference: null})}>
               <option value='Male'>Male</option>
@@ -284,35 +284,35 @@ export default function EditUserProfile({ session }) {
           </div>
           <div>
             <label>Smokes?</label>
-            <input value={true} checked={userData.smokingPreference} type='radio'
+            <input value={true} checked={userData?.smokingPreference} type='radio'
             name='smokerPref' onChange={(e) => setUserData({...userData, smokingPreference: true})}
             /> Yes, I want them to be a smoker
             <br/>
-            <input value={false} checked={typeof userData.smokingPreference === 'boolean' && !userData.smokingPreference} type='radio'
+            <input value={false} checked={typeof userData?.smokingPreference === 'boolean' && !userData?.smokingPreference} type='radio'
             name='smokerPref' onChange={(e) => setUserData({...userData, smokingPreference: false})}
             /> No, I don't want them to be a smoker
             <br/>
-            <input value={null} checked={userData.smokingPreference === null} type='radio'
+            <input value={null} checked={userData?.smokingPreference === null} type='radio'
             name='smokerPref' onChange={(e) => setUserData({...userData, smokingPreference: null})}
             /> No real preference
           </div>
           <div>
             <label>Drinks?</label>
-            <input value={true} checked={userData.drinkingPreference} type='radio'
+            <input value={true} checked={userData?.drinkingPreference} type='radio'
             name='drinkingPref' onChange={(e) => setUserData({...userData, drinkingPreference: true})}
             /> Yes, I want them to drink alcohol
             <br/>
-            <input value={false} checked={typeof userData.drinkingPreference === 'boolean' && !userData.drinkingPreference} type='radio'
+            <input value={false} checked={typeof userData?.drinkingPreference === 'boolean' && !userData?.drinkingPreference} type='radio'
             name='drinkingPref' onChange={(e) => setUserData({...userData, drinkingPreference: false})}
             /> No, I don't want them to drink any alcohol
             <br/>
-            <input value={null} checked={userData.drinkingPreference === null} type='radio'
+            <input value={null} checked={userData?.drinkingPreference === null} type='radio'
             name='drinkingPref' onChange={(e) => setUserData({...userData, drinkingPreference: null})}
             /> No real preference
           </div>
           <div>
             <label htmlFor='partner-priority'>Prioritizes</label>
-            <select value={userData.priorityPreference || 'unselected'} onChange={(e) => setUserData({...userData, priorityPreference: e.target.value})}>
+            <select value={userData?.priorityPreference || 'unselected'} onChange={(e) => setUserData({...userData, priorityPreference: e.target.value})}>
               <option value='unselected'>Unsure/Don't Care</option>
               <option value='Family'>Family</option>
               <option value='Friends'>Friends</option>
@@ -323,11 +323,11 @@ export default function EditUserProfile({ session }) {
           </div>
           <div>
             <label>Match by Love Languages?</label>
-            <input value={true} checked={userData.matchByLL} type='radio' name="matchLL"
+            <input value={true} checked={userData?.matchByLL} type='radio' name="matchLL"
             onChange={(e) => setUserData({...userData, matchByLL: true})}
             /> Yes, this is important to me
             <br/>
-            <input value={false} checked={!userData.matchByLL} type='radio' name="matchLL"
+            <input value={false} checked={!userData?.matchByLL} type='radio' name="matchLL"
             onChange={(e) => setUserData({...userData, matchByLL: false})}
             /> No, I don't mind a mismatch
           </div>

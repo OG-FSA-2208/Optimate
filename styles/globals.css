@@ -418,10 +418,10 @@ textarea.form-input {
   border: 5px black solid;
   border-radius: 50%;
 }
-#editToggle.button.block {
+.editToggle.button.block {
   width: fit-content;
 }
-#editToggle > div {
+.editToggle > div {
   display: flex;
   align-items: center;
   font-size: 15px;

@@ -24,23 +24,23 @@ export default function ViewUserProfile() {
         'Loading Profile...'
       ) : (
         <div>
-          <img src={userData.avatar_url} height="250px" />
+          <img src={userData?.avatar_url} height="250px" />
           <p>
-            Full name: {userData.firstname} {userData.lastname}
+            Full name: {userData?.firstname || '(no name)'} {userData?.lastname}
           </p>
-          <p>Age: {userData.age}</p>
-          <p>Gender: {userData.gender}</p>
-          <p>About: {userData.about}</p>
-          <p>Location: {userData.location}</p>
-          <p>Occupation: {userData.occupation}</p>
-          <p>Smokes? {userData.smoker ? 'Yes' : 'No'}</p>
-          <p>Drinks? {userData.drinker ? 'Yes' : 'No'}</p>
-          <p>Priority: {userData.priority}</p>
-          <p>Love Language (giving): {userData.loveLangGiving}</p>
-          <p>Love Language (receiving): {userData.loveLangReceiving}</p>
+          <p>Age: {userData?.age || '(no age)'}</p>
+          <p>Gender: {userData?.gender || 'unselected'}</p>
+          <p>About: {userData?.about}</p>
+          <p>Location: {userData?.location}</p>
+          <p>Occupation: {userData?.occupation}</p>
+          <p>Smokes? {userData?.smoker ? 'Yes' : 'No'}</p>
+          <p>Drinks? {userData?.drinker ? 'Yes' : 'No'}</p>
+          <p>Priority: {userData?.priority}</p>
+          <p>Love Language (giving): {userData?.loveLangGiving}</p>
+          <p>Love Language (receiving): {userData?.loveLangReceiving}</p>
           <p>Your Interests:</p>
           <p>
-            {userData.user_interests?.map((tag) => tag.label).join(', ')}
+            {userData?.user_interests?.map((tag) => tag.label).join(', ')}
           </p>
         </div>
       )}
