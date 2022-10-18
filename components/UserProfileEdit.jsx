@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { default as ReactSelect } from 'react-select';
+import FileUploadSharpIcon from '@mui/icons-material/FileUploadSharp';
+import supabase from '../config/supabaseClient';
 import { updateUser } from '../store/reducers/userSlice';
 import { getLoggedInUser } from '../store/reducers/profileSlice';
-import { useSelector } from 'react-redux';
-import supabase from '../config/supabaseClient';
-import { getInterestTypes } from '../store/reducers/surveySlice';
+import { getInterestTypes, uploadAvatar } from '../store/reducers/surveySlice';
 import Option from './Option';
 import UserPhoto from './UserPhoto';
-import FileUploadSharpIcon from '@mui/icons-material/FileUploadSharp';
-import { default as ReactSelect } from 'react-select';
 
-export default function EditUserProfile({ session }) {
+export default function EditUserProfile() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [updated, setUpdated] = useState(false);  // state that shows whether or not a user's info has been successfully updated
   // object that contains all of the user's profile info
   const [userData, setUserData] = useState(useSelector((state) => state.profile));
-  const interestTags = useSelector(state => state.survey);
+  const interestTags = useSelector(state => state.survey.tags);
+  const user_avatar = useSelector(state => state.survey.avatar_url)
 
   useEffect(() => {
     // dispatching so that userData can grab the profile of the current user
@@ -25,12 +25,11 @@ export default function EditUserProfile({ session }) {
     setLoading(false);
   }, [dispatch]);
 
-  useEffect(() => {
-    // this useEffect is so the updated profile image shows in the editing view
-    // >> does not update it on the server end yet!
-  }, [userData])
+  useEffect(() =>{
+    setUserData({...userData, avatar_url: user_avatar});
+  }, [user_avatar])
   
-  async function updateProfile(data) {
+  async function updateProfile() {
     try {
       setLoading(true);
       if (userData?.about?.length > 250) {
@@ -48,7 +47,7 @@ export default function EditUserProfile({ session }) {
       } else if (!userData?.avatar_url) {
         throw new Error(`Please provide a profile image`);
       }
-      dispatch(updateUser(data, data.id));
+      dispatch(updateUser(userData, userData.id));
       setUpdated(true);
       setTimeout(() => setUpdated(false), 8000);  // this isn't working quite correctly yet
     } catch (error) {
@@ -60,24 +59,7 @@ export default function EditUserProfile({ session }) {
 
   async function handleAvatarUpload(e) {
     const avatarFile = e.target.files[0];
-    // caching issue happens here!!!
-    // await supabase.storage.from('avatars').remove([`${userData?.firstname}_avatar`]);
-    // const {data} = await supabase.storage.from('avatars')
-    //   .upload(`${userData?.firstname}_avatar`, avatarFile, {upsert: true})
-    // const { publicURL, imgError } = await supabase
-    //   .storage
-    //   .from('avatars')
-    //   .getPublicUrl(`${userData?.firstname}_avatar`);
-
-    // backup plan...
-    const {data} = await supabase.storage.from('avatars')
-        .upload(`${userData?.id}_${avatarFile.name}`, avatarFile, {upsert: true});
-    const { publicURL, imgError } = await supabase
-      .storage
-      .from('avatars')
-      .getPublicUrl(`${userData?.id}_${avatarFile.name}`);
-
-    setUserData({...userData, avatar_url: publicURL});
+    dispatch(uploadAvatar(avatarFile, userData));
   }
 
   async function handleImageUpload(e) {
@@ -351,7 +333,7 @@ export default function EditUserProfile({ session }) {
       <div>
         <button
           className="button primary block"
-          onClick={() => updateProfile(userData)}
+          onClick={() => updateProfile()}
           disabled={loading} id='save-profile'
         >
           {loading ? 'Loading ...' : 'Save Profile'}
