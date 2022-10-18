@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { userAgent } from 'next/server'; // WHO PUT THIS IN HERE AND WHAT IS THIS???
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
+import Head from 'next/head';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -20,6 +21,9 @@ export default function Profile() {
 
   return (
     <div>
+      <Head>
+          <title>Optimate</title>
+      </Head>
       {highlight.id ? (
         <div>
           <Link

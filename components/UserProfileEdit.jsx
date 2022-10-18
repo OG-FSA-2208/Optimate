@@ -167,7 +167,7 @@ export default function EditUserProfile({ session }) {
       </div>
       <hr/>
       {/* THIS IS WHERE OPTIONAL IMAGE UPLOADING/DELETING GOES */}
-      <h2>Upload up to (4) four additional photos</h2>
+      <h2>Upload up to (4) four additional photos (.png, .jpg types)</h2>
       <i>if adding/removing photos, remember to save your new profile</i>
       <div id='optionalPhotoUploads'>
         {userData?.user_photos?.map((photoURL, ind) =>
@@ -181,7 +181,7 @@ export default function EditUserProfile({ session }) {
           <input
             id={`uploadSlot_${ind}`}
             type="file" multiple
-            accept="image/*"
+            accept="image/png, image/jpeg, image/jpg,"
             onChange={handleImageUpload}
           />
         </div>)
