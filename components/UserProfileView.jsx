@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Router from 'next/router';
 import { logoutUser } from '../store/reducers/userSlice';
-import { getLoggedInUser } from '../store/reducers/profileSlice';
+import { getLoggedInUser, getUser } from '../store/reducers/profileSlice';
 import { useSelector } from 'react-redux';
+import supabase from '../config/supabaseClient';
 
 // component of UserProfile meant to ONLY VIEW their info, not editing
 export default function ViewUserProfile() {
@@ -11,6 +12,28 @@ export default function ViewUserProfile() {
   const [loading, setLoading] = useState(true);
   // object that contains all of the user's profile info
   const userData = useSelector((state) => state.profile);
+
+  console.log(userData)
+
+  const updateUserLocation = async () => {
+    const successCallback = async (position) => {
+      let userLong = await position.coords.longitude;
+      let userLat = await position.coords.latitude;
+
+      const { error } = await supabase
+        .from('profiles')
+        .update({ longitude: userLong }, { latitude: userLat })
+        .eq('id', userData?.id);
+
+      if (error) {
+        console.log(error);
+      }
+    };
+    const errorCallback = (error) => {
+      console.log(error);
+    };
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+  };
 
   useEffect(() => {
     // dispatching so that userData can grab the profile of the current user
@@ -24,6 +47,7 @@ export default function ViewUserProfile() {
         'Loading Profile...'
       ) : (
         <div>
+          <button onClick={updateUserLocation}>Update Location</button>
           <img src={userData?.avatar_url} height="250px" />
           <p>
             Full name: {userData?.firstname || '(no name)'} {userData?.lastname}
@@ -39,9 +63,7 @@ export default function ViewUserProfile() {
           <p>Love Language (giving): {userData?.loveLangGiving}</p>
           <p>Love Language (receiving): {userData?.loveLangReceiving}</p>
           <p>Your Interests:</p>
-          <p>
-            {userData?.user_interests?.map((tag) => tag.label).join(', ')}
-          </p>
+          <p>{userData?.user_interests?.map((tag) => tag.label).join(', ')}</p>
         </div>
       )}
       <div>
