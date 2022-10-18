@@ -345,6 +345,19 @@ textarea.form-input {
   font-size: 1.4em;
   right: 0;
 }
+.pushPin {
+  cursor: pointer;
+  position: absolute;
+  display: inline-block;
+  margin: -5px;
+  padding: -10px -10px;
+}
+.pushPin.clicked {
+  cursor: pointer;
+  position: absolute;
+  color: #f45d6a;
+  display: inline-block;
+}
 .media-scroller {
   margin: 4px, 4px;
   padding: 2em 0;
@@ -722,6 +735,13 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   font-size: 0.9rem;
   background-color: #fba1ae;
   margin-left: 10px;
+}
+.react-chatbot-kit-chat-container {
+  position: relative;
+  width: 900px;
+}
+.react-chatbot-kit-chat-inner-container {
+  height: 600px;
 }
 * {
   margin: 0;

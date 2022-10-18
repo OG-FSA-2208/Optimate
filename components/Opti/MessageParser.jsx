@@ -9,23 +9,34 @@ const MessageParser = ({ children, actions }) => {
   useEffect(() => {
     dispatch(getAllUserMatches());
   }, []);
+
+  const words = [
+    'harass',
+    'harassed',
+    'harassing',
+    'inappropriate',
+    'condescending',
+    'stalked',
+    'stalk',
+    'manipulated',
+    'manipulative',
+    'revenge',
+    'crazy',
+    'scary',
+  ];
+
   const parse = (message) => {
-    if (message.includes('hello') || message.includes('Hello')) {
-      actions.handleHello();
-    }
     if (message.includes('report') || message.includes('block')) {
       actions.handleReport();
     }
-    if (
-      message.includes('harass') ||
-      message.includes('harassed') ||
-      message.includes('harassing') ||
-      message.includes('inappropriate') ||
-      message.includes('condescending') ||
-      message.includes('ghosted')
-    ) {
-      actions.handleHarassment();
-    }
+
+    words.map((word) => {
+      if (message.includes(word)) {
+        actions.handleHarassment();
+        return;
+      }
+    });
+
     matches.map((match) => {
       if (
         message.includes(match.firstname) &&
@@ -34,6 +45,7 @@ const MessageParser = ({ children, actions }) => {
         actions.handleMatch();
       }
     });
+
     if (message.includes('thank you') || message.includes('Thank you')) {
       actions.handleEndOfConvo();
     }
