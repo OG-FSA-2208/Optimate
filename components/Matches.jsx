@@ -10,8 +10,30 @@ export default function Matches() {
   const router = useRouter();
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
+  const currUser = useSelector((state) => state.profile);
   const messages = useSelector((state) => state.messenger.messages);
   //TODO: update badge when user clicks on a chat, during dispatch clickMessages?
+
+  //calculate distance between two lats and longs
+  function calcCrow(lat1, lon1, lat2, lon2) {
+    var R = 3961; // radius of earth in miles
+    var dLat = toRad(lat2 - lat1);
+    var dLon = toRad(lon2 - lon1);
+    var lat1 = toRad(lat1);
+    var lat2 = toRad(lat2);
+
+    var a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c;
+    return d;
+  }
+
+  // Converts numeric degrees to radians
+  function toRad(Value) {
+    return (Value * Math.PI) / 180;
+  }
 
   useEffect(() => {
     //TODO: is this still neeeded?
@@ -23,6 +45,14 @@ export default function Matches() {
       <h1>MATCHES</h1>
       {matches.map((user) => (
         <div key={user.id}>
+          <h2>
+            {calcCrow(
+              Number(currUser.latitude),
+              Number(currUser.longitude),
+              Number(user.latitude),
+              Number(user.longitude)
+            )}{' '}
+          </h2>
           <Link href={`/messages/${user.id}`}>
             <a
               className={`match ${
