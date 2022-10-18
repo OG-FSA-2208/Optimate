@@ -6,7 +6,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import { motion, AnimatePresence } from 'framer-motion';
 
-
 // this component only toggles between displaying the view/edit components for UserProfile
 export default function UserProfile({ session }) {
   const [editing, setEditing] = useState(false); // state that determines whether user is viewing or editing their info
@@ -16,7 +15,6 @@ export default function UserProfile({ session }) {
   };
 
   return (
-
     <motion.div
       className="form-widget"
       animate={{ x: 75 }}
@@ -27,6 +25,7 @@ export default function UserProfile({ session }) {
         <button
           className="button block"
           id="editToggle"
+          // style={{ width: '350px' }}
           onClick={() => toggleEdit()}
         >
           {editing ? (
@@ -45,6 +44,5 @@ export default function UserProfile({ session }) {
         {editing ? <UserProfileEdit /> : <UserProfileView />}
       </div>
     </motion.div>
-
   );
 }
