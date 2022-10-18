@@ -736,12 +736,27 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   background-color: #fba1ae;
   margin-left: 10px;
 }
-.react-chatbot-kit-chat-container {
+#bottie .react-chatbot-kit-chat-container {
   position: relative;
-  width: 900px;
+  width: 500px;
+  height: 800px;
 }
-.react-chatbot-kit-chat-inner-container {
+#bottie .react-chatbot-kit-chat-inner-container {
+  height: 770px;
+  border: solid #fba1ae;
+}
+#bottie .react-chatbot-kit-chat-input {
+  margin-top: 150px;
+  border: 3px solid #fba1ae;
+}
+#bottie .react-chatbot-kit-chat-message-container {
   height: 600px;
+  border-bottom: solid #fba1ae;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.FAQ {
+  font-size: 1.3em;
 }
 * {
   margin: 0;

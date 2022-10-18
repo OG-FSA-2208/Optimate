@@ -1,0 +1,34 @@
+.chat-bot-avatar-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  background-color: rgb(251, 161, 174);
+  /* color: rgb(113, 113, 113); */
+  margin-right: 10px;
+}
+
+.user-avatar-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  background-color: rgb(251, 161, 174);
+  /* color: rgb(113, 113, 113); */
+  margin-left: 10px;
+}
+
+.react-chatbot-kit-chat-container {
+  position: relative;
+  width: 900px;
+}
+
+.react-chatbot-kit-chat-inner-container {
+  height: 600px;
+}

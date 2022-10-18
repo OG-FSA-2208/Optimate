@@ -12,43 +12,40 @@ const MessageParser = ({ children, actions }) => {
 
   const words = [
     'harass',
-    'harassed',
-    'harassing',
     'inappropriate',
     'condescending',
-    'stalked',
     'stalk',
     'manipulated',
     'manipulative',
     'revenge',
     'crazy',
     'scary',
+    'kill',
   ];
 
   const parse = (message) => {
     if (message.includes('report') || message.includes('block')) {
-      actions.handleReport();
+      return actions.handleReport();
     }
 
     words.map((word) => {
       if (message.includes(word)) {
-        actions.handleHarassment();
-        return;
+        return actions.handleHarassment();
       }
     });
-
     matches.map((match) => {
       if (
         message.includes(match.firstname) &&
         message.includes(match.lastname)
       ) {
-        actions.handleMatch();
+        return actions.handleMatch();
       }
     });
 
     if (message.includes('thank you') || message.includes('Thank you')) {
-      actions.handleEndOfConvo();
+      return actions.handleEndOfConvo();
     }
+    return actions.handleFAQ();
   };
 
   return (
