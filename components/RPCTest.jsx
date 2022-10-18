@@ -34,7 +34,7 @@ export default function RPCTest() {
     <div>
       <p className="timer">{}</p>
       <button className="button" onClick={rpcfunction}>
-        find match {timer}
+        Find Match {timer == 0 ? 'now' : `in ${timer} seconds`}
       </button>
     </div>
   );
