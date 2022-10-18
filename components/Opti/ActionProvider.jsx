@@ -1,14 +1,6 @@
 import React from 'react';
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
-  const handleHello = () => {
-    const botMessage = createChatBotMessage('Hello back at you ;)');
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }));
-  };
   const handleReport = () => {
     const botMessage = createChatBotMessage('Would you please tell us more?');
 
@@ -50,16 +42,27 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   };
 
+  const handleFAQ = () => {
+    const botMessage = createChatBotMessage(
+      'Please check out our FAQ page below'
+    );
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }));
+  };
+
   return (
     <div>
       {React.Children.map(children, (child) => {
         return React.cloneElement(child, {
           actions: {
-            handleHello,
             handleReport,
             handleHarassment,
             handleMatch,
             handleEndOfConvo,
+            handleFAQ,
           },
         });
       })}

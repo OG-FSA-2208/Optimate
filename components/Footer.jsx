@@ -9,7 +9,12 @@ const Footer = () => {
             <a>Help Center</a>
           </Link>
         </li>
-        <li>© 2022 ZECC-W</li>
+        <li>
+          <Link href="/user/faq">
+            <a style={{ color: 'black' }}>© 2022 ZECC-W</a>
+          </Link>
+        </li>
+        {/* <li>© 2022 ZECC-W</li> */}
         <li>
           <a target="_blank" href="https://github.com/OG-FSA-2208/Optimate">
             Github
