@@ -6,6 +6,7 @@ import PushPinIcon from '@mui/icons-material/PushPin';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { userAgent } from 'next/server'; // WHO PUT THIS IN HERE AND WHAT IS THIS???
+import GetMatchesButton from '../../components/GetMatchesButton';
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
 
 export default function Profile() {
@@ -29,6 +30,7 @@ export default function Profile() {
 
   return (
     <div>
+      <GetMatchesButton highlight={highlight} setHighlight={setHighlight} />
       {highlight.id ? (
         <div>
           <Link
