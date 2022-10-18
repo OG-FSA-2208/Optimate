@@ -18,6 +18,10 @@ const surveySlice = createSlice({
     setImages: (state, action) => {
       state = {...state, user_photos: action.payload};
       return state;
+    },
+    clearSurvey: (state, action) => {
+      state = {};
+      return state;
     }
   },
 });
@@ -68,3 +72,5 @@ export const uploadImages = (imageFiles, userData) => async (dispatch) => {
   });
   dispatch(setImages([...userData.user_photos, ...(await Promise.all(imgURLs))]));
 }
+
+export const { clearSurvey } = surveySlice.actions;

@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { default as ReactSelect } from 'react-select';
 import FileUploadSharpIcon from '@mui/icons-material/FileUploadSharp';
-import supabase from '../config/supabaseClient';
 import { updateUser } from '../store/reducers/userSlice';
 import { getLoggedInUser } from '../store/reducers/profileSlice';
-import { getInterestTypes, uploadAvatar, uploadImages } from '../store/reducers/surveySlice';
+import { clearSurvey, getInterestTypes, uploadAvatar, uploadImages } from '../store/reducers/surveySlice';
 import Option from './Option';
 import UserPhoto from './UserPhoto';
 
@@ -21,6 +20,7 @@ export default function EditUserProfile() {
 
   useEffect(() => {
     // dispatching so that userData can grab the profile of the current user
+    dispatch(clearSurvey());  // clears the store so if there was unsaved uploaded data previously, it gets wiped
     dispatch(getInterestTypes());
     dispatch(getLoggedInUser());
     setLoading(false);
