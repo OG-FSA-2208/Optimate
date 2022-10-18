@@ -44,14 +44,6 @@ export default function ViewUserProfile() {
           </p>
         </div>
       )}
-      <div>
-        <button
-          className="button block"
-          onClick={() => dispatch(logoutUser(Router))}
-        >
-          Sign Out
-        </button>
-      </div>
     </div>
   );
 }
