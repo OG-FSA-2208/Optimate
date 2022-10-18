@@ -35,6 +35,18 @@ export default function EditUserProfile({ session }) {
       setLoading(true);
       if (userData?.about?.length > 250) {
         throw new Error(`'About You' section is ${userData?.about.length - 250} character(s) over limit. Please adjust the length and try again`);
+      } else if (userData?.age < 18) {
+        throw new Error(`The age you have provided seems to be a little low. We would like to discourage you from further use of this app`);
+      } else if (!userData?.firstname) {
+        throw new Error(`Please provide your first name`);
+      } else if (!userData?.lastname) {
+        throw new Error(`Please provide your last name`);
+      } else if (!userData?.age) {
+        throw new Error(`Please provide your age`);
+      } else if (!userData?.gender) {
+        throw new Error(`Please provide your gender`);
+      } else if (!userData?.avatar_url) {
+        throw new Error(`Please provide a profile image`);
       }
       dispatch(updateUser(data, data.id));
       setUpdated(true);
