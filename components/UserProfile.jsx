@@ -3,7 +3,9 @@ import UserProfileView from './UserProfileView';
 import UserProfileEdit from './UserProfileEdit';
 import EditIcon from '@mui/icons-material/Edit';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 import { motion, AnimatePresence } from 'framer-motion';
+
 
 // this component only toggles between displaying the view/edit components for UserProfile
 export default function UserProfile({ session }) {
@@ -14,6 +16,7 @@ export default function UserProfile({ session }) {
   };
 
   return (
+
     <motion.div
       className="form-widget"
       animate={{ x: 75 }}
@@ -42,5 +45,6 @@ export default function UserProfile({ session }) {
         {editing ? <UserProfileEdit /> : <UserProfileView />}
       </div>
     </motion.div>
+
   );
 }

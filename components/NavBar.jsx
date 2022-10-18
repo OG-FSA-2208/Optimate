@@ -97,8 +97,8 @@ export default function NavBar() {
               </Badge>
             </li>
             <li>
-              <Link href="/user/settings">
-                <a>Setting</a>
+              <Link href="/user/profile">
+                <a>Account</a>
               </Link>
             </li>
             <li>
