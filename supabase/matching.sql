@@ -1,11 +1,8 @@
-drop function if exists testfunc();
-CREATE or REPLACE function testfunc() 
--- returns setof profiles
-returns void
+drop function if exists new_match();
+CREATE or REPLACE function new_match() 
+returns uuid
 language sql
 as $$
-INSERT INTO matches2 (id, id2)
-VALUES (auth.uid(),(
 SELECT id from profiles
 where 
   status = 'Single' 
@@ -66,9 +63,16 @@ where
   AND
     auth.uid() NOT in (select id2 from matches2 m where m.id = profiles.id)
   AND id <> auth.uid()
+  AND
+    (select 
+    (select timezone('America/New_York',
+      (select created_at from matches2 m ORDER BY created_at DESC limit 1
+      ))
+    ) 
+    < 
+    (select timezone('America/New_York', now())::DATE)
+    )
   ORDER BY RANDOM()  
   LIMIT 1  
-  )
-  )
   ;
 $$;
