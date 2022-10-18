@@ -50,6 +50,7 @@ export default function EditUserProfile({ session }) {
       }
       dispatch(updateUser(data, data.id));
       setUpdated(true);
+      setTimeout(() => setUpdated(false), 8000);  // this isn't working quite correctly yet
     } catch (error) {
       alert(error.message);
     } finally {
