@@ -419,8 +419,8 @@ textarea.form-input {
   border: 5px black solid;
   border-radius: 50%;
 }
-.editToggle.button.block {
-  width: fit-content;
+.button.block {
+  width: 300px;
 }
 .editToggle > div {
   display: flex;
@@ -731,7 +731,7 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   align-items: center;
   font-size: 0.9rem;
   background-color: #fba1ae;
-  margin-right: 10px;
+  margin-right: 0px;
 }
 .user-avatar-icon {
   width: 40px;
@@ -742,7 +742,7 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   align-items: center;
   font-size: 0.9rem;
   background-color: #fba1ae;
-  margin-left: 10px;
+  margin-left: 15px;
 }
 #bottie .react-chatbot-kit-chat-container {
   position: relative;
@@ -762,6 +762,9 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   border-bottom: solid #fba1ae;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+#bottie .react-chatbot-kit-chat-bot-message-container {
+  margin-right: 185px;
 }
 .FAQ {
   font-size: 1.3em;
