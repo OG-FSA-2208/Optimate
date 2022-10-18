@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import supabase from '../../config/supabaseClient';
 
+
+
 const surveySlice = createSlice({
   name: 'userProfileEdit',
   initialState: {},
@@ -13,6 +15,10 @@ const surveySlice = createSlice({
       state = {...state, avatar_url: action.payload};
       return state;
     },
+    setImages: (state, action) => {
+      state = {...state, user_photos: action.payload};
+      return state;
+    }
   },
 });
 
@@ -47,4 +53,18 @@ export const uploadAvatar = (avatarFile, userData) => async (dispatch) => {
     .getPublicUrl(`${userData?.id}_${avatarFile.name}`);
 
   dispatch(setAvatarURL(publicURL));
+}
+
+export const { setImages } = surveySlice.actions;
+export const uploadImages = (imageFiles, userData) => async (dispatch) => {
+  const imgURLs = imageFiles.map(async img => {
+    const imgdata = (await supabase.storage.from('avatars')
+      .upload(`${userData?.id}_${img.name}`, img, {upsert: true})).data;
+    const { publicURL, imgError } = await supabase
+      .storage
+      .from('avatars')
+      .getPublicUrl(`${userData?.id}_${img.name}`);
+    return publicURL
+  });
+  dispatch(setImages([...userData.user_photos, ...(await Promise.all(imgURLs))]));
 }

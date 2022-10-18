@@ -5,7 +5,7 @@ import FileUploadSharpIcon from '@mui/icons-material/FileUploadSharp';
 import supabase from '../config/supabaseClient';
 import { updateUser } from '../store/reducers/userSlice';
 import { getLoggedInUser } from '../store/reducers/profileSlice';
-import { getInterestTypes, uploadAvatar } from '../store/reducers/surveySlice';
+import { getInterestTypes, uploadAvatar, uploadImages } from '../store/reducers/surveySlice';
 import Option from './Option';
 import UserPhoto from './UserPhoto';
 
@@ -16,7 +16,8 @@ export default function EditUserProfile() {
   // object that contains all of the user's profile info
   const [userData, setUserData] = useState(useSelector((state) => state.profile));
   const interestTags = useSelector(state => state.survey.tags);
-  const user_avatar = useSelector(state => state.survey.avatar_url)
+  const user_avatar = useSelector(state => state.survey.avatar_url || userData.avatar_url)
+  const user_photos = useSelector(state => state.survey.user_photos || userData.user_photos);
 
   useEffect(() => {
     // dispatching so that userData can grab the profile of the current user
@@ -26,8 +27,8 @@ export default function EditUserProfile() {
   }, [dispatch]);
 
   useEffect(() =>{
-    setUserData({...userData, avatar_url: user_avatar});
-  }, [user_avatar])
+    setUserData({...userData, avatar_url: user_avatar, user_photos});
+  }, [user_avatar, user_photos])
   
   async function updateProfile() {
     try {
@@ -63,23 +64,12 @@ export default function EditUserProfile() {
   }
 
   async function handleImageUpload(e) {
-    const imageFile = [...e.target.files];
-    if (imageFile.length + userData?.user_photos.length > 4) {
+    const imageFiles = [...e.target.files];
+    if (imageFiles.length + userData?.user_photos.length > 4) {
       alert(`Too many photos! You can only upload ${4 - userData?.user_photos.length} additional image(s)`);
       return;
     }
-
-    const imgURLs = imageFile.map(async img => {
-      const imgdata = (await supabase.storage.from('avatars')
-        .upload(`${userData?.id}_${img.name}`, img, {upsert: true})).data;
-      const { publicURL, imgError } = await supabase
-        .storage
-        .from('avatars')
-        .getPublicUrl(`${userData?.id}_${img.name}`);
-      return publicURL
-    });
-    // console.dir(await Promise.all(imgURLs));
-    setUserData({...userData, user_photos: [...userData?.user_photos, ...(await Promise.all(imgURLs))]});
+    dispatch(uploadImages(imageFiles, userData));
   }
 
   const handleChange = data => {
