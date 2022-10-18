@@ -11,7 +11,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   };
   const handleHarassment = () => {
     const botMessage = createChatBotMessage(
-      'I am sorry to hear. Please tell us the full name of the user and we will investigate.'
+      'I am sorry to hear. Please tell us the full name of the user and we will investigate. This will be confidential.'
     );
 
     setState((prev) => ({
@@ -25,6 +25,18 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       'We will look into it and handle it from here. We will remove the user from your match list. Please continue to let us know if there are any other issues.'
     );
 
+    setState((prev) => {
+      return {
+        ...prev,
+        messages: [...prev.messages, botMessage],
+      };
+    });
+  };
+
+  const handleName = (name) => {
+    const botMessage = createChatBotMessage(
+      `Can you provide ${name}'s full name?`
+    );
     setState((prev) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
@@ -36,6 +48,16 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
       'Hope you have an amazing rest of your day. Goodbye!'
     );
 
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }));
+  };
+
+  const handleEmptyString = () => {
+    const botMessage = createChatBotMessage(
+      'I`m sorry. I seem to have trouble understanding. Can you repeat what you just said?'
+    );
     setState((prev) => ({
       ...prev,
       messages: [...prev.messages, botMessage],
@@ -63,6 +85,8 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
             handleMatch,
             handleEndOfConvo,
             handleFAQ,
+            handleEmptyString,
+            handleName,
           },
         });
       })}

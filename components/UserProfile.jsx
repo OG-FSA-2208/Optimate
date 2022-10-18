@@ -25,6 +25,7 @@ export default function UserProfile({ session }) {
         <button
           className="button block"
           id="editToggle"
+          // style={{ width: '350px' }}
           onClick={() => toggleEdit()}
         >
           {editing ? (

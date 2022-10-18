@@ -24,28 +24,37 @@ const MessageParser = ({ children, actions }) => {
   ];
 
   const parse = (message) => {
+    let response = false;
     if (message.includes('report') || message.includes('block')) {
       return actions.handleReport();
     }
 
     words.map((word) => {
       if (message.includes(word)) {
+        response = true;
         return actions.handleHarassment();
       }
     });
+
     matches.map((match) => {
-      if (
-        message.includes(match.firstname) &&
-        message.includes(match.lastname)
-      ) {
-        return actions.handleMatch();
+      if (message.includes(match.firstname)) {
+        response = true;
+        if (message.includes(match.lastname)) {
+          return actions.handleMatch();
+        }
+        return actions.handleName(match.firstname);
       }
     });
 
     if (message.includes('thank you') || message.includes('Thank you')) {
       return actions.handleEndOfConvo();
     }
-    return actions.handleFAQ();
+    if (message === '') {
+      return actions.handleEmptyString();
+    }
+    if (!response) {
+      return actions.handleFAQ();
+    }
   };
 
   return (
