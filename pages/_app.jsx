@@ -29,13 +29,13 @@ function MyApp({ Component, pageProps }) {
                 opacity: 1,
                 clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0% 100%',
                 transition: {
-                  duration: 0.5,
+                  duration: 0.45,
                 },
               },
               exitState: {
                 clipPath: 'polygon(50% 0, 50% 0%, 50% 100%, 50% 100%',
                 transition: {
-                  duration: 0.5,
+                  duration: 0.45,
                 },
               },
             }}
