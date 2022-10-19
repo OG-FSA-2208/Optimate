@@ -4,10 +4,10 @@ import UserProfileEdit from './UserProfileEdit';
 import EditIcon from '@mui/icons-material/Edit';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 // this component only toggles between displaying the view/edit components for UserProfile
-export default function UserProfile({ session }) {
+export default function UserProfile() {
   const [editing, setEditing] = useState(false); // state that determines whether user is viewing or editing their info
 
   const toggleEdit = (e) => {
@@ -25,7 +25,6 @@ export default function UserProfile({ session }) {
         <button
           className="button block"
           id="editToggle"
-          // style={{ width: '350px' }}
           onClick={() => toggleEdit()}
         >
           {editing ? (

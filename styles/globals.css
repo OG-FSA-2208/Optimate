@@ -325,10 +325,6 @@ textarea.form-input {
 .matches.active ion-icon {
   color: #de55c5;
 }
-/* .matchesAboutMe {
-  overflow-wrap: break-word;
-  hyphens: manual;
-} */
 .icon {
   position: absolute;
   bottom: 0;
@@ -348,14 +344,17 @@ textarea.form-input {
 }
 .pushPin {
   cursor: pointer;
-  position: absolute;
+  position: relative;
+  top: -310px;
+  left: 25px;
   display: inline-block;
   margin: -5px;
   padding: -10px -10px;
+  z-index: 10;
 }
 .pushPin.clicked {
   cursor: pointer;
-  position: absolute;
+  position: relative;
   color: #f45d6a;
   display: inline-block;
 }
@@ -629,9 +628,8 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   margin-right: 1vw;
   border: 10px solid #48a9a6;
   background-color: #fbfaf8;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
-  white-space: nowrap;
 }
 .match-list h1 {
   text-align: center;
@@ -643,8 +641,8 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   padding: 20px;
 }
 .match-list .matchPic {
-  max-height: 150px;
-  max-width: 150px;
+  height: 150px;
+  width: 150px;
   border-radius: 50%;
 }
 .active-match {
@@ -657,12 +655,6 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   width: 70vw;
   margin-left: 1vw;
   border: 10px solid #48a9a6;
-  visibility: hidden;
-}
-@media screen and (max-width: 768) {
-  .chatMessageBox {
-    display: none;
-  }
 }
 .chatroom {
   height: 76vh;
@@ -754,8 +746,10 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   border: solid #fba1ae;
 }
 #bottie .react-chatbot-kit-chat-input {
-  margin-top: 150px;
+  font-size: 1rem;
   border: 3px solid #fba1ae;
+  border-bottom-left-radius: 5px;
+  width: 100%;
 }
 #bottie .react-chatbot-kit-chat-message-container {
   height: 600px;
@@ -765,6 +759,15 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
 }
 #bottie .react-chatbot-kit-chat-bot-message-container {
   margin-right: 185px;
+}
+#bottie .react-chatbot-kit-chat-btn-send {
+  width: 100px;
+  border-bottom-right-radius: 5px;
+}
+#bottie .react-chatbot-kit-chat-btn-send-icon {
+  fill: #fff;
+  width: 15px;
+  margin: 0 auto;
 }
 .FAQ {
   font-size: 1.3em;
