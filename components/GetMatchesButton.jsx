@@ -68,7 +68,7 @@ export default function GetMatchesButton({ highlight, setHighlight }) {
     }
   };
   return (
-    <div id="getMatches">
+    <div className="getMatches">
       {matchSuccess && <span>{matchSuccess}</span>}
       <p>Get a new match daily</p>
       <p className="timer">{display}</p>
