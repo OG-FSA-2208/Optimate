@@ -121,36 +121,36 @@ export default function ViewUserProfile() {
             </div>
             <div className="profile-preference">
               <h2>Partner Preferences</h2>
-          <div>
-            <h3>Looking for ages:</h3>
-            <p>{userData.ageMin ? userData.ageMin : 'N/A'} - {userData.ageMax ? userData.ageMax : 'N/A'}</p>
+              <div>
+                <h3>Looking for ages:</h3>
+                <p>{userData.ageMin ? userData.ageMin : 'N/A'} - {userData.ageMax ? userData.ageMax : 'N/A'}</p>
+              </div>
+              <div>
+                <h3>Preferred gender</h3>
+                <p>{userData?.genderPreference ? userData.genderPreference : 'No gender preference'}</p>
+              </div>
+              <div>
+                <h3>Smokes?</h3>
+                <p>{typeof userData?.smokingPreference !== 'boolean' ? 'No real preference'
+                  : userData?.smokingPreference ? 'Yes, I want them to be a smoker' : `No, I don't want them to be a smoker`}
+                </p>
+              </div>
+              <div>
+                <h3>Drinks?</h3>
+                <p>{typeof userData?.drinkingPreference !== 'boolean' ? 'No real preference'
+                  : userData?.drinkingPreference ? 'Yes, I want them to be a drinker' : `No, I don't want them to be a drinker`}
+                </p>
+              </div>
+              <div>
+                <h3>Prioritizes</h3>
+                <p>{userData?.priorityPreference || 'Partner priority is unimportant to me'}</p>
+              </div>
+              <div>
+                <h3>Match by Love Languages?</h3>
+                <p>{userData?.matchByLL ? 'Yes, this is important to me' : `No, I don't mind a mismatch`}</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <h3 htmlFor="wanted-gender">Preferred gender</h3>
-            <p>{userData?.genderPreference ? userData.genderPreference : 'No gender preference'}</p>
-          </div>
-          <div>
-            <h3>Smokes?</h3>
-            <p>{typeof userData?.smokingPreference !== 'boolean' ? 'No real preference'
-              : userData?.smokingPreference ? 'Yes, I want them to be a smoker' : `No, I don't want them to be a smoker`}
-            </p>
-          </div>
-          <div>
-            <h3>Drinks?</h3>
-            <p>{typeof userData?.drinkingPreference !== 'boolean' ? 'No real preference'
-              : userData?.drinkingPreference ? 'Yes, I want them to be a drinker' : `No, I don't want them to be a drinker`}
-            </p>
-          </div>
-          <div>
-            <h3>Prioritizes</h3>
-            <p>{userData?.priorityPreference || 'Partner priority is unimportant to me'}</p>
-          </div>
-          <div>
-            <h3>Match by Love Languages?</h3>
-            <p>{userData?.matchByLL ? 'Yes, this is important to me' : `No, I don't mind a mismatch`}</p>
-          </div>
-        </div>
-      </div>
         </div>
       )}
     </div>
