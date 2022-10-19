@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import supabase from '../../config/supabaseClient';
 
-//TODO: add number unread to store here?
 const messengerSlice = createSlice({
   name: 'messenger',
   initialState: {
@@ -15,7 +14,7 @@ const messengerSlice = createSlice({
 
       state.messages = state.messages.map((message) =>
         action.payload.data?.some((mes) => mes.id === message.id)
-          ? (message.read = true)
+          ? { ...message, read: true }
           : message
       );
     },
