@@ -54,7 +54,8 @@ export default function ViewUserProfile() {
         <div>
           <div id="profileEditAvatar">
             <div id="avatarSection">
-              <img src={userData?.avatar_url || ''} />
+              <img src={userData?.avatar_url || ''} alt={userData?.avatar_url ? `the user's profile image`
+              : `the user has not added a profile picture yet`}/>
             </div>
             <div>
               <h2>{(userData?.firstname || '') + ' ' + (userData?.lastname || '')}</h2>
