@@ -91,7 +91,9 @@ export default function UpdateUserAuth() {
   return (
     <div className="form-container">
       <form id="update-userauth-form">
-        <button><Link href="/user/profile">Return to Profile</Link></button>
+        <button>
+          <Link href="/user/profile">Return to Profile</Link>
+        </button>
         <div className="form-title">Update Login information</div>
         <div className="form-item">
           <label htmlFor="email" className="form-label">

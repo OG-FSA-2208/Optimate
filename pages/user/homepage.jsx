@@ -2,9 +2,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { getAllUserMatches } from '../../store/reducers/matchesSlice';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import PushPinIcon from '@mui/icons-material/PushPin';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { userAgent } from 'next/server'; // WHO PUT THIS IN HERE AND WHAT IS THIS???
+import GetMatchesButton from '../../components/GetMatchesButton';
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
 
 export default function Profile() {
@@ -12,14 +14,23 @@ export default function Profile() {
   const matches = useSelector((state) => state.matches);
   const profile = useSelector((state) => state.profile);
   const [highlight, setHighlight] = useState(profile);
+  const [pushPin, setPushPin] = useState({});
 
   useEffect(() => {
     dispatch(getAllUserMatches());
     dispatch(getLoggedInUser());
   }, []);
 
+  // const handleClick = (event) => {
+  //   console.log(event.target.classList.value);
+  //   event.target.classList.toggle('active');
+  //   console.log('hello');
+
+  // };
+
   return (
     <div>
+      <GetMatchesButton highlight={highlight} setHighlight={setHighlight} />
       {highlight.id ? (
         <div>
           <Link
@@ -27,6 +38,7 @@ export default function Profile() {
           >
             <motion.div
               className="myProfile"
+              key={highlight.id}
               whileHover={{
                 scale: 1.2,
               }}
@@ -38,14 +50,6 @@ export default function Profile() {
               whileTap={{
                 scale: 0.9,
               }}
-              animate={
-                {
-                  // x: 1300,
-                  // rotate: 360,
-                  // opacity: isAnimating ? 1 : 0.5,
-                  // scale: isAnimating ? 2 : 0,
-                }
-              }
             >
               <div>
                 <p>
@@ -85,50 +89,63 @@ export default function Profile() {
               </div>
             </motion.div>
           </Link>
+
           {/* </div> */}
           <div className="media-scroller">
             <div className="matchesForEachUser">
               {matches
                 ? matches.map((match) => {
                     return (
-                      <motion.div
-                        onClick={function (event) {
-                          setHighlight(match);
-                        }}
-                        className="matches"
-                        key={match.id}
-                        whileHover={{
-                          scale: 1.2,
-                        }}
-                        whileTap={{
-                          scale: 0.9,
-                        }}
-                        animate={
-                          {
-                            // x: 1300,
-                            // rotate: 360,
-                            // opacity: isAnimating ? 1 : 0.5,
-                            // scale: isAnimating ? 2 : 0,
+
+                      <span key={match.id}>
+                        <div
+                          onClick={() => {
+                            pushPin[match.id] === undefined
+                              ? setPushPin({ ...pushPin, [match.id]: true })
+                              : setPushPin({
+                                  ...pushPin,
+                                  [match.id]: !pushPin[match.id],
+                                });
+                          }}
+                          className={
+                            pushPin?.[match.id] ? 'pushPin clicked' : 'pushPin'
                           }
-                        }
-                      >
-                        <h3>
-                          {match.firstname} {match.lastname}
-                        </h3>
-                        <br />
-                        <p>
-                          <img
-                            className="matchesProfilePic"
-                            src={match.avatar_url}
-                            alt="Profile Pic"
+                        >
+                          <PushPinIcon
+                            style={{ width: '30px', height: '30px' }}
                           />
-                        </p>
-                        <p>Age: {match.age}</p>
-                        <p>Gender: {match.gender}</p>
-                        <div className="toggle">
-                          <OpenInNewIcon />
-                        </div>
-                      </motion.div>
+                        </span>
+                        <motion.div
+                          onClick={function (event) {
+                            setHighlight(match);
+                          }}
+                          className="matches"
+                          key={match.id}
+                          whileHover={{
+                            scale: 1.2,
+                          }}
+                          whileTap={{
+                            scale: 0.9,
+                          }}
+                        >
+                          <h3>
+                            {match.firstname} {match.lastname}
+                          </h3>
+                          <br />
+                          <p>
+                            <img
+                              className="matchesProfilePic"
+                              src={match.avatar_url}
+                              alt="Profile Pic"
+                            />
+                          </p>
+                          <p>Age: {match.age}</p>
+                          <p>Gender: {match.gender}</p>
+                          <div className="toggle">
+                            <OpenInNewIcon />
+                          </div>
+                        </motion.div>
+                      </span>
                     );
                   })
                 : 'Sorry, but you have 0 matches'}

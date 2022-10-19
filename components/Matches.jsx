@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { Badge } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllUserMatches } from '../store/reducers/matchesSlice';
-import { getMessages, clickMessages } from '../store/reducers/messengerSlice';
+import { clickMessages } from '../store/reducers/messengerSlice';
 
 export default function Matches() {
   const router = useRouter();
@@ -58,7 +58,7 @@ export default function Matches() {
               className={`match ${
                 router.query.id === user.id ? 'active-match' : ''
               }`}
-              onClick={() => dispatch(clickMessages(user.id))}
+              onClick={() => dispatch(clickMessages(user.id, messages))}
             >
               <Badge
                 color="primary"

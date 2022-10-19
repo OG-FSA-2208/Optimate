@@ -16,22 +16,27 @@
 .nav-links {
   display: flex;
   justify-content: space-around;
-}
+  li {
+    list-style: none;
+    margin: 1em;
+    a {
+      text-decoration: none;
+      font-weight: bold;
+      letter-spacing: 3px;
+      transition: 200ms;
+      color: @primary-text-color;
+      cursor: pointer;
 
-.nav-links li {
-  list-style: none;
-  margin: 1em;
-}
-.nav-links a {
-  text-decoration: none;
-  font-weight: bold;
-  letter-spacing: 3px;
-  transition: 200ms;
-  color: @primary-text-color;
-}
-
-.nav-links a:hover {
-  color: @accent-color;
+      &:hover {
+        color: @accent-color;
+      }
+      //  target messages badge
+    }
+    // span {
+    //   position: relative;
+    //   top: -1px;
+    // }
+  }
 }
 
 .nav-icon {
@@ -102,4 +107,3 @@
 .toggle-burger .line3 {
   transform: rotate(45deg) translate(-5px, -6px);
 }
-

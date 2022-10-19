@@ -1,4 +1,3 @@
-import EmailSignUp from '../../components/EmailSignIn';
 import { useState, useEffect } from 'react';
 import supabase from '../../config/supabaseClient';
 import UserProfile from '../../components/UserProfile';
@@ -9,7 +8,6 @@ export default function Profile() {
   const [session, setSession] = useState(null);
 
   useEffect(() => {
-    let mounted = true;
     async function getInitialSession() {
       setIsLoading(true);
       const session = await supabase.auth.session();
@@ -26,7 +24,8 @@ export default function Profile() {
       {!session ? (
         'please sign in'
       ) : (
-        <UserProfile key={session.user.id} session={session} />
+        <UserProfile key={session.user.id} />
+        //TODO: do we need to give this a key?
       )}
     </div>
   );
