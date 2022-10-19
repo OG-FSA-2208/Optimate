@@ -45,7 +45,7 @@ export default function Matches() {
       <h1>MATCHES</h1>
       {matches.map((user) => (
         <div key={user.id}>
-          <h2 className="distance">
+          <p className="distance">
             {Math.round(
               calcCrow(
                 Number(currUser.latitude),
@@ -55,7 +55,7 @@ export default function Matches() {
               )
             )}{' '}
             miles away
-          </h2>
+          </p>
           <Link href={`/messages/${user.id}`}>
             <a
               className={`match ${
