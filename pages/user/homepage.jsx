@@ -152,7 +152,12 @@ export default function Profile() {
                 : 'Sorry, but you have 0 matches'}
             </div>
           </div>
-          <GetMatchesButton highlight={highlight} setHighlight={setHighlight} />
+          <div className="matches-container">
+            <GetMatchesButton
+              highlight={highlight}
+              setHighlight={setHighlight}
+            />
+          </div>
         </div>
       ) : (
         <h2>Please log in</h2>
