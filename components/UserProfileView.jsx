@@ -13,17 +13,21 @@ export default function ViewUserProfile() {
   // object that contains all of the user's profile info
   const userData = useSelector((state) => state.profile);
 
-  console.log(userData)
+  console.log(userData);
 
   const updateUserLocation = async () => {
     const successCallback = async (position) => {
       let userLong = await position.coords.longitude;
       let userLat = await position.coords.latitude;
+      // console.log(userLong, userLat)
 
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from('profiles')
-        .update({ longitude: userLong }, { latitude: userLat })
-        .eq('id', userData?.id);
+        .update({ latitude: +userLat, longitude: userLong })
+        .eq('id', userData?.id)
+        .select();
+
+      console.log(data);
 
       if (error) {
         console.log(error);
