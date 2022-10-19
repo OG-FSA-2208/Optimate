@@ -1,6 +1,7 @@
 .messages {
   display: flex;
-  padding: 2vh;
+  margin: 2vh;
+  width: 95vw;
 }
 
 .column {
@@ -14,7 +15,7 @@ TODO: give fixed position on left side of screen, change view for tablet, hide o
 TODO: remove animation when switching from lh/messages -> lh/messages/[id]
 */
 .match-list {
-  width: 20vw;
+  flex: 1;
   margin-right: 1vw;
   border: 10px solid @secondary-color;
   background-color: @primary-color;
@@ -34,10 +35,10 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
     width: 150px;
     border-radius: 50%;
   }
-  // @media (max-width: 768) {
-  //   width: 1000px;
-  // }
-  // TODO: figure out why this isnt working lol
+  @media (max-width: 768px) {
+    display: hidden;
+    width: 80vw;
+  }
 }
 
 //active match is user that was clicked on on messages page
@@ -51,7 +52,7 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
 //**********RIGHT COLUMN**********
 //TODO: add a back button on mobile
 .chatMessageBox {
-  width: 70vw;
+  flex: 2;
   margin-left: 1vw;
   border: 10px solid @secondary-color;
 }

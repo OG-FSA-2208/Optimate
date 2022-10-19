@@ -245,6 +245,28 @@ textarea.form-input {
     transform: translate3d(4px, 0, 0);
   }
 }
+#homepage-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+}
+#homepage-container .matches-container {
+  position: absolute;
+  align-self: flex-start;
+  display: flex;
+  max-width: 300px;
+}
+@media screen and (max-width: 768px) {
+  #homepage-container .matches-container {
+    align-self: center;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 0.5em;
+  }
+}
 .myProfile {
   display: flex;
   cursor: pointer;
@@ -264,12 +286,6 @@ textarea.form-input {
     width: 80%;
     flex-direction: column;
   }
-}
-#homepage-container {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  align-items: center;
 }
 .myProfile > :nth-of-type(1) {
   text-align: center;
@@ -379,6 +395,25 @@ textarea.form-input {
 .distance {
   margin-bottom: -1em;
   color: #e5625e;
+}
+#getMatches {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid;
+  border-radius: 20px;
+  background: #f9f9f9;
+  padding: 0.5em;
+  background-color: rgba(72, 169, 166, 0.6);
+  color: #60495a;
+  text-align: center;
+}
+#getMatches .timer {
+  font-weight: bold;
+  align-self: center;
+}
+#getMatches .button {
+  margin: auto;
+  margin-top: 0.7em;
 }
 .landing {
   display: flex;
@@ -626,7 +661,8 @@ input[type="number"] {
 }
 .messages {
   display: flex;
-  padding: 2vh;
+  margin: 2vh;
+  width: 95vw;
 }
 .column {
   height: 81.9vh;
@@ -637,7 +673,7 @@ TODO: give fixed position on left side of screen, change view for tablet, hide o
 TODO: remove animation when switching from lh/messages -> lh/messages/[id]
 */
 .match-list {
-  width: 20vw;
+  flex: 1;
   margin-right: 1vw;
   border: 10px solid #48a9a6;
   background-color: #fbfaf8;
@@ -658,6 +694,12 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   width: 150px;
   border-radius: 50%;
 }
+@media (max-width: 768px) {
+  .match-list {
+    display: hidden;
+    width: 80vw;
+  }
+}
 .active-match {
   background-color: rgba(97, 177, 151, 0.25);
   border: solid 2px #61b197;
@@ -665,7 +707,7 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   margin: 5px;
 }
 .chatMessageBox {
-  width: 70vw;
+  flex: 2;
   margin-left: 1vw;
   border: 10px solid #48a9a6;
 }
@@ -784,22 +826,6 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
 }
 .FAQ {
   font-size: 1.3em;
-}
-#getMatches {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #48a9a6;
-  border-radius: 4px;
-  background: #f9f9f9;
-  max-width: 200px;
-  padding: 0.5em;
-}
-#getMatches .timer {
-  font-weight: bold;
-}
-#getMatches .button {
-  margin: auto;
-  margin-top: 0.7em;
 }
 .aboutUs h1 {
   font-size: 2.5em;
