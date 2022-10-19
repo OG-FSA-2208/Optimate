@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import supabase from '../../config/supabaseClient';
 import UserProfile from '../../components/UserProfile';
+import Head from 'next/head';
 
 export default function Profile() {
   // state/useEffect copy pasted from index.jsx, can probably refactor repeat code later on
@@ -21,6 +22,9 @@ export default function Profile() {
 
   return (
     <div>
+      <Head>
+          <title>Optimate | Profile</title>
+      </Head>
       {!session ? (
         'please sign in'
       ) : (

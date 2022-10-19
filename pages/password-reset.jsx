@@ -2,6 +2,8 @@ import supabase from '../config/supabaseClient';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
+
 export default function ResetPassword() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -32,6 +34,9 @@ export default function ResetPassword() {
 
   return (
     <form>
+      <Head>
+          <title>Optimate | Password Reset</title>
+      </Head>
       <h1>please enter a new password</h1>
       <div className="form-item">
         <label htmlFor="password" className="form-label">
