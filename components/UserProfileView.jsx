@@ -73,7 +73,7 @@ export default function ViewUserProfile() {
               </div>
               <div>
                 <h3>Location</h3>
-                <p>{userData?.location || ''}</p>
+                <p>{userData?.location || 'You have not provided your location yet'}</p>
                 <button onClick={updateUserLocation}>Update Location</button>
               </div>
             </div>
