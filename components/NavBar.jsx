@@ -16,8 +16,9 @@ export default function NavBar() {
   const session = useSelector((state) => state.user.id);
   const numUnread = useSelector(
     (state) =>
-      state.messenger.messages.filter((message) => message.read === false)
-        .length || 0
+      state.messenger.messages.filter(
+        (message) => message.read === false && message.to === state.user.id
+      ).length || 0
   );
 
   const handleBurger = () => {
@@ -90,11 +91,17 @@ export default function NavBar() {
           // these are the links that will appear if a user is logged in
           <>
             <li>
-              <Badge color="primary" badgeContent={numUnread} max={99}>
-                <Link href="/messages">
-                  <a>Messages</a>
-                </Link>
-              </Badge>
+              <Link href="/messages">
+                <a>
+                  Messages
+                  <Badge
+                    color="primary"
+                    badgeContent={numUnread}
+                    max={99}
+                    style={{ transform: 'translate(0,-10px)' }}
+                  ></Badge>
+                </a>
+              </Link>
             </li>
             <li>
               <Link href="/user/profile">
