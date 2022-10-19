@@ -55,7 +55,7 @@ export default function EditUserProfile() {
       }
       dispatch(updateUser(userData, userData.id));
       setUpdated(true);
-      setTimeout(() => setUpdated(false), 8000);  // this isn't working quite correctly yet
+      setTimeout(() => setUpdated(false), 5000);  // this isn't working quite correctly yet
     } catch (error) {
       alert(error.message);
     } finally {
@@ -106,6 +106,18 @@ export default function EditUserProfile() {
           />
         </div>
         <div>
+          <div>
+            <label htmlFor="highlight">User Highlight:</label>
+            <h5>One quick sentence about yourself!</h5>
+            <input
+              id="firstname"
+              type="text"
+              value={userData?.highlight || ''}
+              onChange={(e) =>
+                setUserData({ ...userData, highlight: e.target.value })
+              }
+            />
+          </div>
           <div>
             <label htmlFor="firstname">First Name</label>
             <input
