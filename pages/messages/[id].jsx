@@ -12,12 +12,13 @@ export default function Chat() {
   const router = useRouter();
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
+  const messages = useSelector((state) => state.messenger.messages);
 
   useEffect(() => {
     if (router.query.id) {
       if (!matches.some((match) => match.id === router.query.id))
         router.push('/404');
-      else dispatch(clickMessages(router.query.id));
+      else dispatch(clickMessages(router.query.id, messages));
     }
   }, [matches]);
 

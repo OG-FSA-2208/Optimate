@@ -32,14 +32,15 @@
   list-style: none;
   margin: 1em;
 }
-.nav-links a {
+.nav-links li a {
   text-decoration: none;
   font-weight: bold;
   letter-spacing: 3px;
   transition: 200ms;
   color: #60495a;
+  cursor: pointer;
 }
-.nav-links a:hover {
+.nav-links li a:hover {
   color: #e5625e;
 }
 .nav-icon {
@@ -629,6 +630,7 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   border: 10px solid #48a9a6;
   background-color: #fbfaf8;
   overflow-y: auto;
+  overflow-x: hidden;
   white-space: nowrap;
 }
 .match-list h1 {
@@ -641,8 +643,8 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   padding: 20px;
 }
 .match-list .matchPic {
-  height: 150px;
-  width: 150px;
+  max-height: 150px;
+  max-width: 150px;
   border-radius: 50%;
 }
 .active-match {
@@ -655,6 +657,12 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   width: 70vw;
   margin-left: 1vw;
   border: 10px solid #48a9a6;
+  visibility: hidden;
+}
+@media screen and (max-width: 768) {
+  .chatMessageBox {
+    display: none;
+  }
 }
 .chatroom {
   height: 76vh;
