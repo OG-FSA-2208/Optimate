@@ -35,7 +35,7 @@ export default function GetMatchesButton({ highlight, setHighlight }) {
     // console.log(res.data)
     console.log(data);
     console.log(error);
-    if (data.id) {
+    if (data?.id) {
       setMatchError({});
       setSuccess('😏😏😏');
       dispatch(getAllUserMatches());
