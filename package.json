@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "less": "less-watch-compiler less styles globals.less",
-    "heroku-postbuild": "less styles globals.less && npm run build"
+    "heroku-postbuild": "lessc less/globals.less styles/globals.css && npm run build"
   },
   "author": "2208 OG",
   "license": "ISC",

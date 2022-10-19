@@ -5,22 +5,23 @@ const Footer = () => {
     <div className="footer">
       <ul>
         <li>
-          <Link href="/user/help">
+          <Link href="/help">
             <a>Help Center</a>
           </Link>
         </li>
         <li>
-          <a
-            style={{ color: 'black' }}
-            target="_blank"
-            href="https://github.com/OG-FSA-2208/Optimate"
-          >
-            © 2022 ZECC-W
-          </a>
+          <Link href="/aboutUs">
+            <a
+              style={{ color: 'black' }}
+              // target="_blank"
+              // href="https://github.com/OG-FSA-2208/Optimate"
+            >
+              © 2022 ZECC-W
+            </a>
+          </Link>
         </li>
-        {/* <li>© 2022 ZECC-W</li> */}
         <li>
-          <Link href="/user/faq">
+          <Link href="/faq">
             <a>FAQ</a>
           </Link>
         </li>
