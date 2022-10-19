@@ -26,6 +26,10 @@ export default function Home() {
 
   return (
     <div className="container" style={{ padding: '50px 0 100px 0' }}>
+      <Head>
+          <title>Optimate</title>
+      </Head>
+
       {isLoading ? (
         <>Not a booty call but a foodie call</>
       ) : (
