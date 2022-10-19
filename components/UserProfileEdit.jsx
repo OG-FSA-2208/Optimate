@@ -55,7 +55,7 @@ export default function EditUserProfile() {
       }
       dispatch(updateUser(userData, userData.id));
       setUpdated(true);
-      setTimeout(() => setUpdated(false), 8000);  // this isn't working quite correctly yet
+      setTimeout(() => setUpdated(false), 5000);  // this isn't working quite correctly yet
     } catch (error) {
       alert(error.message);
     } finally {
