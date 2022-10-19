@@ -27,9 +27,9 @@ export default function Profile() {
 
   return (
     <div>
-      <GetMatchesButton highlight={highlight} setHighlight={setHighlight} />
       {highlight.id ? (
         <div>
+          <GetMatchesButton highlight={highlight} setHighlight={setHighlight} />
           <Link
             href={
               highlight.id === profile.id
@@ -90,7 +90,6 @@ export default function Profile() {
               </div>
             </motion.div>
           </Link>
-
           <div className="media-scroller">
             <div className="matchesForEachUser">
               {matches

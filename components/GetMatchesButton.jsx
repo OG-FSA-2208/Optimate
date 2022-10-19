@@ -30,7 +30,6 @@ export default function GetMatchesButton({ highlight, setHighlight }) {
     getTimeToMatch();
   }, []);
   useEffect(() => {
-    // countdown();
     const intervalId = setInterval(() => {
       if (timer > 0) {
         timer--;
