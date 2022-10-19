@@ -1,49 +1,61 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { default as ReactSelect } from 'react-select';
+import FileUploadSharpIcon from '@mui/icons-material/FileUploadSharp';
 import { updateUser } from '../store/reducers/userSlice';
 import { getLoggedInUser } from '../store/reducers/profileSlice';
-import { useSelector } from 'react-redux';
-import supabase from '../config/supabaseClient';
-import { getInterestTypes } from '../store/reducers/surveySlice';
+import { clearSurvey, getInterestTypes, uploadAvatar, uploadImages } from '../store/reducers/surveySlice';
 import Option from './Option';
 import UserPhoto from './UserPhoto';
-import FileUploadSharpIcon from '@mui/icons-material/FileUploadSharp';
-import { default as ReactSelect } from 'react-select';
 
-export default function EditUserProfile({ session }) {
+export default function EditUserProfile() {
+
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [updated, setUpdated] = useState(false); // state that shows whether or not a user's info has been successfully updated
   // object that contains all of the user's profile info
-  const [userData, setUserData] = useState(
-    useSelector((state) => state.profile)
-  );
-  const interestTags = useSelector((state) => state.survey);
+  const [userData, setUserData] = useState(useSelector((state) => state.profile));
+  const interestTags = useSelector(state => state.survey.tags);
+  const user_avatar = useSelector(state => state.survey.avatar_url || userData.avatar_url)
+  const user_photos = useSelector(state => state.survey.user_photos || userData.user_photos);
 
   useEffect(() => {
     // dispatching so that userData can grab the profile of the current user
+    dispatch(clearSurvey());  // clears the store so if there was unsaved uploaded data previously, it gets wiped
     dispatch(getInterestTypes());
     dispatch(getLoggedInUser());
     setLoading(false);
   }, [dispatch]);
 
-  useEffect(() => {
-    // this useEffect is so the updated profile image shows in the editing view
-    // >> does not update it on the server end yet!
-  }, [userData]);
-
-  async function updateProfile(data) {
+  useEffect(() =>{
+    setUserData({...userData, avatar_url: user_avatar, user_photos});
+  }, [user_avatar, user_photos])
+  
+  async function updateProfile() {
     try {
       setLoading(true);
       if (userData?.about?.length > 250) {
-        throw new Error(
-          `'About You' section is ${
-            userData?.about.length - 250
-          } character(s) over limit. Please adjust the length and try again`
-        );
+        throw new Error(`'About You' section is ${userData?.about.length - 250} character(s) over limit. Please adjust the length and try again`);
+      } else if (userData?.age < 18) {
+        throw new Error(`The age you have provided seems to be a little low. We would like to discourage you from further use of this app`);
+      } else if (!userData?.firstname) {
+        throw new Error(`Please provide your first name`);
+      } else if (!userData?.lastname) {
+        throw new Error(`Please provide your last name`);
+      } else if (!userData?.age) {
+        throw new Error(`Please provide your age`);
+      } else if (!userData?.gender) {
+        throw new Error(`Please provide your gender`);
+      } else if (!userData?.avatar_url) {
+        throw new Error(`Please provide a profile image`);
+      } else if (userData.ageMin < 18) {
+        throw new Error(`Age preferred minimum cannot be below 18`);
+      } else if (userData.ageMax < userData.ageMin) {
+        throw new Error(`Age preferred maximum cannot be below the minimum range`);
       }
-      dispatch(updateUser(data, data.id));
+      dispatch(updateUser(userData, userData.id));
       setUpdated(true);
+      setTimeout(() => setUpdated(false), 8000);  // this isn't working quite correctly yet
     } catch (error) {
       alert(error.message);
     } finally {
@@ -53,54 +65,16 @@ export default function EditUserProfile({ session }) {
 
   async function handleAvatarUpload(e) {
     const avatarFile = e.target.files[0];
-    // caching issue happens here!!!
-    // await supabase.storage.from('avatars').remove([`${userData?.firstname}_avatar`]);
-    // const {data} = await supabase.storage.from('avatars')
-    //   .upload(`${userData?.firstname}_avatar`, avatarFile, {upsert: true})
-    // const { publicURL, imgError } = await supabase
-    //   .storage
-    //   .from('avatars')
-    //   .getPublicUrl(`${userData?.firstname}_avatar`);
-
-    // backup plan...
-    const { data } = await supabase.storage
-      .from('avatars')
-      .upload(`${userData?.id}_${avatarFile.name}`, avatarFile, {
-        upsert: true,
-      });
-    const { publicURL, imgError } = await supabase.storage
-      .from('avatars')
-      .getPublicUrl(`${userData?.id}_${avatarFile.name}`);
-
-    setUserData({ ...userData, avatar_url: publicURL });
+    dispatch(uploadAvatar(avatarFile, userData));
   }
 
   async function handleImageUpload(e) {
-    const imageFile = [...e.target.files];
-    if (imageFile.length + userData?.user_photos.length > 4) {
-      alert(
-        `Too many photos! You can only upload ${
-          4 - userData?.user_photos.length
-        } additional image(s)`
-      );
+    const imageFiles = [...e.target.files];
+    if (imageFiles.length + userData?.user_photos.length > 4) {
+      alert(`Too many photos! You can only upload ${4 - userData?.user_photos.length} additional image(s)`);
       return;
     }
-
-    const imgURLs = imageFile.map(async (img) => {
-      const imgdata = (
-        await supabase.storage
-          .from('avatars')
-          .upload(`${userData?.id}_${img.name}`, img, { upsert: true })
-      ).data;
-      const { publicURL, imgError } = await supabase.storage
-        .from('avatars')
-        .getPublicUrl(`${userData?.id}_${img.name}`);
-      return publicURL;
-    });
-    setUserData({
-      ...userData,
-      user_photos: [...userData?.user_photos, ...(await Promise.all(imgURLs))],
-    });
+    dispatch(uploadImages(imageFiles, userData));
   }
 
   const handleChange = (data) => {
@@ -212,41 +186,27 @@ export default function EditUserProfile({ session }) {
       </div>
       <hr />
       {/* THIS IS WHERE OPTIONAL IMAGE UPLOADING/DELETING GOES */}
-      <h2>Upload up to (4) four additional photos</h2>
+      <h2>Upload up to (4) four additional photos (.png, .jpg types)</h2>
       <i>if adding/removing photos, remember to save your new profile</i>
-      <div id="optionalPhotoUploads">
-        {userData?.user_photos?.map((photoURL, ind) => (
-          <UserPhoto
-            key={ind}
-            imgData={{ imgURL: photoURL, index: ind }}
-            userData={userData}
-            setUserData={setUserData}
-          />
-        ))}
+      <div id='optionalPhotoUploads'>
+        {userData?.user_photos?.map((photoURL, ind) =>
+        <UserPhoto key={ind} imgData={{imgURL: photoURL, index: ind}}
+        userData={userData} setUserData={setUserData}/>)}
         {/* CREATES 'SLOTS' FOR USER TO UPLOAD ANY REMAINING PHOTOS THEY CAN */}
-        {userData?.user_photos?.length < 4 ? (
-          Array.apply(null, Array(4 - userData?.user_photos?.length)).map(
-            (uploadSlot, ind) => (
-              <div key={ind} className="uploadSlot">
-                <label htmlFor={`uploadSlot_${ind}`} id="image-upload">
-                  <FileUploadSharpIcon />
-                </label>
-                <br />
-                <input
-                  id={`uploadSlot_${ind}`}
-                  type="file"
-                  multiple
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                />
-              </div>
-            )
-          )
-        ) : (
-          <></>
-        )}
+        {userData?.user_photos?.length < 4 ?
+        Array.apply(null, Array(4 - userData?.user_photos?.length))
+        .map((uploadSlot, ind) => <div key={ind} className="uploadSlot">
+          <label htmlFor={`uploadSlot_${ind}`} id='image-upload'><FileUploadSharpIcon/></label><br/>
+          <input
+            id={`uploadSlot_${ind}`}
+            type="file" multiple
+            accept="image/*"
+            onChange={handleImageUpload}
+          />
+        </div>)
+        : <></>}
       </div>
-      <hr />
+      <hr/>
       {/* THINGS HERE ARE BELOW THE OPTIONAL IMAGES */}
       <div className="profile-info">
         {/* THIS IS WHERE A USER'S DETAILED PROFILE INFO IS */}
@@ -350,6 +310,13 @@ export default function EditUserProfile({ session }) {
             </select>
           </div>
           <div>
+            <h4>If you do not know your love languages,<br/>
+              <a href='https://5lovelanguages.com/quizzes/love-language' target={'_blank'}>
+              take this quiz at this link to find out!
+              </a>
+            </h4>
+          </div>
+          <div>
             {' '}
             {/* user's love language (receiving) */}
             <label htmlFor="loveRecieving">
@@ -398,10 +365,7 @@ export default function EditUserProfile({ session }) {
               name="wantedAge"
               type="number"
               value={userData?.ageMin || userData?.age - 1}
-              onChange={(e) =>
-                e.target.value < 18
-                  ? alert('Too low. Please choose an age 18 or above')
-                  : setUserData({ ...userData, ageMin: e.target.value })
+              onChange={(e) => setUserData({ ...userData, ageMin: e.target.value })
               }
             />
             <span> to </span>
@@ -409,12 +373,7 @@ export default function EditUserProfile({ session }) {
               name="wantedAge"
               type="number"
               value={userData?.ageMax || userData?.age + 1}
-              onChange={(e) =>
-                e.target.value < userData?.ageMin
-                  ? alert(
-                      'Too low. Please choose an age above your selected minimum'
-                    )
-                  : setUserData({ ...userData, ageMax: e.target.value })
+              onChange={(e) => setUserData({ ...userData, ageMax: e.target.value })
               }
             />
           </div>
@@ -561,9 +520,8 @@ export default function EditUserProfile({ session }) {
       <div>
         <button
           className="button primary block"
-          onClick={() => updateProfile(userData)}
-          disabled={loading}
-          id="save-profile"
+          onClick={() => updateProfile()}
+          disabled={loading} id='save-profile'
         >
           {loading ? 'Loading ...' : 'Save Profile'}
         </button>

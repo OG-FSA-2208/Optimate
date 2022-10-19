@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 // import { checkSession } from '../store/reducers/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import Head from 'next/head';
+
 export default function RequestReset() {
   const [email, setEmail] = useState('');
   const [formError, setFormError] = useState(null);
@@ -37,6 +39,9 @@ export default function RequestReset() {
   }, []);
   return (
     <form>
+      <Head>
+          <title>Optimate | Password Reset</title>
+      </Head>
       <h1>Recovery Email</h1>
       {success && <span className="">{success}</span>}
       <label htmlFor="email" className="form-label">

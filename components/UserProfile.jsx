@@ -3,7 +3,7 @@ import UserProfileView from './UserProfileView';
 import UserProfileEdit from './UserProfileEdit';
 import EditIcon from '@mui/icons-material/Edit';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 // this component only toggles between displaying the view/edit components for UserProfile
@@ -15,16 +15,16 @@ export default function UserProfile() {
   };
 
   return (
-    <motion.div
-      className="form-widget"
-      animate={{ x: 75 }}
-      transition={{ ease: 'easeOut', duration: 2 }}
-    >
+    // <motion.div
+    //   className="form-widget"
+    //   animate={{ x: 75 }}
+    //   transition={{ ease: 'easeOut', duration: 2 }}
+    // > sorry winnie but your animation messed up my alignment :')
+    //   - eve
       <div className="form-widget">
         <h1>{editing ? 'Editing Profile' : 'Your Profile'}</h1>
         <button
-          className="button block"
-          id="editToggle"
+          className="button block editToggle"
           onClick={() => toggleEdit()}
         >
           {editing ? (
@@ -39,9 +39,10 @@ export default function UserProfile() {
             </div>
           )}
         </button>
+        <button className="button block editToggle"><Link href="/user/settings">User Settings</Link></button>
         <hr />
         {editing ? <UserProfileEdit /> : <UserProfileView />}
       </div>
-    </motion.div>
+    // </motion.div>
   );
 }

@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import GetMatchesButton from '../../components/GetMatchesButton';
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
+import Head from 'next/head';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -27,9 +28,11 @@ export default function Profile() {
 
   return (
     <div>
-      <GetMatchesButton highlight={highlight} setHighlight={setHighlight} />
+      <Head>
+        <title>Optimate</title>
+      </Head>
       {highlight.id ? (
-        <div>
+        <div id="homepage-container">
           <Link
             href={
               highlight.id === profile.id
@@ -90,7 +93,6 @@ export default function Profile() {
               </div>
             </motion.div>
           </Link>
-
           <div className="media-scroller">
             <div className="matchesForEachUser">
               {matches
@@ -150,6 +152,7 @@ export default function Profile() {
                 : 'Sorry, but you have 0 matches'}
             </div>
           </div>
+          <GetMatchesButton highlight={highlight} setHighlight={setHighlight} />
         </div>
       ) : (
         <h2>Please log in</h2>
