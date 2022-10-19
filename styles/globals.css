@@ -746,8 +746,10 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   border: solid #fba1ae;
 }
 #bottie .react-chatbot-kit-chat-input {
-  margin-top: 150px;
+  font-size: 1rem;
   border: 3px solid #fba1ae;
+  border-bottom-left-radius: 5px;
+  width: 100%;
 }
 #bottie .react-chatbot-kit-chat-message-container {
   height: 600px;
@@ -757,6 +759,15 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
 }
 #bottie .react-chatbot-kit-chat-bot-message-container {
   margin-right: 185px;
+}
+#bottie .react-chatbot-kit-chat-btn-send {
+  width: 100px;
+  border-bottom-right-radius: 5px;
+}
+#bottie .react-chatbot-kit-chat-btn-send-icon {
+  fill: #fff;
+  width: 15px;
+  margin: 0 auto;
 }
 .FAQ {
   font-size: 1.3em;
