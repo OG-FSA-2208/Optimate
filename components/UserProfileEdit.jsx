@@ -9,6 +9,7 @@ import Option from './Option';
 import UserPhoto from './UserPhoto';
 
 export default function EditUserProfile() {
+
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [updated, setUpdated] = useState(false); // state that shows whether or not a user's info has been successfully updated

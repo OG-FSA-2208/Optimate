@@ -6,6 +6,7 @@ import { checkSession } from '../store/reducers/userSlice';
 import Link from 'next/link';
 import OAuthBar from './OAuthBar';
 export default function EmailSignIn() {
+
   const [form, setForm] = useState({
     email: '',
     password: '',
