@@ -16,8 +16,9 @@ export default function GetMatchesButton({ highlight, setHighlight }) {
   useEffect(() => {
     async function getTimeToMatch() {
       const { data, error } = await supabase.rpc('time_to_match');
-      if (data === '0') setTimer(0);
-      else {
+      if (data === '0') {
+        timer = 0;
+      } else {
         let timeconst = data.split('.')[0].split(':');
         let totalSeconds =
           Number(timeconst[0]) * 3600 +
