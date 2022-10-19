@@ -12,20 +12,18 @@ export default function Profile() {
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
   const profile = useSelector((state) => state.profile);
-  const [highlight, setHighlight] = useState(profile);
   const [pushPin, setPushPin] = useState({});
+  const [highlight, setHighlight] = useState({});
+  //TODO: either move highlight into redux state or keep useEffect that sets highlight to profile dependent on profile
+  //useState beats useSelector in race, so setting it initially to profile would leave it as an empty object on refresh
+  useEffect(() => {
+    setHighlight(profile);
+  }, [profile]);
 
   useEffect(() => {
     dispatch(getAllUserMatches());
     dispatch(getLoggedInUser());
   }, []);
-
-  // const handleClick = (event) => {
-  //   console.log(event.target.classList.value);
-  //   event.target.classList.toggle('active');
-  //   console.log('hello');
-
-  // };
 
   return (
     <div>
@@ -33,7 +31,11 @@ export default function Profile() {
       {highlight.id ? (
         <div>
           <Link
-            href={highlight.id === profile.id ? '/user/profile' : '/messages'}
+            href={
+              highlight.id === profile.id
+                ? '/user/profile'
+                : `/messages/${highlight.id}`
+            }
           >
             <motion.div
               className="myProfile"
