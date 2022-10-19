@@ -109,6 +109,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
   z-index: 1;
   justify-content: space-around;
   background-color: #48a9a6;
@@ -791,6 +794,34 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   margin: auto;
   margin-top: 0.7em;
 }
+.aboutUs h1 {
+  font-size: 2.5em;
+  text-align: center;
+  margin: 30px;
+}
+.members h3 {
+  font-size: 1.5em;
+  text-align: center;
+  display: inline-block;
+  margin-right: 40px;
+}
+.memberProfilePic {
+  border: 5px solid #48a9a6;
+  border-radius: 50%;
+  height: 170px;
+  width: 170px;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.aboutUs h2 {
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 100px;
+}
 * {
   margin: 0;
   padding: 0;
@@ -808,6 +839,7 @@ body {
   justify-content: center;
   min-height: 88vh;
   padding-top: 6vh;
+  margin-bottom: 6vh;
 }
 a {
   text-decoration: none;

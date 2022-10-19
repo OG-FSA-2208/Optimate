@@ -1,5 +1,5 @@
 import React from 'react';
-import Opti from '../../components/Opti/Opti';
+import Opti from '../components/Opti/Opti';
 
 export default function help() {
   return (
