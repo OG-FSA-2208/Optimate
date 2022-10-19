@@ -18,8 +18,8 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   margin-right: 1vw;
   border: 10px solid @secondary-color;
   background-color: @primary-color;
-  overflow-y: auto;
-  white-space: nowrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
   h1 {
     text-align: center;
   }
@@ -34,6 +34,10 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
     width: 150px;
     border-radius: 50%;
   }
+  // @media (max-width: 768) {
+  //   width: 1000px;
+  // }
+  // TODO: figure out why this isnt working lol
 }
 
 //active match is user that was clicked on on messages page

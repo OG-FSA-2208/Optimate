@@ -13,6 +13,7 @@ export default function Chat() {
   const router = useRouter();
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
+  const messages = useSelector((state) => state.messenger.messages);
 
   // this is the object of the user that a user clicks on
   const match = matches.find((match) => match.id === router.query.id);
@@ -21,7 +22,7 @@ export default function Chat() {
     if (router.query.id) {
       if (!matches.some((match) => match.id === router.query.id))
         router.push('/404');
-      else dispatch(clickMessages(router.query.id));
+      else dispatch(clickMessages(router.query.id, messages));
     }
   }, [matches]);
 

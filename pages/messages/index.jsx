@@ -11,7 +11,10 @@ export default function Messages() {
       <div className="column match-list">
         <Matches />
       </div>
-      <div className="column chatMessageBox"></div>
+      <div
+        className="column chatMessageBox"
+        style={{ visibility: 'hidden' }}
+      ></div>
     </div>
   );
 }

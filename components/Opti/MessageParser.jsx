@@ -9,33 +9,55 @@ const MessageParser = ({ children, actions }) => {
   useEffect(() => {
     dispatch(getAllUserMatches());
   }, []);
+
+  const words = [
+    'harass',
+    'inappropriate',
+    'condescending',
+    'stalk',
+    'manipulated',
+    'manipulative',
+    'revenge',
+    'crazy',
+    'scary',
+    'kill',
+  ];
+
   const parse = (message) => {
-    if (message.includes('hello') || message.includes('Hello')) {
-      actions.handleHello();
-    }
+    let response = false;
     if (message.includes('report') || message.includes('block')) {
-      actions.handleReport();
+      return actions.handleReport();
     }
-    if (
-      message.includes('harass') ||
-      message.includes('harassed') ||
-      message.includes('harassing') ||
-      message.includes('inappropriate') ||
-      message.includes('condescending') ||
-      message.includes('ghosted')
-    ) {
-      actions.handleHarassment();
-    }
-    matches.map((match) => {
-      if (
-        message.includes(match.firstname) &&
-        message.includes(match.lastname)
-      ) {
-        actions.handleMatch();
+
+    words.map((word) => {
+      if (message.includes(word)) {
+        response = true;
+        return actions.handleHarassment();
       }
     });
-    if (message.includes('thank you') || message.includes('Thank you')) {
-      actions.handleEndOfConvo();
+
+    matches.map((match) => {
+      if (message.includes(match.firstname)) {
+        response = true;
+        if (message.includes(match.lastname)) {
+          return actions.handleMatch();
+        }
+        return actions.handleName(match.firstname);
+      }
+    });
+
+    if (
+      message.includes('thank you') ||
+      message.includes('Thank you') ||
+      message.includes('thanks')
+    ) {
+      return actions.handleEndOfConvo();
+    }
+    if (message === '') {
+      return actions.handleEmptyString();
+    }
+    if (!response) {
+      return actions.handleFAQ();
     }
   };
 

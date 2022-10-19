@@ -32,14 +32,15 @@
   list-style: none;
   margin: 1em;
 }
-.nav-links a {
+.nav-links li a {
   text-decoration: none;
   font-weight: bold;
   letter-spacing: 3px;
   transition: 200ms;
   color: #60495a;
+  cursor: pointer;
 }
-.nav-links a:hover {
+.nav-links li a:hover {
   color: #e5625e;
 }
 .nav-icon {
@@ -324,10 +325,6 @@ textarea.form-input {
 .matches.active ion-icon {
   color: #de55c5;
 }
-/* .matchesAboutMe {
-  overflow-wrap: break-word;
-  hyphens: manual;
-} */
 .icon {
   position: absolute;
   bottom: 0;
@@ -344,6 +341,22 @@ textarea.form-input {
   color: #de55c5;
   font-size: 1.4em;
   right: 0;
+}
+.pushPin {
+  cursor: pointer;
+  position: relative;
+  top: -310px;
+  left: 25px;
+  display: inline-block;
+  margin: -5px;
+  padding: -10px -10px;
+  z-index: 10;
+}
+.pushPin.clicked {
+  cursor: pointer;
+  position: relative;
+  color: #f45d6a;
+  display: inline-block;
 }
 .media-scroller {
   margin: 4px, 4px;
@@ -405,8 +418,8 @@ textarea.form-input {
   border: 5px black solid;
   border-radius: 50%;
 }
-.editToggle.button.block {
-  width: fit-content;
+.button.block {
+  width: 300px;
 }
 .editToggle > div {
   display: flex;
@@ -615,8 +628,8 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   margin-right: 1vw;
   border: 10px solid #48a9a6;
   background-color: #fbfaf8;
-  overflow-y: auto;
-  white-space: nowrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .match-list h1 {
   text-align: center;
@@ -710,7 +723,7 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   align-items: center;
   font-size: 0.9rem;
   background-color: #fba1ae;
-  margin-right: 10px;
+  margin-right: 0px;
 }
 .user-avatar-icon {
   width: 40px;
@@ -721,7 +734,62 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   align-items: center;
   font-size: 0.9rem;
   background-color: #fba1ae;
-  margin-left: 10px;
+  margin-left: 15px;
+}
+#bottie .react-chatbot-kit-chat-container {
+  position: relative;
+  width: 500px;
+  height: 800px;
+}
+#bottie .react-chatbot-kit-chat-inner-container {
+  height: 770px;
+  border: solid #fba1ae;
+}
+#bottie .react-chatbot-kit-chat-input {
+  font-size: 1rem;
+  border: 3px solid #fba1ae;
+  border-bottom-left-radius: 5px;
+  width: 100%;
+}
+#bottie .react-chatbot-kit-chat-message-container {
+  height: 600px;
+  border-bottom: solid #fba1ae;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+#bottie .react-chatbot-kit-chat-bot-message-container {
+  margin-right: 185px;
+}
+#bottie .react-chatbot-kit-chat-btn-send {
+  width: 100px;
+  border-bottom-right-radius: 5px;
+}
+#bottie .react-chatbot-kit-chat-btn-send-icon {
+  fill: #fff;
+  width: 15px;
+  margin: 0 auto;
+}
+.FAQ {
+  font-size: 1.3em;
+}
+#getMatches {
+  position: absolute;
+  left: 3rem;
+  right: 3rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #48a9a6;
+  border-radius: 4px;
+  background: #f9f9f9;
+  max-width: 200px;
+  padding: 0.5em;
+}
+#getMatches .timer {
+  font-weight: bold;
+}
+#getMatches .button {
+  margin: auto;
+  margin-top: 0.7em;
 }
 * {
   margin: 0;
