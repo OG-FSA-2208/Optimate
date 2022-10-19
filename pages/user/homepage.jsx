@@ -5,7 +5,6 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import PushPinIcon from '@mui/icons-material/PushPin';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { userAgent } from 'next/server'; // WHO PUT THIS IN HERE AND WHAT IS THIS???
 import GetMatchesButton from '../../components/GetMatchesButton';
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
 
@@ -90,7 +89,6 @@ export default function Profile() {
             </motion.div>
           </Link>
 
-          {/* </div> */}
           <div className="media-scroller">
             <div className="matchesForEachUser">
               {matches
