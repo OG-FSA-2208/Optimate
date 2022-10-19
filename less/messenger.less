@@ -18,9 +18,8 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   margin-right: 1vw;
   border: 10px solid @secondary-color;
   background-color: @primary-color;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
-  white-space: nowrap;
   h1 {
     text-align: center;
   }
@@ -31,8 +30,8 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
     padding: 20px;
   }
   .matchPic {
-    max-height: 150px;
-    max-width: 150px;
+    height: 150px;
+    width: 150px;
     border-radius: 50%;
   }
   // @media (max-width: 768) {
@@ -55,10 +54,6 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   width: 70vw;
   margin-left: 1vw;
   border: 10px solid @secondary-color;
-  visibility: hidden;
-  @media screen and (max-width: 768) {
-    display: none;
-  }
 }
 
 //chats
