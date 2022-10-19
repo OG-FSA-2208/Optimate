@@ -777,6 +777,7 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   font-size: 1.3em;
 }
 #getMatches {
+  position: absolute;
   display: flex;
   flex-direction: column;
   border: 1px solid #48a9a6;
