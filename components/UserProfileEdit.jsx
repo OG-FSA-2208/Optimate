@@ -311,7 +311,7 @@ export default function EditUserProfile() {
           </div>
           <div>
             <h4>If you do not know your love languages,<br/>
-              <a href='https://5lovelanguages.com/quizzes/love-language'>
+              <a href='https://5lovelanguages.com/quizzes/love-language' target={'_blank'}>
               take this quiz at this link to find out!
               </a>
             </h4>
