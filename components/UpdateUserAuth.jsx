@@ -4,7 +4,6 @@ import { checkSession } from '../store/reducers/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { FaGithub, FaFacebook, FaGoogle } from 'react-icons/fa';
-import RPCTest from './RPCTest';
 import Link from 'next/link';
 
 export default function UpdateUserAuth() {
@@ -91,7 +90,6 @@ export default function UpdateUserAuth() {
 
   return (
     <div className="form-container">
-      <RPCTest />
       <form id="update-userauth-form">
         <button>
           <Link href="/user/profile">Return to Profile</Link>

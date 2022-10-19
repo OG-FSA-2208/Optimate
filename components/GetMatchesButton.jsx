@@ -1,10 +1,16 @@
 import supabase from '../config/supabaseClient';
 import { useRouter } from 'next/router';
-import { logoutUser } from '../store/reducers/userSlice';
 import { useEffect, useState } from 'react';
-export default function RPCTest() {
+import { useDispatch } from 'react-redux';
+import { getAllUserMatches } from '../store/reducers/matchesSlice';
+
+export default function GetMatchesButton({ highlight, setHighlight }) {
   // const router = useRouter();
   const [timer, setTimer] = useState(0);
+  const [matchError, setMatchError] = useState({});
+  const [matchSuccess, setSuccess] = useState(null);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     async function timer() {
       const { data, error } = await supabase.rpc('time_to_match');
@@ -29,13 +35,28 @@ export default function RPCTest() {
     // console.log(res.data)
     console.log(data);
     console.log(error);
+    if (data.id) {
+      setMatchError({});
+      setSuccess('😏😏😏');
+      dispatch(getAllUserMatches());
+      setHighlight(data);
+    }
+    if (error) {
+      setMatchError(error);
+    }
   };
   return (
-    <div>
-      <p className="timer">{}</p>
+    <div id="getMatches">
+      {matchSuccess && <span>{matchSuccess}</span>}
+      <p>Get a new match daily</p>
+      <p className="timer">{timer == 0 ? 'now' : `in ${timer} seconds`}</p>
+      <p>(resets at midnight)</p>
       <button className="button" onClick={rpcfunction}>
-        Find Match {timer == 0 ? 'now' : `in ${timer} seconds`}
+        Find Match
       </button>
+      {matchError.details && (
+        <span className="form-error display-block">{matchError.details}</span>
+      )}
     </div>
   );
 }

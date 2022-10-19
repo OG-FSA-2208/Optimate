@@ -761,6 +761,25 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
 .FAQ {
   font-size: 1.3em;
 }
+#getMatches {
+  position: absolute;
+  left: 3rem;
+  right: 3rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #48a9a6;
+  border-radius: 4px;
+  background: #f9f9f9;
+  max-width: 200px;
+  padding: 0.5em;
+}
+#getMatches .timer {
+  font-weight: bold;
+}
+#getMatches .button {
+  margin: auto;
+  margin-top: 0.7em;
+}
 * {
   margin: 0;
   padding: 0;
