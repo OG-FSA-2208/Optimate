@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import supabase from '../../config/supabaseClient';
 
-//TODO: add number unread to store here?
 const messengerSlice = createSlice({
   name: 'messenger',
   initialState: {
@@ -11,30 +10,47 @@ const messengerSlice = createSlice({
   },
   reducers: {
     readMessages: (state, action) => {
+      //set chatroom ID
       state.messageUserId = action.payload.id;
+
+      //read all messages from clicked user's chat
       state.messages = state.messages.map((message) =>
-        action.payload.data?.includes(message) ? (message.read = true) : message
+        action.payload.data?.some((mes) => mes.id === message.id)
+          ? { ...message, read: true }
+          : message
       );
     },
     fetchMessages: (state, action) => {
+      //get all messages from db and put on store
       state.messages = [...action.payload];
     },
     addMessage: (state, action) => {
+      //if in chat with user, mark message as read and update to db
+      if (state.messageUserId === action.payload.from) {
+        action.payload.read = true;
+        supabase.from('messages').update({ read: true }).match({
+          to: action.payload.to,
+          from: action.payload.from,
+          read: false,
+        });
+      }
+      //add message to store
       state.messages.push(action.payload);
     },
     changeMessage: (state, action) => {
+      //change input value for chatbox
       state.currentMessage = action.payload;
     },
   },
 });
 
-//export stuff here
+//export actions and reducer here
 export const { readMessages, addMessage, changeMessage, fetchMessages } =
   messengerSlice.actions;
 export default messengerSlice.reducer;
 
 //THUNKS
-//grab all yer messages, to and from
+//grab all yer messages, to and fro
 export const getMessages = () => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
@@ -67,16 +83,19 @@ export const sendMessage = (message, to) => async (dispatch) => {
   }
 };
 
-//thunk for clicking on a match in messages
+//thunk for clicking on a match on messages page
 export const clickMessages = (id, messages) => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
-    if (messages.some((message) => message.from === id)) {
+    if (
+      messages.some((message) => message.from === id && message.read === false)
+    ) {
       const { data, error } = await supabase
         .from('messages')
         .update({ read: true })
-        .match({ to: session.user.id, from: id })
+        .match({ to: session.user.id, from: id, read: false })
         .select('*, from_pic:from ( avatar_url )');
+
       dispatch(readMessages({ id, data }));
       if (error) console.error(error);
     } else dispatch(readMessages({ id, data: null }));
@@ -103,7 +122,7 @@ export const sub = () => (dispatch) => {
   }
 };
 
-//unsubscribe from messages wiht this
+//unsubscribe from messages with this
 export const unsub = (channel) => {
   channel.unsubscribe();
 };
