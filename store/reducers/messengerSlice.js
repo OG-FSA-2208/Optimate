@@ -12,8 +12,11 @@ const messengerSlice = createSlice({
   reducers: {
     readMessages: (state, action) => {
       state.messageUserId = action.payload.id;
+
       state.messages = state.messages.map((message) =>
-        action.payload.data?.includes(message) ? (message.read = true) : message
+        action.payload.data?.some((mes) => mes.id === message.id)
+          ? (message.read = true)
+          : message
       );
     },
     fetchMessages: (state, action) => {
@@ -71,12 +74,15 @@ export const sendMessage = (message, to) => async (dispatch) => {
 export const clickMessages = (id, messages) => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
-    if (messages.some((message) => message.from === id)) {
+    if (
+      messages.some((message) => message.from === id && message.read === false)
+    ) {
       const { data, error } = await supabase
         .from('messages')
         .update({ read: true })
-        .match({ to: session.user.id, from: id })
+        .match({ to: session.user.id, from: id, read: false })
         .select('*, from_pic:from ( avatar_url )');
+
       dispatch(readMessages({ id, data }));
       if (error) console.error(error);
     } else dispatch(readMessages({ id, data: null }));
