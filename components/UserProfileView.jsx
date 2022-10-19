@@ -60,6 +60,10 @@ export default function ViewUserProfile() {
             <div>
               <h2>{(userData?.firstname || 'You have not provided your name yet') + ' ' + (userData?.lastname || '')}</h2>
               <div>
+                <h3>Your Highlight</h3>
+                <p>{userData?.highlight || 'You have not filled this out yet'}</p>
+              </div>
+              <div>
                 <h3>About You</h3>
                 <p>{userData?.about || 'You have not filled this out yet'}</p>
               </div>

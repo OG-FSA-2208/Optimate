@@ -107,6 +107,18 @@ export default function EditUserProfile() {
         </div>
         <div>
           <div>
+            <label htmlFor="highlight">User Highlight:</label>
+            <h5>One quick sentence about yourself!</h5>
+            <input
+              id="firstname"
+              type="text"
+              value={userData?.highlight || ''}
+              onChange={(e) =>
+                setUserData({ ...userData, highlight: e.target.value })
+              }
+            />
+          </div>
+          <div>
             <label htmlFor="firstname">First Name</label>
             <input
               id="firstname"
