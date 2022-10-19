@@ -22,6 +22,8 @@ const messengerSlice = createSlice({
       state.messages = [...action.payload];
     },
     addMessage: (state, action) => {
+      if (state.messageUserId === action.payload.from)
+        action.payload.read = true;
       state.messages.push(action.payload);
     },
     changeMessage: (state, action) => {
