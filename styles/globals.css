@@ -418,13 +418,13 @@ textarea.form-input {
   border: 5px black solid;
   border-radius: 50%;
 }
-.button.block {
-  width: 300px;
+.editToggle {
+  width: fit-content;
 }
 .editToggle > div {
   display: flex;
   align-items: center;
-  font-size: 15px;
+  font-size: 18px;
 }
 .profile-view,
 .edit-view {
@@ -581,7 +581,7 @@ input[type="number"] {
   width: 60px;
 }
 @media screen and (max-width: 768px) {
-  .form-widget * {
+  .form-widget {
     max-width: 80vw;
   }
   .profile-info {
