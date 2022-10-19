@@ -367,6 +367,10 @@ textarea.form-input {
   overflow-y: hidden;
   white-space: nowrap;
 }
+.distance {
+  margin-bottom: -1em;
+  color: #e5625e;
+}
 .landing {
   display: flex;
   align-items: center;
