@@ -58,18 +58,18 @@ export default function ViewUserProfile() {
               : `the user has not added a profile picture yet`}/>
             </div>
             <div>
-              <h2>{(userData?.firstname || '') + ' ' + (userData?.lastname || '')}</h2>
+              <h2>{(userData?.firstname || 'You have not provided your name yet') + ' ' + (userData?.lastname || '')}</h2>
               <div>
                 <h3>About You</h3>
-                <p>{userData?.about || ''}</p>
+                <p>{userData?.about || 'You have not filled this out yet'}</p>
               </div>
               <div>
                 <h3>Age</h3>
-                <p>{userData?.age || ''}</p>
+                <p>{userData?.age || 'You have not provided your age yet'}</p>
               </div>
               <div>
                 <h3>Gender</h3>
-                <p>{userData?.gender || ''}</p>
+                <p>{userData?.gender || 'You have not provided your gender yet'}</p>
               </div>
               <div>
                 <h3>Location</h3>
@@ -89,7 +89,7 @@ export default function ViewUserProfile() {
             <div className="profile-user">
               <div>
                 <h3>Occupation</h3>
-                <p>{userData?.occupation || ''}</p>
+                <p>{userData?.occupation || 'Unemployed'}</p>
               </div>
             <div>
               <h3>Smokes</h3>
