@@ -160,7 +160,7 @@ export default function EditUserProfile() {
               type="number"
               value={userData?.age || ''}
               onChange={(e) =>
-                setUserData({ ...userData, age: e.target.value })
+                setUserData({ ...userData, age: parseInt(e.target.value) })
               }
             />
           </div>
@@ -377,7 +377,7 @@ export default function EditUserProfile() {
               name="wantedAge"
               type="number"
               value={userData?.ageMin || userData?.age - 1}
-              onChange={(e) => setUserData({ ...userData, ageMin: e.target.value })
+              onChange={(e) => setUserData({ ...userData, ageMin: parseInt(e.target.value) })
               }
             />
             <span> to </span>
@@ -385,7 +385,7 @@ export default function EditUserProfile() {
               name="wantedAge"
               type="number"
               value={userData?.ageMax || userData?.age + 1}
-              onChange={(e) => setUserData({ ...userData, ageMax: e.target.value })
+              onChange={(e) => setUserData({ ...userData, ageMax: parseInt(e.target.value) })
               }
             />
           </div>
