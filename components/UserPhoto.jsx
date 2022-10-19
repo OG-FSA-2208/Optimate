@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete'
 
-export default function UserPhoto({imgData, userData, setUserData}) {
+export default function UserPhoto({imgData, userData, setUserData, onView}) {
     // imgData should contain both the index and URL of the image
     const handleDeletePhoto = () => {
         let tempPhotos = [...userData.user_photos]; // this SHOULD be an array
@@ -11,7 +11,7 @@ export default function UserPhoto({imgData, userData, setUserData}) {
 
     return (
         <div className='user_photo'>
-            <button onClick={handleDeletePhoto}><DeleteIcon/></button>
+            {onView ? <></> : <button onClick={handleDeletePhoto}><DeleteIcon/></button>}
             <img src={imgData.imgURL} alt="image from user's profile data"/>
         </div>
     )
