@@ -81,10 +81,6 @@
   border: solid;
 }
 
-// .matchesProfilePic.active {
-//   width: 400px;
-//   height: 450px;
-// }
 .matches.active {
   margin-right: 4px;
   position: absolute;
@@ -96,10 +92,7 @@
 .matches.active ion-icon {
   color: #de55c5;
 }
-/* .matchesAboutMe {
-  overflow-wrap: break-word;
-  hyphens: manual;
-} */
+
 .icon {
   position: absolute;
   bottom: 0;
@@ -121,15 +114,18 @@
 
 .pushPin {
   cursor: pointer;
-  position: absolute;
+  position: relative;
+  top: -310px;
+  left: 25px;
   display: inline-block;
   margin: -5px;
   padding: -10px -10px ;
+  z-index: 10;
 }
 
 .pushPin.clicked {
   cursor: pointer;
-  position: absolute;
+  position: relative;
   color: #f45d6a;
   display: inline-block;
   // padding: -10px -10px ;

@@ -96,8 +96,8 @@ export default function Profile() {
               {matches
                 ? matches.map((match) => {
                     return (
-                      <div key={match.id}>
-                        <div
+                      <>
+                        <span
                           onClick={() => {
                             pushPin[match.id] === undefined
                               ? setPushPin({ ...pushPin, [match.id]: true })
@@ -113,7 +113,7 @@ export default function Profile() {
                           <PushPinIcon
                             style={{ width: '30px', height: '30px' }}
                           />
-                        </div>
+                        </span>
                         <motion.div
                           onClick={function (event) {
                             setHighlight(match);
@@ -144,7 +144,7 @@ export default function Profile() {
                             <OpenInNewIcon />
                           </div>
                         </motion.div>
-                      </div>
+                      </>
                     );
                   })
                 : 'Sorry, but you have 0 matches'}

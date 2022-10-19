@@ -66,7 +66,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
 
   const handleFAQ = () => {
     const botMessage = createChatBotMessage(
-      'Please check out our FAQ page below'
+      'Please check out our FAQ page below.'
     );
 
     setState((prev) => ({
