@@ -310,6 +310,13 @@ export default function EditUserProfile() {
             </select>
           </div>
           <div>
+            <h4>If you do not know your love languages,<br/>
+              <a href='https://5lovelanguages.com/quizzes/love-language'>
+              take this quiz at this link to find out!
+              </a>
+            </h4>
+          </div>
+          <div>
             {' '}
             {/* user's love language (receiving) */}
             <label htmlFor="loveRecieving">
