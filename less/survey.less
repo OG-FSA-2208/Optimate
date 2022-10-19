@@ -27,14 +27,14 @@
     border-radius: 50%;
 }
 
-.button.block {
-    width: 300px;
+.editToggle {
+    width: fit-content;
 }
 
 .editToggle > div {
     display: flex;
     align-items: center;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 // misc; animation for the toggle on the page
@@ -223,9 +223,9 @@ input[type="number"] {
 }
 
 @media screen and (max-width: 768px) {
-.form-widget * {
-    max-width: 80vw;
-}
+    .form-widget {
+        max-width: 80vw;
+    }
     .profile-info {
         align-items: center;
         flex-direction: column;

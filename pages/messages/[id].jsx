@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import Matches from '../../components/Matches';
 import Chatroom from '../../components/Chatroom';
 import { clickMessages } from '../../store/reducers/messengerSlice';
+import Head from 'next/head';
 
 export default function Chat() {
   const [width, setWidth] = useState(null);
@@ -13,6 +14,9 @@ export default function Chat() {
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
   const messages = useSelector((state) => state.messenger.messages);
+
+  // this is the object of the user that a user clicks on
+  const match = matches.find((match) => match.id === router.query.id);
 
   useEffect(() => {
     if (router.query.id) {
@@ -31,6 +35,9 @@ export default function Chat() {
 
   return (
     <div className="messages">
+      <Head>
+          <title>Optimate | Messages {match ? `- ${match.firstname} ${match.lastname}` : ``}</title>
+      </Head>
       {/* this will look very similar to index on desktop, mobile will have the match list component disappear */}
       <div
         style={width <= 768 ? { display: 'none' } : {}}

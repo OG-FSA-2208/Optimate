@@ -70,14 +70,6 @@ export default function ViewUserProfile() {
           <p>{userData?.user_interests?.map((tag) => tag.label).join(', ')}</p>
         </div>
       )}
-      <div>
-        <button
-          className="button block"
-          onClick={() => dispatch(logoutUser(Router))}
-        >
-          Sign Out
-        </button>
-      </div>
     </div>
   );
 }

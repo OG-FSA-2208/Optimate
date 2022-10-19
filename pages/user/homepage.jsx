@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import GetMatchesButton from '../../components/GetMatchesButton';
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
+import Head from 'next/head';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ export default function Profile() {
 
   return (
     <div>
+      <Head>
+        <title>Optimate</title>
+      </Head>
       {highlight.id ? (
         <div>
           <GetMatchesButton highlight={highlight} setHighlight={setHighlight} />
