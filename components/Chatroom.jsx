@@ -13,7 +13,7 @@ export default function Chatroom() {
   useEffect(() => {
     if (router.query.id === messageUserId) {
       const lastMessage = document.querySelector('.last');
-      lastMessage.scrollIntoView(false);
+      lastMessage?.scrollIntoView(false);
     }
   }, [messages]);
 
