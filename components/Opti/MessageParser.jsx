@@ -46,7 +46,11 @@ const MessageParser = ({ children, actions }) => {
       }
     });
 
-    if (message.includes('thank you') || message.includes('Thank you')) {
+    if (
+      message.includes('thank you') ||
+      message.includes('Thank you') ||
+      message.includes('thanks')
+    ) {
       return actions.handleEndOfConvo();
     }
     if (message === '') {
