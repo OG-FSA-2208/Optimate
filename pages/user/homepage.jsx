@@ -96,7 +96,6 @@ export default function Profile() {
               {matches
                 ? matches.map((match) => {
                     return (
-
                       <span key={match.id}>
                         <div
                           onClick={() => {
@@ -114,7 +113,7 @@ export default function Profile() {
                           <PushPinIcon
                             style={{ width: '30px', height: '30px' }}
                           />
-                        </span>
+                        </div>
                         <motion.div
                           onClick={function (event) {
                             setHighlight(match);
