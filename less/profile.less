@@ -1,3 +1,29 @@
+#homepage-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  .matches-container {
+    position: absolute;
+    align-self: flex-start;
+    display: flex;
+    // justify-content: flex-start;
+    // left: 0;
+    // top: 3rem;
+    max-width: 300px;
+    @media screen and (max-width: 768px) {
+      // width: 300px;
+      align-self: center;
+
+      position: relative;
+      top: 0;
+      left: 0;
+      margin: 0.5em;
+    }
+  }
+}
+
 .myProfile {
   display: flex;
   cursor: pointer;
@@ -21,12 +47,7 @@
     flex-direction: column;
   }
 }
-#homepage-container {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  align-items: center;
-}
+
 .myProfile > :nth-of-type(1) {
   text-align: center;
 }
@@ -150,4 +171,24 @@
 .distance {
   margin-bottom: -1em;
   color: @accent-color;
+}
+
+#getMatches {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid;
+  border-radius: 20px;
+  background: #f9f9f9;
+  padding: 0.5em;
+  background-color: @container-background;
+  color: @primary-text-color;
+  text-align: center;
+  .timer {
+    font-weight: bold;
+    align-self: center;
+  }
+  .button {
+    margin: auto;
+    margin-top: 0.7em;
+  }
 }
