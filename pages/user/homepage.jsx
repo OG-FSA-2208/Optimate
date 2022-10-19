@@ -29,11 +29,10 @@ export default function Profile() {
   return (
     <div>
       <Head>
-          <title>Optimate</title>
+        <title>Optimate</title>
       </Head>
-      <GetMatchesButton highlight={highlight} setHighlight={setHighlight} />
       {highlight.id ? (
-        <div>
+        <div id="homepage-container">
           <Link
             href={
               highlight.id === profile.id
@@ -94,7 +93,6 @@ export default function Profile() {
               </div>
             </motion.div>
           </Link>
-
           <div className="media-scroller">
             <div className="matchesForEachUser">
               {matches
@@ -154,6 +152,7 @@ export default function Profile() {
                 : 'Sorry, but you have 0 matches'}
             </div>
           </div>
+          <GetMatchesButton highlight={highlight} setHighlight={setHighlight} />
         </div>
       ) : (
         <h2>Please log in</h2>

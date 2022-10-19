@@ -43,7 +43,7 @@ export default function NavBar() {
       async (event, session) => {
         console.log(event);
         if (event == 'SIGNED_IN') {
-          dispatch(checkSession(router));
+          // dispatch(checkSession(router));
         }
         if (event == 'SIGNED_OUT') {
         }
