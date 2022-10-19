@@ -629,9 +629,8 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   margin-right: 1vw;
   border: 10px solid #48a9a6;
   background-color: #fbfaf8;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
-  white-space: nowrap;
 }
 .match-list h1 {
   text-align: center;
@@ -643,8 +642,8 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   padding: 20px;
 }
 .match-list .matchPic {
-  max-height: 150px;
-  max-width: 150px;
+  height: 150px;
+  width: 150px;
   border-radius: 50%;
 }
 .active-match {
@@ -657,12 +656,6 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   width: 70vw;
   margin-left: 1vw;
   border: 10px solid #48a9a6;
-  visibility: hidden;
-}
-@media screen and (max-width: 768) {
-  .chatMessageBox {
-    display: none;
-  }
 }
 .chatroom {
   height: 76vh;
