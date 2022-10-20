@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeMessage, sendMessage } from '../store/reducers/messengerSlice';
+import { Edit, Delete } from '@mui/icons-material';
 
 export default function Chatroom() {
   const dispatch = useDispatch();
@@ -34,6 +35,13 @@ export default function Chatroom() {
     dispatch(changeMessage(e.target.value));
   }
 
+  function handleEdit() {
+    //TODO: implement
+  }
+  function handleDelete() {
+    //TODO: implement
+  }
+
   return (
     <>
       <div className="chatroom">
@@ -51,7 +59,6 @@ export default function Chatroom() {
               >
                 {message.from === messageUserId ? (
                   <div className="single-message">
-                    {/* TODO: fix message from_pic being null on add message thunk */}
                     <img
                       src={message.from_pic?.avatar_url}
                       alt="user profile pic"
@@ -60,6 +67,14 @@ export default function Chatroom() {
                   </div>
                 ) : (
                   <div key={message.id} className="single-message right-user">
+                    <Delete
+                      sx={{ '&:hover': { color: 'red' } }}
+                      onClick={handleDelete}
+                    />
+                    <Edit
+                      sx={{ '&:hover': { color: 'gray' } }}
+                      onClick={handleEdit}
+                    />
                     <p className={'user'}>{message.message}</p>
                     <img
                       src={message.from_pic?.avatar_url}
