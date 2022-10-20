@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Router from 'next/router'; //TODO: is this needed?
+import Router from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkSession, logoutUser } from '../store/reducers/userSlice.js';
@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import { Badge } from '@mui/material';
 
 export default function NavBar() {
+  const router = useRouter();
   const dispatch = useDispatch();
   const [burgerClicked, setBurgerClicked] = useState(false);
   // checks if there is a user logged in
@@ -35,13 +36,11 @@ export default function NavBar() {
       }
     });
   };
-  const router = useRouter();
   useEffect(() => {
     dispatch(checkSession());
 
     const { subscription } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        console.log(event);
         if (event == 'SIGNED_IN') {
           // dispatch(checkSession(router));
         }
