@@ -13,14 +13,16 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user.id) {
-      router.push('/user/profile'); // when a user is logged in, this will send them to their profile
-    }
+    // let mounted = true;
     async function getInitialSession() {
       dispatch(checkSession());
       setIsLoading(false);
     }
-    getInitialSession();
+    if (user.id) {
+      router.push('/user/profile'); // when a user is logged in, this will sent them to their profile
+    } else {
+      getInitialSession();
+    }
   }, [user]);
 
   return (
