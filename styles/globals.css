@@ -680,6 +680,8 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
 */
 .match-list {
   flex: 1;
+  margin: 0.5em;
+  border-radius: 10px;
   border: 10px solid #48a9a6;
   background-color: #fbfaf8;
   overflow-y: scroll;
@@ -707,7 +709,9 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
 }
 .chatMessageBox {
   flex: 2;
+  margin: 0.5em;
   border: 10px solid #48a9a6;
+  border-radius: 10px;
 }
 .chatroom {
   height: 76vh;
