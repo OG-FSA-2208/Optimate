@@ -5,6 +5,7 @@ import { logoutUser } from '../store/reducers/userSlice';
 import { getLoggedInUser, getUser } from '../store/reducers/profileSlice';
 import { useSelector } from 'react-redux';
 import supabase from '../config/supabaseClient';
+import UserPhoto from './UserPhoto';
 
 // component of UserProfile meant to ONLY VIEW their info, not editing
 export default function ViewUserProfile() {
@@ -51,23 +52,109 @@ export default function ViewUserProfile() {
         'Loading Profile...'
       ) : (
         <div>
-          <button onClick={updateUserLocation}>Update Location</button>
-          <img src={userData?.avatar_url} height="250px" />
-          <p>
-            Full name: {userData?.firstname || '(no name)'} {userData?.lastname}
-          </p>
-          <p>Age: {userData?.age || '(no age)'}</p>
-          <p>Gender: {userData?.gender || 'unselected'}</p>
-          <p>About: {userData?.about}</p>
-          <p>Location: {userData?.location}</p>
-          <p>Occupation: {userData?.occupation}</p>
-          <p>Smokes? {userData?.smoker ? 'Yes' : 'No'}</p>
-          <p>Drinks? {userData?.drinker ? 'Yes' : 'No'}</p>
-          <p>Priority: {userData?.priority}</p>
-          <p>Love Language (giving): {userData?.loveLangGiving}</p>
-          <p>Love Language (receiving): {userData?.loveLangReceiving}</p>
-          <p>Your Interests:</p>
-          <p>{userData?.user_interests?.map((tag) => tag.label).join(', ')}</p>
+          <div id="profileEditAvatar">
+            <div id="avatarSection">
+              <img src={userData?.avatar_url || ''} alt={userData?.avatar_url ? `the user's profile image`
+              : `the user has not added a profile picture yet`}/>
+            </div>
+            <div>
+              <h2>{(userData?.firstname || 'You have not provided your name yet') + ' ' + (userData?.lastname || '')}</h2>
+              <div>
+                <h3>Your Highlight</h3>
+                <p>{userData?.highlight || 'You have not filled this out yet'}</p>
+              </div>
+              <div>
+                <h3>About You</h3>
+                <p>{userData?.about || 'You have not filled this out yet'}</p>
+              </div>
+              <div>
+                <h3>Age</h3>
+                <p>{userData?.age || 'You have not provided your age yet'}</p>
+              </div>
+              <div>
+                <h3>Gender</h3>
+                <p>{userData?.gender || 'You have not provided your gender yet'}</p>
+              </div>
+              <div>
+                <h3>Location</h3>
+                <p>{userData?.location || 'You have not provided your location yet'}</p>
+                <button onClick={updateUserLocation}>Update Location</button>
+              </div>
+            </div>
+          </div>
+          <hr/>
+          <div id='optionalPhotoUploads'>
+            {userData?.user_photos?.map((photoURL, ind) =>
+            <UserPhoto key={ind} imgData={{imgURL: photoURL, index: ind}}
+            userData={userData} onView={true}/>)}
+          </div>
+          <hr/>
+          <div className="profile-info">
+            <div className="profile-user">
+              <h2>Your Details</h2>
+              <div>
+                <h3>Occupation</h3>
+                <p>{userData?.occupation || 'Unemployed'}</p>
+              </div>
+              <div>
+                <h3>Smokes</h3>
+                <p>{userData?.smoker ? 'Yes, I smoke' : `No, I don't smoke at all`}</p>
+              </div>
+              <div>
+                <h3>Drinks Alcohol</h3>
+                <p>{userData?.drinker ? 'Yes, I drink alcohol' : `No, I don't drink alcohol at all`}</p>
+              </div>
+              <div>
+                <h3>User Interests:</h3>
+                <ul>{userData?.user_interests?.length > 0 ? 
+                    userData?.user_interests?.map(interest => <li key={interest.value}>{interest.label}</li>)
+                    : 'This user has no interests'}</ul>
+              </div>
+              <div>
+                <h3>Your love language (giving)</h3>
+                <p>{userData?.loveLangGiving || 'You have not selected any yet'}</p>
+              </div>
+              <div>
+                <h3>Your love language (receiving)</h3>
+                <p>{userData?.loveLangReceiving || 'You have not selected any yet'}</p>
+              </div>
+              <div>
+                <h3>Your top priority</h3>
+                <p>{userData?.priority || 'You currently do not have any priority'}</p>
+              </div>
+            </div>
+            <div className="profile-preference">
+              <h2>Partner Preferences</h2>
+              <div>
+                <h3>Looking for ages:</h3>
+                <p>{userData.ageMin ? userData.ageMin : 'N/A'} - {userData.ageMax ? userData.ageMax : 'N/A'}</p>
+              </div>
+              <div>
+                <h3>Preferred gender</h3>
+                <p>{userData?.genderPreference ? userData.genderPreference : 'No gender preference'}</p>
+              </div>
+              <div>
+                <h3>Smokes?</h3>
+                <p>{typeof userData?.smokingPreference !== 'boolean' ? 'No real preference'
+                  : userData?.smokingPreference ? 'Yes, I want them to be a smoker' : `No, I don't want them to be a smoker`}
+                </p>
+              </div>
+              <div>
+                <h3>Drinks?</h3>
+                <p>{typeof userData?.drinkingPreference !== 'boolean' ? 'No real preference'
+                  : userData?.drinkingPreference ? 'Yes, I want them to be a drinker' : `No, I don't want them to be a drinker`}
+                </p>
+              </div>
+              <div>
+                <h3>Prioritizes</h3>
+                <p>{userData?.priorityPreference || 'Partner priority is unimportant to me'}</p>
+              </div>
+              <div>
+                <h3>Match by Love Languages?</h3>
+                <p>{userData?.matchByLL ? 'Yes, this is important to me' : `No, I don't mind a mismatch`}</p>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
