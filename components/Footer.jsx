@@ -11,13 +11,7 @@ const Footer = () => {
         </li>
         <li>
           <Link href="/aboutUs">
-            <a
-              style={{ color: 'black' }}
-              // target="_blank"
-              // href="https://github.com/OG-FSA-2208/Optimate"
-            >
-              © 2022 ZECC-W
-            </a>
+            <a style={{ color: 'black' }}>© 2022 ZECC-W</a>
           </Link>
         </li>
         <li>

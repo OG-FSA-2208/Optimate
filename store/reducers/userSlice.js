@@ -31,7 +31,6 @@ export const checkSession = (router) => async (dispatch) => {
   }
 };
 export const providerOAuth = (provider) => async (dispatch) => {
-  console.log(provider);
   const { user, session, error } = await supabase.auth.signIn({
     provider: provider,
     redirectTo: `${process.env.URL}` || 'http://localhost:3000',
@@ -39,12 +38,6 @@ export const providerOAuth = (provider) => async (dispatch) => {
   if (error) {
     console.error(error);
   }
-  // if (user) {
-  //   console.log(user);
-  // }
-  // if (session) {
-  //   console.log(session);
-  // } needed?
 };
 
 export const logoutUser = (router) => (dispatch) => {
@@ -53,7 +46,7 @@ export const logoutUser = (router) => (dispatch) => {
   router.push('/');
 };
 
-export const createUser = (userDetails) => {};
+export const createUser = (userDetails) => {}; //TODO: implement this?
 export const updateUser = (userDetails, userId) => async (dispatch) => {
   try {
     let { error } = await supabase

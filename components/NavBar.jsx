@@ -41,7 +41,6 @@ export default function NavBar() {
 
     const { subscription } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        console.log(event);
         if (event == 'SIGNED_IN') {
           // dispatch(checkSession(router));
         }
