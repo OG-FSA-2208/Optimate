@@ -2,7 +2,6 @@
   display: flex;
   justify-content: space-around;
   gap: 1em;
-  // margin: 2vh;
   width: 95vw;
   @media (max-width: 980px) {
     flex-direction: column-reverse;
@@ -15,8 +14,6 @@
 
 //**********LEFT COLUMN**********
 /*
-TODO: give fixed position on left side of screen, change view for tablet, hide on mobile after message click
-    currently match-list will shrink with page and not everything fits
 TODO: remove animation when switching from lh/messages -> lh/messages/[id]
 */
 .match-list {
@@ -34,7 +31,7 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 20px;
+    padding: 1.5em 0;
   }
   .matchPic {
     height: 150px;
@@ -121,8 +118,6 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
     white-space: normal;
   }
 }
-
-
 
 .right-user {
   display: flex;

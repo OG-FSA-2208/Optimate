@@ -1,8 +1,7 @@
 import supabase from '../config/supabaseClient';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-// import { checkSession } from '../store/reducers/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Head from 'next/head';
 
 export default function RequestReset() {
@@ -10,7 +9,6 @@ export default function RequestReset() {
   const [formError, setFormError] = useState(null);
   const [success, setSuccess] = useState(null);
   const router = useRouter();
-  // const dispatch = useDispatch();
   async function handleforgotPassword(e) {
     e.preventDefault();
     if (email === '') {
@@ -40,7 +38,7 @@ export default function RequestReset() {
   return (
     <form>
       <Head>
-          <title>Optimate | Password Reset</title>
+        <title>Optimate | Password Reset</title>
       </Head>
       <h1>Recovery Email</h1>
       {success && <span className="">{success}</span>}

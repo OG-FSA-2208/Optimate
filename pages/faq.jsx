@@ -16,7 +16,7 @@ export default function faq() {
       <div className="forwardIcon">
         <ForwardIcon
           style={{ height: '17px', color: 'blue' }}
-          onClick={() => console.log('hello')}
+          //TODO: onClick={() => console.log('hello')}
         />
         Why am I not getting matches besides my daily match?
       </div>

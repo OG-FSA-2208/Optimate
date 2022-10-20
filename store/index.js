@@ -1,8 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { setupListeners } from '@reduxjs/toolkit/query';
 import reduxLogger from 'redux-logger';
 import { useMemo } from 'react';
-//EXAMPLE: import { getUsers } from './reducers
 import {
   userSlice,
   matchesSlice,
@@ -16,7 +14,6 @@ let store;
 function initStore(preloadedState) {
   return configureStore({
     reducer: {
-      // nameInStore: reducerName, add your reducers here in this form
       user: userSlice,
       matches: matchesSlice,
       profile: profileSlice,
@@ -57,7 +54,3 @@ export function useStore(initialState) {
   const store = useMemo(() => initializeStore(initialState), [initialState]);
   return store;
 }
-
-// // optional, but required for refetchOnFocus/refetchOnReconnect behaviors
-// // see `setupListeners` docs - takes an optional callback as the 2nd arg for customization
-// setupListeners(store.dispatch);

@@ -41,22 +41,13 @@ export default function EmailSignUp() {
       setpasswordConfirm(true);
       return;
     }
-    const { user, error } = await supabase.auth.signUp(
-      {
-        email: form.email,
-        password: form.password,
-      }
-      // {
-      //   data: {
-      //     first_name: 'metaname',
-      //     age: 28,
-      //   },
-      // }
-    );
+    const { user, error } = await supabase.auth.signUp({
+      email: form.email,
+      password: form.password,
+    });
     if (error) {
       setFormError(error.status);
       console.error(error);
-      // const badEmail = {message: "Unable to validate email address: invalid format",status:422}
     }
     if (user) {
       setSuccess(

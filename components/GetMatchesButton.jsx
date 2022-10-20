@@ -1,12 +1,9 @@
 import supabase from '../config/supabaseClient';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAllUserMatches } from '../store/reducers/matchesSlice';
 
 export default function GetMatchesButton({ highlight, setHighlight }) {
-  // const router = useRouter();
-
   const [matchError, setMatchError] = useState({});
   const [matchSuccess, setSuccess] = useState(null);
   const [display, setDisplay] = useState('');
@@ -53,7 +50,6 @@ export default function GetMatchesButton({ highlight, setHighlight }) {
       min = `0${min}`;
     }
     setDisplay(`${hours}:${min}:${seconds}`);
-    // return `${hours}:${min}:${seconds}`;
   }
   const rpcfunction = async () => {
     const { data, error } = await supabase.rpc('find_match');

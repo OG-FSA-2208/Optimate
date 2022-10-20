@@ -55,7 +55,7 @@ export default function EditUserProfile() {
       }
       dispatch(updateUser(userData, userData.id));
       setUpdated(true);
-      setTimeout(() => setUpdated(false), 5000);  // this isn't working quite correctly yet
+      setTimeout(() => setUpdated(false), 5000);  //TODO: this isn't working quite correctly yet
     } catch (error) {
       alert(error.message);
     } finally {
@@ -90,7 +90,7 @@ export default function EditUserProfile() {
   return (
     <div className="edit-view">
       <h2>Basic Info</h2>
-      {/* !!! THIS IS THERE THE BASIC INFO IN EDIT PROFILE IS */}
+      {/* !!! THIS IS WHERE THE BASIC INFO IN EDIT PROFILE IS */}
       <div id="profileEditAvatar">
         <div id="avatarSection">
           <img src={userData?.avatar_url || ''} />

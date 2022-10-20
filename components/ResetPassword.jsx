@@ -11,14 +11,13 @@ export default function ResetPassword() {
     const { data, error } = await supabase.auth.api.resetPasswordForEmail(
       email,
       {
-        redirectTo: 'http://localhost:3000/password-reset', //// this will redirect to us at password-reset page,
-        //// you can also set your own page for it.
+        redirectTo: 'http://localhost:3000/password-reset', // this will redirect to us at password-reset page,
+        // you can also set your own page for it.
       }
     );
     if (error) {
       console.error(error);
     }
-    // if (data) console.log(data); dont want any users to see this data
   }
 
   useEffect(() => {
