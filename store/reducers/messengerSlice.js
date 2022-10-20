@@ -40,7 +40,7 @@ const messengerSlice = createSlice({
     changeMessage: (state, action) => {
       //edit the message matching the ID from the payload
       state.messages = state.messages.map((message) =>
-        message.id === action.payload.id
+        message.id === action.payload.messageId
           ? (message.message = action.payload.editedMessage)
           : message
       );

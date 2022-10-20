@@ -41,7 +41,7 @@ export default function Chatroom() {
   }
 
   function handleEdit() {
-    //TODO: implement
+    //TODO: implement - either change the single message to an input box or use an edit = true state and put the message in the chatbox
   }
   function handleDelete(id) {
     dispatch(deleteMessage(id));
