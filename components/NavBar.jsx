@@ -62,6 +62,14 @@ export default function NavBar() {
   useEffect(() => {
     dispatch(getMessages());
     const messageListener = dispatch(sub());
+    if (session) {
+      document.body.classList.add('altBg');
+      document.body.classList.remove('login');
+    } else {
+      document.body.classList.add('login');
+      document.body.classList.remove('altBg');
+    }
+    
     return () => {
       messageListener && unsub(messageListener);
     };
