@@ -27,7 +27,7 @@ export default function ViewUserProfile() {
         .update({ latitude: +userLat, longitude: userLong })
         .eq('id', userData?.id)
         .select();
-      setUpdateLocationBtn('Update Location');
+      setUpdateLocationBtn('Location Updated!');
       if (error) {
         console.error(error);
       }
