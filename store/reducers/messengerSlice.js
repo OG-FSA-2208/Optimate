@@ -83,6 +83,36 @@ export const sendMessage = (message, to) => async (dispatch) => {
   }
 };
 
+//thunk to edit a message
+export const editMessage = (messageId, editedMessage) => async (dispatch) => {
+  const session = supabase.auth.session();
+  if (session) {
+    const { data, error } = await supabase
+      .from('messages')
+      .update({ message: editedMessage })
+      .match({ id: messageId });
+    if (data) {
+      //TODO: update store
+    }
+    if (error) console.error(error);
+  }
+};
+
+//thunk to delete a message
+export const deleteMessage = (messageId) => async (dispatch) => {
+  const session = supabase.auth.session();
+  if (session) {
+    const { data, error } = await supabase
+      .from('messages')
+      .delete()
+      .match({ id: messageId });
+    if (data) {
+      //TODO: update store
+    }
+    if (error) console.error(error);
+  }
+};
+
 //thunk for clicking on a match on messages page
 export const clickMessages = (id, messages) => async (dispatch) => {
   const session = await supabase.auth.session();
@@ -107,6 +137,7 @@ export const clickMessages = (id, messages) => async (dispatch) => {
 export const sub = () => (dispatch) => {
   const session = supabase.auth.session();
   if (session) {
+    //TODO: add update and delete to subscription, update store when something happens
     const messageListener = supabase
       .from(`messages:to=eq.${session.user.id}`)
       .on('INSERT', async (payload) => {
@@ -115,10 +146,12 @@ export const sub = () => (dispatch) => {
           .from('profiles')
           .select('avatar_url')
           .eq('id', payload.new.from);
+        //add new message to chat when one is sent to user
         if (data) dispatch(addMessage({ ...payload.new, from_pic: data[0] }));
         if (error) console.error(error);
       })
       .subscribe();
+
     return messageListener;
   }
 };
