@@ -725,18 +725,18 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
 .input-box {
   display: flex;
   align-items: center;
-  height: 5vh;
-  margin: 0.1vh 0.25vw 0.5vh 0.25vw;
+  height: 6vh;
+  margin: 0vh 0.25vw 0.5vh 0.25vw;
 }
 .input-box input {
   margin: 0;
-  width: 85%;
+  flex: 7;
   padding: 0.65em;
   border-radius: 10px;
   margin-right: 5px;
 }
 .input-box button {
-  width: 10%;
+  flex: 1;
   margin: 0;
 }
 .single-message {
