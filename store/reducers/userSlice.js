@@ -39,12 +39,6 @@ export const providerOAuth = (provider) => async (dispatch) => {
   if (error) {
     console.error(error);
   }
-  // if (user) {
-  //   console.log(user);
-  // }
-  // if (session) {
-  //   console.log(session);
-  // } needed?
 };
 
 export const logoutUser = (router) => (dispatch) => {
