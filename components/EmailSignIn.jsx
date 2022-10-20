@@ -54,7 +54,7 @@ export default function EmailSignIn() {
     if (user) {
       router.push('/');
     }
-  }, []);
+  }, [user]);
   return (
     <div className="form-container">
       <form id="new-product-form" onSubmit={(e) => handleSubmit(e)}>
