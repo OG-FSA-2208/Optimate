@@ -37,7 +37,7 @@ const messengerSlice = createSlice({
       //add message to store
       state.messages.push(action.payload);
     },
-    changeMessage: (state, action) => {
+    changeInput: (state, action) => {
       //change input value for chatbox
       state.currentMessage = action.payload;
     },
@@ -45,7 +45,7 @@ const messengerSlice = createSlice({
 });
 
 //export actions and reducer here
-export const { readMessages, addMessage, changeMessage, fetchMessages } =
+export const { readMessages, addMessage, changeInput, fetchMessages } =
   messengerSlice.actions;
 export default messengerSlice.reducer;
 

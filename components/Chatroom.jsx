@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeMessage, sendMessage } from '../store/reducers/messengerSlice';
+import { changeInput, sendMessage } from '../store/reducers/messengerSlice';
 import { Edit, Delete } from '@mui/icons-material';
 
 export default function Chatroom() {
@@ -24,7 +24,7 @@ export default function Chatroom() {
       return;
     }
     dispatch(sendMessage(currentMessage, messageUserId));
-    dispatch(changeMessage(''));
+    dispatch(changeInput(''));
   }
 
   function handleEnter(e) {
@@ -32,7 +32,7 @@ export default function Chatroom() {
   }
   function handleChange(e) {
     e.preventDefault();
-    dispatch(changeMessage(e.target.value));
+    dispatch(changeInput(e.target.value));
   }
 
   function handleEdit() {
