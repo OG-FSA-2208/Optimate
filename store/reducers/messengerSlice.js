@@ -37,6 +37,21 @@ const messengerSlice = createSlice({
       //add message to store
       state.messages.push(action.payload);
     },
+    changeMessage: (state, action) => {
+      //edit the message matching the ID from the payload
+      state.messages = state.messages.map((message) =>
+        message.id === action.payload.id
+          ? (message.message = action.payload.editedMessage)
+          : message
+      );
+    },
+    deleteOne: (state, action) => {
+      //remove the message from state
+      state.messages = state.messages.splice(
+        state.messages.indexOf(action.payload),
+        1
+      );
+    },
     changeInput: (state, action) => {
       //change input value for chatbox
       state.currentMessage = action.payload;
@@ -92,7 +107,7 @@ export const editMessage = (messageId, editedMessage) => async (dispatch) => {
       .update({ message: editedMessage })
       .match({ id: messageId });
     if (data) {
-      //TODO: update store
+      dispatch(changeMessage({ messageId, editedMessage }));
     }
     if (error) console.error(error);
   }
@@ -107,7 +122,7 @@ export const deleteMessage = (messageId) => async (dispatch) => {
       .delete()
       .match({ id: messageId });
     if (data) {
-      //TODO: update store
+      dispatch(deleteOne(data));
     }
     if (error) console.error(error);
   }
