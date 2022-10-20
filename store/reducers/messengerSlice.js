@@ -47,10 +47,10 @@ const messengerSlice = createSlice({
     },
     deleteOne: (state, action) => {
       //remove the message from state
-      state.messages = state.messages.splice(
-        state.messages.indexOf(action.payload),
-        1
+      const idx = state.messages.findIndex(
+        (message) => action.payload.id === message.id
       );
+      if (idx >= 0) state.messages.splice(idx, 1);
     },
     changeInput: (state, action) => {
       //change input value for chatbox
@@ -60,8 +60,14 @@ const messengerSlice = createSlice({
 });
 
 //export actions and reducer here
-export const { readMessages, addMessage, changeInput, fetchMessages } =
-  messengerSlice.actions;
+export const {
+  readMessages,
+  addMessage,
+  changeInput,
+  fetchMessages,
+  deleteOne,
+  changeMessage,
+} = messengerSlice.actions;
 export default messengerSlice.reducer;
 
 //THUNKS
@@ -122,7 +128,7 @@ export const deleteMessage = (messageId) => async (dispatch) => {
       .delete()
       .match({ id: messageId });
     if (data) {
-      dispatch(deleteOne(data));
+      dispatch(deleteOne(data[0]));
     }
     if (error) console.error(error);
   }

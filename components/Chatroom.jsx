@@ -1,7 +1,12 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeInput, sendMessage } from '../store/reducers/messengerSlice';
+import {
+  changeInput,
+  sendMessage,
+  changeMessage,
+  deleteMessage,
+} from '../store/reducers/messengerSlice';
 import { Edit, Delete } from '@mui/icons-material';
 
 export default function Chatroom() {
@@ -20,7 +25,7 @@ export default function Chatroom() {
 
   function handleSend() {
     if (!currentMessage) {
-      //TODO: set error for chatbox
+      //TODO: set error for chatbox?
       return;
     }
     dispatch(sendMessage(currentMessage, messageUserId));
@@ -38,8 +43,8 @@ export default function Chatroom() {
   function handleEdit() {
     //TODO: implement
   }
-  function handleDelete() {
-    //TODO: implement
+  function handleDelete(id) {
+    dispatch(deleteMessage(id));
   }
 
   return (
@@ -69,7 +74,7 @@ export default function Chatroom() {
                   <div key={message.id} className="single-message right-user">
                     <Delete
                       sx={{ '&:hover': { color: 'red' } }}
-                      onClick={handleDelete}
+                      onClick={() => handleDelete(message.id)}
                     />
                     <Edit
                       sx={{ '&:hover': { color: 'gray' } }}
