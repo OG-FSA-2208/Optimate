@@ -64,10 +64,8 @@ export default function UpdateUserAuth() {
     setFormError({});
     if (passwordConfirm !== password) {
       setFormError({ password: 'passwords do not match' });
-      // return;
     }
     const { user, error } = await supabase.auth.update({
-      // email: userInfo.email,
       password: password,
     });
     if (error) {

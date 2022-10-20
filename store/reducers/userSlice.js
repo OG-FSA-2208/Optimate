@@ -46,7 +46,6 @@ export const logoutUser = (router) => (dispatch) => {
   router.push('/');
 };
 
-export const createUser = (userDetails) => {}; //TODO: implement this?
 export const updateUser = (userDetails, userId) => async (dispatch) => {
   try {
     let { error } = await supabase

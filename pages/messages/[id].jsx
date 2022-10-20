@@ -9,13 +9,12 @@ import { clickMessages } from '../../store/reducers/messengerSlice';
 import Head from 'next/head';
 
 export default function Chat() {
-  const [width, setWidth] = useState(null);
   const router = useRouter();
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
   const messages = useSelector((state) => state.messenger.messages);
 
-  // this is the object of the user that a user clicks on
+  // this is the match object that a user clicks on
   const match = matches.find((match) => match.id === router.query.id);
 
   useEffect(() => {
@@ -26,12 +25,14 @@ export default function Chat() {
     }
   }, [matches]);
 
+  /* TODO: see what messages looks like on mobile when matches disappear
+  const [width, setWidth] = useState(null);
   useEffect(() => {
     setWidth(window.innerWidth);
     window.addEventListener('resize', () => {
       setWidth(window.innerWidth);
     });
-  }, []);
+  }, []); */
 
   return (
     <div className="messages">
@@ -41,7 +42,6 @@ export default function Chat() {
           {match ? `- ${match.firstname} ${match.lastname}` : ``}
         </title>
       </Head>
-      {/* this will look very similar to index on desktop, mobile will have the match list component disappear */}
       <div className="column match-list">
         <Matches />
       </div>

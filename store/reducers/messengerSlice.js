@@ -110,6 +110,7 @@ export const sub = () => (dispatch) => {
     const messageListener = supabase
       .from(`messages:to=eq.${session.user.id}`)
       .on('INSERT', async (payload) => {
+        //grab match profile pic
         const { data, error } = await supabase
           .from('profiles')
           .select('avatar_url')

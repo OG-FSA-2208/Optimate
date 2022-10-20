@@ -13,9 +13,8 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // let mounted = true;
     if (user.id) {
-      router.push('/user/profile'); // when a user is logged in, this will sent them to their profile
+      router.push('/user/profile'); // when a user is logged in, this will send them to their profile
     }
     async function getInitialSession() {
       dispatch(checkSession());
@@ -27,7 +26,7 @@ export default function Home() {
   return (
     <div className="container" style={{ padding: '50px 0 100px 0' }}>
       <Head>
-          <title>Optimate</title>
+        <title>Optimate</title>
       </Head>
 
       {isLoading ? (

@@ -1,9 +1,7 @@
 import { Provider } from 'react-redux';
 import { useStore } from '../store';
 import Layout from '../components/Layout';
-import '..//styles/globals.css';
-import { useEffect, useState } from 'react';
-import supabase from '../config/supabaseClient';
+import '..//styles/globals.css'; //TODO: remove this? seems like its not used since the path is incorrect?
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/router';
 
