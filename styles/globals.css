@@ -250,21 +250,20 @@ textarea.form-input {
   flex-direction: column;
   position: relative;
   align-items: center;
-  justify-content: flex-start;
 }
-#homepage-container .matches-container {
+.matches-container {
   position: absolute;
-  align-self: flex-start;
-  display: flex;
-  max-width: 300px;
+  left: 0;
+  margin-top: 1em;
+  width: calc((100vw - 550px) / 2);
 }
 @media screen and (max-width: 768px) {
-  #homepage-container .matches-container {
+  .matches-container {
+    width: 100%;
+    height: 100%;
     align-self: center;
     position: relative;
-    top: 0;
-    left: 0;
-    margin: 0.5em;
+    margin: 0.5em 0 1em 0;
   }
 }
 .myProfile {
@@ -396,22 +395,25 @@ textarea.form-input {
   margin-bottom: -1em;
   color: #e5625e;
 }
-#getMatches {
+.getMatches {
+  flex-shrink: 1;
   display: flex;
   flex-direction: column;
   border: 2px solid;
   border-radius: 20px;
-  background: #f9f9f9;
   padding: 0.5em;
+  max-width: 200px;
+  margin: auto;
+  margin-top: calc((((100vw - 600px) / 2) - 250px) / 2);
   background-color: rgba(72, 169, 166, 0.6);
   color: #60495a;
   text-align: center;
 }
-#getMatches .timer {
+.getMatches .timer {
   font-weight: bold;
   align-self: center;
 }
-#getMatches .button {
+.getMatches .button {
   margin: auto;
   margin-top: 0.7em;
 }
@@ -482,15 +484,6 @@ textarea.form-input {
   0% {
     margin-left: 100vw;
   }
-  60% {
-    margin-left: 15vw;
-  }
-  80% {
-    margin-left: 10vw;
-  }
-  90% {
-    margin-left: 5vw;
-  }
   100% {
     margin-left: 0vw;
   }
@@ -498,6 +491,10 @@ textarea.form-input {
 .profile-view {
   overflow-wrap: break-word;
   width: 80vw;
+}
+.profile-view #profileEditAvatar > div p {
+  width: 30vw;
+  margin: 5px 0px;
 }
 #save-profile {
   margin-left: 25px;
