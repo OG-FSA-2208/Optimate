@@ -11,6 +11,7 @@ export default function Matches() {
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
   const currUser = useSelector((state) => state.profile);
+  console.log(currUser);
   const messages = useSelector((state) => state.messenger.messages);
   //TODO: update badge when user clicks on a chat, during dispatch clickMessages?
 
@@ -21,6 +22,7 @@ export default function Matches() {
     var dLon = toRad(lon2 - lon1);
     var lat1 = toRad(lat1);
     var lat2 = toRad(lat2);
+    console.log(lat1, lon1, lat2, lon2);
 
     var a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
