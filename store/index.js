@@ -7,6 +7,7 @@ import {
   profileSlice,
   messengerSlice,
   surveySlice,
+  blacklistSlice,
 } from './reducers';
 
 let store;
@@ -18,7 +19,8 @@ function initStore(preloadedState) {
       matches: matchesSlice,
       profile: profileSlice,
       messenger: messengerSlice,
-      survey: surveySlice
+      survey: surveySlice,
+      blacklist: blacklistSlice,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(reduxLogger),
