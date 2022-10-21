@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
   return (
@@ -10,9 +11,21 @@ const Footer = () => {
           </Link>
         </li>
         <li>
-          <Link href="/aboutUs">
-            <a style={{ color: 'black' }}>© 2022 ZECC-W</a>
-          </Link>
+          <motion.h3
+            whileHover={{
+              scale: 1.3,
+            }}
+          >
+            <Link href="/aboutUs">
+              <a
+                style={{ color: 'black' }}
+                // target="_blank"
+                // href="https://github.com/OG-FSA-2208/Optimate"
+              >
+                © 2022 ZECC-W
+              </a>
+            </Link>
+          </motion.h3>
         </li>
         <li>
           <Link href="/faq">

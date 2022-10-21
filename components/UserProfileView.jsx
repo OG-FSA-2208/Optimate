@@ -9,7 +9,9 @@ import UserPhoto from './UserPhoto';
 
 // component of UserProfile meant to ONLY VIEW their info, not editing
 export default function ViewUserProfile() {
-  const [updateLocationBtn, setUpdateLocationBtn] = useState('Update Location');
+  const [updateLocationBtn, setUpdateLocationBtn] = useState(
+    'Update Precise Location'
+  );
 
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -97,6 +99,15 @@ export default function ViewUserProfile() {
                 <button onClick={updateUserLocation}>
                   {updateLocationBtn}
                 </button>
+                <div className="preciseLocationLink">
+                  <p>What is Precise Location?</p>
+                  <div className="preciseLocationExplanation">
+                    Allowing Optimate to use your precise location will enable
+                    you to see how far away your matches are! It is
+                    completely optional, and Optimate never sells your personal
+                    information.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
