@@ -19,6 +19,7 @@ const Footer = () => {
             <Link href="/aboutUs">
               <a
                 style={{ color: 'black' }}
+                // style={{ color: 'rgba(250, 171, 171, 0.6)' }}
                 // target="_blank"
                 // href="https://github.com/OG-FSA-2208/Optimate"
               >
