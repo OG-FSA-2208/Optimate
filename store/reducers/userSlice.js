@@ -32,10 +32,12 @@ export const checkSession = (router) => async (dispatch) => {
   }
 };
 export const providerOAuth = (provider) => async (dispatch) => {
-  const { user, session, error } = await supabase.auth.signIn({
-    provider: provider,
-    // redirectTo: `${process.env.URL}` || 'http://localhost:3000',
-  });
+  const { user, session, error } = await supabase.auth.signIn(
+    {
+      provider: provider,
+    },
+    { redirectTo: `${process.env.URL}` || 'http://localhost:3000' }
+  );
   dispatch(login(user));
   if (error) {
     console.error(error);
