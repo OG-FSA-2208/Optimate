@@ -171,6 +171,12 @@ export const sub = () => (dispatch) => {
         if (data) dispatch(addMessage({ ...payload.new, from_pic: data[0] }));
         if (error) console.error(error);
       })
+      .on('UPDATE', async (payload) => {
+        //TODO: update in store if message was changed, or if read was changed?
+      })
+      .on('DELETE', async (payload) => {
+        //TODO: remove from store
+      })
       .subscribe();
 
     return messageListener;
