@@ -102,8 +102,8 @@ export default function ViewUserProfile() {
                 <div className="preciseLocationLink">
                   <p>What is Precise Location?</p>
                   <div className="preciseLocationExplanation">
-                    Allowing Optimate to use your precise location will allow
-                    you to see how far away from you your matches are! It is
+                    Allowing Optimate to use your precise location will enable
+                    you to see how far away your matches are! It is
                     completely optional, and Optimate never sells your personal
                     information.
                   </div>
