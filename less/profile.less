@@ -190,3 +190,26 @@
     margin-top: 0.7em;
   }
 }
+
+.preciseLocationLink p {
+  font-size: 0.8em;
+  color: @secondary-text-color;
+  font-weight: 100;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.preciseLocationExplanation {
+  display: none;
+  position: absolute;
+  background-color: @secondary-color;
+  padding: 1em;
+  border: 4px solid @primary-text-color;
+  border-radius: 10px;
+  width: 30vw;
+}
+
+.preciseLocationLink:hover .preciseLocationExplanation,
+preciseLocationLink:active .preciseLocationExplanation {
+  display: block;
+}
