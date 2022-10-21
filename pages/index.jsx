@@ -13,9 +13,6 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // let mounted = true;
-    console.log(router);
-    console.log(user);
     async function getInitialSession() {
       dispatch(checkSession());
       setIsLoading(false);

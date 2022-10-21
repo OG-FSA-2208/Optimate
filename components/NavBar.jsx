@@ -38,8 +38,8 @@ export default function NavBar() {
   };
   useEffect(() => {
     dispatch(checkSession());
-    // console.log('hi');
-    // console.log(window.location);
+    console.log(router);
+    console.log(router.asPath);
     const { subscription } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (event == 'SIGNED_IN') {

@@ -51,8 +51,6 @@ export default function EmailSignIn() {
   };
   const user = useSelector((state) => state.user.id);
   useEffect(() => {
-    console.log(router);
-    console.log(user);
     if (user) {
       router.push('/');
     }
