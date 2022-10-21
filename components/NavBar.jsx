@@ -38,7 +38,8 @@ export default function NavBar() {
   };
   useEffect(() => {
     dispatch(checkSession());
-
+    console.log('hi');
+    console.log(window.location);
     const { subscription } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (event == 'SIGNED_IN') {
@@ -68,7 +69,7 @@ export default function NavBar() {
       document.body.classList.add('login');
       document.body.classList.remove('altBg');
     }
-    
+
     return () => {
       messageListener && unsub(messageListener);
     };
