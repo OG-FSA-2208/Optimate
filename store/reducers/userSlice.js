@@ -5,7 +5,6 @@ const userSlice = createSlice({
   initialState: {},
   reducers: {
     login: (state, action) => {
-      console.log(action.payload);
       state = action.payload;
       return state;
     },
@@ -36,9 +35,15 @@ export const providerOAuth = (provider) => async (dispatch) => {
     {
       provider: provider,
     },
-    { redirectTo: `${process.env.URL}` || 'http://localhost:3000' }
+    { redirectTo: `${process.env.URL}` || 'http://localhost:3000' },
+    {
+      scopes: 'repo notifications',
+    }
   );
-  dispatch(login(user));
+  if (user) {
+    console.log(user);
+    dispatch(login(user));
+  }
   if (error) {
     console.error(error);
   }
