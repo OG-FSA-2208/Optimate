@@ -23,6 +23,7 @@ export const { login, logout, update } = userSlice.actions;
 export const checkSession = (router) => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
+    console.log('hi', session);
     dispatch(login(session.user));
   } else {
     if (router) {
