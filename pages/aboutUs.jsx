@@ -14,7 +14,7 @@ export default function aboutUs() {
               whileHover={{
                 scale: 0.9,
               }}
-              src="https://media-exp1.licdn.com/dms/image/D5635AQGvFO7jYtZh4A/profile-framedphoto-shrink_800_800/0/1621984149600?e=1666803600&v=beta&t=JafDA_saLAgY1saao8RK-NvC_XQv0ldEgmiSEeb7f-M"
+              src="https://media-exp1.licdn.com/dms/image/C5603AQHCkceejtIvYQ/profile-displayphoto-shrink_800_800/0/1569367290750?e=1671667200&v=beta&t=PApwrewRWU-IaBiuxtROh4ktw5pGH6O1J91ijFcjB0g"
             />
           </a>
           Zach Byerley
