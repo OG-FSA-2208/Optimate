@@ -25,7 +25,6 @@ export default function Chatroom() {
 
   function handleSend() {
     if (!currentMessage) {
-      //TODO: set error for chatbox?
       return;
     }
     dispatch(sendMessage(currentMessage, messageUserId));
@@ -38,6 +37,13 @@ export default function Chatroom() {
   function handleChange(e) {
     e.preventDefault();
     dispatch(changeInput(e.target.value));
+  }
+
+  function setTime(date) {
+    //TODO: implement
+    const now = new Date();
+    console.log('now: ', now.toString());
+    console.log('then: ', date);
   }
 
   function handleEdit() {
@@ -68,7 +74,11 @@ export default function Chatroom() {
                       src={message.from_pic?.avatar_url}
                       alt="user profile pic"
                     />
-                    <p className={'chat-match'}>{message.message}</p>
+                    <p className={'chat-match'}>
+                      {message.message}
+                      <br />
+                      <small>Sent: {message.created_at.slice(11, 16)}</small>
+                    </p>
                   </div>
                 ) : (
                   <div key={message.id} className="single-message right-user">
@@ -80,7 +90,11 @@ export default function Chatroom() {
                       sx={{ '&:hover': { color: 'gray' } }}
                       onClick={handleEdit}
                     />
-                    <p className={'user'}>{message.message}</p>
+                    <p className={'user'}>
+                      {message.message} <br />
+                      <small>Sent: {setTime(message.created_at)}</small>
+                      {/* TODO: create function to convert this time to local human readable */}
+                    </p>
                     <img
                       src={message.from_pic?.avatar_url}
                       alt="user profile pic"

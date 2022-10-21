@@ -90,11 +90,16 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
 .single-message {
   margin: 3px 0;
   display: flex;
+  align-items: center;
   img {
     height: 50px;
     width: 50px;
     border-radius: 50%;
     align-self: flex-end;
+  }
+  small {
+    color: slategray;
+    font-size: 0.75em;
   }
   //the other user in the conversation
   .chat-match {
