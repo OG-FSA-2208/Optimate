@@ -22,7 +22,9 @@ export default userSlice.reducer;
 export const { login, logout, update } = userSlice.actions;
 export const checkSession = (router) => async (dispatch) => {
   const session = await supabase.auth.session();
+  console.log('is there a session', session);
   if (session) {
+    console.log('hi', session);
     dispatch(login(session.user));
   } else {
     if (router) {
@@ -31,10 +33,15 @@ export const checkSession = (router) => async (dispatch) => {
   }
 };
 export const providerOAuth = (provider) => async (dispatch) => {
-  const { user, session, error } = await supabase.auth.signIn({
-    provider: provider,
-    redirectTo: `${process.env.URL}` || 'http://localhost:3000',
-  });
+  const { user, session, error } = await supabase.auth.signIn(
+    {
+      provider: provider,
+    },
+    { redirectTo: `${process.env.URL}` || 'http://localhost:3000' }
+  );
+  if (user) {
+    dispatch(login(user));
+  }
   if (error) {
     console.error(error);
   }
