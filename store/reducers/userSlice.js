@@ -35,10 +35,7 @@ export const providerOAuth = (provider) => async (dispatch) => {
     {
       provider: provider,
     },
-    { redirectTo: `${process.env.URL}` || 'http://localhost:3000' },
-    {
-      scopes: 'repo notifications',
-    }
+    { redirectTo: `${process.env.URL}` || 'http://localhost:3000' }
   );
   if (user) {
     console.log(user);
