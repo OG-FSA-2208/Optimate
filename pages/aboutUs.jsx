@@ -38,7 +38,7 @@ export default function aboutUs() {
               whileHover={{
                 scale: 0.9,
               }}
-              src="https://media-exp1.licdn.com/dms/image/D4E35AQHrbmvFO37QRQ/profile-framedphoto-shrink_800_800/0/1663942167427?e=1666803600&v=beta&t=ChogHaUdh3g7y-x0uYOJwUDiyw4MZxMrQ5EYRmaPQLM"
+              src="https://media-exp1.licdn.com/dms/image/D4E03AQEd1PbrhzQXTQ/profile-displayphoto-shrink_800_800/0/1666361287887?e=1671667200&v=beta&t=zKP6JDInajIQNwcYJn9jjFa4S-abXtwiiPV4IaTI8gE"
             />
           </a>
           Cody Chan
