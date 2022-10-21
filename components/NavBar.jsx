@@ -39,9 +39,9 @@ export default function NavBar() {
   useEffect(() => {
     dispatch(checkSession());
     console.log(router);
-    if(router.asPath.startsWith('/#access_token'){
-      router.reload()
-    };
+    if (router.asPath.startsWith('/#access_token')) {
+      router.reload();
+    }
     const { subscription } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (event == 'SIGNED_IN') {
