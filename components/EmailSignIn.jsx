@@ -6,7 +6,6 @@ import { checkSession } from '../store/reducers/userSlice';
 import Link from 'next/link';
 import OAuthBar from './OAuthBar';
 export default function EmailSignIn() {
-
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -47,7 +46,7 @@ export default function EmailSignIn() {
         email: '',
         password: '',
       });
-      router.push('/user/profile');
+      router.push('/');
     }
   };
   const user = useSelector((state) => state.user.id);

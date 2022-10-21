@@ -19,7 +19,6 @@ export const getAllUserMatches = (router) => async (dispatch) => {
     const { data, error } = await supabase.rpc('get_all_match_ids');
     if (data) {
       const matchedUser = await Promise.all(
-        // data.matches_id.map((match) => {
         data.map((match) => {
           const findMatch = async () => {
             const { data, error } = await supabase

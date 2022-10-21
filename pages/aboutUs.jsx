@@ -74,11 +74,7 @@ export default function aboutUs() {
       <h2>
         Github:{' '}
         <u>
-          <a
-            // style={{ color: 'black' }}
-            target="_blank"
-            href="https://github.com/OG-FSA-2208/Optimate"
-          >
+          <a target="_blank" href="https://github.com/OG-FSA-2208/Optimate">
             https://github.com/OG-FSA-2208/Optimate
           </a>
         </u>

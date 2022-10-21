@@ -18,21 +18,17 @@ export default function UpdateUserAuth() {
   const userInfo = useSelector((state) => state.user);
   useEffect(() => {
     if (userInfo.id) {
-      console.log('hi', userInfo);
       setEmail(userInfo.email);
       const providers = userInfo.app_metadata.providers;
-      console.log(userInfo);
       if (providers.length === 1 && providers[0] === 'email') {
         setAuthProvider(false);
       } else {
         setAuthProvider(providers);
-        console.log(authProvider);
       }
     }
   }, [userInfo]);
   const handleSubmitEmail = async (event) => {
     event.preventDefault();
-    console.log('no');
     setSuccess({});
     setFormError({});
     if (!email) {
@@ -68,20 +64,16 @@ export default function UpdateUserAuth() {
     setFormError({});
     if (passwordConfirm !== password) {
       setFormError({ password: 'passwords do not match' });
-      // return;
     }
     const { user, error } = await supabase.auth.update({
-      // email: userInfo.email,
       password: password,
     });
-    console.log('res', user, error);
     if (error) {
       setFormError({
         password: error.message,
       });
     }
     if (user) {
-      console.log('changed');
       setSuccess({
         password: `your password has been successfully changed`,
       });

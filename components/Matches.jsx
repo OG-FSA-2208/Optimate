@@ -12,7 +12,6 @@ export default function Matches() {
   const matches = useSelector((state) => state.matches);
   const currUser = useSelector((state) => state.profile);
   const messages = useSelector((state) => state.messenger.messages);
-  //TODO: update badge when user clicks on a chat, during dispatch clickMessages?
 
   //calculate distance between two lats and longs
   function calcCrow(lat1, lon1, lat2, lon2) {
@@ -43,55 +42,58 @@ export default function Matches() {
   return (
     <>
       <h1>MATCHES</h1>
-      {matches.map((user) => (
-        <div key={user.id}>
-          <p className="distance">
-            {Math.round(
-              calcCrow(
-                Number(currUser.latitude),
-                Number(currUser.longitude),
-                Number(user.latitude),
-                Number(user.longitude)
-              )
-            )}{' '}
-            miles away
-          </p>
-          <Link href={`/messages/${user.id}`}>
-            <a
-              className={`match ${
-                router.query.id === user.id ? 'active-match' : ''
-              }`}
-              onClick={() => dispatch(clickMessages(user.id, messages))}
-            >
-              <Badge
-                color="primary"
-                badgeContent={
-                  messages?.filter(
-                    (message) =>
-                      message.from === user.id && message.read === false
-                  ).length
-                }
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                max={9}
+      {matches.map((user) => {
+        const distance = Math.floor(
+          calcCrow(
+            Number(currUser.latitude),
+            Number(currUser.longitude),
+            Number(user.latitude),
+            Number(user.longitude)
+          )
+        );
+
+        return (
+          <div key={user.id}>
+            <Link href={`/messages/${user.id}`}>
+              <a
+                className={`match ${
+                  router.query.id === user.id ? 'active-match' : ''
+                }`}
+                onClick={() => dispatch(clickMessages(user.id, messages))}
               >
-                <img
-                  className="matchPic"
-                  src={user.avatar_url}
-                  alt="user profile image"
-                />
-              </Badge>
-              <h2>
-                {user.firstname}
-                <br />
-                {user.lastname}
-              </h2>
-            </a>
-          </Link>
-        </div>
-      ))}
+                <Badge
+                  color="primary"
+                  badgeContent={
+                    messages?.filter(
+                      (message) =>
+                        message.from === user.id && message.read === false
+                    ).length
+                  }
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  max={9}
+                >
+                  <img
+                    className="matchPic"
+                    src={user.avatar_url}
+                    alt="user profile image"
+                  />
+                </Badge>
+                <div className="matchDetails">
+                  <h2>
+                    {user.firstname}
+                    <br />
+                    {user.lastname}
+                  </h2>
+                  <p className="distance">{distance} miles away</p>
+                </div>
+              </a>
+            </Link>
+          </div>
+        );
+      })}
     </>
   );
 }
