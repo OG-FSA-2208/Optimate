@@ -113,6 +113,7 @@ export const editMessage = (messageId, editedMessage) => async (dispatch) => {
       .update({ message: editedMessage })
       .match({ id: messageId });
     if (data) {
+      //TODO: add edited message to old_messages database
       dispatch(changeMessage({ messageId, editedMessage }));
     }
     if (error) console.error(error);
@@ -128,6 +129,7 @@ export const deleteMessage = (messageId) => async (dispatch) => {
       .delete()
       .match({ id: messageId });
     if (data) {
+      //TODO: add deleted message to old_messages database
       dispatch(deleteOne(data[0]));
     }
     if (error) console.error(error);
