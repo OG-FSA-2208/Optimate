@@ -40,7 +40,8 @@ export default function NavBar() {
     dispatch(checkSession());
     console.log(router);
     if (router.asPath.startsWith('/#access_token') & (router.route === '/')) {
-      router.push('/login');
+      dispatch(checkSession(router));
+      // router.push('/login');
     }
     const { subscription } = supabase.auth.onAuthStateChange(
       async (event, session) => {
