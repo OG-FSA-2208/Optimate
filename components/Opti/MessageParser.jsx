@@ -2,12 +2,14 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { getAllUserMatches } from '../../store/reducers/matchesSlice';
+import { blacklistUser } from '../../store/reducers/blacklistSlice';
 
 const MessageParser = ({ children, actions }) => {
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
   useEffect(() => {
     dispatch(getAllUserMatches());
+    // dispatch(blacklistUser());
   }, []);
 
   const words = [
@@ -40,6 +42,8 @@ const MessageParser = ({ children, actions }) => {
       if (message.includes(match.firstname)) {
         response = true;
         if (message.includes(match.lastname)) {
+          console.log('printoutmessage', message);
+          // dispatch(blacklistUser(match.firstname, match.lastname));
           return actions.handleMatch();
         }
         return actions.handleName(match.firstname);
