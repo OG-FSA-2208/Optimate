@@ -7,6 +7,7 @@ import { blacklistUser } from '../../store/reducers/blacklistSlice';
 const MessageParser = ({ children, actions }) => {
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
+  const userId = useSelector((state) => state.user.id);
   useEffect(() => {
     dispatch(getAllUserMatches());
     // dispatch(blacklistUser());
@@ -42,8 +43,10 @@ const MessageParser = ({ children, actions }) => {
       if (message.includes(match.firstname)) {
         response = true;
         if (message.includes(match.lastname)) {
-          console.log('printoutmessage', message);
-          // dispatch(blacklistUser(match.firstname, match.lastname));
+          console.log('print black list user', blacklistUser(userId, match.id));
+          console.log('printoutuser', match.id);
+
+          dispatch(blacklistUser(userId, match.id));
           return actions.handleMatch();
         }
         return actions.handleName(match.firstname);
