@@ -40,7 +40,6 @@ export const providerOAuth = (provider) => async (dispatch) => {
     { redirectTo: `${process.env.URL}` || 'http://localhost:3000' }
   );
   if (user) {
-    console.log(user);
     dispatch(login(user));
   }
   if (error) {
