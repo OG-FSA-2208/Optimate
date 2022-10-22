@@ -40,10 +40,22 @@ export default function Chatroom() {
   }
 
   function setTime(date) {
-    //TODO: implement
+    /*TODO:  grab old hours
+    subtract local timezones (now date) first two numbers
+    if negative add a 'yesterday at (time+24)' to the string, more than 24hr add 'date at time'
+    so if my old time is 2000 then MY time should be 1600.....0000 -> yesterday at 8:00 PM...........1536 2 days ago -> sent: 10/19/2022 at 11:36 AM */
     const now = new Date();
-    console.log('now: ', now.toString());
-    console.log('then: ', date);
+    //get local sent time
+    let tzCorrectedHour = date.slice(11, 13) - now.getTimezoneOffset() / 60;
+    if (tzCorrectedHour < 0) tzCorrectedHour += 24;
+    const timeOfDay = tzCorrectedHour < 12 ? 'AM' : 'PM';
+    const time = `${
+      timeOfDay === 'AM' ? tzCorrectedHour : tzCorrectedHour - 12
+    }:${date.slice(14, 16)} ${timeOfDay}`;
+
+    //get local sent day
+    console.log('now: ', now, now.getUTCDate());
+    console.log('then: ', time);
   }
 
   function handleEdit() {
