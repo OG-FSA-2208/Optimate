@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { FaGithub, FaFacebook, FaGoogle } from 'react-icons/fa';
 import Link from 'next/link';
+import deleteUser from '../supabase/deleteUser';
 
 export default function UpdateUserAuth() {
   const dispatch = useDispatch();
@@ -167,6 +168,8 @@ export default function UpdateUserAuth() {
           </button>
         </div>
       </form>
+      <hr/>
+      <button onClick={() => deleteUser(userInfo.id)}>Delete Your Account</button>
     </div>
   );
 }
