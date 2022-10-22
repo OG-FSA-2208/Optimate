@@ -9,8 +9,10 @@
   background-color: rgb(251, 161, 174);
   margin-right: 0px;
   @media screen  {
-    height: 20px;
+    height: 25px;
     padding: 6px;
+    margin-top: 5px;
+    margin-right: 15px;
 
   }
 }
@@ -71,14 +73,27 @@
     overflow-x: hidden;
     @media screen and (max-width: 1080px) {
       height: 400px;
+      padding-bottom: 0.2rem;
     }
 
-    .react-chatbot-kit-chat-bot-message {
-    }
-  
+
     .react-chatbot-kit-chat-bot-message-container {
       margin-right: 185px;
+      @media screen and (max-width: 1080px){
+        width: 220px;
+  
+      }
     }
+
+    .react-chatbot-kit-user-chat-message {
+      @media screen and (max-width: 1080px){
+        width: 150px;
+  
+      }
+    }
+
+
+
     .react-chatbot-kit-chat-btn-send {
       width: 100px;
       border-bottom-right-radius: 5px;
