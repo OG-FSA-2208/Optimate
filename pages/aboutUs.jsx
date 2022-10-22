@@ -5,7 +5,7 @@ export default function aboutUs() {
   return (
     <div className="aboutUs">
       <h1>
-        <u>ABOUT US:</u> ©ZECC-W
+        <u style={{ fontSize: '3rem' }}>ABOUT US:</u> ©ZECC-W
       </h1>
 
       <br />
