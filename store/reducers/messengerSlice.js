@@ -129,13 +129,14 @@ export const deleteMessage = (messageId) => async (dispatch) => {
       .delete()
       .match({ id: messageId });
     if (data) {
-      supabase.from('old_messages').insert({
-        message: data[0].message,
-        from_id: data[0].from,
-        to_id: data[0].to,
-        message_id: data[0].id,
+      const mes = data[0];
+      await supabase.from('old_messages').insert({
+        message: mes.message,
+        from_id: mes.from,
+        to_id: mes.to,
+        message_id: mes.id,
       });
-      dispatch(deleteOne(data[0]));
+      dispatch(deleteOne(mes));
     }
     if (error) console.error(error);
   }
