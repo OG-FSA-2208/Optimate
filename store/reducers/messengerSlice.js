@@ -129,7 +129,12 @@ export const deleteMessage = (messageId) => async (dispatch) => {
       .delete()
       .match({ id: messageId });
     if (data) {
-      //TODO: add deleted message to old_messages database
+      supabase.from('old_messages').insert({
+        message: data[0].message,
+        from_id: data[0].from,
+        to_id: data[0].to,
+        message_id: data[0].id,
+      });
       dispatch(deleteOne(data[0]));
     }
     if (error) console.error(error);

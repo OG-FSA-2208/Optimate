@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Badge } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
+import { getLoggedInUser } from '../store/reducers/profileSlice';
 import { getAllUserMatches } from '../store/reducers/matchesSlice';
 import { clickMessages } from '../store/reducers/messengerSlice';
 
@@ -35,7 +36,7 @@ export default function Matches() {
   }
 
   useEffect(() => {
-    //TODO: is this still neeeded?
+    if (!currUser.id) dispatch(getLoggedInUser());
     if (!matches.length) dispatch(getAllUserMatches());
   }, []);
 

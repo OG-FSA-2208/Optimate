@@ -14,7 +14,7 @@ const profileSlice = createSlice({
 
 export default profileSlice.reducer;
 export const { getUser } = profileSlice.actions;
-export const getLoggedInUser = (router) => async (dispatch) => {
+export const getLoggedInUser = () => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
     const { data, error } = await supabase

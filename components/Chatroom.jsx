@@ -15,8 +15,12 @@ export default function Chatroom() {
   const { messageUserId, currentMessage, messages } = useSelector(
     (state) => state.messenger
   );
-  const { firstname: matchFName, lastname: matchLName } = useSelector((state) =>
-    state.matches.find((match) => match.id === messageUserId)
+  const { firstname: matchFName, lastname: matchLName } = useSelector(
+    (state) =>
+      state.matches.find((match) => match.id === messageUserId) ?? {
+        firstname: null,
+        lastname: null,
+      }
   );
   const { firstname, lastname } = useSelector((state) => state.profile);
 
