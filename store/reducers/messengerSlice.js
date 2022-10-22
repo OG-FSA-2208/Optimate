@@ -41,7 +41,7 @@ const messengerSlice = createSlice({
       //edit the message matching the ID from the payload
       state.messages = state.messages.map((message) =>
         message.id === action.payload.messageId
-          ? (message.message = action.payload.editedMessage)
+          ? { ...message, message: action.payload.editedMessage }
           : message
       );
     },
@@ -113,7 +113,13 @@ export const editMessage = (messageId, editedMessage) => async (dispatch) => {
       .update({ message: editedMessage })
       .match({ id: messageId });
     if (data) {
-      //TODO: add edited message to old_messages database
+      const mes = data[0];
+      await supabase.from('old_messages').insert({
+        message: mes.message,
+        from_id: mes.from,
+        to_id: mes.to,
+        message_id: mes.id,
+      });
       dispatch(changeMessage({ messageId, editedMessage }));
     }
     if (error) console.error(error);

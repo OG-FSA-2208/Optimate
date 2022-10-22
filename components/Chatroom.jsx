@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   changeInput,
   sendMessage,
-  changeMessage,
+  editMessage,
   deleteMessage,
 } from '../store/reducers/messengerSlice';
 import { Edit, Delete } from '@mui/icons-material';
@@ -12,6 +12,7 @@ import { Edit, Delete } from '@mui/icons-material';
 export default function Chatroom() {
   const dispatch = useDispatch();
   const router = useRouter();
+  const [editId, setEditId] = useState(0);
   const { messageUserId, currentMessage, messages } = useSelector(
     (state) => state.messenger
   );
@@ -32,15 +33,20 @@ export default function Chatroom() {
   }, [messages]);
 
   function handleSend() {
-    if (!currentMessage) {
-      return;
-    }
-    dispatch(sendMessage(currentMessage, messageUserId));
+    if (!currentMessage) return;
+    if (editId) {
+      dispatch(editMessage(editId, currentMessage));
+      setEditId(0);
+    } else dispatch(sendMessage(currentMessage, messageUserId));
     dispatch(changeInput(''));
   }
 
   function handleEnter(e) {
     if (e.key === 'Enter') handleSend();
+    if (e.key === 'Escape' && editId) {
+      setEditId(0);
+      dispatch(changeInput(''));
+    }
   }
   function handleChange(e) {
     e.preventDefault();
@@ -71,8 +77,10 @@ export default function Chatroom() {
     return date;
   }
 
-  function handleEdit() {
-    //TODO: implement - either change the single message to an input box or use an edit = true state and put the message in the chatbox
+  function handleEdit(id, message) {
+    if (editId) return;
+    setEditId(id);
+    dispatch(changeInput(message));
   }
   function handleDelete(id) {
     dispatch(deleteMessage(id));
@@ -117,7 +125,7 @@ export default function Chatroom() {
                     />
                     <Edit
                       sx={{ '&:hover': { color: 'gray' } }}
-                      onClick={handleEdit}
+                      onClick={() => handleEdit(message.id, message.message)}
                     />
                     <p className={'user'}>
                       <small>
