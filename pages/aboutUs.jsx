@@ -4,7 +4,10 @@ import { motion } from 'framer-motion';
 export default function aboutUs() {
   return (
     <div className="aboutUs">
-      <h1>ABOUT US: ©ZECC-W</h1>
+      <h1>
+        <u>ABOUT US:</u> ©ZECC-W
+      </h1>
+
       <br />
       <div className="members">
         <h3>
@@ -62,7 +65,7 @@ export default function aboutUs() {
               whileHover={{
                 scale: 0.9,
               }}
-              src="https://media-exp1.licdn.com/dms/image/C4E03AQHSfuCvuaSwFw/profile-displayphoto-shrink_800_800/0/1662084332050?e=1671667200&v=beta&t=XaEI7Cyj1felq3yFsCpkRw-XOpetx_NPqdPPCcUlbNw"
+              src="https://i.postimg.cc/nh9p6SFr/pic1.png"
             />
           </a>
           Winnie Lau
