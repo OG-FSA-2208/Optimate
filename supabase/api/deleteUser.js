@@ -4,7 +4,9 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseServiceKey = process.env.NEXT_PUBLIC_SUPABASE_SERVICE_KEY;
+console.log(supabaseServiceKey)
 const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
+console.dir(supabaseAdmin)
 
 export const deleteUser = async (userId) => {
     console.dir(userId);
@@ -14,7 +16,7 @@ export const deleteUser = async (userId) => {
     await supabaseAdmin.from('matches2').delete().eq('id', userId);
     await supabaseAdmin.from('messages').delete().or(`from.eq.${userId}, to.eq.${userId}`);
     // await supabaseAdmin.from('old_messages').delete().match({id:userId});
-    await supabaseAdmin.from('blacklist').delete().eq('id', userId);
+    await supabaseAdmin.from('blacklist').delete().or(`id.eq.${userId}, blacklised_id.eq.${userId}`);
     const filesToRemove = (await supabaseAdmin.storage.from('avatars').list()).data
         .reduce((prev, file) => {
             if (file.name.includes(userId)) {
