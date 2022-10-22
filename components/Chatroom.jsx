@@ -39,23 +39,28 @@ export default function Chatroom() {
     dispatch(changeInput(e.target.value));
   }
 
-  function setTime(date) {
-    /*TODO:  grab old hours
-    subtract local timezones (now date) first two numbers
-    if negative add a 'yesterday at (time+24)' to the string, more than 24hr add 'date at time'
-    so if my old time is 2000 then MY time should be 1600.....0000 -> yesterday at 8:00 PM...........1536 2 days ago -> sent: 10/19/2022 at 11:36 AM */
+  function setTime(sent) {
     const now = new Date();
-    //get local sent time
-    let tzCorrectedHour = date.slice(11, 13) - now.getTimezoneOffset() / 60;
-    if (tzCorrectedHour < 0) tzCorrectedHour += 24;
-    const timeOfDay = tzCorrectedHour < 12 ? 'AM' : 'PM';
-    const time = `${
-      timeOfDay === 'AM' ? tzCorrectedHour : tzCorrectedHour - 12
-    }:${date.slice(14, 16)} ${timeOfDay}`;
+    const then = new Date(sent.replace(/-\d{2}:\d{2}/, '-00:00')); //regex converts timezone to UTC
+    const msInDay = 1000 * 60 * 60 * 24; //milliseconds in a day
 
-    //get local sent day
-    console.log('now: ', now, now.getUTCDate());
-    console.log('then: ', time);
+    const dayDifference = (now - then) / msInDay;
+    const date =
+      dayDifference < 1
+        ? then.toLocaleTimeString([], {
+            hour: 'numeric',
+            minute: '2-digit',
+          })
+        : dayDifference < 2
+        ? `Yesterday at ${then.toLocaleTimeString([], {
+            hour: 'numeric',
+            minute: '2-digit',
+          })}`
+        : then
+            .toLocaleString([], { dateStyle: 'short', timeStyle: 'short' })
+            .replace(',', ' at');
+
+    return date;
   }
 
   function handleEdit() {
@@ -87,9 +92,11 @@ export default function Chatroom() {
                       alt="user profile pic"
                     />
                     <p className={'chat-match'}>
+                      <small>{message.from}</small>
+                      <br />
                       {message.message}
                       <br />
-                      <small>Sent: {message.created_at.slice(11, 16)}</small>
+                      <small>Sent: {setTime(message.created_at)}</small>
                     </p>
                   </div>
                 ) : (
@@ -103,9 +110,9 @@ export default function Chatroom() {
                       onClick={handleEdit}
                     />
                     <p className={'user'}>
-                      {message.message} <br />
+                      <small>{message.from}</small>
+                      <br /> {message.message} <br />
                       <small>Sent: {setTime(message.created_at)}</small>
-                      {/* TODO: create function to convert this time to local human readable */}
                     </p>
                     <img
                       src={message.from_pic?.avatar_url}
