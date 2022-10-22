@@ -4,7 +4,10 @@ import { motion } from 'framer-motion';
 export default function aboutUs() {
   return (
     <div className="aboutUs">
-      <h1>ABOUT US: ©ZECC-W</h1>
+      <h1>
+        <u style={{ fontSize: '3rem' }}>ABOUT US:</u> ©ZECC-W
+      </h1>
+
       <br />
       <div className="members">
         <h3>
@@ -14,7 +17,7 @@ export default function aboutUs() {
               whileHover={{
                 scale: 0.9,
               }}
-              src="https://media-exp1.licdn.com/dms/image/D5635AQGvFO7jYtZh4A/profile-framedphoto-shrink_800_800/0/1621984149600?e=1666803600&v=beta&t=JafDA_saLAgY1saao8RK-NvC_XQv0ldEgmiSEeb7f-M"
+              src="https://media-exp1.licdn.com/dms/image/C5603AQHCkceejtIvYQ/profile-displayphoto-shrink_800_800/0/1569367290750?e=1671667200&v=beta&t=PApwrewRWU-IaBiuxtROh4ktw5pGH6O1J91ijFcjB0g"
             />
           </a>
           Zach Byerley
@@ -38,7 +41,7 @@ export default function aboutUs() {
               whileHover={{
                 scale: 0.9,
               }}
-              src="https://media-exp1.licdn.com/dms/image/D4E35AQHrbmvFO37QRQ/profile-framedphoto-shrink_800_800/0/1663942167427?e=1666803600&v=beta&t=ChogHaUdh3g7y-x0uYOJwUDiyw4MZxMrQ5EYRmaPQLM"
+              src="https://media-exp1.licdn.com/dms/image/D4E03AQEd1PbrhzQXTQ/profile-displayphoto-shrink_800_800/0/1666361287887?e=1671667200&v=beta&t=zKP6JDInajIQNwcYJn9jjFa4S-abXtwiiPV4IaTI8gE"
             />
           </a>
           Cody Chan
@@ -62,7 +65,7 @@ export default function aboutUs() {
               whileHover={{
                 scale: 0.9,
               }}
-              src="https://media-exp1.licdn.com/dms/image/C4E03AQHSfuCvuaSwFw/profile-displayphoto-shrink_800_800/0/1662084332050?e=1671667200&v=beta&t=XaEI7Cyj1felq3yFsCpkRw-XOpetx_NPqdPPCcUlbNw"
+              src="https://i.postimg.cc/nh9p6SFr/pic1.png"
             />
           </a>
           Winnie Lau

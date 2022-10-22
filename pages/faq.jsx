@@ -68,7 +68,10 @@ export default function faq() {
       </p>
       <i>
         Read:{' '}
-        <a href="https://www.elitesingles.com/mag/relationship-advice/who-should-pay-for-date">
+        <a
+          target="_blank"
+          href="https://www.elitesingles.com/mag/relationship-advice/who-should-pay-for-date"
+        >
           Survey says...
         </a>
       </i>
@@ -81,7 +84,10 @@ export default function faq() {
       </p>
       <i>
         Read:{' '}
-        <a href="https://www.datingadvice.com/online-dating/ghosted-dating-app">
+        <a
+          target="_blank"
+          href="https://www.datingadvice.com/online-dating/ghosted-dating-app"
+        >
           Ghost City 👻
         </a>
       </i>
@@ -95,7 +101,10 @@ export default function faq() {
       <p>
         <i>
           Read:{' '}
-          <a href="https://www.nytimes.com/2021/11/06/style/anxious-avoidant-secure-attached-book.html">
+          <a
+            target="_blank"
+            href="https://www.nytimes.com/2021/11/06/style/anxious-avoidant-secure-attached-book.html"
+          >
             Attached By Amir Levine and Rachel Heller
           </a>
         </i>
