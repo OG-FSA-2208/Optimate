@@ -14,9 +14,9 @@
 }
 
 .footer li {
+  .flexCenter();
   list-style: none;
   margin: 0 1em;
-  text-align: center;
 }
 .footer a {
   text-decoration: none;
@@ -25,6 +25,19 @@
   text-align: center;
   transition: 200ms;
   color: @primary-text-color;
+}
+
+.footer p {
+  .flexCenter();
+  font-size: .1rem;
+}
+
+#aboutUs{
+  .flexCenter();
+ color: black;
+ &:hover {
+  color: @accent-color;
+}
 }
 
 .footer a:hover {

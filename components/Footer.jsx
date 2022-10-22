@@ -16,15 +16,9 @@ const Footer = () => {
               scale: 1.3,
             }}
           >
+            {/* <p>About Us</p> */}
             <Link href="/aboutUs">
-              <a
-                style={{ color: 'black' }}
-                // style={{ color: 'rgba(250, 171, 171, 0.6)' }}
-                // target="_blank"
-                // href="https://github.com/OG-FSA-2208/Optimate"
-              >
-                © 2022 ZECC-W
-              </a>
+              <a id="aboutUs">© 2022 ZECC-W</a>
             </Link>
           </motion.h3>
         </li>
