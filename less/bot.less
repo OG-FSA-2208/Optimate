@@ -8,6 +8,11 @@
   font-size: 0.9rem;
   background-color: rgb(251, 161, 174);
   margin-right: 0px;
+  @media screen  {
+    height: 20px;
+    padding: 6px;
+
+  }
 }
 
 .user-avatar-icon {
@@ -39,12 +44,19 @@
     height: 770px;
     border: solid rgb(251, 161, 174);
     @media screen and (max-width: 1080px) {
-      height: 40em;
+      height: 570px;
     }
 
 
 
   }
+  .react-chatbot-kit-chat-input-form {
+    @media screen and (max-width: 1080px) {
+      width: 100vw;
+
+    }
+
+    }
   .react-chatbot-kit-chat-input {
     font-size: 1rem;
     border: 3px solid rgb(251, 161, 174);
@@ -57,6 +69,9 @@
     border-bottom: solid rgb(251, 161, 174);
     overflow-y: scroll;
     overflow-x: hidden;
+    @media screen and (max-width: 1080px) {
+      height: 400px;
+    }
 
     .react-chatbot-kit-chat-bot-message {
     }
