@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { FaGithub, FaFacebook, FaGoogle } from 'react-icons/fa';
 import Link from 'next/link';
-import deleteUser from '../supabase/deleteUser';
+import {deleteUser} from '../supabase/api/deleteUser';
 
 export default function UpdateUserAuth() {
   const dispatch = useDispatch();
