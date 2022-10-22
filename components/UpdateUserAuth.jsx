@@ -31,6 +31,7 @@ export default function UpdateUserAuth() {
   }, [userInfo]);
 
   const handleDelete = () => {
+    // deletes the user, their related information, and the immediately logs out
     deleteUser(userInfo.id);
     dispatch(logoutUser(Router));
   }

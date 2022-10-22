@@ -4,19 +4,24 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseServiceKey = process.env.NEXT_PUBLIC_SUPABASE_SERVICE_KEY;
+// for some reason, the serviceKey does not properly create a client
+// with the role 'service_role'.
+// attempted to remove 'NEXT_PUBLIC' but createClient fails in such case
 console.log(supabaseServiceKey)
 const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
 console.dir(supabaseAdmin)
+// currently this data and the function below is NOT located on server side
+// this file is not protected and can be accessed from client-side 
+// further testing required
 
 export const deleteUser = async (userId) => {
-    console.dir(userId);
     await supabaseAdmin.from('profiles').delete().eq('id', userId);
     await supabaseAdmin.from('profiles_secure').delete().eq('id', userId);
-    await supabaseAdmin.from('matches').delete().eq('id', userId);
     await supabaseAdmin.from('matches2').delete().eq('id', userId);
     await supabaseAdmin.from('messages').delete().or(`from.eq.${userId}, to.eq.${userId}`);
     // await supabaseAdmin.from('old_messages').delete().match({id:userId});
-    await supabaseAdmin.from('blacklist').delete().or(`id.eq.${userId}, blacklised_id.eq.${userId}`);
+    await supabaseAdmin.from('blacklist').delete().or(`id.eq.${userId}, blacklisted_id.eq.${userId}`);
+    // gets all photos from 'avatars' bucket that contain the userId
     const filesToRemove = (await supabaseAdmin.storage.from('avatars').list()).data
         .reduce((prev, file) => {
             if (file.name.includes(userId)) {
@@ -25,13 +30,11 @@ export const deleteUser = async (userId) => {
             }
             return prev;
         }, []);
-    console.dir(filesToRemove);
+    // removes said photos from the bucket
     const {data} = await supabaseAdmin.storage.from('avatars').remove(filesToRemove);
-    console.dir(data);
+    // then deletes the user off the database
     const { data: user, error } = await supabaseAdmin.auth.api.deleteUser(userId);
     if (error) {
         return `some error occurred when trying to delete the user: ${error}`;
     }
-    // console.dir(user);
-    return data;
 }
