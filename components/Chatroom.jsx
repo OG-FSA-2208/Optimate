@@ -15,6 +15,10 @@ export default function Chatroom() {
   const { messageUserId, currentMessage, messages } = useSelector(
     (state) => state.messenger
   );
+  const { firstname: matchFName, lastname: matchLName } = useSelector((state) =>
+    state.matches.find((match) => match.id === messageUserId)
+  );
+  const { firstname, lastname } = useSelector((state) => state.profile);
 
   useEffect(() => {
     if (router.query.id === messageUserId) {
@@ -92,7 +96,9 @@ export default function Chatroom() {
                       alt="user profile pic"
                     />
                     <p className={'chat-match'}>
-                      <small>{message.from}</small>
+                      <small>
+                        {matchFName} {matchLName}
+                      </small>
                       <br />
                       {message.message}
                       <br />
@@ -110,7 +116,9 @@ export default function Chatroom() {
                       onClick={handleEdit}
                     />
                     <p className={'user'}>
-                      <small>{message.from}</small>
+                      <small>
+                        {firstname} {lastname}
+                      </small>
                       <br /> {message.message} <br />
                       <small>Sent: {setTime(message.created_at)}</small>
                     </p>
