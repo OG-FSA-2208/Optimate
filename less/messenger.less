@@ -3,13 +3,10 @@
   justify-content: space-around;
   gap: 1em;
   width: 95vw;
-  @media (max-width: 980px) {
-    flex-direction: column-reverse;
-  }
 }
 
 .column {
-  height: 81.9vh;
+  height: 81.5vh;
 }
 
 //**********LEFT COLUMN**********
@@ -21,7 +18,7 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
   margin: 0.5em;
   border-radius: 10px;
   border: 10px solid @secondary-color;
-  background-color: @primary-color;
+  background-color: fadeout(@primary-color, 30%);
   overflow-y: scroll;
   overflow-x: hidden;
   h1 {
@@ -37,6 +34,9 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
     height: 150px;
     width: 150px;
     border-radius: 50%;
+  }
+  @media (max-width: 980px) {
+    display: none;
   }
 }
 
@@ -59,10 +59,10 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
 
 //chats
 .chatroom {
-  height: 76vh;
+  height: 75.5vh;
   padding: 0.3vh 0.5vw;
   border-bottom: solid black;
-  background-color: @primary-color;
+  background-color: fadeout(@primary-color, 70%);
   overflow-x: hidden;
   overflow-y: auto;
   white-space: nowrap;
@@ -108,6 +108,8 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
     background-color: rgb(143, 196, 222);
     max-width: 50%;
     padding: 10px 20px;
+    margin-bottom: 15px;
+    margin-left: 5px;
     word-break: normal;
     white-space: normal;
   }
@@ -119,6 +121,8 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
     background-color: rgb(120, 255, 210);
     max-width: 50%;
     padding: 10px 20px;
+    margin-bottom: 15px;
+    margin-right: 5px;
     word-break: normal;
     white-space: normal;
   }
