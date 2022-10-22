@@ -8,6 +8,13 @@
   font-size: 0.9rem;
   background-color: rgb(251, 161, 174);
   margin-right: 0px;
+  @media screen  {
+    height: 25px;
+    padding: 6px;
+    margin-top: 5px;
+    margin-right: 15px;
+
+  }
 }
 
 .user-avatar-icon {
@@ -23,39 +30,78 @@
 }
 
 #bottie {
+
+ 
   .react-chatbot-kit-chat-container {
     position: relative;
     width: 500px;
     height: 800px;
+      @media screen and (max-width: 1080px) {
+      width: 300px;
+      height: 600px;
+    }
   }
 
   .react-chatbot-kit-chat-inner-container {
     height: 770px;
     border: solid rgb(251, 161, 174);
+    @media screen and (max-width: 1080px) {
+      height: 570px;
+    }
+
+
+
   }
+  .react-chatbot-kit-chat-input-form {
+    @media screen and (max-width: 1080px) {
+      width: 100vw;
+
+    }
+
+    }
   .react-chatbot-kit-chat-input {
     font-size: 1rem;
     border: 3px solid rgb(251, 161, 174);
     border-bottom-left-radius: 5px;
     width: 100%;
-  }
+    }
 
   .react-chatbot-kit-chat-message-container {
     height: 600px;
     border-bottom: solid rgb(251, 161, 174);
     overflow-y: scroll;
     overflow-x: hidden;
-  }
-  .react-chatbot-kit-chat-bot-message-container {
-    margin-right: 185px;
-  }
-  .react-chatbot-kit-chat-btn-send {
-    width: 100px;
-    border-bottom-right-radius: 5px;
-  }
-  .react-chatbot-kit-chat-btn-send-icon {
-    fill: #fff;
-    width: 15px;
-    margin: 0 auto;
+    @media screen and (max-width: 1080px) {
+      height: 400px;
+      padding-bottom: 0.2rem;
+    }
+
+
+    .react-chatbot-kit-chat-bot-message-container {
+      margin-right: 185px;
+      @media screen and (max-width: 1080px){
+        width: 220px;
+  
+      }
+    }
+
+    .react-chatbot-kit-user-chat-message {
+      @media screen and (max-width: 1080px){
+        width: 150px;
+  
+      }
+    }
+
+
+
+    .react-chatbot-kit-chat-btn-send {
+      width: 100px;
+      border-bottom-right-radius: 5px;
+    }
+    .react-chatbot-kit-chat-btn-send-icon {
+      fill: #fff;
+      width: 15px;
+      margin: 0 auto;
+    }
   }
 }
