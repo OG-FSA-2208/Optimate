@@ -7,8 +7,6 @@ import Matches from '../../components/Matches';
 import Chatroom from '../../components/Chatroom';
 import { clickMessages } from '../../store/reducers/messengerSlice';
 import Head from 'next/head';
-import Link from 'next/link';
-import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 
 export default function Chat() {
   const router = useRouter();
@@ -39,9 +37,6 @@ export default function Chat() {
         <Matches />
       </div>
       <div className="column chatMessageBox">
-        <Link href="/messages">
-          <ArrowCircleLeftOutlinedIcon id="back" fontSize="large" />
-        </Link>
         <Chatroom />
       </div>
     </div>

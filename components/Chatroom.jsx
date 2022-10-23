@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   changeInput,
@@ -7,7 +8,7 @@ import {
   editMessage,
   deleteMessage,
 } from '../store/reducers/messengerSlice';
-import { Edit, Delete } from '@mui/icons-material';
+import { Edit, Delete, ArrowCircleLeftOutlined } from '@mui/icons-material';
 
 export default function Chatroom() {
   const dispatch = useDispatch();
@@ -88,6 +89,12 @@ export default function Chatroom() {
 
   return (
     <>
+      <div id="back">
+        <Link href="/messages">
+          <ArrowCircleLeftOutlined fontSize="large" />
+        </Link>
+        <small>{matchFName}</small>
+      </div>
       <div className="chatroom">
         <div className="chats">
           {messages
