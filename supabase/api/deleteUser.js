@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 // NO OTHER PART OF THE APP SHOULD BE ACCESSING THIS CLIENT!!!
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseServiceKey = process.env.NEXT_PUBLIC_SUPABASE_SERVICE_KEY;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
 // for some reason, the serviceKey does not properly create a client
 // with the role 'service_role'.
 // attempted to remove 'NEXT_PUBLIC' but createClient fails in such case
