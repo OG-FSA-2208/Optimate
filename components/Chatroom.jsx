@@ -26,12 +26,11 @@ export default function Chatroom() {
   );
   const { firstname, lastname } = useSelector((state) => state.profile);
 
+  //scroll to the last message whenever a dif match is clicked
   useEffect(() => {
-    if (router.query.id === messageUserId) {
-      const lastMessage = document.querySelector('.last');
-      lastMessage?.scrollIntoView(false);
-    }
-  }, [messages]);
+    const lastMessage = document.querySelector('.last');
+    lastMessage?.scrollIntoView(false);
+  }, [messageUserId]);
 
   function handleSend() {
     if (!currentMessage) return;
@@ -56,10 +55,11 @@ export default function Chatroom() {
 
   function setTime(sent) {
     const now = new Date();
-    const then = new Date(sent.replace(/-\d{2}:\d{2}/, '-00:00')); //regex converts timezone to UTC
+    const then = new Date(sent.replace(/-\d{2}:\d{2}/, '-00:00')); //regex converts timezone to UTC (-XX:XX -> -00:00)
     const msInDay = 1000 * 60 * 60 * 24; //milliseconds in a day
-
     const dayDifference = (now - then) / msInDay;
+
+    //double ternary, if less than 24 hours display time sent, 24-48 hrs displays yesterday, > 48hrs give date
     const date =
       dayDifference < 1
         ? then.toLocaleTimeString([], {
@@ -89,12 +89,14 @@ export default function Chatroom() {
 
   return (
     <>
+      {/* back button and name for mobile */}
       <div id="back">
         <Link href="/messages">
           <ArrowCircleLeftOutlined fontSize="large" />
         </Link>
         <small>{matchFName}</small>
       </div>
+      {/* chat box starts here */}
       <div className="chatroom">
         <div className="chats">
           {messages
@@ -104,6 +106,7 @@ export default function Chatroom() {
               );
             })
             .map((message, idx, filteredArr) => (
+              // messages from match here
               <div
                 key={message.id}
                 className={idx === filteredArr.length - 1 ? 'last' : ''}
@@ -125,6 +128,7 @@ export default function Chatroom() {
                     </p>
                   </div>
                 ) : (
+                  // messages from logged in user start here
                   <div key={message.id} className="single-message right-user">
                     <Delete
                       sx={{ '&:hover': { color: 'red' } }}
@@ -151,6 +155,7 @@ export default function Chatroom() {
             ))}
         </div>
       </div>
+      {/* input for chat box */}
       <div className="input-box">
         <input
           className="chat-input"
