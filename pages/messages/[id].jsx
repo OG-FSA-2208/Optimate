@@ -40,7 +40,7 @@ export default function Chat() {
       </div>
       <div className="column chatMessageBox">
         <Link href="/messages">
-          <ArrowCircleLeftOutlinedIcon id="back" />
+          <ArrowCircleLeftOutlinedIcon id="back" fontSize="large" />
         </Link>
         <Chatroom />
       </div>
