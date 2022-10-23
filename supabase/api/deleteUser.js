@@ -3,12 +3,12 @@ import { createClient } from '@supabase/supabase-js';
 // NO OTHER PART OF THE APP SHOULD BE ACCESSING THIS CLIENT!!!
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseServiceKey = process.env.NEXT_PUBLIC_SUPABASE_SERVICE_KEY;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
 // for some reason, the serviceKey does not properly create a client
 // with the role 'service_role'.
 // attempted to remove 'NEXT_PUBLIC' but createClient fails in such case
 
-const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
+export default supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
 
 // currently this data and the function below is NOT located on server side
 // this file is not protected and can be accessed from client-side 
