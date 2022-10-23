@@ -1,13 +1,13 @@
 //channel of messages between looged in user and particular user with :id
 //if userA does not have userB as a "match" this should go to 404
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import Matches from '../../components/Matches';
 import Chatroom from '../../components/Chatroom';
+import { clickMessages } from '../../store/reducers/messengerSlice';
 import Head from 'next/head';
 import Link from 'next/link';
-import { clickMessages } from '../../store/reducers/messengerSlice';
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 
 export default function Chat() {
@@ -35,12 +35,12 @@ export default function Chat() {
           {match ? `- ${match.firstname} ${match.lastname}` : ``}
         </title>
       </Head>
-      <div className="column match-list">
+      <div className="column match-list mobile">
         <Matches />
       </div>
       <div className="column chatMessageBox">
         <Link href="/messages">
-          <ArrowCircleLeftOutlinedIcon className="back" />
+          <ArrowCircleLeftOutlinedIcon id="back" />
         </Link>
         <Chatroom />
       </div>

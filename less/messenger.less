@@ -10,9 +10,6 @@
 }
 
 //**********LEFT COLUMN**********
-/*
-TODO: remove animation when switching from lh/messages -> lh/messages/[id]
-*/
 .match-list {
   flex: 1;
   margin: 0.5em;
@@ -35,9 +32,6 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
     width: 150px;
     border-radius: 50%;
   }
-  @media (max-width: 980px) {
-    display: none;
-  }
 }
 
 //active match is user that was clicked on on messages page
@@ -49,7 +43,6 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
 }
 
 //**********RIGHT COLUMN**********
-//TODO: add a back button on mobile
 .chatMessageBox {
   flex: 2;
   margin: 0.5em;
@@ -131,4 +124,19 @@ TODO: remove animation when switching from lh/messages -> lh/messages/[id]
 .right-user {
   display: flex;
   justify-content: flex-end;
+}
+
+//back button to get back to match list
+#back {
+  position: absolute;
+  @media (min-width: 981px) {
+    display: none;
+  }
+}
+
+//make one or the other columns disappear on mobile ciew
+.mobile {
+  @media (max-width: 980px) {
+    display: none;
+  }
 }
