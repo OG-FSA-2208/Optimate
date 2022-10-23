@@ -7,9 +7,9 @@ const supabaseServiceKey = process.env.NEXT_PUBLIC_SUPABASE_SERVICE_KEY;
 // for some reason, the serviceKey does not properly create a client
 // with the role 'service_role'.
 // attempted to remove 'NEXT_PUBLIC' but createClient fails in such case
-console.log(supabaseServiceKey)
+
 const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
-console.dir(supabaseAdmin)
+
 // currently this data and the function below is NOT located on server side
 // this file is not protected and can be accessed from client-side 
 // further testing required
