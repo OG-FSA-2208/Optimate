@@ -10,40 +10,49 @@
 }
 
 .footer ul {
-  .flexCenter();
+  .flexCenter(); 
+  // margin: 0 30px 0 30px;
+
+  #aboutUs{
+    color: black;
+    &:hover {
+     color: @accent-color;
+    }
+   }
 
 }
 
+
+
 .footer li {
   .flexCenter();
-  
-
   list-style: none;
+  margin: 0 10px 0 10px;
+
 
 }
 .footer a {
   text-decoration: none;
   font-weight: bold;
   margin: 0 1em;
-  padding: 5px;
   text-align: center;
   transition: 200ms;
   color: @primary-text-color;
+  @media screen  {
+    padding: 0 0px 0 -20px;
+  }
+   
 }
 
 .footer p {
   .flexCenter();
   font-size: .1rem;
+  margin-top: -25px;
 }
 
-#aboutUs{
- color: black;
- margin: 0 1em 0 0;
- &:hover {
-  color: @accent-color;
-}
-}
+
 
 .footer a:hover {
   color: @accent-color;
 }
+
