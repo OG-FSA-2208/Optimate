@@ -12,7 +12,7 @@ begin
               , 
             (select created_at from matches2 m where id=auth.uid() ORDER BY created_at DESC limit 1)
         ))
-        <
+        >
         (SELECT '1 day'::interval)
       )
       then return '0';
