@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import supabase from '../../config/supabaseClient';
+import axios from 'axios';
 const userSlice = createSlice({
   name: 'user',
   initialState: {},
@@ -47,10 +48,15 @@ export const providerOAuth = (provider) => async (dispatch) => {
   }
 };
 
-export const logoutUser = (router) => (dispatch) => {
-  supabase.auth.signOut();
-  dispatch(logout());
-  router.push('/');
+export const logoutUser = (router) => async (dispatch) => {
+  const { data } = await axios.post(`/api/deleteUser`, {
+    session: supabase.auth.session(),
+  });
+  // deleteUser(userInfo.id);
+  console.log(data);
+  // supabase.auth.signOut();
+  // dispatch(logout());
+  // router.push('/');
 };
 
 export const updateUser = (userDetails, userId) => async (dispatch) => {
