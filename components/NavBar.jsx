@@ -87,11 +87,11 @@ export default function NavBar() {
         >
           {session ? (
             <Link href="/user/homepage">
-              <a>Optimate 🐙</a>
+              <a className="OptimateWithBurger">Optimate 🐙</a>
             </Link>
           ) : (
             <Link href="/">
-              <a>Optimate 🐙</a>
+              <a className="Optimate">Optimate 🐙</a>
             </Link>
           )}
         </motion.h2>
