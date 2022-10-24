@@ -23,9 +23,3 @@ export const blacklistUser = (id, blacklisted_id) => {
     dispatch(storeReportedUser(data));
   };
 };
-
-// from blacklist table
-// check first name last name who the user is
-// grab user ID and store that to blacklist table
-
-// user id and blacklist user id

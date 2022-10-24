@@ -75,6 +75,15 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   };
 
+  const handleLogin = () => {
+    const botMessage = createChatBotMessage('Please log in to report user.');
+
+    setState((prev) => ({
+      ...prev,
+      messages: [...prev.messages, botMessage],
+    }));
+  };
+
   return (
     <div>
       {React.Children.map(children, (child) => {
@@ -87,6 +96,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
             handleFAQ,
             handleEmptyString,
             handleName,
+            handleLogin,
           },
         });
       })}
