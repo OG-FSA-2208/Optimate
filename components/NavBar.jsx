@@ -14,7 +14,7 @@ export default function NavBar() {
   const dispatch = useDispatch();
   const [burgerClicked, setBurgerClicked] = useState(false);
   // checks if there is a user logged in
-  const session = useSelector((state) => state.user.id);
+  const session = useSelector((state) => state.user?.id);
   const numUnread = useSelector(
     (state) =>
       state.messenger.messages.filter(
