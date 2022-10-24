@@ -42,11 +42,12 @@ export default function EmailSignIn() {
       return;
     }
     if (user) {
+      console.log(user);
       setForm({
         email: '',
         password: '',
       });
-      router.push('/');
+      // router.push('/');
     }
   };
   const user = useSelector((state) => state.user.id);
@@ -57,7 +58,7 @@ export default function EmailSignIn() {
   }, []);
   return (
     <div className="form-container">
-      <form id="new-product-form" onSubmit={(e) => handleSubmit(e)}>
+      <form id="login-form" onSubmit={(e) => handleSubmit(e)}>
         <div className="form-title">Login to Optimate</div>
         {formError.status === 400 && (
           <span className="form-error display-block">
@@ -103,7 +104,10 @@ export default function EmailSignIn() {
         <div id="button">
           <button type="submit">Login</button>
         </div>
-        <OAuthBar />
+        <div>
+          <h3>Or login with</h3>
+          <OAuthBar />
+        </div>
         <p
           className="link"
           onClick={() => {

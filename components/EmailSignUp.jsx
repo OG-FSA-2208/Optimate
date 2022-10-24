@@ -59,7 +59,7 @@ export default function EmailSignUp() {
   return (
     <div className="form-container">
       {formError && <p>{formError}</p>}
-      <form id="new-product-form" onSubmit={(e) => handleSubmit(e)}>
+      <form id="logout-form" onSubmit={(e) => handleSubmit(e)}>
         <div className="form-title">Create an Account</div>
         {formSuccess && (
           <span className="form-item form-success">{formSuccess}</span>

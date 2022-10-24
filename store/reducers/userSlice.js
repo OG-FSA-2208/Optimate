@@ -23,9 +23,7 @@ export default userSlice.reducer;
 export const { login, logout, update } = userSlice.actions;
 export const checkSession = (router) => async (dispatch) => {
   const session = await supabase.auth.session();
-  console.log('is there a session', session);
   if (session) {
-    console.log('hi', session);
     dispatch(login(session.user));
   } else {
     if (router) {
@@ -58,9 +56,9 @@ export const deleteUser = (router) => async (dispatch) => {
     session: supabase.auth.session(),
   });
   console.log(data);
-  // supabase.auth.signOut();
-  // dispatch(logout());
-  // router.push('/');
+  supabase.auth.signOut();
+  dispatch(logout());
+  router.push('/');
 };
 export const updateUser = (userDetails, userId) => async (dispatch) => {
   try {
