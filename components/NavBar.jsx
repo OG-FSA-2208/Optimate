@@ -9,10 +9,15 @@ import { sub, unsub, getMessages } from '../store/reducers/messengerSlice';
 import { motion } from 'framer-motion';
 import { Badge } from '@mui/material';
 
+let setBurgerClickedExport, burgerClickedExport;
+
 export default function NavBar() {
   const router = useRouter();
   const dispatch = useDispatch();
   const [burgerClicked, setBurgerClicked] = useState(false);
+  burgerClickedExport = burgerClicked;
+  setBurgerClickedExport = setBurgerClicked;
+
   // checks if there is a user logged in
   const session = useSelector((state) => state.user?.id);
   const numUnread = useSelector(
@@ -38,7 +43,6 @@ export default function NavBar() {
   };
   useEffect(() => {
     dispatch(checkSession());
-    console.log(router);
     if (router.asPath.startsWith('/#access_token') & (router.route === '/')) {
       router.push('/user/profile');
     }
@@ -102,7 +106,7 @@ export default function NavBar() {
           <>
             <li>
               <Link href="/messages">
-                <a>
+                <a onClick={handleBurger}>
                   Messages
                   <Badge
                     color="primary"
@@ -115,11 +119,11 @@ export default function NavBar() {
             </li>
             <li>
               <Link href="/user/profile">
-                <a>Account</a>
+                <a onClick={handleBurger}>Account</a>
               </Link>
             </li>
             <li>
-              <a onClick={() => dispatch(logoutUser(Router))}>
+              <a onClick={() => {dispatch(logoutUser(Router)); handleBurger()}}>
                 <>Signout</>
               </a>
             </li>
@@ -130,7 +134,7 @@ export default function NavBar() {
       {session && (
         <div
           onClick={handleBurger}
-          className={burgerClicked ? 'burger burger-toggle' : 'burger'}
+          className={burgerClicked && session ? 'burger burger-toggle' : 'burger'}
         >
           <div className="line1"></div>
           <div className="line2"></div>
@@ -140,3 +144,5 @@ export default function NavBar() {
     </nav>
   );
 }
+
+export {burgerClickedExport, setBurgerClickedExport};
