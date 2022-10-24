@@ -43,7 +43,6 @@ export default function NavBar() {
   };
   useEffect(() => {
     dispatch(checkSession());
-    console.log(router);
     if (router.asPath.startsWith('/#access_token') & (router.route === '/')) {
       router.push('/user/profile');
     }
