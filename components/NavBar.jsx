@@ -9,13 +9,15 @@ import { sub, unsub, getMessages } from '../store/reducers/messengerSlice';
 import { motion } from 'framer-motion';
 import { Badge } from '@mui/material';
 
-let burgerClickedExport;
+let setBurgerClickedExport, burgerClickedExport;
 
 export default function NavBar() {
   const router = useRouter();
   const dispatch = useDispatch();
   const [burgerClicked, setBurgerClicked] = useState(false);
-  burgerClickedExport = setBurgerClicked;
+  burgerClickedExport = burgerClicked;
+  setBurgerClickedExport = setBurgerClicked;
+
   // checks if there is a user logged in
   const session = useSelector((state) => state.user?.id);
   const numUnread = useSelector(
@@ -144,4 +146,4 @@ export default function NavBar() {
   );
 }
 
-export {burgerClickedExport};
+export {burgerClickedExport, setBurgerClickedExport};
