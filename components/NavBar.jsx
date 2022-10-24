@@ -66,13 +66,9 @@ export default function NavBar() {
     const messageListener = dispatch(sub());
     if (session) {
       document.body.classList.add('altBg');
-      document.body.classList.add('fish');
-      // document.body.classList.add('opti');
       document.body.classList.remove('login');
     } else {
       document.body.classList.add('login');
-      document.body.classList.add('fish');
-      // document.body.classList.add('opti');
       document.body.classList.remove('altBg');
     }
 
