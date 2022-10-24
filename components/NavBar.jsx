@@ -97,7 +97,7 @@ export default function NavBar() {
         </motion.h2>
       </div>
       <ul className={burgerClicked ? 'nav-links nav-active' : 'nav-links'}>
-        {session ? (
+        {session && (
           // these are the links that will appear if a user is logged in
           <>
             <li>
@@ -124,19 +124,19 @@ export default function NavBar() {
               </a>
             </li>
           </>
-        ) : (
-          <>{/*TODO: gotta be a better way to do this than a ternary */}</>
         )}
       </ul>
 
-      <div
-        onClick={handleBurger}
-        className={burgerClicked ? 'burger burger-toggle' : 'burger'}
-      >
-        <div className="line1"></div>
-        <div className="line2"></div>
-        <div className="line3"></div>
-      </div>
+      {session && (
+        <div
+          onClick={handleBurger}
+          className={burgerClicked ? 'burger burger-toggle' : 'burger'}
+        >
+          <div className="line1"></div>
+          <div className="line2"></div>
+          <div className="line3"></div>
+        </div>
+      )}
     </nav>
   );
 }
