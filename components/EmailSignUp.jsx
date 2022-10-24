@@ -4,6 +4,7 @@ import { checkSession } from '../store/reducers/userSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import OAuthBar from './OAuthBar';
+import Link from 'next/link';
 export default function EmailSignUp() {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -133,6 +134,9 @@ export default function EmailSignUp() {
           <h3>Or connect with us using</h3>
           <OAuthBar />
         </div>
+        <Link href="/login">
+          <a className="link">Already have an account?</a>
+        </Link>
       </form>
     </div>
   );
