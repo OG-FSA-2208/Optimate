@@ -16,9 +16,10 @@ const Footer = () => {
               scale: 1.3,
             }}
           >
-            {/* <p>About Us</p> */}
             <Link href="/aboutUs">
-              <a id="aboutUs">© 2022 ZECC-W</a>
+              <a id="aboutUs">
+                <p>About Us</p>© 2022 ZECC-W
+              </a>
             </Link>
           </motion.h3>
         </li>
