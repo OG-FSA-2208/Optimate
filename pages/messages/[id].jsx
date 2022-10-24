@@ -25,15 +25,6 @@ export default function Chat() {
     }
   }, [matches]);
 
-  /* TODO: see what messages looks like on mobile when matches disappear
-  const [width, setWidth] = useState(null);
-  useEffect(() => {
-    setWidth(window.innerWidth);
-    window.addEventListener('resize', () => {
-      setWidth(window.innerWidth);
-    });
-  }, []); */
-
   return (
     <div className="messages">
       <Head>
@@ -42,7 +33,7 @@ export default function Chat() {
           {match ? `- ${match.firstname} ${match.lastname}` : ``}
         </title>
       </Head>
-      <div className="column match-list">
+      <div className="column match-list mobile">
         <Matches />
       </div>
       <div className="column chatMessageBox">

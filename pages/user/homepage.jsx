@@ -15,7 +15,7 @@ export default function Profile() {
   const profile = useSelector((state) => state.profile);
   const [pushPin, setPushPin] = useState({});
   const [highlight, setHighlight] = useState({});
-  //TODO: either move highlight into redux state or keep useEffect that sets highlight to profile dependent on profile
+
   //useState beats useSelector in race, so setting it initially to profile would leave it as an empty object on refresh
   useEffect(() => {
     setHighlight(profile);
@@ -25,6 +25,10 @@ export default function Profile() {
     dispatch(getAllUserMatches());
     dispatch(getLoggedInUser());
   }, []);
+
+  function handlePic(e) {
+    // console.log(e.clientX);
+  }
 
   return (
     <div>
@@ -63,7 +67,11 @@ export default function Profile() {
                   {highlight.firstname} {highlight.lastname}
                 </h2>
                 <br></br>
-                <img src={highlight.avatar_url} className="profilePic" />
+                <img
+                  src={highlight.avatar_url}
+                  className="profilePic"
+                  onDrag={handlePic}
+                />
               </div>
               <div>
                 <p className="highlight">
