@@ -106,7 +106,7 @@ export default function NavBar() {
           <>
             <li>
               <Link href="/messages">
-                <a>
+                <a onClick={handleBurger}>
                   Messages
                   <Badge
                     color="primary"
@@ -119,11 +119,11 @@ export default function NavBar() {
             </li>
             <li>
               <Link href="/user/profile">
-                <a>Account</a>
+                <a onClick={handleBurger}>Account</a>
               </Link>
             </li>
             <li>
-              <a onClick={() => dispatch(logoutUser(Router))}>
+              <a onClick={() => {dispatch(logoutUser(Router)); handleBurger()}}>
                 <>Signout</>
               </a>
             </li>
