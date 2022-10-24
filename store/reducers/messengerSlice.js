@@ -172,7 +172,6 @@ export const clickMessages = (id, messages) => async (dispatch) => {
 export const sub = () => (dispatch) => {
   const session = supabase.auth.session();
   if (session) {
-    //TODO: add update and delete to subscription, update store when something happens
     const messageListener = supabase
       .from(`messages:to=eq.${session.user.id}`)
       .on('INSERT', async (payload) => {
@@ -186,10 +185,15 @@ export const sub = () => (dispatch) => {
         if (error) console.error(error);
       })
       .on('UPDATE', async (payload) => {
-        //TODO: update in store if message was changed, or if read was changed?
+        dispatch(
+          changeMessage({
+            messageId: payload.new.id,
+            editedMessage: payload.new.message,
+          })
+        );
       })
       .on('DELETE', async (payload) => {
-        //TODO: remove from store
+        dispatch(deleteOne(payload.old));
       })
       .subscribe();
 

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -12,7 +11,6 @@ import { Edit, Delete, ArrowCircleLeftOutlined } from '@mui/icons-material';
 
 export default function Chatroom() {
   const dispatch = useDispatch();
-  const router = useRouter();
   const [editId, setEditId] = useState(0);
   const { messageUserId, currentMessage, messages } = useSelector(
     (state) => state.messenger
