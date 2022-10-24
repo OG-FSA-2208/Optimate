@@ -65,7 +65,7 @@ export default function aboutUs() {
               whileHover={{
                 scale: 0.9,
               }}
-              src="https://i.postimg.cc/nh9p6SFr/pic1.png"
+              src="https://iwnfagrreicibkzmwlip.supabase.co/storage/v1/object/sign/aboutus/pic.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYm91dHVzL3BpYy5wbmciLCJpYXQiOjE2NjY2MjM2ODYsImV4cCI6MTk4MTk4MzY4Nn0.7vmRhcrQbtR2jR_ZcH351_rGR_HgAvXWanuC9nSW6GA&t=2022-10-24T15%3A01%3A27.915Z"
             />
           </a>
           Winnie Lau
