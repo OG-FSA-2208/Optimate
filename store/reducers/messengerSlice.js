@@ -38,6 +38,21 @@ const messengerSlice = createSlice({
       state.messages.push(action.payload);
     },
     changeMessage: (state, action) => {
+      //edit the message matching the ID from the payload
+      state.messages = state.messages.map((message) =>
+        message.id === action.payload.messageId
+          ? { ...message, message: action.payload.editedMessage }
+          : message
+      );
+    },
+    deleteOne: (state, action) => {
+      //remove the message from state
+      const idx = state.messages.findIndex(
+        (message) => action.payload.id === message.id
+      );
+      if (idx >= 0) state.messages.splice(idx, 1);
+    },
+    changeInput: (state, action) => {
       //change input value for chatbox
       state.currentMessage = action.payload;
     },
@@ -45,8 +60,14 @@ const messengerSlice = createSlice({
 });
 
 //export actions and reducer here
-export const { readMessages, addMessage, changeMessage, fetchMessages } =
-  messengerSlice.actions;
+export const {
+  readMessages,
+  addMessage,
+  changeInput,
+  fetchMessages,
+  deleteOne,
+  changeMessage,
+} = messengerSlice.actions;
 export default messengerSlice.reducer;
 
 //THUNKS
@@ -83,6 +104,50 @@ export const sendMessage = (message, to) => async (dispatch) => {
   }
 };
 
+//thunk to edit a message
+export const editMessage = (messageId, editedMessage) => async (dispatch) => {
+  const session = supabase.auth.session();
+  if (session) {
+    const { data, error } = await supabase
+      .from('messages')
+      .update({ message: editedMessage })
+      .match({ id: messageId });
+    if (data) {
+      const mes = data[0];
+      await supabase.from('old_messages').insert({
+        message: mes.message,
+        from_id: mes.from,
+        to_id: mes.to,
+        message_id: mes.id,
+      });
+      dispatch(changeMessage({ messageId, editedMessage }));
+    }
+    if (error) console.error(error);
+  }
+};
+
+//thunk to delete a message
+export const deleteMessage = (messageId) => async (dispatch) => {
+  const session = supabase.auth.session();
+  if (session) {
+    const { data, error } = await supabase
+      .from('messages')
+      .delete()
+      .match({ id: messageId });
+    if (data) {
+      const mes = data[0];
+      await supabase.from('old_messages').insert({
+        message: mes.message,
+        from_id: mes.from,
+        to_id: mes.to,
+        message_id: mes.id,
+      });
+      dispatch(deleteOne(mes));
+    }
+    if (error) console.error(error);
+  }
+};
+
 //thunk for clicking on a match on messages page
 export const clickMessages = (id, messages) => async (dispatch) => {
   const session = await supabase.auth.session();
@@ -115,10 +180,23 @@ export const sub = () => (dispatch) => {
           .from('profiles')
           .select('avatar_url')
           .eq('id', payload.new.from);
+        //add new message to chat when one is sent to user
         if (data) dispatch(addMessage({ ...payload.new, from_pic: data[0] }));
         if (error) console.error(error);
       })
+      .on('UPDATE', async (payload) => {
+        dispatch(
+          changeMessage({
+            messageId: payload.new.id,
+            editedMessage: payload.new.message,
+          })
+        );
+      })
+      .on('DELETE', async (payload) => {
+        dispatch(deleteOne(payload.old));
+      })
       .subscribe();
+
     return messageListener;
   }
 };
