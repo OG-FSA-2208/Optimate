@@ -47,7 +47,7 @@ export default function EmailSignIn() {
         email: '',
         password: '',
       });
-      // router.push('/');
+      router.push('/');
     }
   };
   const user = useSelector((state) => state.user.id);
