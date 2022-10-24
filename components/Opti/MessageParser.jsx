@@ -29,6 +29,9 @@ const MessageParser = ({ children, actions }) => {
   const parse = (message) => {
     let response = false;
     if (message.includes('report') || message.includes('block')) {
+      if (!userId) {
+        return actions.handleLogin();
+      }
       return actions.handleReport();
     }
 
@@ -40,12 +43,15 @@ const MessageParser = ({ children, actions }) => {
     });
 
     matches.map((match) => {
-      if (message.includes(match.firstname)) {
+      if (
+        message.includes(match.firstname) ||
+        message.includes(match.firstname.toLowerCase())
+      ) {
         response = true;
-        if (message.includes(match.lastname)) {
-          console.log('print black list user', blacklistUser(userId, match.id));
-          console.log('printoutuser', match.id);
-
+        if (
+          message.includes(match.lastname) ||
+          message.includes(match.lastname.toLowerCase())
+        ) {
           dispatch(blacklistUser(userId, match.id));
           return actions.handleMatch();
         }

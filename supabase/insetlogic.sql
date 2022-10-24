@@ -6,20 +6,19 @@ as $$
 declare
   matchid uuid;
   match_profile profiles%rowtype;
-  last_match_time timestamp;
+  last_match_time date;
   paid_off_set int :=0;
 begin
-  select timezone('America/New_York', 
-    (select created_at into last_match_time from matches2 where id = auth.uid() order by created_at DESC limit 1 offset paid_off_set)
-    );
-  if (last_match_time > (select timezone('America/New_York', now())::DATE::timestamp))
+
+    select created_at  into last_match_time from matches2 where id = auth.uid() order by created_at DESC limit 1 offset paid_off_set;
+  if (last_match_time >= (select now()::DATE))
     Then raise exception 'yes %', last_match_time
-		using detail = 'too early';
+		using detail = 'Please wait a little longer, you have already obtained your match for the day. Try chatting up the matches you have now';
   end if;
 
   select new_match() into matchid;
   if matchid is null
-  Then raise exception 'no matches %',matchid
+  Then raise exception 'no matches %',last_match_time
 		using detail = 'no matches were found, please try again later or lower your standards';
   else  
     select * into match_profile from profiles where id = matchid;
