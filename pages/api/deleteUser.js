@@ -12,10 +12,11 @@ const handler = async (req, res) => {
     //   .select('*')
     //   .eq('id', user.id)
     //   .single();
-    const { data: userban, error } = await supabase.auth.admin.updateUserById(
-      user.id,
-      { ban_duration: '771408h ' }
-    );
+    console.log(auth);
+    const { data: userban, error } =
+      await supabaseAdmin.auth.api.updateUserById(user.id, {
+        ban_duration: '771408h',
+      });
     console.log(userban);
     console.log(error);
     res.send(userban);
