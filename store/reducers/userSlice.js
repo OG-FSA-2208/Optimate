@@ -52,7 +52,6 @@ export const logoutUser = (router) => async (dispatch) => {
   const { data } = await axios.post(`/api/deleteUser`, {
     session: supabase.auth.session(),
   });
-  // deleteUser(userInfo.id);
   console.log(data);
   // supabase.auth.signOut();
   // dispatch(logout());
