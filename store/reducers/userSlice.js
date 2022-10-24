@@ -48,13 +48,15 @@ export const providerOAuth = (provider) => async (dispatch) => {
   }
 };
 
-export const logoutUser = (router) => (dispatch) => {
-  const {data} = await axios.get(`api/deleteUser/[userId]`)
-  deleteUser(userInfo.id);
+export const logoutUser = (router) => async (dispatch) => {
+  const { data } = await axios.post(`/api/deleteUser`, {
+    session: supabase.auth.session(),
+  });
+  // deleteUser(userInfo.id);
   console.log(data);
-  supabase.auth.signOut();
-  dispatch(logout());
-  router.push('/');
+  // supabase.auth.signOut();
+  // dispatch(logout());
+  // router.push('/');
 };
 
 export const updateUser = (userDetails, userId) => async (dispatch) => {
