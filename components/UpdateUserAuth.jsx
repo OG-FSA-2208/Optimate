@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import supabase from '../config/supabaseClient';
-import { checkSession, logoutUser } from '../store/reducers/userSlice';
+import { checkSession, deleteUser } from '../store/reducers/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { FaGithub, FaFacebook, FaGoogle } from 'react-icons/fa';
@@ -33,7 +33,7 @@ export default function UpdateUserAuth() {
   const handleDelete = () => {
     // deletes the user, their related information, and the immediately logs out
 
-    dispatch(logoutUser(Router));
+    dispatch(deleteUser(Router));
   };
 
   const handleSubmitEmail = async (event) => {
