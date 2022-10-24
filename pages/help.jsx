@@ -8,7 +8,7 @@ export default function help() {
       <Head>
         <title>Optimate | Help</title>
       </Head>
-      <h1>HELP IS ON THE WAY</h1>
+      <h1 className="help">HELP IS ON THE WAY</h1>
       <br></br>
       <br></br>
       <br></br>
