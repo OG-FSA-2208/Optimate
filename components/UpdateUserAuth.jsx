@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { FaGithub, FaFacebook, FaGoogle } from 'react-icons/fa';
 import Link from 'next/link';
-import {deleteUser} from '../supabase/api/deleteUser';
-import Router from 'next/router'
+// import {deleteUser} from '../supabase/api/deleteUser';
+import Router from 'next/router';
 
 export default function UpdateUserAuth() {
   const dispatch = useDispatch();
@@ -32,9 +32,9 @@ export default function UpdateUserAuth() {
 
   const handleDelete = () => {
     // deletes the user, their related information, and the immediately logs out
-    deleteUser(userInfo.id);
+
     dispatch(logoutUser(Router));
-  }
+  };
 
   const handleSubmitEmail = async (event) => {
     event.preventDefault();
@@ -176,7 +176,7 @@ export default function UpdateUserAuth() {
           </button>
         </div>
       </form>
-      <hr/>
+      <hr />
       <button onClick={handleDelete}>Delete Your Account</button>
     </div>
   );
