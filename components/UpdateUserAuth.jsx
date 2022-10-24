@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import supabase from '../config/supabaseClient';
-import { checkSession } from '../store/reducers/userSlice';
+import { checkSession, logoutUser } from '../store/reducers/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { FaGithub, FaFacebook, FaGoogle } from 'react-icons/fa';
 import Link from 'next/link';
+import {deleteUser} from '../supabase/api/deleteUser';
+import Router from 'next/router'
 
 export default function UpdateUserAuth() {
   const dispatch = useDispatch();
@@ -27,6 +29,13 @@ export default function UpdateUserAuth() {
       }
     }
   }, [userInfo]);
+
+  const handleDelete = () => {
+    // deletes the user, their related information, and the immediately logs out
+    deleteUser(userInfo.id);
+    dispatch(logoutUser(Router));
+  }
+
   const handleSubmitEmail = async (event) => {
     event.preventDefault();
     setSuccess({});
@@ -167,6 +176,8 @@ export default function UpdateUserAuth() {
           </button>
         </div>
       </form>
+      <hr/>
+      <button onClick={handleDelete}>Delete Your Account</button>
     </div>
   );
 }
