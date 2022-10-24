@@ -43,9 +43,6 @@ const MessageParser = ({ children, actions }) => {
       if (message.includes(match.firstname)) {
         response = true;
         if (message.includes(match.lastname)) {
-          console.log('print black list user', blacklistUser(userId, match.id));
-          console.log('printoutuser', match.id);
-
           dispatch(blacklistUser(userId, match.id));
           return actions.handleMatch();
         }
