@@ -40,6 +40,9 @@
 .profile-view,
 .edit-view {
   animation: slidein 0.4s;
+  @media screen and (max-width: 1080px) {
+    animation: 0s;
+  }
 }
 
 @keyframes slidein {
@@ -50,6 +53,7 @@
     margin-left: 0vw;
   }
 }
+
 
 // ----------------------------------->
 // STYLES FOR UserProfileView PAGE

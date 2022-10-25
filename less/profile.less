@@ -73,7 +73,6 @@
 }
 
 .matchesForEachUser {
-
   animation: 3s alternate slidein;
   justify-content: center;
   text-align: center;
@@ -81,6 +80,9 @@
   margin: 5px;
   width: 91vw;
   // setting a width here so the 'match' card will not be clipped when active/hovering
+  @media screen and (max-width: 1080px) {
+    animation: 0s;
+  }
 }
 .matches {
   padding: 1em;

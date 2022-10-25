@@ -109,6 +109,16 @@ export default function faq() {
           </a>
         </i>
       </p>
+      <br />
+      <br />
+      <br />
+      <div className="email">
+        <h4>
+          <i>
+            Still have questions? <p>Contact us: ZECC-W@optim8.com</p>
+          </i>
+        </h4>
+      </div>
     </div>
   );
 }
