@@ -17,7 +17,6 @@ export default function NavBar() {
   const [burgerClicked, setBurgerClicked] = useState(false);
   burgerClickedExport = burgerClicked;
   setBurgerClickedExport = setBurgerClicked;
-  const windowWidth = window.innerWidth || 0;
 
   // checks if there is a user logged in
   const session = useSelector((state) => state.user?.id);
