@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { FaGithub, FaFacebook, FaGoogle } from 'react-icons/fa';
 import Link from 'next/link';
+import ConfirmDelete from './ConfirmDelete';
 // import {deleteUser} from '../supabase/api/deleteUser';
 import Router from 'next/router';
 
@@ -17,6 +18,7 @@ export default function UpdateUserAuth() {
   const [formSuccess, setSuccess] = useState({});
   const [passwordConfirm, setpasswordConfirm] = useState('');
   const [authProvider, setAuthProvider] = useState(false);
+  const [toggleConfirmDelete, setToggleConfirmDelete] = useState(false);
   const userInfo = useSelector((state) => state.user);
   useEffect(() => {
     if (userInfo.id) {
@@ -29,12 +31,6 @@ export default function UpdateUserAuth() {
       }
     }
   }, [userInfo]);
-
-  const handleDelete = () => {
-    // deletes the user, their related information, and the immediately logs out
-
-    dispatch(deleteUser(Router));
-  };
 
   const handleSubmitEmail = async (event) => {
     event.preventDefault();
@@ -90,94 +86,118 @@ export default function UpdateUserAuth() {
   };
 
   return (
-    <div className="form-container">
-      <form id="update-userauth-form">
-        <button>
-          <Link href="/user/profile">Return to Profile</Link>
-        </button>
-        <div className="form-title">Update Login information</div>
-        <div className="form-item">
-          <label htmlFor="email" className="form-label">
-            Email
-          </label>
-          <input
-            className="form-input"
-            autoComplete="username"
-            placeholder="Enter your email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            disabled={authProvider}
-          />
-        </div>{' '}
-        {formError.email && (
-          <span className="form-error display-block">{formError.email}</span>
-        )}
-        <div className="button">
-          <button disabled={authProvider} onClick={(e) => handleSubmitEmail(e)}>
-            Change email address
+    <>
+      {toggleConfirmDelete ? (
+        <ConfirmDelete
+          toggleConfirmDelete={toggleConfirmDelete}
+          setToggleConfirmDelete={setToggleConfirmDelete}
+        />
+      ) : (
+        <div className="form-container">
+          <form id="update-userauth-form">
+            <button>
+              <Link href="/user/profile">Return to Profile</Link>
+            </button>
+            <div className="form-title">Update Login information</div>
+            <div className="form-item">
+              <label htmlFor="email" className="form-label">
+                Email
+              </label>
+              <input
+                className="form-input"
+                autoComplete="username"
+                placeholder="Enter your email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={authProvider}
+              />
+            </div>{' '}
+            {formError.email && (
+              <span className="form-error display-block">
+                {formError.email}
+              </span>
+            )}
+            <div className="button">
+              <button
+                disabled={authProvider}
+                onClick={(e) => handleSubmitEmail(e)}
+              >
+                Change email address
+              </button>
+            </div>
+            {formSuccess.email && (
+              <span className="form-item form-success">
+                {formSuccess.email}
+              </span>
+            )}
+            {authProvider && (
+              <>
+                <span className="form-error display-block">
+                  email cannot be updated because you are connected to
+                </span>
+                <span>
+                  {authProvider.includes('google') && <FaGoogle />}
+                  {authProvider.includes('facebook') && <FaFacebook />}
+                  {authProvider.includes('github') && <FaGithub />}
+                </span>
+              </>
+            )}
+            <div className="form-item">
+              <label htmlFor="password" className="form-label">
+                New Password
+              </label>
+              <input
+                className="form-input"
+                placeholder="Enter a password"
+                autoComplete="new-password"
+                name="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <span className="form-error">Please enter a password</span>
+            </div>
+            <div className="form-item">
+              <label htmlFor="passwordConfirm" className="form-label">
+                Confirm Your Password
+              </label>
+              <input
+                className={'form-input'}
+                placeholder="Confirm your password"
+                autoComplete="new-password"
+                name="passwordConfirm"
+                type="password"
+                value={passwordConfirm}
+                onChange={(e) => setpasswordConfirm(e.target.value)}
+              />
+            </div>{' '}
+            {passwordConfirm !== password && (
+              <span className="form-error display-block">
+                Passwords does not match
+              </span>
+            )}
+            {formError.password && (
+              <span className="form-error display-block">
+                {formError.password}
+              </span>
+            )}
+            <div className="button">
+              <button onClick={(e) => handleSubmitPassword(e)}>
+                Change Password
+              </button>
+            </div>
+          </form>
+          <hr />
+          <button
+            onClick={() => {
+              setToggleConfirmDelete(true);
+            }}
+          >
+            Delete Your Account
           </button>
         </div>
-        {formSuccess.email && (
-          <span className="form-item form-success">{formSuccess.email}</span>
-        )}
-        {authProvider && (
-          <>
-            <span className="form-error display-block">
-              email cannot be updated because you are connected to
-            </span>
-            <span>
-              {authProvider.includes('google') && <FaGoogle />}
-              {authProvider.includes('facebook') && <FaFacebook />}
-              {authProvider.includes('github') && <FaGithub />}
-            </span>
-          </>
-        )}
-        <div className="form-item">
-          <label htmlFor="password" className="form-label">
-            New Password
-          </label>
-          <input
-            className="form-input"
-            placeholder="Enter a password"
-            autoComplete="new-password"
-            name="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <span className="form-error">Please enter a password</span>
-        </div>
-        <div className="form-item">
-          <label htmlFor="passwordConfirm" className="form-label">
-            Confirm Your Password
-          </label>
-          <input
-            className={'form-input'}
-            placeholder="Confirm your password"
-            autoComplete="new-password"
-            name="passwordConfirm"
-            type="password"
-            value={passwordConfirm}
-            onChange={(e) => setpasswordConfirm(e.target.value)}
-          />
-        </div>{' '}
-        {passwordConfirm !== password && (
-          <span className="form-error display-block">
-            Passwords does not match
-          </span>
-        )}
-        {formError.password && (
-          <span className="form-error display-block">{formError.password}</span>
-        )}
-        <div className="button">
-          <button onClick={(e) => handleSubmitPassword(e)}>
-            Change Password
-          </button>
-        </div>
-      </form>
-      <hr />
-      <button onClick={handleDelete}>Delete Your Account</button>
-    </div>
+      )}
+    </>
   );
 }

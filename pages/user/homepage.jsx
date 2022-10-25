@@ -8,7 +8,7 @@ import Link from 'next/link';
 import GetMatchesButton from '../../components/GetMatchesButton';
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
 import Head from 'next/head';
-
+import supabase from '../../config/supabaseClient';
 export default function Profile() {
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
@@ -25,11 +25,53 @@ export default function Profile() {
     dispatch(getAllUserMatches());
     dispatch(getLoggedInUser());
   }, []);
-
+  useEffect(() => {
+    let mypins = {};
+    matches.map((match) => {
+      if (match.match.pinned === true) {
+        mypins[match.id] = 'pinned';
+        return;
+      }
+      if (match.match.pin1 === true) {
+        if (match.id === match.match.id) {
+          mypins[match.id] = 'theypinned';
+        } else {
+          mypins[match.id] = 'ipinned';
+        }
+        return;
+      }
+      if (match.match.pin2 === true) {
+        if (match.id === match.match.id2) {
+          mypins[match.id] = 'theypinned';
+        } else {
+          mypins[match.id] = 'ipinned';
+        }
+        return;
+      }
+    });
+    console.log(mypins);
+    setPushPin(mypins);
+  }, [matches]);
   function handlePic(e) {
     // console.log(e.clientX);
   }
-
+  async function punchTheDamnedPin(match) {
+    let query = supabase.from('matches2');
+    console.log(match.id, profile.id, match.match.id);
+    if (profile.id === match.match.id) {
+      query = query
+        .update({ pin1: !match.match.pin1 })
+        .match({ id: profile.id, id2: match.id });
+    } else if (profile.id === match.match.id2) {
+      query = query
+        .update({ pin2: !match.match.pin2 })
+        .match({ id: match.id, id2: profile.id });
+    }
+    const { data, error } = await query;
+    if (data) {
+      dispatch(getAllUserMatches());
+    }
+  }
   return (
     <div>
       <Head>
@@ -108,16 +150,11 @@ export default function Profile() {
                     return (
                       <span key={match.id}>
                         <div
-                          onClick={() => {
-                            pushPin[match.id] === undefined
-                              ? setPushPin({ ...pushPin, [match.id]: true })
-                              : setPushPin({
-                                  ...pushPin,
-                                  [match.id]: !pushPin[match.id],
-                                });
-                          }}
+                          onClick={() => punchTheDamnedPin(match)}
                           className={
-                            pushPin?.[match.id] ? 'pushPin clicked' : 'pushPin'
+                            pushPin[match.id]
+                              ? `pushPin ${pushPin[match.id]}`
+                              : 'pushPin'
                           }
                         >
                           <PushPinIcon

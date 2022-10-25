@@ -4,6 +4,7 @@ import { checkSession } from '../store/reducers/userSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import OAuthBar from './OAuthBar';
+import Link from 'next/link';
 export default function EmailSignUp() {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -59,7 +60,7 @@ export default function EmailSignUp() {
   return (
     <div className="form-container">
       {formError && <p>{formError}</p>}
-      <form id="new-product-form" onSubmit={(e) => handleSubmit(e)}>
+      <form id="logout-form" onSubmit={(e) => handleSubmit(e)}>
         <div className="form-title">Create an Account</div>
         {formSuccess && (
           <span className="form-item form-success">{formSuccess}</span>
@@ -133,6 +134,9 @@ export default function EmailSignUp() {
           <h3>Or connect with us using</h3>
           <OAuthBar />
         </div>
+        <Link href="/login">
+          <a className="link">Already have an account?</a>
+        </Link>
       </form>
     </div>
   );
