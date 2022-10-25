@@ -73,12 +73,16 @@
 }
 
 .matchesForEachUser {
+  animation: 2s alternate slidein;
   justify-content: center;
   text-align: center;
   font-size: 20px;
   margin: 5px;
   width: 91vw;
   // setting a width here so the 'match' card will not be clipped when active/hovering
+  @media screen and (max-width: 1080px) {
+    animation: 0s;
+  }
 }
 .matches {
   padding: 1em;
@@ -144,11 +148,29 @@
   margin: -5px;
   padding: -10px -10px;
   z-index: 10;
+  // animation: 3s alternate slidein;
 }
 
 .pinned {
   color: #f45d6a;
+  display: inline-block;
+  // animation: 3s alternate-reverse slidein;
+//   animation-name: rotate;
+//   animation-duration: 0.7s;
+//   animation-direction: reverse;
+// }
+
+// @keyframes rotate {
+//   0% {
+//     transform: rotate(0);
+//   }
+//   100% {
+//     transform: rotate(360deg);
+//   }
 }
+
+
+
 .ipinned {
   color: #ece641;
 }
