@@ -41,6 +41,24 @@ export default function NavBar() {
       }
     });
   };
+
+  // handles resizing of the window
+  // if/when user changes from mobile to desktop, clears animations in burger
+  // and removes state from burger entirely
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        const navLinks = document.querySelectorAll('.nav-links li');
+        setBurgerClicked(false);
+  
+        navLinks.forEach((link, index) => {
+          link.style.animation = '';
+        });
+      }
+    }
+    window.addEventListener('resize', handleResize)
+  })
+
   useEffect(() => {
     dispatch(checkSession());
     if (router.asPath.startsWith('/#access_token') & (router.route === '/')) {
@@ -65,6 +83,7 @@ export default function NavBar() {
     };
   }, []);
 
+  // listens to see if the user is logged in or not
   useEffect(() => {
     dispatch(getMessages());
     const messageListener = dispatch(sub());

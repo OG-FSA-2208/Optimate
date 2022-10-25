@@ -42,7 +42,6 @@ export default function EmailSignIn() {
       return;
     }
     if (user) {
-      console.log(user);
       setForm({
         email: '',
         password: '',
