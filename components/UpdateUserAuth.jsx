@@ -188,14 +188,16 @@ export default function UpdateUserAuth() {
               </button>
             </div>
           </form>
-          <hr />
-          <button
-            onClick={() => {
-              setToggleConfirmDelete(true);
-            }}
-          >
-            Delete Your Account
-          </button>
+          <hr/>
+          <div id='delete-self'>
+            <button
+              onClick={() => {
+                setToggleConfirmDelete(true);
+              }}
+            >
+              Delete Your Account
+            </button>
+          </div>
         </div>
       )}
     </>
