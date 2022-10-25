@@ -57,7 +57,6 @@ export default function UpdateUserAuth() {
       console.error('update', error);
     }
     if (user) {
-      console.error(user);
       setSuccess({
         email: `A confirmation e-mail will be sent to your email at ${userInfo.email} within 5minutes, and en email verification email will be sent to ${email}. Please validate your your e-mail by clicking on the enclosed links`,
       });

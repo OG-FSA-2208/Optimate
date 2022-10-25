@@ -49,15 +49,13 @@ export default function Profile() {
         return;
       }
     });
-    console.log(mypins);
     setPushPin(mypins);
   }, [matches]);
   function handlePic(e) {
-    // console.log(e.clientX);
+    // TODO: change match pictures
   }
   async function punchTheDamnedPin(match) {
     let query = supabase.from('matches2');
-    console.log(match.id, profile.id, match.match.id);
     if (profile.id === match.match.id) {
       query = query
         .update({ pin1: !match.match.pin1 })
