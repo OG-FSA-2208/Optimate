@@ -16,7 +16,6 @@ export const { fetchMatches, update } = matchesSlice.actions;
 export const getAllUserMatches = (router) => async (dispatch) => {
   const session = await supabase.auth.session();
   if (session) {
-    // const { data: ma, error: er } = await supabase.rpc('get_all_matches');
     const { data, error } = await supabase.rpc('get_all_matches');
     if (data) {
       const matchedUser = await Promise.all(

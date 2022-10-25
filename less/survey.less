@@ -39,9 +39,20 @@
 // misc; animation for the toggle on the page
 .profile-view,
 .edit-view {
+  overflow-wrap: break-word;
+  width: 100%;
   animation: slidein 0.4s;
-  @media screen and (max-width: 1080px) {
-    animation: 0s;
+  @media screen and (max-width: 768px) {
+    animation: fadein 0.4s;
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
@@ -56,14 +67,13 @@
 
 // ----------------------------------->
 // STYLES FOR UserProfileView PAGE
-.profile-view {
-  overflow-wrap: break-word;
-  width: 80vw;
-}
 
 .profile-view #profileEditAvatar > div p {
   width: 30vw;
   margin: 5px 0px;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 }
 
 .profile-view h2 {
@@ -91,8 +101,8 @@
   width: 90vw;
   position: relative;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
 }
 
 #profileEditAvatar > div {
@@ -189,6 +199,7 @@
 
 // alignment of divs below the uploadPhotos cut
 .profile-info {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -203,7 +214,7 @@
 
 .profile-preference > div,
 .profile-user > div {
-  margin: 10px;
+  margin: 8px 3px;
 }
 
 // i know this is not very graceful, please bear with me
@@ -248,12 +259,16 @@ input[type='number'] {
     width: 60vw;
   }
   #profileEditAvatar {
-    width: 60vw;
+    width: 100%;
     align-items: center;
     flex-direction: column;
   }
-  #profileEditAvatar > div {
-    width: 60vw;
+  #profileEditAvatar > div, .profile-info > div {
+    width: 75vw;
+    margin: 5px 8px;
+    textarea {
+      width: 100%;
+    }
   }
   #avatar-upload {
     top: 260px;
