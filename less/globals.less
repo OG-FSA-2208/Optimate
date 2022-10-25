@@ -17,9 +17,9 @@
   padding: 0;
 }
 
-body {
+body, .login, .altBg {
   font-family: 'Concert One', cursive;
-  background-color: rgb(232, 247, 247);
+  background-color: @container-background;
   background-image: url(maybe.png);
   background-size: cover;
   background-attachment: fixed;
@@ -28,12 +28,20 @@ body {
   width: 100vw;
 }
 
-.altBg {
+.login {
   background-image: url(possibly.gif);
+  background-position: center;
+  @media screen and (max-width: 661px) {
+    background-image: url(possibly.png);
+  }
 }
 
-.login {
+.altBg {
   background-image: url(maybe.gif);
+  background-position: center;
+  @media screen and (max-width: 661px) {
+    background-image: url(maybe.png);
+  }
 }
 
 .main {
