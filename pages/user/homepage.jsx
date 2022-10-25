@@ -67,24 +67,10 @@ export default function Profile() {
         .update({ pin2: !match.match.pin2 })
         .match({ id: match.id, id2: profile.id });
     }
-
     const { data, error } = await query;
-    // if (error) {
-    //   console.error(error);
-    // }
     if (data) {
-      console.log(data);
-      console.log(pushPin);
-      console.log(match.id);
-      // dispatch(getAllUserMatches());
+      dispatch(getAllUserMatches());
     }
-    // console.log(match);
-    // pushPin[match.id] === undefined
-    //   ? setPushPin({ ...pushPin, [match.id]: true })
-    //   : setPushPin({
-    //       ...pushPin,
-    //       [match.id]: !pushPin[match.id],
-    //     });
   }
   return (
     <div>
