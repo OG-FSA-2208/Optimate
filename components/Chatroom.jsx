@@ -28,6 +28,8 @@ export default function Chatroom() {
   useEffect(() => {
     const lastMessage = document.querySelector('.last');
     lastMessage?.scrollIntoView(false);
+    setEditId(0);
+    dispatch(changeInput(''));
   }, [messageUserId]);
 
   function handleSend() {
@@ -51,6 +53,7 @@ export default function Chatroom() {
     dispatch(changeInput(e.target.value));
   }
 
+  //set timestamp on messages
   function setTime(sent) {
     const now = new Date();
     const then = new Date(sent.replace(/-\d{2}:\d{2}/, '-00:00')); //regex converts timezone to UTC (-XX:XX -> -00:00)
@@ -76,8 +79,8 @@ export default function Chatroom() {
     return date;
   }
 
+  //edit and delete messages here
   function handleEdit(id, message) {
-    if (editId) return;
     setEditId(id);
     dispatch(changeInput(message));
   }
