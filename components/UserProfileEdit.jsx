@@ -50,7 +50,7 @@ export default function EditUserProfile() {
         throw new Error(`Please provide a profile image`);
       } else if (userData.ageMin < 18) {
         throw new Error(`Age preferred minimum cannot be below 18`);
-      } else if (userData.ageMax < userData.ageMin) {
+      } else if (userData.ageMax < userData.ageMin && typeof userData.ageMax === 'number') {
         throw new Error(`Age preferred maximum cannot be below the minimum range`);
       }
       dispatch(updateUser(userData, userData.id));
@@ -376,7 +376,7 @@ export default function EditUserProfile() {
             <input
               name="wantedAge"
               type="number"
-              value={userData?.ageMin || userData?.age - 1}
+              value={userData?.ageMin || 18}
               onChange={(e) => setUserData({ ...userData, ageMin: parseInt(e.target.value) })
               }
             />
@@ -384,8 +384,8 @@ export default function EditUserProfile() {
             <input
               name="wantedAge"
               type="number"
-              value={userData?.ageMax || userData?.age + 1}
-              onChange={(e) => setUserData({ ...userData, ageMax: parseInt(e.target.value) })
+              value={userData?.ageMax || ''}
+              onChange={(e) => setUserData({ ...userData, ageMax: (e.target.value === '' ? null : parseInt(e.target.value)) })
               }
             />
           </div>
