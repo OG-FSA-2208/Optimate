@@ -35,6 +35,19 @@ export const getAllUserMatches = (router) => async (dispatch) => {
           return findMatch();
         })
       );
+      matchedUser.sort(
+        (a, b) =>
+          b.match.pinned +
+          b.match.pin1 +
+          b.match.pin2 +
+          (b.id === b.match.id && b.match.pin1 === true) +
+          (b.id === b.match.id2 && b.match.pin2 === true) -
+          (a.match.pinned +
+            a.match.pin1 +
+            a.match.pin2 +
+            (a.id === a.match.id && a.match.pin1 === true) +
+            (a.id === a.match.id2 && a.match.pin2 === true))
+      );
       dispatch(fetchMatches(matchedUser));
     }
   }
