@@ -11,7 +11,6 @@ import supabase from '../../config/supabaseClient';
 import GetMatchesButton from '../../components/GetMatchesButton';
 
 export default function Profile() {
-  //variables
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
   const profile = useSelector((state) => state.profile);
