@@ -196,10 +196,7 @@ export default function Profile() {
             </div>
           </div>
           <div className="matches-container">
-            <GetMatchesButton
-              highlight={highlight}
-              setHighlight={setHighlight}
-            />
+            <GetMatchesButton setHighlight={setHighlight} />
           </div>
         </div>
       ) : (
