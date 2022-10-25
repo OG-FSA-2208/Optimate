@@ -304,6 +304,13 @@ export default function EditUserProfile() {
             />
           </div>
           <div>
+            <h4>If you do not know your love languages,<br/>
+              <a href='https://5lovelanguages.com/quizzes/love-language' target={'_blank'}>
+              take this quiz at this link to find out!
+              </a>
+            </h4>
+          </div>
+          <div>
             {' '}
             {/* user's love language (giving) */}
             <label htmlFor="loveGiving">Your love language (giving)</label>
@@ -320,13 +327,6 @@ export default function EditUserProfile() {
               <option value="Gift Giving">Gift Giving</option>
               <option value="Words of Affirmation">Words of Affirmation</option>
             </select>
-          </div>
-          <div>
-            <h4>If you do not know your love languages,<br/>
-              <a href='https://5lovelanguages.com/quizzes/love-language' target={'_blank'}>
-              take this quiz at this link to find out!
-              </a>
-            </h4>
           </div>
           <div>
             {' '}
