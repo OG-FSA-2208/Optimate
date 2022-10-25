@@ -51,7 +51,6 @@ export default function GetMatchesButton({ highlight, setHighlight }) {
   }
   function secondsToTimestamp(resetTime) {
     let secondsToReset = Math.floor((resetTime - Date.now()) / 1000);
-    console.log(secondsToReset);
     let hours = Math.floor(secondsToReset / 3600);
     let min = Math.floor((secondsToReset % 3600) / 60);
     let seconds = secondsToReset - hours * 3600 - min * 60;
