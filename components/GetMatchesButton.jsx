@@ -24,7 +24,7 @@ export default function GetMatchesButton({ highlight, setHighlight }) {
         // timer = 0;
         setDisplay('now');
       } else {
-        console.log(data);
+        // console.log(data);
         let timeconst = data.split('.')[0].split(':');
         let totalSeconds =
           Number(timeconst[0]) * 3600 +
@@ -40,13 +40,13 @@ export default function GetMatchesButton({ highlight, setHighlight }) {
     getTimeToMatch();
   }, [attemptMatch]);
   function startCountDown(resetTime) {
-    console.log('howay', resetTime);
+    // console.log('howay', resetTime);
     const intervalId = setInterval(() => {
-      console.log('h2');
-      console.log(resetTime);
+      // console.log('h2');
+      // console.log(resetTime);
       // console.log(Date.now());
       if (resetTime > Date.now()) {
-        console.log('h3');
+        // console.log('h3');
         // timer--;
         secondsToTimestamp(resetTime);
       }
@@ -61,7 +61,7 @@ export default function GetMatchesButton({ highlight, setHighlight }) {
   }
   function secondsToTimestamp(resetTime) {
     let secondsToReset = Math.floor((resetTime - Date.now()) / 1000);
-    console.log(secondsToReset);
+    // console.log(secondsToReset);
     let hours = Math.floor(secondsToReset / 3600);
     let min = Math.floor((secondsToReset % 3600) / 60);
     let seconds = secondsToReset - hours * 3600 - min * 60;
@@ -83,7 +83,7 @@ export default function GetMatchesButton({ highlight, setHighlight }) {
     }
     if (error) {
       setMatchError(error);
-      console.log(error);
+      // console.log(error);
       const { data: data2, error: error2 } = await supabase
         .from('lastmatch')
         .upsert({ id: user.id });
