@@ -25,7 +25,7 @@ export default function Home() {
   }, [user]);
 
   return (
-    <div className="container" style={{ padding: '50px 0 100px 0' }}>
+    <div className="container">
       <Head>
         <title>Optimate</title>
       </Head>

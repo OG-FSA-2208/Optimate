@@ -23,9 +23,9 @@ export default userSlice.reducer;
 export const { login, logout, update } = userSlice.actions;
 export const checkSession = (router) => async (dispatch) => {
   const session = await supabase.auth.session();
-  console.log('is there a session', session);
+  // console.log('is there a session', session);
   if (session) {
-    console.log('hi', session);
+    // console.log('hi', session);
     dispatch(login(session.user));
   } else {
     if (router) {
@@ -61,6 +61,9 @@ export const deleteUser = (router) => async (dispatch) => {
   // supabase.auth.signOut();
   // dispatch(logout());
   // router.push('/');
+
+  // does this not need to also logout the user so the state logs them out?
+  // -Eve
 };
 export const updateUser = (userDetails, userId) => async (dispatch) => {
   try {
