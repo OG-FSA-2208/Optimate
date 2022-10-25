@@ -41,9 +41,9 @@
 .edit-view {
   overflow-wrap: break-word;
   width: 100%;
-  animation: fadein 0.4s;
-  @media screen and (max-width: 1080px) {
-    // animation: 0s;
+  animation: slidein 0.4s;
+  @media screen and (max-width: 768px) {
+    animation: fadein 0.4s;
   }
 }
 
@@ -56,6 +56,14 @@
   }
 }
 
+@keyframes slidein {
+  0% {
+    margin-left: 100vw;
+  }
+  100% {
+    margin-left: 0vw;
+  }
+}
 
 // ----------------------------------->
 // STYLES FOR UserProfileView PAGE
