@@ -1,4 +1,4 @@
-import supabaseAdmin from '../../supabase/api/deleteUser';
+import supabaseAdmin from '../../supabase/api/supabaseAdmin';
 
 const handler = async (req, res) => {
   try {
@@ -46,7 +46,7 @@ const handler = async (req, res) => {
       });
     res.send(userban);
   } catch (error) {
-    console.log(error);
+    console.log('error', error);
   }
 };
 export default handler;
