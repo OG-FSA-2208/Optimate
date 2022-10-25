@@ -33,53 +33,55 @@ export default function ResetPassword() {
   }
 
   return (
-    <form>
-      <Head>
-          <title>Optimate | Password Reset</title>
-      </Head>
-      <h1>please enter a new password</h1>
-      <div className="form-item">
-        <label htmlFor="password" className="form-label">
-          New Password
-        </label>
-        <input
-          className="form-input"
-          placeholder="Enter a password"
-          autoComplete="new-password"
-          name="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div className="form-item">
-        <label htmlFor="passwordConfirm" className="form-label">
-          Confirm Your Password
-        </label>
-        <input
-          className={'form-input'}
-          placeholder="Confirm your password"
-          autoComplete="new-password"
-          name="passwordConfirm"
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-      </div>
-      <div>
-        {error && <p className="form-error display-block">{error}</p>}
-        {success && (
-          <>
-            <p>{success}</p>
-            <Link href="/user/homepage">
-              <a>return to home</a>
-            </Link>
-          </>
-        )}
-      </div>
-      <button className="button" onClick={(e) => changePassword(e)}>
-        Change Password
-      </button>
-    </form>
+    <div className="form-container">
+      <form id="change-password-form">
+        <Head>
+          <title className="form-title">Optimate | Password Reset</title>
+        </Head>
+        <h1>please enter a new password</h1>
+        <div className="form-item">
+          <label htmlFor="password" className="form-label">
+            New Password
+          </label>
+          <input
+            className="form-input"
+            placeholder="Enter a password"
+            autoComplete="new-password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="form-item">
+          <label htmlFor="passwordConfirm" className="form-label">
+            Confirm Your Password
+          </label>
+          <input
+            className={'form-input'}
+            placeholder="Confirm your password"
+            autoComplete="new-password"
+            name="passwordConfirm"
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </div>
+        <div>
+          {error && <p className="form-error display-block">{error}</p>}
+          {success && (
+            <>
+              <p>{success}</p>
+              <Link href="/user/homepage">
+                <a>return to home</a>
+              </Link>
+            </>
+          )}
+        </div>
+        <button className="button" onClick={(e) => changePassword(e)}>
+          Change Password
+        </button>
+      </form>
+    </div>
   );
 }
