@@ -41,18 +41,18 @@
 .edit-view {
   overflow-wrap: break-word;
   width: 100%;
-  animation: slidein 0.4s;
+  animation: fadein 0.4s;
   @media screen and (max-width: 1080px) {
-    animation: 0s;
+    // animation: 0s;
   }
 }
 
-@keyframes slidein {
+@keyframes fadein {
   0% {
-    margin-left: 100vw;
+    opacity: 0;
   }
   100% {
-    margin-left: 0vw;
+    opacity: 1;
   }
 }
 
