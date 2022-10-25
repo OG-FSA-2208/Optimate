@@ -9,10 +9,15 @@ import { sub, unsub, getMessages } from '../store/reducers/messengerSlice';
 import { motion } from 'framer-motion';
 import { Badge } from '@mui/material';
 
+let setBurgerClickedExport, burgerClickedExport;
+
 export default function NavBar() {
   const router = useRouter();
   const dispatch = useDispatch();
   const [burgerClicked, setBurgerClicked] = useState(false);
+  burgerClickedExport = burgerClicked;
+  setBurgerClickedExport = setBurgerClicked;
+
   // checks if there is a user logged in
   const session = useSelector((state) => state.user?.id);
   const numUnread = useSelector(
@@ -38,7 +43,6 @@ export default function NavBar() {
   };
   useEffect(() => {
     dispatch(checkSession());
-    console.log(router);
     if (router.asPath.startsWith('/#access_token') & (router.route === '/')) {
       router.push('/user/profile');
     }
@@ -87,22 +91,22 @@ export default function NavBar() {
         >
           {session ? (
             <Link href="/user/homepage">
-              <a>Optimate 🐙</a>
+              <a className="OptimateWithBurger">Optimate 🐙</a>
             </Link>
           ) : (
             <Link href="/">
-              <a>Optimate 🐙</a>
+              <a className="Optimate">Optimate 🐙</a>
             </Link>
           )}
         </motion.h2>
       </div>
       <ul className={burgerClicked ? 'nav-links nav-active' : 'nav-links'}>
-        {session ? (
+        {session && (
           // these are the links that will appear if a user is logged in
           <>
             <li>
               <Link href="/messages">
-                <a>
+                <a onClick={handleBurger}>
                   Messages
                   <Badge
                     color="primary"
@@ -115,28 +119,30 @@ export default function NavBar() {
             </li>
             <li>
               <Link href="/user/profile">
-                <a>Account</a>
+                <a onClick={handleBurger}>Account</a>
               </Link>
             </li>
             <li>
-              <a onClick={() => dispatch(logoutUser(Router))}>
+              <a onClick={() => {dispatch(logoutUser(Router)); handleBurger()}}>
                 <>Signout</>
               </a>
             </li>
           </>
-        ) : (
-          <>{/*TODO: gotta be a better way to do this than a ternary */}</>
         )}
       </ul>
 
-      <div
-        onClick={handleBurger}
-        className={burgerClicked ? 'burger burger-toggle' : 'burger'}
-      >
-        <div className="line1"></div>
-        <div className="line2"></div>
-        <div className="line3"></div>
-      </div>
+      {session && (
+        <div
+          onClick={handleBurger}
+          className={burgerClicked && session ? 'burger burger-toggle' : 'burger'}
+        >
+          <div className="line1"></div>
+          <div className="line2"></div>
+          <div className="line3"></div>
+        </div>
+      )}
     </nav>
   );
 }
+
+export {burgerClickedExport, setBurgerClickedExport};

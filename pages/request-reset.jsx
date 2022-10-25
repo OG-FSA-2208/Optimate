@@ -18,7 +18,7 @@ export default function RequestReset() {
     const { data, error } = await supabase.auth.api.resetPasswordForEmail(
       email,
       {
-        redirectTo: 'http://localhost:3000/password-reset',
+        redirectTo: `${process.evv.URL}/password-reset`,
       }
     );
     if (error) {
@@ -36,29 +36,34 @@ export default function RequestReset() {
     }
   }, []);
   return (
-    <form>
-      <Head>
-        <title>Optimate | Password Reset</title>
-      </Head>
-      <h1>Recovery Email</h1>
-      {success && <span className="">{success}</span>}
-      <label htmlFor="email" className="form-label">
-        Email
-        <input
-          className="form-input"
-          id="email"
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </label>
-      {formError && (
-        <span className="form-error display-block">{formError}</span>
-      )}
+    <div className="form-container">
+      <form id="request-reset-form">
+        <Head>
+          <title>Optimate | Password Reset</title>
+        </Head>
+        <h1>Recovery Email</h1>
+        {success && <span className="">{success}</span>}
 
-      <button className="button" onClick={(e) => handleforgotPassword(e)}>
-        Reset Password
-      </button>
-    </form>
+        <div className="form-item">
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <input
+            className="form-input"
+            id="email"
+            type="text"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        {formError && (
+          <span className="form-error display-block">{formError}</span>
+        )}
+        <button className="button" onClick={(e) => handleforgotPassword(e)}>
+          Reset Password
+        </button>
+      </form>
+    </div>
   );
 }

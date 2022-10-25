@@ -5,7 +5,8 @@ export default function aboutUs() {
   return (
     <div className="aboutUs">
       <h1>
-        <u style={{ fontSize: '3rem' }}>ABOUT US:</u> ©ZECC-W
+        <u className="ZECC-W">ABOUT US:</u>
+        <div className="copyright"> ©ZECC-W</div>
       </h1>
 
       <br />
@@ -65,7 +66,7 @@ export default function aboutUs() {
               whileHover={{
                 scale: 0.9,
               }}
-              src="https://i.postimg.cc/nh9p6SFr/pic1.png"
+              src="https://iwnfagrreicibkzmwlip.supabase.co/storage/v1/object/sign/aboutus/pic1.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYm91dHVzL3BpYzEucG5nIiwiaWF0IjoxNjY2NjI1MTc4LCJleHAiOjE5ODE5ODUxNzh9.IjDmLv7zJzp9URXW0RVoOlPXhsBt8lFIgdG5AOcn7ws"
             />
           </a>
           Winnie Lau

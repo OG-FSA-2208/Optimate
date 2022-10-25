@@ -6,6 +6,17 @@
   justify-content: space-around;
   background-color: @secondary-color;
   min-height: 6vh;
+  @media screen and (max-width: 768px) {
+    .Optimate {
+      margin-left: -100px;
+    }
+    .OptimateWithBurger{
+      margin: 0 20px 0 -35px;
+    }
+    .burger {
+      margin-right: -30px;
+    }
+  }
 }
 
 .brand-title {
@@ -93,12 +104,12 @@
   }
 }
 
-.toggle-burger .line1 {
+.burger-toggle .line1 {
   transform: rotate(-45deg) translate(-5px, 6px);
 }
-.toggle-burger .line2 {
+.burger-toggle .line2 {
   opacity: 0;
 }
-.toggle-burger .line3 {
+.burger-toggle .line3 {
   transform: rotate(45deg) translate(-5px, -6px);
 }
