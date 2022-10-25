@@ -1,25 +1,23 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import ForwardIcon from '@mui/icons-material/Forward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { useState } from 'react';
 
 export default function faq() {
-  //   const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState('');
+
   return (
     <div className="FAQ">
       <h1>FAQ</h1>
       <br />
       <br />
       <h2>MATCHING AND MESSAGING</h2>
-      {/* <motion.div> */}
-      <div className="forwardIcon">
-        <ForwardIcon
-          style={{ height: '17px', color: 'blue' }}
-          //TODO: onClick={() => console.log('hello')}
-        />
+      <p
+      //TODO: onClick={() => console.log('hello')}
+      >
+        <ForwardIcon style={{ height: '17px', color: 'blue' }} />
         Why am I not getting matches besides my daily match?
-      </div>
+      </p>
       <i>
         Make sure you have completed your profile.
         <p>
@@ -27,7 +25,6 @@ export default function faq() {
           (unless you have a killer smile in the photo 😜)
         </p>
       </i>
-      {/* </motion.div> */}
       <br />
       <p>
         <ForwardIcon style={{ height: '17px', color: 'blue' }} />
