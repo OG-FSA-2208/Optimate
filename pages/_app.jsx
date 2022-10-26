@@ -40,7 +40,7 @@ function MyApp({ Component, pageProps }) {
             }}
           >
             <Head>
-              <link rel="shortcut icon" href="/favicon.ico" />
+              <link rel="shortcut icon" href="/images/favicon.ico" />
             </Head>
             <Component {...pageProps} />
           </motion.div>
