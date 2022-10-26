@@ -8,14 +8,12 @@ import supabase from '../config/supabaseClient.js';
 import { sub, unsub, getMessages } from '../store/reducers/messengerSlice';
 import { motion } from 'framer-motion';
 import { Badge } from '@mui/material';
-
-let setBurgerClickedExport, burgerClickedExport;
+let setBurgerClickedExport;
 
 export default function NavBar() {
   const router = useRouter();
   const dispatch = useDispatch();
   const [burgerClicked, setBurgerClicked] = useState(false);
-  burgerClickedExport = burgerClicked;
   setBurgerClickedExport = setBurgerClicked;
 
   // checks if there is a user logged in
@@ -42,22 +40,11 @@ export default function NavBar() {
     });
   };
 
-  // handles resizing of the window
-  // if/when user changes from mobile to desktop, clears animations in burger
-  // and removes state from burger entirely
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        const navLinks = document.querySelectorAll('.nav-links li');
-        setBurgerClicked(false);
-  
-        navLinks.forEach((link, index) => {
-          link.style.animation = '';
-        });
-      }
-    }
-    window.addEventListener('resize', handleResize)
-  })
+  const handleRedirect = () => {
+    setBurgerClicked(false);
+    const navLinks = document.querySelectorAll('.nav-links li');
+    navLinks.forEach((link, index) => link.style.animation = '');
+  }
 
   useEffect(() => {
     dispatch(checkSession());
@@ -125,7 +112,7 @@ export default function NavBar() {
           <>
             <li>
               <Link href="/messages">
-                <a onClick={handleBurger}>
+                <a onClick={handleRedirect}>
                   Messages
                   <Badge
                     color="primary"
@@ -138,11 +125,11 @@ export default function NavBar() {
             </li>
             <li>
               <Link href="/user/profile">
-                <a onClick={handleBurger}>Account</a>
+                <a onClick={handleRedirect}>Account</a>
               </Link>
             </li>
             <li>
-              <a onClick={() => {dispatch(logoutUser(Router)); handleBurger()}}>
+              <a onClick={() => {dispatch(logoutUser(Router)); handleRedirect()}}>
                 <>Signout</>
               </a>
             </li>
@@ -164,4 +151,4 @@ export default function NavBar() {
   );
 }
 
-export {burgerClickedExport, setBurgerClickedExport};
+export {setBurgerClickedExport};
