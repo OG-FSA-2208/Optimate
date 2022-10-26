@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import UserProfileView from './UserProfileView';
 import UserProfileEdit from './UserProfileEdit';
 import EditIcon from '@mui/icons-material/Edit';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 
 // this component only toggles between displaying the view/edit components for UserProfile
 export default function UserProfile() {
@@ -15,12 +14,6 @@ export default function UserProfile() {
   };
 
   return (
-    // <motion.div
-    //   className="form-widget"
-    //   animate={{ x: 75 }}
-    //   transition={{ ease: 'easeOut', duration: 2 }}
-    // > sorry winnie but your animation messed up my alignment :')
-    //   - eve
       <div className="form-widget">
         <h1>{editing ? 'Editing Profile' : 'Your Profile'}</h1>
         <button
@@ -43,6 +36,5 @@ export default function UserProfile() {
         <hr />
         {editing ? <UserProfileEdit /> : <UserProfileView />}
       </div>
-    // </motion.div>
   );
 }
