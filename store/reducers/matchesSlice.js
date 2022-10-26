@@ -31,6 +31,17 @@ export const getAllUserMatches = (router) => async (dispatch) => {
           return findMatch();
         })
       );
+      //removes blacklisted matches from proifile views
+      const { data: blacklist, error } = await supabase
+        .from('blacklist')
+        .select('blacklisted_id')
+        .eq('id', session.user.id);
+      if (blacklist.length > 0) {
+        blacklist = blacklist.map((black) => black.blacklisted_id);
+        matchedUser = matchedUser.filter(
+          (match) => !blacklist.includes(match.id)
+        );
+      }
       matchedUser.sort(
         (a, b) =>
           b.match.pinned +
