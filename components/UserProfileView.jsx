@@ -112,6 +112,7 @@ export default function ViewUserProfile() {
             </div>
           </div>
           <hr />
+          <h2>Additional Photo Uploads:</h2>
           <div id="optionalPhotoUploads">
             {userData?.user_photos?.map((photoURL, ind) => (
               <UserPhoto
