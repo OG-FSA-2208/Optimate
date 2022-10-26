@@ -1,7 +1,6 @@
 import Footer from './Footer';
 import NavBar from './NavBar';
 import {setBurgerClickedExport} from './NavBar';
-console.dir(setBurgerClickedExport)
 export default function Layout({ children }) {
   // this is handleBurger copied from NavBar except with setBurgerClickedExport
   // which is just setBurgerClicked from NavBar... but exported

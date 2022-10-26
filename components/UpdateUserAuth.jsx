@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import supabase from '../config/supabaseClient';
-import { checkSession, deleteUser } from '../store/reducers/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { FaGithub, FaFacebook, FaGoogle } from 'react-icons/fa';
 import Link from 'next/link';
 import ConfirmDelete from './ConfirmDelete';
-// import {deleteUser} from '../supabase/api/deleteUser';
 import Router from 'next/router';
 
 export default function UpdateUserAuth() {
-  const dispatch = useDispatch();
-  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [formError, setFormError] = useState({});
@@ -20,6 +16,7 @@ export default function UpdateUserAuth() {
   const [authProvider, setAuthProvider] = useState(false);
   const [toggleConfirmDelete, setToggleConfirmDelete] = useState(false);
   const userInfo = useSelector((state) => state.user);
+
   useEffect(() => {
     if (userInfo.id) {
       setEmail(userInfo.email);
@@ -57,12 +54,12 @@ export default function UpdateUserAuth() {
       console.error('update', error);
     }
     if (user) {
-      console.error(user);
       setSuccess({
         email: `A confirmation e-mail will be sent to your email at ${userInfo.email} within 5minutes, and en email verification email will be sent to ${email}. Please validate your your e-mail by clicking on the enclosed links`,
       });
     }
   };
+
   const handleSubmitPassword = async (event) => {
     event.preventDefault();
     setSuccess({});

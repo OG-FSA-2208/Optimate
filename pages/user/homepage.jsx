@@ -1,14 +1,15 @@
-import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { getAllUserMatches } from '../../store/reducers/matchesSlice';
+import { getLoggedInUser } from '../../store/reducers/profileSlice';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import PushPinIcon from '@mui/icons-material/PushPin';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import GetMatchesButton from '../../components/GetMatchesButton';
-import { getLoggedInUser } from '../../store/reducers/profileSlice';
 import Head from 'next/head';
 import supabase from '../../config/supabaseClient';
+import GetMatchesButton from '../../components/GetMatchesButton';
+
 export default function Profile() {
   const dispatch = useDispatch();
   const matches = useSelector((state) => state.matches);
@@ -16,15 +17,18 @@ export default function Profile() {
   const [pushPin, setPushPin] = useState({});
   const [highlight, setHighlight] = useState({});
 
+  //initial render
+  useEffect(() => {
+    dispatch(getAllUserMatches());
+    dispatch(getLoggedInUser());
+  }, []);
+
   //useState beats useSelector in race, so setting it initially to profile would leave it as an empty object on refresh
   useEffect(() => {
     setHighlight(profile);
   }, [profile]);
 
-  useEffect(() => {
-    dispatch(getAllUserMatches());
-    dispatch(getLoggedInUser());
-  }, []);
+  //when matches var changes
   useEffect(() => {
     let mypins = {};
     matches.map((match) => {
@@ -49,15 +53,16 @@ export default function Profile() {
         return;
       }
     });
-    console.log(mypins);
     setPushPin(mypins);
   }, [matches]);
+
+  //functions
   function handlePic(e) {
-    // console.log(e.clientX);
+    // TODO: change match pictures
   }
+
   async function punchTheDamnedPin(match) {
     let query = supabase.from('matches2');
-    console.log(match.id, profile.id, match.match.id);
     if (profile.id === match.match.id) {
       query = query
         .update({ pin1: !match.match.pin1 })
@@ -72,6 +77,7 @@ export default function Profile() {
       dispatch(getAllUserMatches());
     }
   }
+
   return (
     <div>
       <Head>
@@ -198,10 +204,7 @@ export default function Profile() {
             </div>
           </div>
           <div className="matches-container">
-            <GetMatchesButton
-              highlight={highlight}
-              setHighlight={setHighlight}
-            />
+            <GetMatchesButton setHighlight={setHighlight} />
           </div>
         </div>
       ) : (

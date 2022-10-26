@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { getAllUserMatches } from '../../store/reducers/matchesSlice';
 import { blacklistUser } from '../../store/reducers/blacklistSlice';
 
@@ -10,7 +10,6 @@ const MessageParser = ({ children, actions }) => {
   const userId = useSelector((state) => state.user.id);
   useEffect(() => {
     dispatch(getAllUserMatches());
-    // dispatch(blacklistUser());
   }, []);
 
   const words = [

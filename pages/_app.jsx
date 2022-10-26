@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import { useStore } from '../store';
 import Layout from '../components/Layout';
-import '..//styles/globals.css'; //TODO: remove this? seems like its not used since the path is incorrect?
+import '..//styles/globals.css'; //TODO: remove ../ ? seems to have no effect further testing needed
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/router';
 

@@ -84,7 +84,6 @@ export default function EditUserProfile() {
     } else {
       setUserData({ ...userData, user_interests: data });
     }
-    console.dir(data);
   };
 
   return (

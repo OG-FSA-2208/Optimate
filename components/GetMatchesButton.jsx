@@ -2,16 +2,17 @@ import supabase from '../config/supabaseClient';
 import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUserMatches } from '../store/reducers/matchesSlice';
-import { useRouter } from 'next/router';
-export default function GetMatchesButton({ highlight, setHighlight }) {
+
+export default function GetMatchesButton({ setHighlight }) {
   const [matchError, setMatchError] = useState('');
   const [matchSuccess, setSuccess] = useState(null);
   const [display, setDisplay] = useState('');
-  // const [startTimer, setStartTimer] = useState(false);
   const [attemptMatch, setAttemptMatch] = useState(0);
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const Ref = useRef(null);
+
   useEffect(() => {
     setDisplay('loading');
     async function getTimeToMatch() {
@@ -36,6 +37,7 @@ export default function GetMatchesButton({ highlight, setHighlight }) {
       if (Ref.current) clearInterval(Ref.current);
     };
   }, [attemptMatch]);
+
   function startCountDown(resetTime) {
     const intervalId = setInterval(() => {
       if (resetTime > Date.now()) {
@@ -49,6 +51,7 @@ export default function GetMatchesButton({ highlight, setHighlight }) {
     }, 1000);
     Ref.current = intervalId;
   }
+
   function secondsToTimestamp(resetTime) {
     let secondsToReset = Math.floor((resetTime - Date.now()) / 1000);
     let hours = Math.floor(secondsToReset / 3600);
@@ -62,6 +65,7 @@ export default function GetMatchesButton({ highlight, setHighlight }) {
     }
     setDisplay(`${hours}:${min}:${seconds}`);
   }
+
   const rpcAttemptFindMatch = async () => {
     const { data, error } = await supabase.rpc('find_match');
     if (data?.id) {
@@ -72,12 +76,11 @@ export default function GetMatchesButton({ highlight, setHighlight }) {
     }
     if (error) {
       setMatchError(error);
-      const { data: data2, error: error2 } = await supabase
-        .from('lastmatch')
-        .upsert({ id: user.id });
+      await supabase.from('lastmatch').upsert({ id: user.id });
       setAttemptMatch(attemptMatch + 1);
     }
   };
+
   return (
     <div className="getMatches">
       {matchSuccess && <span>{matchSuccess}</span>}
