@@ -1,9 +1,10 @@
 import { Provider } from 'react-redux';
 import { useStore } from '../store';
 import Layout from '../components/Layout';
-import '..//styles/globals.css'; //TODO: remove this? seems like its not used since the path is incorrect?
+import '..//styles/globals.css'; //TODO: remove ../ ? seems to have no effect further testing needed
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState);
@@ -38,6 +39,9 @@ function MyApp({ Component, pageProps }) {
               },
             }}
           >
+            <Head>
+              <link rel="shortcut icon" href="/favicon.ico" />
+            </Head>
             <Component {...pageProps} />
           </motion.div>
         </AnimatePresence>

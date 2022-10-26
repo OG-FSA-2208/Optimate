@@ -1,46 +1,40 @@
 # Optimate
 
-Run npm install when you pull this code
+Are you sick of swiping your way into oblivion on the same old dating apps? Do you think selfies and witty taglines aren’t enough to point you to your perfect match? Have you felt that there must be SOMETHING out there that’s better? Optimate just might be exactly what you’ve been looking for. 
 
-# BIG HEADER
+Optimate takes all of the work that goes into dating apps off your hands. All you have to do is answer a few questions to set up your profile, wait for our special algorithm to pair you with your perfect matches, and start chatting!
 
-## SECTION 1 (KEY FEATURES?)
+Finding your mister or misses right has never been so easy! Rather than swiping through an endless stream of potential partners, Optimate limits your selection to just your optimum 8, and with a maximum of only one new match per day, you’ll never feel overwhelmed.
 
-### SUBSECTION?
+What really makes Optimate unique is the special matching algorithm. By providing information about your interests, love languages, and partner preferences, Optimate will match you with partners you can actually get along with - not just pretty faces on a screen. 
 
-**bold something important**  
-_italicize something to emphasize_  
-**_bold and italic is super imp_**  
-a<sub>subscript if so inclined</sub>  
-a<sup>superscript if youre bored</sup>
+## Getting Started
+### Local Machine (command line)
+- <code>$npm i</code>
+- <code>$npm run dev</code>
 
-> quote like this
+## Technologies Used
 
-Type some `inline code` like this  
-Or a block of code like this:
+For this project, We used: 
+- Material-UI 
+- React 
+- Redux
+- Next.js 
+- Supabase 
+- Axios 
+- Motion
+- LESS
 
-```js
-const a = 1;
-let b = 0;
-console.log((b += a));
-```
+## Challenges
 
-[Link to deployed site](https://www.linkedin.com)
-![Alt text for image](https://myoctocat.com/assets/images/base-octocat.svg)
+Creating Optimate was a ton of fun, but it was certainly no walk in the park. During development we faced several challenges including:
+- Subscribing users to the database to ensure they were properly receiving real-time messages.
+- Properly incorporating precise location for users to see how far away their matches are.
 
-unorderd list:
+## Team
 
-- first item with footnote[^1]
-- second
-  - nest it
-
-ordered list:
-
-1. first
-2. second
-
-tasks:  
-[ ] task one  
-[x] task two completed
-
-[^1]: happy readmeing 🐙
+- [Zach Byerley](https://www.linkedin.com/in/zach-byerley/)
+- [Eve Cho](https://www.linkedin.com/in/echos-echo/)
+- [Cody Chan](https://www.linkedin.com/in/codylchan/)
+- [Cory Gold](https://www.linkedin.com/in/corygold/)
+- [Winnie Lau](https://www.linkedin.com/in/thinkingoutlau/)

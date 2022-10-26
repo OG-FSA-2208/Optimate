@@ -34,7 +34,7 @@ const handler = async (req, res) => {
       const { data: photoData, error: photoError } =
         await supabaseAdmin.auth.api.deleteUser(user.id);
       if (photoError) {
-        console.log(
+        console.error(
           `some error occurred when trying to delete the user: ${photoError}`
         );
       }
@@ -46,7 +46,7 @@ const handler = async (req, res) => {
       });
     res.send(userban);
   } catch (error) {
-    console.log('error', error);
+    console.error(error);
   }
 };
 export default handler;
