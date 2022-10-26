@@ -21,16 +21,15 @@ export default function faq() {
         Why am I not getting matches besides my daily match?
       </p>
       {isActive === 'matches' && (
-        <i>
-          Make sure you have completed your profile.
+        <>
+          <p>Make sure you have completed your profile.</p>
           <p>
             For the men, shirtless mirror pics highly <u>NOT</u> recommended
             (unless you have a killer smile in the photo 😜)
           </p>
-        </i>
+          <br />
+        </>
       )}
-      {isActive !== 'matches' && <br />}
-      <br />
       <p onClick={() => setIsActive('pin')}>
         {isActive === 'pin' ? (
           <ArrowDownwardIcon style={{ height: '17px', color: 'blue' }} />
@@ -40,13 +39,15 @@ export default function faq() {
         What does the pin feature do?
       </p>
       {isActive === 'pin' && (
-        <i>
-          The pin feature allows you to like a match and if it is reciprocated,
-          you and the match will both be notified.
-        </i>
+        <>
+          <p>
+            The pin feature allows you to like a match and if it is
+            reciprocated, you and the match will both be notified.
+          </p>
+          <br />
+        </>
       )}
-      <br />
-      <br />
+
       <p onClick={() => setIsActive('read')}>
         {isActive === 'read' ? (
           <ArrowDownwardIcon style={{ height: '17px', color: 'blue' }} />
@@ -56,13 +57,15 @@ export default function faq() {
         Can I see if my match read my messages?
       </p>
       {isActive === 'read' && (
-        <i>
-          There is no such feature at the moment. Just be patient and trust the
-          process.
-        </i>
+        <>
+          <p>
+            There is no such feature at the moment. Just be patient and trust
+            the process.
+          </p>
+          <br />
+        </>
       )}
-      <br />
-      <br />
+
       <p onClick={() => setIsActive('disappear')}>
         {isActive === 'disappear' ? (
           <ArrowDownwardIcon style={{ height: '17px', color: 'blue' }} />
@@ -72,13 +75,15 @@ export default function faq() {
         Why did one of my matches disappear?
       </p>
       {isActive === 'disappear' && (
-        <i>
-          Maximum number of matches you can receive is 8. If you did not pin
-          your match, FIFO happens :)
-        </i>
+        <>
+          <p>
+            Maximum number of matches you can receive is 8. If you did not pin
+            your match, FIFO happens :)
+          </p>
+          <br />
+        </>
       )}
-      <br />
-      <br />
+
       <br />
       <h2>DATING ADVICE</h2>
       <p onClick={() => setIsActive('pay')}>
@@ -90,18 +95,19 @@ export default function faq() {
         Who should pay on the first date?
       </p>
       {isActive === 'pay' && (
-        <i>
-          &emsp;Read:{' '}
-          <a
-            target="_blank"
-            href="https://www.elitesingles.com/mag/relationship-advice/who-should-pay-for-date"
-          >
-            Survey says...
-          </a>
-        </i>
+        <>
+          <p>
+            &emsp;Read:{' '}
+            <a
+              target="_blank"
+              href="https://www.elitesingles.com/mag/relationship-advice/who-should-pay-for-date"
+            >
+              Survey says...
+            </a>
+          </p>
+          <br />
+        </>
       )}
-      <br />
-      <br />
 
       <p onClick={() => setIsActive('ghost')}>
         {isActive === 'ghost' ? (
@@ -112,18 +118,19 @@ export default function faq() {
         One of my matches ghosted me. What do I do?
       </p>
       {isActive === 'ghost' && (
-        <i>
-          &emsp;Read:{' '}
-          <a
-            target="_blank"
-            href="https://www.datingadvice.com/online-dating/ghosted-dating-app"
-          >
-            Ghost City 👻
-          </a>
-        </i>
+        <>
+          <p>
+            &emsp;Read:{' '}
+            <a
+              target="_blank"
+              href="https://www.datingadvice.com/online-dating/ghosted-dating-app"
+            >
+              Ghost City 👻
+            </a>
+          </p>
+          <br />
+        </>
       )}
-      <br />
-      <br />
 
       <p onClick={() => setIsActive('anxious')}>
         {isActive === 'anxious' ? (
@@ -134,23 +141,25 @@ export default function faq() {
         I am an anxious lover. What can I do?
       </p>
       {isActive === 'anxious' && (
-        <i>
-          &emsp;Read:{' '}
-          <a
-            target="_blank"
-            href="https://www.nytimes.com/2021/11/06/style/anxious-avoidant-secure-attached-book.html"
-          >
-            Attached By Amir Levine and Rachel Heller
-          </a>
-        </i>
+        <>
+          <p>
+            &emsp;Read:{' '}
+            <a
+              target="_blank"
+              href="https://www.nytimes.com/2021/11/06/style/anxious-avoidant-secure-attached-book.html"
+            >
+              Attached By Amir Levine and Rachel Heller
+            </a>
+          </p>
+          <br />
+        </>
       )}
       <br />
       <br />
       <div className="email">
         <h4>
-          <i>
-            Still have questions? <p>Contact us: ZECC-W@optim8.com</p>
-          </i>
+          <p>Still have questions? </p>
+          <p>Contact us: ZECC-W@optim8.com</p>
         </h4>
       </div>
     </div>
