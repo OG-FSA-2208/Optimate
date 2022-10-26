@@ -97,7 +97,7 @@ export default function NavBar() {
         >
           {session ? (
             <Link href="/user/homepage">
-              <a className="OptimateWithBurger">Optimate 🐙</a>
+              <a className="OptimateWithBurger" onClick={handleRedirect}>Optimate 🐙</a>
             </Link>
           ) : (
             <Link href="/">
