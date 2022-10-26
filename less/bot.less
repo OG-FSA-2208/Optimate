@@ -1,10 +1,19 @@
-.help{
-  @media screen  {
-        margin-top: 20px;
-        margin-bottom: -30px;
+.sendHelp {
+  .flexCenter();
+  flex-direction: column;
+}
+
+.help, .sendHelp{
+  margin-top: 20px;
+  margin-bottom: -30px;
+  @media screen and (max-width: 768) {
+        margin-top: 10px;
   }
 }
 
+.sendHelp {
+  margin-bottom: 30px;
+}
 
 .chat-bot-avatar-icon {
   width: 28px;
