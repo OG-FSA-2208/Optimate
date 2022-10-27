@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
+      table {
+        text-align: center;
+      }
+      .fullbody {
+        font-family: 'Arial Narrow', sans-serif, Arial;
+        background-image: url(https://optimate8.herokuapp.com/_next/static/media/maybe.506faa84.png);
+        background-color:#8fcecb;
+        background-size: cover;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow-x: hidden;
+        width: 100%;
+        height: 100vh;
+      }
+      .main-table {
+        width: 100%;
+        font-size: 2.2em;
+      }
+      .navbar {
+        width: 100%;
+        background-color: #48a9a6;
+        height: 6vh;
+        letter-spacing: 0.2em;
+        letter-spacing: 0.2rem;
+        font-weight: 900;
+      }
+      a {
+        text-decoration: none;
+      }
+      .logo {
+        letter-spacing: 0.2em;
+        margin-bottom: 1em;
+        font-weight: 900;
+      }
+      .footer {
+        height: 6vh;
+        width: 100%;
+        background-color: #48a9a6;
+      }
+      .footer a {
+        text-decoration: none;
+        margin: 0 1em;
+        text-align: center;
+        color: #60495a;
+      }
+    </style>
+  </head>
+  <body class="EmailBody">
+    <table class="fullbody">
+      <tr class="navbar">
+        <td colspan="3">
+          <h2></h2><a class="Optimate" href="https://optimate8.herokuapp.com/"
+            >Optimate 🐙</a
+          ></h2>
+        </td>
+      </tr>
+      <tr class="main">
+        <td colspan="3">
+          <table class="main-table">
+            <tr>
+              <td class="logo"><h1>Optimate</h1></td>
+            </tr>
+            <tr>
+              <td height="100px"></td>
+            </tr>
+            <tr>
+              <td><h3></h3></td>
+            </tr>
+            <tr>
+              <td>Follow this link to login:</td>
+            </tr>
+            <tr>
+              <td><a href="{{ .ConfirmationURL }}">Log In</a></td>
+            </tr>
+            <tr height="100px">
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <i><small>Not a booty call but a foodie call </small></i>😉
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr class="footer">
+        <td>
+          <table class="footer">
+            <tr>
+              <td>
+                <a href="https://optimate8.herokuapp.com/help">Help Center</a>
+              </td>
+              <td>
+                <h3>
+                  <a href="https://optimate8.herokuapp.com/aboutUs"
+                    ><p>About Us</p>
+                    © 2022 ZECC-W</a
+                  >
+                </h3>
+              </td>
+              <td><a href="https://optimate8.herokuapp.com/faq">FAQ</a></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
