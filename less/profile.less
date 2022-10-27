@@ -2,23 +2,38 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  align-items: center;
+  // align-items: center; // for some reason was causing issues on mobile view. idk why. - Eve
+  justify-content: center;
   ::-webkit-scrollbar {
     border-radius: 10px;
   }
+  width: 100vw;
+  margin: 20px 0px;
 }
 
 .matches-container {
   position: absolute;
+  top: 10vh;
   left: 0;
   margin-top: 1em;
-  width: calc((100vw - 550px) / 2);
+  width: calc((100vw - 620px) / 2);
   @media screen and (max-width: 1080px) {
+    top: auto;
     width: 100%;
     height: 100%;
     align-self: center;
     position: relative;
     margin: 1em 0 1em 0;
+  }
+}
+
+.arrows-box {
+  margin: 3em auto 2.5em auto;
+  display: flex;
+  align-items: center;
+  @media screen and (max-width: 768px) {
+    width: 99%;
+    margin: 0;
   }
 }
 
@@ -29,7 +44,6 @@
   width: 500px;
   align-items: center;
   font-size: 18px;
-  margin: 3em auto 2.5em auto;
   padding: 1em;
   background-color: rgba(250, 171, 171, 0.6);
   color: @primary-text-color;
@@ -37,8 +51,11 @@
   border: solid;
 
   @media screen and (max-width: 768px) {
-    width: 80%;
+    width: 95%;
     flex-direction: column;
+    & > div {
+      width: 100%;
+    }
   }
 }
 
