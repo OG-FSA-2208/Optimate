@@ -32,7 +32,7 @@ export default function Profile() {
 
   useEffect(() => {
     if (
-      highlight.avatar_url === profile.avatar_url ||
+      (highlight.user_photos && highlight.avatar_url === profile.avatar_url) ||
       matches.some((match) => highlight.avatar_url === match.avatar_url)
     )
       setHighlightPics([highlight.avatar_url, ...highlight.user_photos]);
