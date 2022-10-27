@@ -4,6 +4,7 @@ import { getAllUserMatches } from '../../store/reducers/matchesSlice';
 import { getLoggedInUser } from '../../store/reducers/profileSlice';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import PushPinIcon from '@mui/icons-material/PushPin';
+import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -57,8 +58,34 @@ export default function Profile() {
   }, [matches]);
 
   //functions
-  function handlePic(e) {
-    // TODO: change match pictures
+  //change higlighted picture
+  function handlePic(num) {
+    //get current pic index or true if avatar
+    const index =
+      highlight.avatar_url === profile.avatar_url ||
+      profile.user_photos.indexOf(highlight.avatar_url);
+    //if available, change to new pic
+    if (num === -1) {
+      if (index === true) return; //do nothing if trying to move left from main pic
+      if (index === 0 && num === -1)
+        return setHighlight({ ...highlight, avatar_url: profile.avatar_url }); //switch to main pic from array
+      setHighlight({
+        ...highlight,
+        avatar_url: profile.user_photos[index - 1],
+      });
+    } else {
+      if (index === highlight.user_photos.length - 1) return; //do nothing if trying to move right from end of array
+      if (index === true && highlight.user_photos.length)
+        //switch to array from main pic
+        return setHighlight({
+          ...highlight,
+          avatar_url: profile.user_photos[0],
+        });
+      setHighlight({
+        ...highlight,
+        avatar_url: profile.user_photos[index + 1],
+      });
+    }
   }
 
   async function punchTheDamnedPin(match) {
@@ -85,70 +112,76 @@ export default function Profile() {
       </Head>
       {highlight.id ? (
         <div id="homepage-container">
-          <Link
-            href={
-              highlight.id === profile.id
-                ? '/user/profile'
-                : `/messages/${highlight.id}`
-            }
-          >
-            <motion.div
-              className="myProfile"
-              key={highlight.id}
-              whileHover={{
-                scale: 1.2,
-              }}
-              drag="x"
-              dragConstraints={{
-                right: 18,
-                left: 0,
-              }}
-              whileTap={{
-                scale: 0.9,
-              }}
+          <div className="arrows-box">
+            <ChevronLeft fontSize="large" onClick={() => handlePic(-1)} />
+            <Link
+              href={
+                highlight.id === profile.id
+                  ? '/user/profile'
+                  : `/messages/${highlight.id}`
+              }
             >
-              <div>
-                <p>
-                  {highlight.id === profile.id ? 'Edit My Profile' : 'Message'}
-                </p>
-                <h2>
-                  {highlight.firstname} {highlight.lastname}
-                </h2>
-                <br></br>
-                <img
-                  src={highlight.avatar_url}
-                  className="profilePic"
-                  onDrag={handlePic}
-                />
-              </div>
-              <div>
-                <p className="highlight">
-                  <strong>Highlight: {highlight.highlight}</strong>
-                </p>
-                <br />
-                <p>Age: {highlight.age}</p>
-                <p>Gender: {highlight.gender}</p>
-                <p>About: {highlight.about}</p>
-                <p>Occupation: {highlight.occupation}</p>
-                <p>Status: {highlight.status}</p>
-                <p>Location: {highlight.location}</p>
-                <p style={{ fontSize: '1em' }}>
-                  {highlight.drinker ? 'Drinker: 🍻' : null}{' '}
-                  {highlight.smoker ? 'Smoker: 🚬' : null}
-                </p>
-                <br />
-                <p>Giving: {highlight.loveLangGiving}</p>
-                <p>Receiving: {highlight.loveLangReceiving}</p>
-                <br />
-                <p>
-                  Interests:{' '}
-                  {highlight.user_interests.reduce((acc, curr) => {
-                    return acc + curr.label + ' ';
-                  }, '')}
-                </p>
-              </div>
-            </motion.div>
-          </Link>
+              <motion.div
+                className="myProfile"
+                key={highlight.id}
+                whileHover={{
+                  scale: 1.2,
+                }}
+                drag="x"
+                dragConstraints={{
+                  right: 18,
+                  left: 0,
+                }}
+                whileTap={{
+                  scale: 0.9,
+                }}
+              >
+                <div>
+                  <p>
+                    {highlight.id === profile.id
+                      ? 'Edit My Profile'
+                      : 'Message'}
+                  </p>
+                  <h2>
+                    {highlight.firstname} {highlight.lastname}
+                  </h2>
+                  <br></br>
+                  <img
+                    src={highlight.avatar_url}
+                    className="profilePic"
+                    onDrag={handlePic}
+                  />
+                </div>
+                <div>
+                  <p className="highlight">
+                    <strong>Highlight: {highlight.highlight}</strong>
+                  </p>
+                  <br />
+                  <p>Age: {highlight.age}</p>
+                  <p>Gender: {highlight.gender}</p>
+                  <p>About: {highlight.about}</p>
+                  <p>Occupation: {highlight.occupation}</p>
+                  <p>Status: {highlight.status}</p>
+                  <p>Location: {highlight.location}</p>
+                  <p style={{ fontSize: '1em' }}>
+                    {highlight.drinker ? 'Drinker: 🍻' : null}{' '}
+                    {highlight.smoker ? 'Smoker: 🚬' : null}
+                  </p>
+                  <br />
+                  <p>Giving: {highlight.loveLangGiving}</p>
+                  <p>Receiving: {highlight.loveLangReceiving}</p>
+                  <br />
+                  <p>
+                    Interests:{' '}
+                    {highlight.user_interests.reduce((acc, curr) => {
+                      return acc + curr.label + ' ';
+                    }, '')}
+                  </p>
+                </div>
+              </motion.div>
+            </Link>
+            <ChevronRight fontSize="large" onClick={() => handlePic(1)} />
+          </div>
           <div className="media-scroller">
             <div className="matchesForEachUser">
               {matches
