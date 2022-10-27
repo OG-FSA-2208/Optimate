@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import reduxLogger from 'redux-logger';
+// import reduxLogger from 'redux-logger';
 import { useMemo } from 'react';
 import {
   userSlice,
@@ -23,7 +23,7 @@ function initStore(preloadedState) {
       blacklist: blacklistSlice,
     },
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(reduxLogger),
+      getDefaultMiddleware() /*.concat(reduxLogger)*/,
     preloadedState,
   });
 }
