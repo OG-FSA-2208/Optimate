@@ -18,7 +18,7 @@ export default function RequestReset() {
     const { data, error } = await supabase.auth.api.resetPasswordForEmail(
       email,
       {
-        redirectTo: `${process.evv.URL}/password-reset`,
+        redirectTo: `${process.env.URL}/password-reset`,
       }
     );
     if (error) {
