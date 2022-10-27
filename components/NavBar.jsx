@@ -49,7 +49,6 @@ export default function NavBar() {
   useEffect(() => {
     dispatch(checkSession());
     if (router.asPath.startsWith('/#access_token') & (router.route === '/')) {
-      console.log(router);
       if (router.asPath.endsWith('type=recovery')) {
         router.push('/password-reset');
       } else {
@@ -58,7 +57,6 @@ export default function NavBar() {
     }
     const { subscription } = supabase.auth.onAuthStateChange(
       async (event, session) => {
-        console.log(event);
         if (event == 'SIGNED_IN') {
           // dispatch(checkSession(router));
         }
