@@ -26,7 +26,7 @@ begin
                     (select attempted_at from lastmatch m where id=auth.uid() ORDER BY attempted_at DESC limit 1)
               ))
               <
-              (SELECT '1 minute'::interval)
+              (SELECT '5 minute'::interval)
             )
         then return age(  
                     (select attempted_at + '5 minute' from lastmatch m where id=auth.uid() ORDER BY attempted_at DESC limit 1)

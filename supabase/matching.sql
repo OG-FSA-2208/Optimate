@@ -1,7 +1,5 @@
 drop function if exists new_match();
 CREATE or REPLACE function new_match() 
--- returns setof profiles
--- returns profiles
 returns uuid
 language sql
 as $$
@@ -120,6 +118,10 @@ where
         id = auth.uid()
     ) = p."loveLangGiving"
   )
+  AND
+    (
+      (select count(*) from matches2 where pin1 = true and pin2 = true and auth.uid() = p.id ) < 4
+    )
   ORDER BY RANDOM()  
   LIMIT 1  
   ;
