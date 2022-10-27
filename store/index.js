@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import reduxLogger from 'redux-logger';
+import reduxLogger from 'redux-logger';
 import { useMemo } from 'react';
 import {
   userSlice,
