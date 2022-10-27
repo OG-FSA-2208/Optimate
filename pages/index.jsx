@@ -18,7 +18,7 @@ export default function Home() {
       setIsLoading(false);
     }
     if (user.id) {
-      router.push('/user/profile'); // when a user is logged in, this will sent them to their profile
+      // router.push('/user/profile'); // when a user is logged in, this will sent them to their profile
     } else {
       getInitialSession();
     }
