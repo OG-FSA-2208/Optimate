@@ -4,7 +4,7 @@ import Head from 'next/head';
 
 export default function help() {
   return (
-    <div>
+    <div className='sendHelp'>
       <Head>
         <title>Optimate | Help</title>
       </Head>

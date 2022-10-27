@@ -71,9 +71,9 @@ export default function aboutUs() {
           </a>
           Winnie Lau
         </h3>
-        <br />
-        <br />
       </div>
+      <br />
+      <br />
 
       <h2>
         Github:{' '}
@@ -83,6 +83,7 @@ export default function aboutUs() {
           </a>
         </u>
       </h2>
+      <br/>
     </div>
   );
 }
