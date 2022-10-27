@@ -1,4 +1,4 @@
-# Optimate
+# [Optimate](https://optimate8.herokuapp.com/)
 
 Are you sick of swiping your way into oblivion on the same old dating apps? Do you think selfies and witty taglines aren’t enough to point you to your perfect match? Have you felt that there must be SOMETHING out there that’s better? Optimate just might be exactly what you’ve been looking for. 
 
