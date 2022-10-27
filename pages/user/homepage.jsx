@@ -17,6 +17,7 @@ export default function Profile() {
   const profile = useSelector((state) => state.profile);
   const [pushPin, setPushPin] = useState({});
   const [highlight, setHighlight] = useState({});
+  const [highlightPics, setHighlightPics] = useState([]);
 
   //initial render
   useEffect(() => {
@@ -28,6 +29,14 @@ export default function Profile() {
   useEffect(() => {
     setHighlight(profile);
   }, [profile]);
+
+  useEffect(() => {
+    if (
+      highlight.avatar_url === profile.avatar_url ||
+      matches.some((match) => highlight.avatar_url === match.avatar_url)
+    )
+      setHighlightPics([highlight.avatar_url, ...highlight.user_photos]);
+  }, [highlight]);
 
   //when matches var changes
   useEffect(() => {
@@ -61,29 +70,19 @@ export default function Profile() {
   //change higlighted picture
   function handlePic(num) {
     //get current pic index or true if avatar
-    const index =
-      highlight.avatar_url === profile.avatar_url ||
-      profile.user_photos.indexOf(highlight.avatar_url);
+    const index = highlightPics.indexOf(highlight.avatar_url);
     //if available, change to new pic
     if (num === -1) {
-      if (index === true) return; //do nothing if trying to move left from main pic
-      if (index === 0 && num === -1)
-        return setHighlight({ ...highlight, avatar_url: profile.avatar_url }); //switch to main pic from array
+      if (!index) return; //do nothing if trying to move left from main pic
       setHighlight({
         ...highlight,
-        avatar_url: profile.user_photos[index - 1],
+        avatar_url: highlightPics[index - 1],
       });
     } else {
-      if (index === highlight.user_photos.length - 1) return; //do nothing if trying to move right from end of array
-      if (index === true && highlight.user_photos.length)
-        //switch to array from main pic
-        return setHighlight({
-          ...highlight,
-          avatar_url: profile.user_photos[0],
-        });
+      if (index === highlightPics.length - 1) return; //do nothing if trying to move right from end of array
       setHighlight({
         ...highlight,
-        avatar_url: profile.user_photos[index + 1],
+        avatar_url: highlightPics[index + 1],
       });
     }
   }
