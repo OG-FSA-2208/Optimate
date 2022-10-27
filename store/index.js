@@ -22,18 +22,20 @@ function initStore(preloadedState) {
       survey: surveySlice,
       blacklist: blacklistSlice,
     },
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(reduxLogger),
+    middleware: (getDefaultMiddleware) => {
+      if (process.env.NODE_ENV === 'production') {
+        return getDefaultMiddleware();
+      } else {
+        return getDefaultMiddleware().concat(reduxLogger);
+      }
+    },
     preloadedState,
   });
 }
 
 export const initializeStore = (preloadedState) => {
-  // ?? checks left side for value, if null or undefined return right side
   let _store = store ?? initStore(preloadedState);
-
-  // After navigating to a page with an initial Redux state, merge that state
-  // with the current state in the store, and create a new store
+  // After navigating to a page with an initial Redux state, merge that state with the current state in the store, and create a new store
   if (preloadedState && store) {
     _store = initStore({
       ...store.getState(),
