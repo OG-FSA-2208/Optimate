@@ -9,6 +9,14 @@ export default function faq() {
   return (
     <div className="FAQ">
       <h1>FAQ</h1>
+      <h3>
+        <a>
+          <img
+            className="tutorialSection"
+            src="https://iwnfagrreicibkzmwlip.supabase.co/storage/v1/object/sign/tutorial/Homepage%20Tutorial.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ0dXRvcmlhbC9Ib21lcGFnZSBUdXRvcmlhbC5wbmciLCJpYXQiOjE2NjY4MzgzMDksImV4cCI6MTk4MjE5ODMwOX0.IKei10EHFn_P7U1iOzN6W2uStdWMtd_rvjCJZJQEJRk&t=2022-10-27T02%3A38%3A29.008Z"
+          />
+        </a>
+      </h3>
       <br />
       <br />
       <h2>MATCHING AND MESSAGING</h2>
