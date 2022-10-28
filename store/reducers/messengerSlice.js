@@ -72,13 +72,16 @@ export default messengerSlice.reducer;
 
 //THUNKS
 //grab all yer messages, to and fro
-export const getMessages = () => async (dispatch) => {
-  const session = await supabase.auth.session();
+export const getMessages = (matches) => async (dispatch) => {
+  const session = supabase.auth.session();
+  const matchIds = matches.map((match) => match.id);
   if (session) {
     const { data, error } = await supabase
       .from('messages')
       .select('*, from_pic:from ( avatar_url )')
-      .or(`from.eq.${session.user.id},to.eq.${session.user.id}`)
+      .or(
+        `and(from.eq.${session.user.id},to.in.${matchIds}),and(to.eq.${session.user.id},from.in${matchIds})`
+      )
       .order('created_at');
     if (data) dispatch(fetchMessages(data));
     if (error) console.error(error);

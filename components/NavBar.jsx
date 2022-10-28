@@ -3,6 +3,7 @@ import Router from 'next/router';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkSession, logoutUser } from '../store/reducers/userSlice.js';
+import { getAllUserMatches } from '../store/reducers/matchesSlice';
 import { useRouter } from 'next/router';
 import supabase from '../config/supabaseClient.js';
 import { sub, unsub, getMessages } from '../store/reducers/messengerSlice';
@@ -18,6 +19,7 @@ export default function NavBar() {
 
   // checks if there is a user logged in
   const session = useSelector((state) => state.user?.id);
+  const matches = useSelector((state) => state.matches);
   const numUnread = useSelector(
     (state) =>
       state.messenger.messages.filter(
@@ -43,11 +45,12 @@ export default function NavBar() {
   const handleRedirect = () => {
     setBurgerClicked(false);
     const navLinks = document.querySelectorAll('.nav-links li');
-    navLinks.forEach((link, index) => link.style.animation = '');
-  }
+    navLinks.forEach((link, index) => (link.style.animation = ''));
+  };
 
   useEffect(() => {
     dispatch(checkSession());
+    dispatch(getAllUserMatches());
     if (router.asPath.startsWith('/#access_token') & (router.route === '/')) {
       router.push('/user/profile');
     }
@@ -72,7 +75,6 @@ export default function NavBar() {
 
   // listens to see if the user is logged in or not
   useEffect(() => {
-    dispatch(getMessages());
     const messageListener = dispatch(sub());
     if (session) {
       document.body.classList.add('altBg');
@@ -87,6 +89,10 @@ export default function NavBar() {
     };
   }, [session]);
 
+  useEffect(() => {
+    dispatch(getMessages(matches));
+  }, [matches]);
+
   return (
     <nav className="navbar">
       <div className="brand-title">
@@ -97,7 +103,9 @@ export default function NavBar() {
         >
           {session ? (
             <Link href="/user/homepage">
-              <a className="OptimateWithBurger" onClick={handleRedirect}>Optimate 🐙</a>
+              <a className="OptimateWithBurger" onClick={handleRedirect}>
+                Optimate 🐙
+              </a>
             </Link>
           ) : (
             <Link href="/">
@@ -129,7 +137,12 @@ export default function NavBar() {
               </Link>
             </li>
             <li>
-              <a onClick={() => {dispatch(logoutUser(Router)); handleRedirect()}}>
+              <a
+                onClick={() => {
+                  dispatch(logoutUser(Router));
+                  handleRedirect();
+                }}
+              >
                 <>Signout</>
               </a>
             </li>
@@ -140,7 +153,9 @@ export default function NavBar() {
       {session && (
         <div
           onClick={handleBurger}
-          className={burgerClicked && session ? 'burger burger-toggle' : 'burger'}
+          className={
+            burgerClicked && session ? 'burger burger-toggle' : 'burger'
+          }
         >
           <div className="line1"></div>
           <div className="line2"></div>
@@ -151,4 +166,4 @@ export default function NavBar() {
   );
 }
 
-export {setBurgerClickedExport};
+export { setBurgerClickedExport };
