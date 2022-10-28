@@ -13,14 +13,18 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function getInitialSession() {
-      dispatch(checkSession());
-      setIsLoading(false);
-    }
-    if (user.id) {
-      router.push('/user/profile'); // when a user is logged in, this will sent them to their profile
+    dispatch(checkSession());
+    setIsLoading(false);
+    if (router.asPath.startsWith('/#access_token')) {
+      if (router.asPath.endsWith('type=recovery')) {
+        router.push('/password-reset');
+      } else {
+        router.push('/user/profile');
+      }
     } else {
-      getInitialSession();
+      if (user.id) {
+        router.push('/user/profile'); // when a user is logged in, this will sent them to their profile
+      }
     }
   }, [user]);
 
