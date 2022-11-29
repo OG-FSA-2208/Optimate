@@ -1,0 +1,16 @@
+# $ docker-compose up <-d>
+# builds current compose file
+# -d detatched
+# $ docker-compose down
+
+version: '3'
+services:
+  app:
+    # name of app
+    container_name: docker-optimate
+    # if fails => restart
+    restart: always
+    # search for Dockerfile
+    build: .
+    ports:
+      - '3000:3000'
