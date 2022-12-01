@@ -19,9 +19,15 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
+
+ARG NEXT_PUBLIC_API_KEY
+ARG NEXT_PUBLIC_SUPABASE_URL
+ENV NEXT_PUBLIC_API_KEY=$NEXT_PUBLIC_API_KEY
+ENV NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL
+
 RUN node node_modules/less/bin/lessc less/globals.less styles/globals.css
-RUN --mount=type=secret,id=NEXT_PUBLIC_API_KEY \
---mount=type=secret,id=NEXT_PUBLIC_SUPABASE_URL \
+RUN --build-arg NEXT_PUBLIC_API_KEY=$NEXT_PUBLIC_API_KEY \
+--build-arg NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL \
 --mount=type=secret,id=SUPABASE_SERVICE_KEY \
 --mount=type=secret,id=SUPA_TOKEN \
 npm run build
