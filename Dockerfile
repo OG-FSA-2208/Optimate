@@ -26,9 +26,7 @@ ENV NEXT_PUBLIC_API_KEY=$NEXT_PUBLIC_API_KEY
 ENV NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL
 
 RUN node node_modules/less/bin/lessc less/globals.less styles/globals.css
-RUN --build-arg NEXT_PUBLIC_API_KEY=$NEXT_PUBLIC_API_KEY \
---build-arg NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL \
---mount=type=secret,id=SUPABASE_SERVICE_KEY \
+RUN --mount=type=secret,id=SUPABASE_SERVICE_KEY \
 --mount=type=secret,id=SUPA_TOKEN \
 npm run build
 
