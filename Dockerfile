@@ -18,7 +18,7 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
-
+ENV NODE_ENV production
 RUN node node_modules/less/bin/lessc less/globals.less styles/globals.css
 RUN --mount=type=secret,id=NEXT_PUBLIC_API_KEY \
 --mount=type=secret,id=NEXT_PUBLIC_SUPABASE_URL \
