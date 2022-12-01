@@ -20,7 +20,11 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN node node_modules/less/bin/lessc less/globals.less styles/globals.css
-RUN --mount=type=secret,id=NEXT_PUBLIC_API_KEY --mount=type=secret,id=NEXT_PUBLIC_SUPABASE_URL --mount=type=secret,id=SUPABASE_SERVICE_KEY --mount=type=secret,id=SUPA_TOKEN npm run build
+RUN --mount=type=secret,id=NEXT_PUBLIC_API_KEY \
+--mount=type=secret,id=NEXT_PUBLIC_SUPABASE_URL \
+--mount=type=secret,id=SUPABASE_SERVICE_KEY \
+--mount=type=secret,id=SUPA_TOKEN \
+npm run build
 
 # Production image, copy all the files and run next
 FROM node:16-alpine AS runner
