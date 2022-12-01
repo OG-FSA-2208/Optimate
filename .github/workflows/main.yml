@@ -25,6 +25,9 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/optimate:latest
+          build-args: |
+            NEXT_PUBLIC_API_KEY:${{ secrets.NEXT_PUBLIC_API_KEY }}
+            NEXT_PUBLIC_SUPABASE_URL:${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           secrets: |
             "SUPABASE_SERVICE_KEY=${{ secrets.SUPABASE_SERVICE_KEY }}"
             "SUPA_TOKEN=${{ secrets.SUPA_TOKEN }}"
