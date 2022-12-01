@@ -26,7 +26,7 @@ jobs:
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/optimate:latest
           secrets: |
-            "NEXT_PUBLIC_API_KEY: ${{secrets.NEXT_PUBLIC_API_KEY}}"
-            "NEXT_PUBLIC_SUPABASE_URL: ${{secrets.NEXT_PUBLIC_SUPABASE_URL}}"
-            "SUPABASE_SERVICE_KEY: ${{secrets.SUPABASE_SERVICE_KEY}}"
-            "SUPA_TOKEN: ${{secrets.SUPA_TOKEN}}"
+            "NEXT_PUBLIC_API_KEY=${{ secrets.NEXT_PUBLIC_API_KEY }}"
+            "NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}"
+            "SUPABASE_SERVICE_KEY=${{ secrets.SUPABASE_SERVICE_KEY }}"
+            "SUPA_TOKEN=${{ secrets.SUPA_TOKEN }}"
