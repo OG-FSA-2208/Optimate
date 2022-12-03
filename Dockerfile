@@ -20,22 +20,22 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NODE_ENV production
 
-ARG NEXT_PUBLIC_API_KEY=$NEXT_PUBLIC_API_KEY
-ARG NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_API_KEY
-ENV NEXT_PUBLIC_API_KEY=$NEXT_PUBLIC_API_KEY
-ENV NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL
+# ARG NEXT_PUBLIC_API_KEY=$NEXT_PUBLIC_API_KEY
+# ARG NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_API_KEY
+# ENV NEXT_PUBLIC_API_KEY=$NEXT_PUBLIC_API_KEY
+# ENV NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL
 
-RUN echo ${NEXT_PUBLIC_API_KEY}
-RUN echo $NEXT_PUBLIC_SUPABASE_URL
-RUN echo do we have a key or not????
+# RUN echo ${NEXT_PUBLIC_API_KEY}
+# RUN echo $NEXT_PUBLIC_SUPABASE_URL
+# RUN echo do we have a key or not????
 
 RUN node node_modules/less/bin/lessc less/globals.less styles/globals.css
 
-RUN NEXT_PUBLIC_API_KEY=$NEXT_PUBLIC_API_KEY \
-NEXT_PUBLIC_API_KEY=$NEXT_PUBLIC_API_KEY \
---mount=type=secret,id=SUPABASE_SERVICE_KEY \
---mount=type=secret,id=SUPA_TOKEN \
-npm run build
+# RUN --mount=type=secret,id=SUPABASE_SERVICE_KEY \
+# --mount=type=secret,id=SUPA_TOKEN \
+# npm run build
+
+RUN npm run build
 
 # Production image, copy all the files and run next
 FROM node:16-alpine AS runner
