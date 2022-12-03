@@ -26,12 +26,14 @@ ENV NEXT_PUBLIC_API_KEY=$NEXT_PUBLIC_API_KEY
 ENV NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL
 RUN echo NEXT_PUBLIC_API_KEY
 RUN echo NEXT_PUBLIC_SUPABASE_URL
-RUN echo envNEXT_PUBLIC_SUPABASE_URL
+RUN echo env.NEXT_PUBLIC_SUPABASE_URL
+RUN echo process.env.NEXT_PUBLIC_SUPABASE_URL
 
 RUN node node_modules/less/bin/lessc less/globals.less styles/globals.css
+
 RUN --mount=type=secret,id=SUPABASE_SERVICE_KEY \
---mount=type=secret,id=SUPA_TOKEN \
-npm run build
+  --mount=type=secret,id=SUPA_TOKEN \
+  npm run build
 
 # Production image, copy all the files and run next
 FROM node:16-alpine AS runner
