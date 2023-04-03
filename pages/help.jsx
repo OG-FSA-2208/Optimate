@@ -4,9 +4,9 @@ import Head from 'next/head';
 
 export default function help() {
   return (
-    <div className='sendHelp'>
+    <div className="sendHelp">
       <Head>
-        <title>Optimate | Help</title>
+        <title>Optim8 | Help</title>
       </Head>
       <h1 className="help">HELP IS ON THE WAY</h1>
       <br></br>

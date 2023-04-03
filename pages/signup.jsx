@@ -5,7 +5,7 @@ export default function Signup() {
   return (
     <div>
       <Head>
-          <title>Optimate | Signup</title>
+        <title>Optim8 | Signup</title>
       </Head>
       <EmailSignUp />
     </div>

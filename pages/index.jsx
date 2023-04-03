@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Optimate</title>
+        <title>Optim8</title>
       </Head>
 
       {isLoading ? (
@@ -54,9 +54,9 @@ export default function Home() {
                   },
                 }}
               >
-                Optimate
+                Optim8
               </motion.h1>
-              {/* <h1 className="logo">Optimate</h1> */}
+              {/* <h1 className="logo">Optim8</h1> */}
               <div>
                 <h4>Returning User?</h4>
                 <button

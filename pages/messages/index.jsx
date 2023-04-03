@@ -6,7 +6,7 @@ export default function Messages() {
   return (
     <div className="messages">
       <Head>
-        <title>Optimate | Messages</title>
+        <title>Optim8 | Messages</title>
       </Head>
       <div className="column match-list">
         <Matches />

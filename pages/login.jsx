@@ -7,7 +7,7 @@ function Login() {
   return (
     <div>
       <Head>
-          <title>Optimate | Log in</title>
+        <title>Optim8 | Log in</title>
       </Head>
       <EmailSignIn />
     </div>

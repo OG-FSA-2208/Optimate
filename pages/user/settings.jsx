@@ -6,7 +6,7 @@ export default function Setting() {
   return (
     <>
       <Head>
-          <title>Optimate | Settings</title>
+        <title>Optim8 | Settings</title>
       </Head>
       <UpdateUserAuth />
     </>
