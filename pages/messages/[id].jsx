@@ -29,7 +29,7 @@ export default function Chat() {
     <div className="messages">
       <Head>
         <title>
-          Optimate | Messages{' '}
+          Optim8 | Messages{' '}
           {match ? `- ${match.firstname} ${match.lastname}` : ``}
         </title>
       </Head>

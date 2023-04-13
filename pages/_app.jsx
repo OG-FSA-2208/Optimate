@@ -41,6 +41,18 @@ function MyApp({ Component, pageProps }) {
           >
             <Head>
               <link rel="shortcut icon" href="/images/favicon.ico" />
+              <meta
+                name="keywords"
+                content="optim8, dating, love, eight, daily match, opti"
+              />
+              <meta
+                name="author"
+                content="Optim8 team: Cody Chan, Cory Gold, Eve Cho, Winnie Lau, Zach Byerly"
+              />
+              <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+              />
             </Head>
             <Component {...pageProps} />
           </motion.div>

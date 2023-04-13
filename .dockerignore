@@ -1,0 +1,16 @@
+node_modules
+bundle.js
+bundle.js.map
+# .env
+*.tmp*
+.DS_Store
+/build
+*.code-workspace
+
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+README.md
+.next
+.git

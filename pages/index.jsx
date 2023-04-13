@@ -27,7 +27,23 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Optimate</title>
+        <title>
+          Optim8 - Find Love with who you want from your daily match
+        </title>
+        <meta
+          name="description"
+          content="We have created a site where you will only find lvoe interests among matches that you actually want to see."
+          key="desc"
+        />
+        <meta
+          property="og:title"
+          content="Optim8 - Find Love with who you want from your daily match"
+        />
+        <meta
+          property="og:description"
+          content="We have created a site where you will only find lvoe interests among matches that you actually want to see."
+        />
+        <meta property="og:image" content="🐙" />
       </Head>
 
       {isLoading ? (
@@ -54,9 +70,9 @@ export default function Home() {
                   },
                 }}
               >
-                Optimate
+                Optim8
               </motion.h1>
-              {/* <h1 className="logo">Optimate</h1> */}
+              {/* <h1 className="logo">Optim8</h1> */}
               <div>
                 <h4>Returning User?</h4>
                 <button

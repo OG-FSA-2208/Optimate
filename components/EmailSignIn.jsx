@@ -58,7 +58,7 @@ export default function EmailSignIn() {
   return (
     <div className="form-container">
       <form id="login-form" onSubmit={(e) => handleSubmit(e)}>
-        <div className="form-title">Login to Optimate</div>
+        <div className="form-title">Login to Optim8</div>
         {formError.status === 400 && (
           <span className="form-error display-block">
             email and password combination is incorrect

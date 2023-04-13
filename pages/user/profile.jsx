@@ -8,13 +8,13 @@ export default function Profile() {
 
   useEffect(() => {
     setSession(supabase.auth.session());
-  }, [])
+  }, []);
 
   //TODO: add loading with next fallback?
   return (
     <div>
       <Head>
-        <title>Optimate | Profile</title>
+        <title>Optim8 | Profile</title>
       </Head>
       {!session ? 'please sign in' : <UserProfile />}
     </div>

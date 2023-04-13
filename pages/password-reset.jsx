@@ -36,7 +36,7 @@ export default function ResetPassword() {
     <div className="form-container">
       <form id="change-password-form">
         <Head>
-          <title className="form-title">Optimate | Password Reset</title>
+          <title className="form-title">Optim8 | Password Reset</title>
         </Head>
         <h1>please enter a new password</h1>
         <div className="form-item">

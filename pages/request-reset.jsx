@@ -39,7 +39,7 @@ export default function RequestReset() {
     <div className="form-container">
       <form id="request-reset-form">
         <Head>
-          <title>Optimate | Password Reset</title>
+          <title>Optim8 | Password Reset</title>
         </Head>
         <h1>Recovery Email</h1>
         {success && <span className="">{success}</span>}

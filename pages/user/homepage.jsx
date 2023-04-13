@@ -107,7 +107,7 @@ export default function Profile() {
   return (
     <div>
       <Head>
-        <title>Optimate</title>
+        <title>Optim8</title>
       </Head>
       {highlight.id ? (
         <div id="homepage-container">

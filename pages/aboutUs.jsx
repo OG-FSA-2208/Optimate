@@ -1,14 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Head from 'next/head';
 
 export default function aboutUs() {
   return (
     <div className="aboutUs">
+      <Head>
+        <title>Optim8 | About Us</title>
+      </Head>
       <h1>
         <u className="ZECC-W">ABOUT US:</u>
         <div className="copyright"> ©ZECC-W</div>
       </h1>
-
       <br />
       <div className="members">
         <h3>
@@ -18,7 +21,7 @@ export default function aboutUs() {
               whileHover={{
                 scale: 0.9,
               }}
-              src="https://media-exp1.licdn.com/dms/image/C5603AQHCkceejtIvYQ/profile-displayphoto-shrink_800_800/0/1569367290750?e=1671667200&v=beta&t=PApwrewRWU-IaBiuxtROh4ktw5pGH6O1J91ijFcjB0g"
+              src="images/zach.jpg"
             />
           </a>
           Zach Byerley
@@ -30,19 +33,19 @@ export default function aboutUs() {
               whileHover={{
                 scale: 0.9,
               }}
-              src="https://media-exp1.licdn.com/dms/image/D5603AQFkTGcj54Jklw/profile-displayphoto-shrink_800_800/0/1664301549927?e=1671667200&v=beta&t=10f33P6IwDiDGKQYQS9d3YtFopCgu-EBQV22G0b86qc"
+              src="images/eve.jpg"
             />
           </a>
           Eve Cho
         </h3>
         <h3>
-          <a target="_blank" href="https://www.linkedin.com/in/echos-echo/">
+          <a target="_blank" href="https://www.linkedin.com/in/codylchan/">
             <motion.img
               className="memberProfilePic"
               whileHover={{
                 scale: 0.9,
               }}
-              src="https://media-exp1.licdn.com/dms/image/D4E03AQEd1PbrhzQXTQ/profile-displayphoto-shrink_800_800/0/1666361287887?e=1671667200&v=beta&t=zKP6JDInajIQNwcYJn9jjFa4S-abXtwiiPV4IaTI8gE"
+              src="images/cody.jpg"
             />
           </a>
           Cody Chan
@@ -54,7 +57,7 @@ export default function aboutUs() {
               whileHover={{
                 scale: 0.9,
               }}
-              src="https://media-exp1.licdn.com/dms/image/C4E03AQFPJ4W5KPQKtQ/profile-displayphoto-shrink_800_800/0/1637612893766?e=1671667200&v=beta&t=h4JX6QE3XegrP2IGDrL4HLmhvSwx1FcJSvbpNdXcSKs"
+              src="images/cory.jpg"
             />
           </a>
           Cory Gold
@@ -66,7 +69,7 @@ export default function aboutUs() {
               whileHover={{
                 scale: 0.9,
               }}
-              src="https://iwnfagrreicibkzmwlip.supabase.co/storage/v1/object/sign/aboutus/pic1.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhYm91dHVzL3BpYzEucG5nIiwiaWF0IjoxNjY2NjI1MTc4LCJleHAiOjE5ODE5ODUxNzh9.IjDmLv7zJzp9URXW0RVoOlPXhsBt8lFIgdG5AOcn7ws"
+              src="images/winnie.jpg"
             />
           </a>
           Winnie Lau
@@ -74,7 +77,6 @@ export default function aboutUs() {
       </div>
       <br />
       <br />
-
       <h2>
         Github:{' '}
         <u>
@@ -83,7 +85,7 @@ export default function aboutUs() {
           </a>
         </u>
       </h2>
-      <br/>
+      <br />
     </div>
   );
 }

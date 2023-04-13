@@ -102,12 +102,12 @@ export default function NavBar() {
           {session ? (
             <Link href="/user/homepage">
               <a className="OptimateWithBurger" onClick={handleRedirect}>
-                Optimate 🐙
+                Optim🐙
               </a>
             </Link>
           ) : (
             <Link href="/">
-              <a className="Optimate">Optimate 🐙</a>
+              <a className="Optimate">Optim🐙</a>
             </Link>
           )}
         </motion.h2>
@@ -116,6 +116,19 @@ export default function NavBar() {
         {session && (
           // these are the links that will appear if a user is logged in
           <>
+            <li>
+              <Link href="/user/homepage">
+                <a onClick={handleRedirect}>
+                  Matches
+                  <Badge
+                    color="primary"
+                    badgeContent={numUnread}
+                    max={99}
+                    style={{ transform: 'translate(0,-10px)' }}
+                  ></Badge>
+                </a>
+              </Link>
+            </li>
             <li>
               <Link href="/messages">
                 <a onClick={handleRedirect}>
