@@ -27,7 +27,23 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Optim8</title>
+        <title>
+          Optim8 - Find Love with who you want from your daily match
+        </title>
+        <meta
+          name="description"
+          content="We have created a site where you will only find lvoe interests among matches that you actually want to see."
+          key="desc"
+        />
+        <meta
+          property="og:title"
+          content="Optim8 - Find Love with who you want from your daily match"
+        />
+        <meta
+          property="og:description"
+          content="We have created a site where you will only find lvoe interests among matches that you actually want to see."
+        />
+        <meta property="og:image" content="🐙" />
       </Head>
 
       {isLoading ? (

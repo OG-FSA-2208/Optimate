@@ -2,12 +2,16 @@ import React from 'react';
 import ForwardIcon from '@mui/icons-material/Forward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { useState } from 'react';
+import Head from 'next/head';
 
 export default function faq() {
   const [isActive, setIsActive] = useState('');
 
   return (
     <div className="FAQ">
+      <Head>
+        <title>Optim8 | FAQ</title>
+      </Head>
       <h1>FAQ</h1>
       <h3>
         <a>

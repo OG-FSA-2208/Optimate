@@ -1,14 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Head from 'next/head';
 
 export default function aboutUs() {
   return (
     <div className="aboutUs">
+      <Head>
+        <title>Optim8 | About Us</title>
+      </Head>
       <h1>
         <u className="ZECC-W">ABOUT US:</u>
         <div className="copyright"> ©ZECC-W</div>
       </h1>
-
       <br />
       <div className="members">
         <h3>
@@ -74,7 +77,6 @@ export default function aboutUs() {
       </div>
       <br />
       <br />
-
       <h2>
         Github:{' '}
         <u>
